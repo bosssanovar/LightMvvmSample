@@ -11,7 +11,8 @@ namespace WpfApp1
 
     /// <summary>
     /// MainWindowのViewModel責務コード記述部
-    /// View操作を柔軟にするために、ViewとViewModelを一体化した。（MVVMの軽量化カスタム）
+    /// しかし実体は、Viewのコードビハインド（partial）。
+    /// View操作を柔軟にするために、ViewとViewModelを一体化した。（MVVMの軽量カスタム）
     /// </summary>
     public partial class Sample
     {
