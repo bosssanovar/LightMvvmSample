@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain_Test", "Domain_Test\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeSnippets", "CodeSnippets", "{81D99F80-5249-415C-BC84-C65C383BE50D}"
 	ProjectSection(SolutionItems) = preProject
-		CodeSnippets\cs.snippet = CodeSnippets\cs.snippet
+		CodeSnippets\.snippet = CodeSnippets\.snippet
 	EndProjectSection
 EndProject
 Global
