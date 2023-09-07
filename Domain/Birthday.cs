@@ -22,12 +22,14 @@ namespace Domain
 
         #region Properties ------------------------------------------------------------------------------------
 
-        public int Age {
+        public int Age
+        {
             get
             {
                 DateTime today = DateTime.Today;
                 int age = today.Year - _year;
-                //誕生日がまだ来ていなければ、1引く
+
+                // 誕生日がまだ来ていなければ、1引く
                 if (today.Month < _month ||
                     (today.Month == _month &&
                     today.Day < _day))
@@ -36,7 +38,7 @@ namespace Domain
                 }
 
                 return age;
-            } 
+            }
         }
 
         public string Text

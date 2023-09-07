@@ -1,7 +1,4 @@
-﻿using System;
-using Reactive.Bindings;
-
-namespace Domain
+﻿namespace Domain
 {
     public class Person
     {
@@ -18,10 +15,9 @@ namespace Domain
 
         #region Properties ------------------------------------------------------------------------------------
 
-        public string Name { get { return _name.FullName; } }
+        public string Name { get => _name.FullName; }
 
-        public int Age { get { return _birthday.Age; } }
-
+        public int Age { get => _birthday.Age; }
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------

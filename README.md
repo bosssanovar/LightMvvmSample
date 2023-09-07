@@ -71,3 +71,4 @@ StyleCop.Analyzersを採用。
 プロジェクトごとに設定する。
 
 https://qiita.com/YoshijiGates/items/d0d11582eec936807951
+https://yamaccu.github.io/tils/20210925-Csharp-StyleCop

@@ -16,7 +16,6 @@ namespace WpfApp1
     /// </summary>
     public partial class Sample
     {
-
         #region Fields
 
         #endregion
