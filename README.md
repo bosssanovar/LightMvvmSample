@@ -58,7 +58,7 @@
 
 StyleCop.Analyzersを採用。  
 暫定的に、最低限のルールを整備。  
-プロジェクトごとに設定する。  
+プロジェクトごとに.editorconfigを設定する。  
 
 https://qiita.com/YoshijiGates/items/d0d11582eec936807951  
 https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
