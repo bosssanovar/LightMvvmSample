@@ -13,9 +13,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{A27118A7-B397-45B1-BE2E-F8B909727260}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Device", "Network\Device.csproj", "{6D3454C7-2976-4E6E-93AF-635BDC2271DD}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A27118A7-B397-45B1-BE2E-F8B909727260} = {A27118A7-B397-45B1-BE2E-F8B909727260}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{75EAA850-8311-428A-B721-662BB46C2563}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -34,8 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeSnippets", "CodeSnippet
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DBED188A-D753-475D-B419-60D9D2902DC4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1BD7A9BB-A9AF-4486-A6F3-FD29B18FE346}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{8D114464-E1C3-4A32-B79C-0FD03AB78619}"
 	ProjectSection(SolutionItems) = preProject

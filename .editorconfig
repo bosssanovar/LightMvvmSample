@@ -103,6 +103,10 @@ dotnet_diagnostic.SA1111.severity = silent
 dotnet_diagnostic.SA1009.severity = silent
 dotnet_diagnostic.SA0001.severity = silent
 dotnet_diagnostic.SA1623.severity = silent
+dotnet_diagnostic.SA1000.severity = silent
+
+# CS8618: null 非許容のフィールドには、コンストラクターの終了時に null 以外の値が入っていなければなりません。Null 許容として宣言することをご検討ください。
+dotnet_diagnostic.CS8618.severity = none
 
 [*.vb]
 #### 命名スタイル ####
