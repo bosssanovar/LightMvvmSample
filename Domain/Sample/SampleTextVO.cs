@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Domain.Sample
 {
     /// <summary>
-    /// サンプルソースのModel
+    /// Sampleの文字列ValueObject
     /// </summary>
-    public class Sample
+    public class SampleTextVO
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly SampleTextVO _sampleTextVo;
+        private readonly string _text;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -24,9 +24,9 @@ namespace Domain.Sample
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// テキストを取得する
+        /// 文字列を取得します。
         /// </summary>
-        public string Text { get => _sampleTextVo.Text; }
+        public string Text { get => _text; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -39,9 +39,10 @@ namespace Domain.Sample
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public Sample()
+        /// <param name="text">文字列</param>
+        public SampleTextVO(string text)
         {
-            _sampleTextVo = new("Initial Value");
+            _text = text;
         }
 
         #endregion --------------------------------------------------------------------------------------------
