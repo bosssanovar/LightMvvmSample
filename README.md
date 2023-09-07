@@ -16,19 +16,26 @@
 
 プロダクト ソリューション
 　│
-　├ CodeSnippets フォルダ：コードスニペット置き場
+　├─ CodeSnippets フォルダ：コードスニペット置き場
 　│
-　├ Tests フォルダ：テストプロジェクト置き場
+　├─ Tests フォルダ：テストプロジェクト置き場
 　│　　│
-　│　　└ Domain_Test プロジェクト：Domein プロジェクトのユニットテスト
+　│　　└─ Domain_Test プロジェクト：Domein プロジェクトのユニットテスト
 　│
-　├ Devices プロジェクト：実機との通信機能
+　├─ Devices プロジェクト：実機との通信機能
 　│
-　├ Domain プロジェクト：ドメインロジック（アプリの本質的な機能）
+　├─ Domain プロジェクト：ドメインロジック（アプリの本質的な機能）
 　│
-　├ Repository プロジェクト：永続データ管理機能
+　├─ Repository プロジェクト：永続データ管理機能
 　│
-　└ プロダクト プロジェクト：エントリーポイント、各種UI
+　└─ プロダクト プロジェクト：エントリーポイント、各種UI
+
+---
+
+## 変更通知機構 Reactive Property
+
+変更通知機構として、Reactive Propertyを採用している。
+詳細はググること。
 
 ---
 
@@ -56,3 +63,11 @@
 * cs_reactiveProperty：Reactive Property Slimのプロパティ定義
 
 ---
+
+## コーディング規約
+
+StyleCop.Analyzersを採用。
+暫定的に、最低限のルールを整備。
+プロジェクトごとに設定する。
+
+https://qiita.com/YoshijiGates/items/d0d11582eec936807951

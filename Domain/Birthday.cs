@@ -1,14 +1,18 @@
 ﻿using System;
-using Reactive.Bindings;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Person
+    public class Birthday
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly Name _name;
-        private readonly Birthday _birthday;
+        private readonly int _year = 1980;
+        private readonly int _month = 1;
+        private readonly int _day = 1;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -18,9 +22,30 @@ namespace Domain
 
         #region Properties ------------------------------------------------------------------------------------
 
-        public string Name { get { return _name.FullName; } }
+        public int Age {
+            get
+            {
+                DateTime today = DateTime.Today;
+                int age = today.Year - _year;
+                //誕生日がまだ来ていなければ、1引く
+                if (today.Month < _month ||
+                    (today.Month == _month &&
+                    today.Day < _day))
+                {
+                    age--;
+                }
 
-        public int Age { get { return _birthday.Age; } }
+                return age;
+            } 
+        }
+
+        public string Text
+        {
+            get
+            {
+                return $"{_year}/{_month}/{_day}";
+            }
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,10 +55,11 @@ namespace Domain
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        public Person(Name name, Birthday birthDay)
+        public Birthday(int year, int month, int day)
         {
-            _name = name;
-            _birthday = birthDay;
+            _year = year;
+            _month = month;
+            _day = day;
         }
 
         #endregion --------------------------------------------------------------------------------------------

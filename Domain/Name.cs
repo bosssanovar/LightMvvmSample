@@ -1,14 +1,18 @@
 ﻿using System;
-using Reactive.Bindings;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Domain
 {
-    public class Person
+    public class Name
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly Name _name;
-        private readonly Birthday _birthday;
+        private readonly string _family;
+
+        private readonly string _first;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -18,9 +22,7 @@ namespace Domain
 
         #region Properties ------------------------------------------------------------------------------------
 
-        public string Name { get { return _name.FullName; } }
-
-        public int Age { get { return _birthday.Age; } }
+        public string FullName => $"{_family} {_first}";
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,10 +32,10 @@ namespace Domain
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        public Person(Name name, Birthday birthDay)
+        public Name(string family, string first)
         {
-            _name = name;
-            _birthday = birthDay;
+            _family = family;
+            _first = first;
         }
 
         #endregion --------------------------------------------------------------------------------------------

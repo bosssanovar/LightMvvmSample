@@ -27,7 +27,7 @@ namespace WpfApp1
             // ここでアプリケーション初期化
 
             // メイン ウィンドウ表示
-            Sample window = new Sample();
+            Sample window = new();
             window.Show();
         }
 
