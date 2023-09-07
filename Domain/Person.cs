@@ -1,5 +1,8 @@
 ﻿namespace Domain
 {
+    /// <summary>
+    /// 個人情報クラス
+    /// </summary>
     public class Person
     {
         #region Fields ----------------------------------------------------------------------------------------
@@ -15,8 +18,14 @@
 
         #region Properties ------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 名前フルネームを取得します。
+        /// </summary>
         public string Name { get => _name.FullName; }
 
+        /// <summary>
+        /// 年齢
+        /// </summary>
         public int Age { get => _birthday.Age; }
         #endregion --------------------------------------------------------------------------------------------
 
@@ -26,6 +35,11 @@
 
         #region Constructor -----------------------------------------------------------------------------------
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="name">氏名</param>
+        /// <param name="birthDay">誕生日</param>
         public Person(Name name, Birthday birthDay)
         {
             _name = name;

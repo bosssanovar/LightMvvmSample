@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
+    /// <summary>
+    /// 名前クラス
+    /// </summary>
     public class Name
     {
         #region Fields ----------------------------------------------------------------------------------------
@@ -22,6 +25,9 @@ namespace Domain
 
         #region Properties ------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// フルネームを取得します。
+        /// </summary>
         public string FullName => $"{_family} {_first}";
 
         #endregion --------------------------------------------------------------------------------------------
@@ -32,6 +38,11 @@ namespace Domain
 
         #region Constructor -----------------------------------------------------------------------------------
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="family">苗字</param>
+        /// <param name="first">名前</param>
         public Name(string family, string first)
         {
             _family = family;

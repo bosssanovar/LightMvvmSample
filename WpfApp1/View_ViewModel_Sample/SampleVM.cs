@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-
     /// <summary>
     /// MainWindowのViewModel責務コード記述部
     /// しかし実体は、Viewのコードビハインド（partial）。
@@ -26,6 +25,9 @@ namespace WpfApp1
 
         #region Properties
 
+        /// <summary>
+        /// サンプルテキスト
+        /// </summary>
         public string Text { get => "AAAAAAAAAa"; }
 
         #endregion

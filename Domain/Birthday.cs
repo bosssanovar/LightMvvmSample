@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
+    /// <summary>
+    /// 誕生日クラス
+    /// </summary>
     public class Birthday
     {
         #region Fields ----------------------------------------------------------------------------------------
@@ -22,6 +25,9 @@ namespace Domain
 
         #region Properties ------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 年齢を取得します。
+        /// </summary>
         public int Age
         {
             get
@@ -41,6 +47,9 @@ namespace Domain
             }
         }
 
+        /// <summary>
+        /// 生年月日の文字列を取得します。
+        /// </summary>
         public string Text
         {
             get
@@ -57,6 +66,12 @@ namespace Domain
 
         #region Constructor -----------------------------------------------------------------------------------
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="year">誕生年</param>
+        /// <param name="month">誕生月</param>
+        /// <param name="day">誕生日</param>
         public Birthday(int year, int month, int day)
         {
             _year = year;

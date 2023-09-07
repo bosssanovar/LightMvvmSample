@@ -27,7 +27,7 @@ namespace WpfApp1
             // ここでアプリケーション初期化
 
             // メイン ウィンドウ表示
-            Sample window = new();
+            Sample window = new ();
             window.Show();
         }
 
@@ -37,7 +37,10 @@ namespace WpfApp1
         /// <param name="e">イベント データ。</param>
         protected override void OnExit(ExitEventArgs e)
         {
-            if (App._mutex == null) { return; }
+            if (App._mutex == null)
+            {
+                return;
+            }
 
             // アプリケーション設定の保存
 

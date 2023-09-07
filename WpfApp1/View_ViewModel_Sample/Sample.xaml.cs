@@ -20,6 +20,9 @@ namespace WpfApp1
     /// </summary>
     public partial class Sample : Window
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public Sample()
         {
             InitializeViewModel();
