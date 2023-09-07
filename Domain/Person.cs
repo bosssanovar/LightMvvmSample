@@ -1,4 +1,7 @@
-﻿namespace Domain
+﻿using System;
+using Reactive.Bindings;
+
+namespace Domain
 {
     public class Person
     {
@@ -11,6 +14,8 @@
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        public ReactivePropertySlim<int> Name { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
