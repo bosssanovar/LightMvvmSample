@@ -31,7 +31,8 @@ namespace WpfApp1
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public Sample()
+        /// <param name="model">モデル</param>
+        public Sample(SampleModel model)
         {
             #region init View Members
 
@@ -39,7 +40,7 @@ namespace WpfApp1
 
             #region init ViewModel Members
 
-            _model = new();
+            _model = model;
 
             Text = _model.Text.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,            // Selector
