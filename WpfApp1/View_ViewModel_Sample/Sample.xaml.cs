@@ -18,8 +18,8 @@ namespace WpfApp1
             _model = new();
 
             Text = _model.Text.ToReactivePropertySlimAsSynchronized(
-                x => x.Value,                          // Selector
-                x => x.Text,                           // Convert
+                x => x.Value,            // Selector
+                x => x.Text,             // Convert
                 x => new SampleTextVO(x) // ConvertBack
                 );
 
