@@ -18,13 +18,13 @@ namespace WpfApp1
     /// しかし実体は、Viewのコードビハインド（partial）。
     /// View操作を柔軟にするために、ViewとViewModelを一体化した。（MVVMの軽量カスタム）
     /// </summary>
-    public partial class Sample : INotifyPropertyChanged
+    public partial class Sample/*View Model*/ : INotifyPropertyChanged
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private Domain.Sample.SampleModel _model;
+        private readonly Domain.Sample.SampleModel _model;
 
-        private CompositeDisposable _disposables = new();
+        private readonly CompositeDisposable _disposables = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
