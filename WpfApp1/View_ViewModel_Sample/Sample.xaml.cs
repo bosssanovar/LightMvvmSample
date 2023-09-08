@@ -14,7 +14,12 @@ namespace WpfApp1
         /// </summary>
         public Sample()
         {
-            // Init VM
+            #region init View Members
+
+            #endregion
+
+            #region init ViewModel Members
+
             _model = new();
 
             Text = _model.Text.ToReactivePropertySlimAsSynchronized(
@@ -22,6 +27,8 @@ namespace WpfApp1
                 x => x.Text,             // Convert
                 x => new SampleTextVO(x) // ConvertBack
                 );
+
+            #endregion
 
             InitializeComponent();
         }
