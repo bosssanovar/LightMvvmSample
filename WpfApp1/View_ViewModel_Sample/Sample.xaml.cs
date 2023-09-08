@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Domain.Sample;
 using Reactive.Bindings.Extensions;
 
 namespace WpfApp1
@@ -17,9 +18,10 @@ namespace WpfApp1
             _model = new();
 
             Text = _model.Text.ToReactivePropertySlimAsSynchronized(
-                x => x.Value,
-                x => x.Text,
-                x => new Domain.Sample.SampleTextVO(x));
+                x => x.Value,                          // Selector
+                x => x.Text,                           // Convert
+                x => new SampleTextVO(x) // ConvertBack
+                );
 
             InitializeComponent();
         }
