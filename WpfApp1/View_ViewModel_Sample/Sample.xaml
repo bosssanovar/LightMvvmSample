@@ -16,7 +16,8 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
             <TextBlock Text="{Binding Text.Value}" Background="Pink" Width="100" Height="20" FontWeight="Bold"/>
-            <TextBox Text="{Binding Text.Value, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Text.Value}"/>
+            <TextBox Text="フォーカス退避用"/>
         </StackPanel>
 
 
