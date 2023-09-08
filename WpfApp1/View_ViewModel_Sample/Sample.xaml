@@ -14,7 +14,10 @@
     
     
     <Grid>
-        <TextBlock Text="{Binding Text}" Background="Pink" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="20" FontWeight="Bold"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+            <TextBlock Text="{Binding Text.Value}" Background="Pink" Width="100" Height="20" FontWeight="Bold"/>
+            <TextBox Text="{Binding Text.Value, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
 
 
     </Grid>

@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Reactive.Bindings;
 
 namespace Domain.Sample
 {
     /// <summary>
     /// サンプルソースのModel
     /// </summary>
-    public class Sample
+    public class SampleModel
     {
         #region Fields ----------------------------------------------------------------------------------------
-
-        private readonly SampleTextVO _sampleTextVo;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -26,7 +20,7 @@ namespace Domain.Sample
         /// <summary>
         /// テキストを取得する
         /// </summary>
-        public string Text { get => _sampleTextVo.Text; }
+        public ReactivePropertySlim<SampleTextVO> Text { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -39,9 +33,9 @@ namespace Domain.Sample
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public Sample()
+        public SampleModel()
         {
-            _sampleTextVo = new("Initial Value");
+            Text = new(new SampleTextVO("Init Value"));
         }
 
         #endregion --------------------------------------------------------------------------------------------

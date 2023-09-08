@@ -7,6 +7,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using Reactive.Bindings;
+using Reactive.Bindings.Disposables;
+using Reactive.Bindings.Extensions;
 
 namespace WpfApp1
 {
@@ -19,7 +22,9 @@ namespace WpfApp1
     {
         #region Fields
 
-        private Domain.Sample.Sample _model;
+        private Domain.Sample.SampleModel _model;
+
+        private CompositeDisposable _disposables = new();
 
         #endregion
 
@@ -32,10 +37,10 @@ namespace WpfApp1
         /// <summary>
         /// サンプルテキスト
         /// </summary>
-        public string Text { get => _model.Text; }
+        public ReactivePropertySlim<string> Text { get; }
 
         /// <summary>
-        /// 不要だが、バインドした際のメモリリーク対策のため追加 INotifyPropertyChanged
+        /// 不要だが、バインドした際のメモリリーク対策のため固定追加（必須） INotifyPropertyChanged
         /// </summary>
 #pragma warning disable CS0067 // イベント 'Sample.PropertyChanged' は使用されていません
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -44,14 +49,6 @@ namespace WpfApp1
         #endregion
 
         #region Constructors
-
-        /// <summary>
-        /// ViewModel部コンストラクタ
-        /// </summary>
-        private void InitializeViewModel()
-        {
-            _model = new();
-        }
 
         #endregion
 
