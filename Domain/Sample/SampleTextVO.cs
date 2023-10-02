@@ -42,9 +42,14 @@ namespace Domain.Sample
         /// <param name="text">文字列</param>
         public SampleTextVO(string text)
         {
-            if(text.Length > 10)
+            if (text == null)
             {
-                throw new ArgumentException("例外発生テスト：10文字以上はNG", nameof(text));
+                throw new ArgumentNullException("null", nameof(text));
+            }
+
+            if (text.Length > 10)
+            {
+                throw new ArgumentException("10文字以上はNG", nameof(text));
             }
 
             _text = text;
