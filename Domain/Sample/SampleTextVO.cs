@@ -44,7 +44,7 @@ namespace Domain.Sample
         {
             if (text == null)
             {
-                throw new ArgumentNullException("null", nameof(text));
+                throw new ArgumentNullException(nameof(text));
             }
 
             if (text.Length > 10)
