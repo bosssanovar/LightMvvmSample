@@ -59,11 +59,8 @@ namespace WpfApp1
         protected override void OnStartup(StartupEventArgs e)
         {
             // 多重起動チェック
-            App._mutex = new Mutex(false, "Test-{C9386A33-46F3-072b-86C4-5BF04D0A0235}");
-            if (!App._mutex.WaitOne(0, false))
+            if (IsMultipleActivation())
             {
-                App._mutex.Close();
-                App._mutex = null;
                 this.Shutdown();
                 return;
             }
@@ -74,6 +71,19 @@ namespace WpfApp1
             // メイン ウィンドウ表示
             Sample window = new(_sampleModel);
             window.Show();
+        }
+
+        private static bool IsMultipleActivation()
+        {
+            App._mutex = new Mutex(false, "Test-{C9386A33-46F3-072b-86C4-5BF04D0A0235}");
+            if (!App._mutex.WaitOne(0, false))
+            {
+                App._mutex.Close();
+                App._mutex = null;
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
