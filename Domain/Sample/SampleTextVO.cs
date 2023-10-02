@@ -42,6 +42,11 @@ namespace Domain.Sample
         /// <param name="text">文字列</param>
         public SampleTextVO(string text)
         {
+            if(text.Length > 10)
+            {
+                throw new ArgumentException("例外発生テスト：10文字以上はNG", nameof(text));
+            }
+
             _text = text;
         }
 
@@ -50,6 +55,26 @@ namespace Domain.Sample
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 入力値を検証する
+        /// </summary>
+        /// <param name="text">入力文字列</param>
+        /// <returns>不適合の場合false</returns>
+        public static bool IsValid(string text)
+        {
+            if(text == null)
+            {
+                return false;
+            }
+
+            if(text.Length > 10)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

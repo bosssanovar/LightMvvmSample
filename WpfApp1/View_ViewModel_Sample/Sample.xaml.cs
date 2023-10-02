@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using Domain.Sample;
 using Reactive.Bindings.Extensions;
 
@@ -45,7 +46,17 @@ namespace WpfApp1
             Text = _model.Text.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,            // Selector
                 x => x.Text,             // Convert
-                x => new SampleTextVO(x)) // ConvertBack
+                x =>
+                {
+                    if (!SampleTextVO.IsValid(x))
+                    {
+                        // エラー表示して元値に戻す
+                        MessageBox.Show(this, "message", "caption");
+                        return new SampleTextVO(_model.Text.Value.Text);
+                    }
+
+                    return new SampleTextVO(x);
+                }) // ConvertBack
                 .AddTo(_disposables);
 
             #endregion
