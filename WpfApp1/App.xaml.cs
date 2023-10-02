@@ -59,11 +59,7 @@ namespace WpfApp1
         protected override void OnStartup(StartupEventArgs e)
         {
             // 多重起動チェック
-            if (IsMultipleActivation())
-            {
-                this.Shutdown();
-                return;
-            }
+            ShutDownIfMultiActivate();
 
             // ここでアプリケーション初期化
             _sampleModel = new();
@@ -73,17 +69,18 @@ namespace WpfApp1
             window.Show();
         }
 
-        private static bool IsMultipleActivation()
+        private void ShutDownIfMultiActivate()
         {
             App._mutex = new Mutex(false, "Test-{C9386A33-46F3-072b-86C4-5BF04D0A0235}");
             if (!App._mutex.WaitOne(0, false))
             {
                 App._mutex.Close();
                 App._mutex = null;
-                return true;
+                this.Shutdown();
+                return;
             }
 
-            return false;
+            return;
         }
 
         /// <summary>
