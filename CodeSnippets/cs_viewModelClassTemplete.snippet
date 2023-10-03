@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>cs_viewModelClassTemplete</Title>
+      <Shortcut>cs_viewModelClassTemplete</Shortcut>
+      <Description>ViewModel Class Templete</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>windowName</ID>
+          <Default>MainWindow</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+  <![CDATA[    public partial class $windowName$V : INotifyPropertyChanged
+    {
+        #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly CompositeDisposable _disposables = new();
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constants -------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 不要だが、バインドした際のメモリリーク対策のため固定追加（必須） INotifyPropertyChanged
+        /// </summary>
+#pragma warning disable CS0067 // イベント 'Sample.PropertyChanged' は使用されていません
+        public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント 'Sample.PropertyChanged' は使用されていません
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods ---------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+    }$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
