@@ -26,7 +26,7 @@
         /// <summary>
         /// 年齢
         /// </summary>
-        public int Age { get => _birthday.Age; }
+        public int Age { get => _birthday.GetAge(DateTime.Today); }
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------

@@ -26,28 +26,6 @@ namespace Domain
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// 年齢を取得します。
-        /// </summary>
-        public int Age
-        {
-            get
-            {
-                DateTime today = DateTime.Today;
-                int age = today.Year - _year;
-
-                // 誕生日がまだ来ていなければ、1引く
-                if (today.Month < _month ||
-                    (today.Month == _month &&
-                    today.Day < _day))
-                {
-                    age--;
-                }
-
-                return age;
-            }
-        }
-
-        /// <summary>
         /// 生年月日の文字列を取得します。
         /// </summary>
         public string Text
@@ -74,26 +52,26 @@ namespace Domain
         /// <param name="day">誕生日</param>
         public Birthday(int year, int month, int day)
         {
-            if(year < 0)
+            if(year < 1)
             {
-                throw new ArgumentException("範囲外", nameof(year));
+                throw new ArgumentOutOfRangeException("範囲外", nameof(year));
             }
 
             if (month < 1 || month > 12)
             {
-                throw new ArgumentException("範囲外", nameof(month));
+                throw new ArgumentOutOfRangeException("範囲外", nameof(month));
             }
 
             if (day < 1)
             {
-                throw new ArgumentException("範囲外", nameof(month));
+                throw new ArgumentOutOfRangeException("範囲外", nameof(month));
             }
             else
             {
                 // TODO : 月ごと、閏年などもみて
                 if(day > 31)
                 {
-                    throw new ArgumentException("範囲外", nameof(month));
+                    throw new ArgumentOutOfRangeException("範囲外", nameof(month));
                 }
             }
 
@@ -107,6 +85,32 @@ namespace Domain
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 年齢を取得する。
+        /// </summary>
+        /// <param name="point">年齢算出の時間地点。今日時点を取りたければ、DateTime.Todayを指定する。</param>
+        /// <returns>年齢</returns>
+        public int GetAge(DateTime point)
+        {
+            var birth = new DateTime(_year, _month, _day);
+            if(birth > point)
+            {
+                throw new ArgumentException("指定に日付に生まれていません。", nameof(point));
+            }
+
+            int age = point.Year - _year;
+
+            // 誕生日がまだ来ていなければ、1引く
+            if (point.Month < _month ||
+                (point.Month == _month &&
+                point.Day < _day))
+            {
+                age--;
+            }
+
+            return age;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
