@@ -54,24 +54,24 @@ namespace Domain
         {
             if(year < 1)
             {
-                throw new ArgumentOutOfRangeException("範囲外", nameof(year));
+                throw new ArgumentOutOfRangeException(nameof(year));
             }
 
             if (month < 1 || month > 12)
             {
-                throw new ArgumentOutOfRangeException("範囲外", nameof(month));
+                throw new ArgumentOutOfRangeException(nameof(month));
             }
 
             if (day < 1)
             {
-                throw new ArgumentOutOfRangeException("範囲外", nameof(month));
+                throw new ArgumentOutOfRangeException(nameof(month));
             }
             else
             {
                 // TODO : 月ごと、閏年などもみて
                 if(day > 31)
                 {
-                    throw new ArgumentOutOfRangeException("範囲外", nameof(month));
+                    throw new ArgumentOutOfRangeException(nameof(month));
                 }
             }
 
