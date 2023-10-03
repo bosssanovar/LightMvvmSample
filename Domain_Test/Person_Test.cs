@@ -11,6 +11,9 @@ namespace Domain_Test
     {
 
         [Fact]
-        public void コンストラクタ_初期値() { }
+        public void コンストラクタ_初期値()
+        {
+            Assert.False(false);
+        }
     }
 }
