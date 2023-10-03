@@ -54,6 +54,7 @@ Livetの候補であったが、コーディング量が少ないのでこちら
 
 * cs_regions：クラスのアウトラインとなるリージョン
 * cs_reactiveProperty：Reactive Property Slimのプロパティ定義
+* cs_viewConstructorRegions：Viewのコンストラクタ内をView用コードとViewModel用コードに分割するリージョン
 
 ## ユニットテスト
 
