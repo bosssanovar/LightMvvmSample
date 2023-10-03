@@ -7,8 +7,8 @@
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly Name _name;
-        private readonly Birthday _birthday;
+        private readonly NameVO _name;
+        private readonly BirthdayVO _birthday;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@
         /// </summary>
         /// <param name="name">氏名</param>
         /// <param name="birthDay">誕生日</param>
-        public Person(Name name, Birthday birthDay)
+        public Person(NameVO name, BirthdayVO birthDay)
         {
             _name = name;
             _birthday = birthDay;

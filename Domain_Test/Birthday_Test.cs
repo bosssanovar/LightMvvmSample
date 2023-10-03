@@ -25,7 +25,7 @@ namespace Domain_Test
 
             try
             {
-                var _ = new Birthday(year, month, day);
+                var _ = new BirthdayVO(year, month, day);
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -50,7 +50,7 @@ namespace Domain_Test
         [InlineData(2021, 12, 31, 1)]
         public void 年齢取得(int year, int month, int day, int age)
         {
-            var birthday = new Birthday(year, month, day);
+            var birthday = new BirthdayVO(year, month, day);
             var today = new DateTime(2023, 1, 1);
 
             Assert.Equal(birthday.GetAge(today), age);
@@ -64,7 +64,7 @@ namespace Domain_Test
         [InlineData(2024, 1, 2)]
         public void 年齢取得＿例外(int year, int month, int day)
         {
-            var birthday = new Birthday(year, month, day);
+            var birthday = new BirthdayVO(year, month, day);
 
             try
             {
