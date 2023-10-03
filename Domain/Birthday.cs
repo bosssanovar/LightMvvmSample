@@ -13,9 +13,9 @@ namespace Domain
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly int _year = 1980;
-        private readonly int _month = 1;
-        private readonly int _day = 1;
+        private readonly int _year;
+        private readonly int _month;
+        private readonly int _day;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -74,6 +74,29 @@ namespace Domain
         /// <param name="day">誕生日</param>
         public Birthday(int year, int month, int day)
         {
+            if(year < 0)
+            {
+                throw new ArgumentException("範囲外", nameof(year));
+            }
+
+            if (month < 1 || month > 12)
+            {
+                throw new ArgumentException("範囲外", nameof(month));
+            }
+
+            if (day < 1)
+            {
+                throw new ArgumentException("範囲外", nameof(month));
+            }
+            else
+            {
+                // TODO : 月ごと、閏年などもみて
+                if(day > 31)
+                {
+                    throw new ArgumentException("範囲外", nameof(month));
+                }
+            }
+
             _year = year;
             _month = month;
             _day = day;
