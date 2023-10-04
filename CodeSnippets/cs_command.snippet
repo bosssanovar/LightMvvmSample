@@ -11,20 +11,38 @@
       <Declarations>
         <Literal>
           <ID>name</ID>
+          <Default>Some</Default>
+        </Literal>
+        <Literal>
+          <ID>name2</ID>
           <Default>some</Default>
         </Literal>
       </Declarations>
       <Code Language="csharp">
-  <![CDATA[        public Command $name$Command
+  <![CDATA[        #region $name$ Command
+
+        private Command _$name2$Command;
+
+        /// <summary>
+        /// $name$ コマンド
+        /// </summary>
+        public Command $name$Command
         {
             get
             {
-                return new Command(new Action(() =>
+                if (_$name2$Command == null)
                 {
-                    $end$
-                }));
+                    _$name2$Command = new Command(new Action(() =>
+                    {
+                        $end$
+                    }));
+                }
+
+                return _$name2$Command;
             }
-        }]]></Code>
+        }
+
+        #endregion]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

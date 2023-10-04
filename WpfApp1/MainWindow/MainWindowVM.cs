@@ -31,19 +31,30 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactivePropertySlim<int> PersonsCount { get; }
 
+        #region Add Command
+
+        private Command _addCommand;
+
         /// <summary>
-        /// 追加コマンド
+        /// Add コマンド
         /// </summary>
         public Command AddCommand
         {
             get
             {
-                return new Command(new Action(() =>
+                if (_addCommand == null)
                 {
-                    _people.Persons.Add(new Person(new NameVO("a", "a"), new BirthdayVO(2012, 1, 1)));
-                }));
+                    _addCommand = new Command(new Action(() =>
+                    {
+                        _people.Persons.Add(new Person(new NameVO("a", "a"), new BirthdayVO(2012, 1, 1)));
+                    }));
+                }
+
+                return _addCommand;
             }
         }
+
+        #endregion
 
         #endregion --------------------------------------------------------------------------------------------
 
