@@ -5,6 +5,7 @@ using System.Windows;
 using Domain;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
+using WpfApp1.EditWindow;
 
 namespace WpfApp1.MainWindow
 {
@@ -35,6 +36,18 @@ namespace WpfApp1.MainWindow
                 x =>
                 {
                     var ret = new PersonVM(x);
+                    ret.OnEdit += (model) =>
+                    {
+                        var editWindow = new EditWindowV(model)
+                        {
+                            Owner = this,
+                        };
+                        editWindow.ShowDialog();
+                        if (editWindow.IsOk)
+                        {
+                            _people.UpdatePersons(model, editWindow.Result);
+                        }
+                    };
                     ret.OnDelete += (model) =>
                     {
                         DeletePerson(model);

@@ -60,6 +60,21 @@ namespace Domain
             }
         }
 
+        /// <summary>
+        /// 個人情報を更新します。
+        /// </summary>
+        /// <param name="target">更新対象</param>
+        /// <param name="source">更新データ</param>
+        public void UpdatePersons(Person target, Person source)
+        {
+            var parson = Persons.Single(x => x == target);
+
+            if (parson != null)
+            {
+                source.CopyTo(parson);
+            }
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------

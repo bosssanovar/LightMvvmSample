@@ -36,6 +36,21 @@ namespace Domain
             }
         }
 
+        /// <summary>
+        /// 誕生年を取得します。
+        /// </summary>
+        public int Year => _year;
+
+        /// <summary>
+        /// 誕生月を取得します。
+        /// </summary>
+        public int Month => _month;
+
+        /// <summary>
+        /// 誕生の日を取得します。
+        /// </summary>
+        public int Day => _day;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -85,6 +100,41 @@ namespace Domain
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// パラメータが有効かを判定します。
+        /// </summary>
+        /// <param name="year">年</param>
+        /// <param name="month">月</param>
+        /// <param name="day">日</param>
+        /// <returns>有効ならtrue</returns>
+        public static bool IsValid(int year, int month, int day)
+        {
+            if (year < 1)
+            {
+                return false;
+            }
+
+            if (month < 1 || month > 12)
+            {
+                return false;
+            }
+
+            if (day < 1)
+            {
+                return false;
+            }
+            else
+            {
+                // TODO : 月ごと、閏年などもみて
+                if (day > 31)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// 年齢を取得する。

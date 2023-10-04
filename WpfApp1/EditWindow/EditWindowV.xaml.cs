@@ -1,11 +1,13 @@
-﻿using Reactive.Bindings;
+﻿using System.ComponentModel;
+using System.Windows;
+using Domain;
 
-namespace Domain
+namespace WpfApp1.EditWindow
 {
     /// <summary>
-    /// 個人情報クラス
+    /// EditWindowV.xaml の相互作用ロジック
     /// </summary>
-    public class Person
+    public partial class EditWindowV : Window
     {
         #region Fields ----------------------------------------------------------------------------------------
 
@@ -16,16 +18,6 @@ namespace Domain
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 名称を取得または設定します。
-        /// </summary>
-        public ReactivePropertySlim<NameVO> Name { get; }
-
-        /// <summary>
-        /// 誕生日を取得または設定します。
-        /// </summary>
-        public ReactivePropertySlim<BirthdayVO> Birthday { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -38,12 +30,28 @@ namespace Domain
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        public Person(NameVO name, BirthdayVO birthDay)
+        /// <param name="person">個人情報</param>
+        public EditWindowV(Person person)
         {
-            Birthday = new ReactivePropertySlim<BirthdayVO>(birthDay);
-            Name = new ReactivePropertySlim<NameVO>(name);
+            #region init View Members
+
+            #endregion
+
+            #region init ViewModel Members
+
+            _person = person;
+
+            FamilyName = _person.Name.Value.Family;
+            FirstName = _person.Name.Value.First;
+            Year = _person.Birthday.Value.Year;
+            Month = _person.Birthday.Value.Month;
+            Day = _person.Birthday.Value.Day;
+
+            Result = _person;
+
+            #endregion
+
+            InitializeComponent();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -52,19 +60,28 @@ namespace Domain
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 内部値をコピーします。
-        /// </summary>
-        /// <param name="other">コピー先</param>
-        public void CopyTo(Person other)
-        {
-            other.Name.Value = Name.Value;
-            other.Birthday.Value = Birthday.Value;
-        }
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
+
+        /// <summary>
+        /// Close時処理
+        /// </summary>
+        /// <param name="e">キャンセルイベントデータ</param>
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            DisposeViewModelElement();
+
+            base.OnClosing(e);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

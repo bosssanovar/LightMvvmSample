@@ -30,6 +30,16 @@ namespace Domain
         /// </summary>
         public string FullName => $"{_family} {_first}";
 
+        /// <summary>
+        /// 苗字を取得します。
+        /// </summary>
+        public string Family => _family;
+
+        /// <summary>
+        /// 名前を取得します。
+        /// </summary>
+        public string First => _first;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -54,6 +64,27 @@ namespace Domain
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// パラメータが有効かを判定します。
+        /// </summary>
+        /// <param name="family">苗字</param>
+        /// <param name="first">名前</param>
+        /// <returns>有効ならtrue</returns>
+        public static bool IsValid(string family, string first)
+        {
+            if(family == null)
+            {
+                return false;
+            }
+
+            if (first == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -15,8 +15,8 @@
 
         <DataGrid Margin="10" ItemsSource="{Binding Persons}" AutoGenerateColumns="False" CanUserAddRows="False" d:ItemsSource="{d:SampleData ItemCount=20}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Full Name" Binding="{Binding FullName.Value}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Age" Binding="{Binding Age.Value}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Full Name" Binding="{Binding FullName.Value, Mode=OneWay}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Age.Value, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
