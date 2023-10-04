@@ -35,12 +35,11 @@ namespace Domain
         /// </summary>
         public People()
         {
-            Persons = new ReactiveCollection<Person>();
-
-            for(int i = 1; i <= 10; i++)
+            Persons = new ReactiveCollection<Person>()
             {
-                Persons.Add(new Person(new NameVO($"苗字{i}", $"名前{i}"), new BirthdayVO(2023 - i, 1, 2)));
-            }
+                new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)),
+                new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)),
+            };
         }
 
         #endregion --------------------------------------------------------------------------------------------

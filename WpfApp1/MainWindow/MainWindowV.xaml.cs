@@ -31,15 +31,16 @@ namespace WpfApp1.MainWindow
                 .ObserveProperty(x => x.Count).ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
-            Persons = _people.Persons.ToReadOnlyReactiveCollection(x =>
-            {
-                var ret = new PersonVM(x);
-                ret.OnDelete += (model) =>
+            Persons = _people.Persons.ToReadOnlyReactiveCollection(
+                x =>
                 {
-                    DeletePerson(model);
-                };
-                return ret;
-            })
+                    var ret = new PersonVM(x);
+                    ret.OnDelete += (model) =>
+                    {
+                        DeletePerson(model);
+                    };
+                    return ret;
+                })
                 .AddTo(_disposables);
 
             #endregion
