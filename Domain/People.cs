@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reactive.Bindings;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Domain
         /// <summary>
         /// 個人情報リストを取得します。
         /// </summary>
-        public ObservableCollection<Person> Persons { get; }
+        public ReactiveCollection<Person> Persons { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -40,7 +41,7 @@ namespace Domain
         /// </summary>
         public People()
         {
-            Persons = new ObservableCollection<Person>();
+            Persons = new ReactiveCollection<Person>();
 
             for(int i = 1; i <= 10; i++)
             {

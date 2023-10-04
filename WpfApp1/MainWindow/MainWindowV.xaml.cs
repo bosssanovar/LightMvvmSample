@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using Domain;
 using Reactive.Bindings;
@@ -30,11 +31,8 @@ namespace WpfApp1.MainWindow
                 .ObserveProperty(x => x.Count).ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
-            Persons = new ObservableCollection<PersonVM>();
-            foreach (var person in _people.Persons)
-            {
-                Persons.Add(new PersonVM(person));
-            }
+            Persons = _people.Persons.ToReadOnlyReactiveCollection(x => new PersonVM(x))
+                .AddTo(_disposables);
 
             #endregion
 

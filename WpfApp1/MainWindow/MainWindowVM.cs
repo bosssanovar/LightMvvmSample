@@ -34,7 +34,7 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// 個人情報リストを取得します。
         /// </summary>
-        public ObservableCollection<PersonVM> Persons { get; }
+        public ReadOnlyReactiveCollection<PersonVM> Persons { get; }
 
         #region Add Command
 
