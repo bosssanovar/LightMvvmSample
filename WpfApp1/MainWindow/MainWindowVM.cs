@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reactive.Disposables;
 using Domain;
@@ -30,6 +31,20 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactivePropertySlim<int> PersonsCount { get; }
 
+        /// <summary>
+        /// 追加コマンド
+        /// </summary>
+        public Command AddCommand
+        {
+            get
+            {
+                return new Command(new Action(() =>
+                {
+                    _people.Persons.Add(new Person(new NameVO("a", "a"), new BirthdayVO(2012, 1, 1)));
+                }));
+            }
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -50,11 +65,6 @@ namespace WpfApp1.MainWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
-
-        private void AddPerson()
-        {
-            _people.Persons.Add(new Person(new NameVO("a", "a"), new BirthdayVO(2012, 1, 1)));
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 

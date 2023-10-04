@@ -66,11 +66,6 @@ namespace WpfApp1.MainWindow
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            AddPerson();
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------

@@ -37,7 +37,7 @@
 
             <TextBlock Grid.Column="1" Text="Count : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="2" Text="{Binding PersonsCount.Value}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Button Grid.Column="3" Height="30" Width="60" Margin="5" Content="Add" Click="Button_Click"/>
+            <Button Grid.Column="3" Height="30" Width="60" Margin="5" Content="Add" Command="{Binding AddCommand}"/>
         </Grid>        
     </Grid>
 </Window>
