@@ -58,6 +58,31 @@ namespace WpfApp1.MainWindow
 
         #endregion
 
+        #region Delete Command
+
+        private Command _deleteCommand;
+
+        /// <summary>
+        /// Delete コマンド
+        /// </summary>
+        public Command DeleteCommand
+        {
+            get
+            {
+                _deleteCommand ??= new Command(new Action(() =>
+                    {
+                        if (_people.Persons.Count > 0)
+                        {
+                            _people.Persons.RemoveAt(0);
+                        }
+                    }));
+
+                return _deleteCommand;
+            }
+        }
+
+        #endregion
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------

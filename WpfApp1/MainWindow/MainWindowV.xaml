@@ -33,11 +33,13 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="1" Text="Count : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="2" Text="{Binding PersonsCount.Value}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Button Grid.Column="3" Height="30" Width="60" Margin="5" Content="Add" Command="{Binding AddCommand}"/>
+            <Button Grid.Column="4" Height="30" Padding="10,0" MinWidth="60" Margin="5" Content="1件目を削除" Command="{Binding DeleteCommand}"/>
         </Grid>        
     </Grid>
 </Window>
