@@ -26,6 +26,19 @@
 　│  
 　└─ プロダクト プロジェクト：エントリーポイント、各種UI  
 
+## アーキテクチャ設計
+
+MVVM  
+View : 内部値に影響を受けない表示ロジック  
+ViewModel : 内部値に影響を受ける表示ロジック、ViewとModelの設定値変換  
+Model : ビジネスロジック（ドメインロジック）  
+
+Clean Architecture簡易版  
+プロダクト　─┬→　Device　───┬──→　Domain  
+　　　　　　　│ 　　　│　　　　│     
+　　　　　　　│ 　　　↓　　　　│  
+　　　　　　　└→　Repository　┘
+
 ## 変更通知機構 Reactive Property
 
 変更通知機構として、Reactive Propertyを採用している。  
