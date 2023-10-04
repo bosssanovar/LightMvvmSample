@@ -45,8 +45,8 @@ namespace Domain
         /// <param name="first">名前</param>
         public NameVO(string family, string first)
         {
-            _family = family;
-            _first = first;
+            _family = family ?? throw new ArgumentNullException(nameof(family));
+            _first = first ?? throw new ArgumentNullException(nameof(first));
         }
 
         #endregion --------------------------------------------------------------------------------------------

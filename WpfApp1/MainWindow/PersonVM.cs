@@ -1,31 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
+using Domain;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
-namespace Domain
+namespace WpfApp1.MainWindow
 {
     /// <summary>
-    /// 集団クラス
+    /// Person ViewModel
     /// </summary>
-    public class People
+    public class PersonVM : INotifyPropertyChanged, IDisposable
     {
-        #region Fields ----------------------------------------------------------------------------------------
+        #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Constants -------------------------------------------------------------------------------------
+        #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly CompositeDisposable _disposables = new();
+
+        private readonly Person _model;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// 個人情報リストを取得します。
+        /// 変更通知を発行する
         /// </summary>
-        public ObservableCollection<Person> Persons { get; }
+#pragma warning disable CS0067 // イベント 'PersonVM.PropertyChanged' は使用されていません
+        public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント 'PersonVM.PropertyChanged' は使用されていません
+
+        /// <summary>
+        /// 名前を取得します。
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<string?> FullName { get; }
+
+        /// <summary>
+        /// 年齢を取得します。
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<int> Age { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -38,14 +55,18 @@ namespace Domain
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public People()
+        /// <param name="model">モデル</param>
+        public PersonVM(Person model)
         {
-            Persons = new ObservableCollection<Person>();
+            _model = model ?? throw new ArgumentNullException(nameof(model));
 
-            for(int i = 1; i <= 10; i++)
-            {
-                Persons.Add(new Person(new NameVO($"苗字{i}", $"名前{i}"), new BirthdayVO(2023 - i, 1, 2)));
-            }
+            FullName = _model.Name.Select(x => x.FullName)
+                .ToReadOnlyReactivePropertySlim()
+                .AddTo(_disposables);
+
+            Age = _model.Birthday.Select(x => x.GetAge(DateTime.Today))
+                .ToReadOnlyReactivePropertySlim()
+                .AddTo(_disposables);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -53,6 +74,14 @@ namespace Domain
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 破棄します。
+        /// </summary>
+        public void Dispose()
+        {
+            _disposables.Dispose();
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

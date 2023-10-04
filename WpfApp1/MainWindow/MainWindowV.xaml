@@ -13,10 +13,10 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Margin="10" ItemsSource="{Binding Persons}">
+        <DataGrid Margin="10" ItemsSource="{Binding Persons}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Age" Binding="{Binding Age}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Full Name" Binding="{Binding FullName.Value}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Age.Value}" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

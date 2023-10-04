@@ -31,6 +31,11 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactivePropertySlim<int> PersonsCount { get; }
 
+        /// <summary>
+        /// 個人情報リストを取得します。
+        /// </summary>
+        public ObservableCollection<PersonVM> Persons { get; }
+
         #region Add Command
 
         private Command _addCommand;
