@@ -11,7 +11,9 @@ namespace WpfApp1
         /// <summary>
         /// コマンドを実行するかどうかに影響するような変更があった場合に発生します。
         /// </summary>
+#pragma warning disable CS0067 // イベント 'Command.CanExecuteChanged' は使用されていません
         public event EventHandler? CanExecuteChanged;
+#pragma warning restore CS0067 // イベント 'Command.CanExecuteChanged' は使用されていません
 
         private readonly Action action;
 
