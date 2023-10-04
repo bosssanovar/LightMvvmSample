@@ -60,18 +60,6 @@ namespace Domain
             }
         }
 
-        /// <summary>
-        /// 個人情報を削除する
-        /// </summary>
-        /// <param name="index">インデックス</param>
-        public void RemovePerson(int index)
-        {
-            if (index < Persons.Count)
-            {
-                Persons.RemoveAt(index);
-            }
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------

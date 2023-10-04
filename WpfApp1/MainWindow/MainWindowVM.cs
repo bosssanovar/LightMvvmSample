@@ -58,28 +58,6 @@ namespace WpfApp1.MainWindow
 
         #endregion
 
-        #region Delete Command
-
-        private Command _deleteCommand;
-
-        /// <summary>
-        /// Delete コマンド
-        /// </summary>
-        public Command DeleteCommand
-        {
-            get
-            {
-                _deleteCommand ??= new Command(new Action(() =>
-                {
-                    DeletePerson(0);
-                }));
-
-                return _deleteCommand;
-            }
-        }
-
-        #endregion
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -104,11 +82,6 @@ namespace WpfApp1.MainWindow
         private void DeletePerson(Person person)
         {
             _people.RemovePerson(person);
-        }
-
-        private void DeletePerson(int index)
-        {
-            _people.RemovePerson(index);
         }
 
         private void DisposeViewModelElement()
