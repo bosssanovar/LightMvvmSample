@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>cs_detailViewModelTemplete</Title>
+      <Shortcut>cs_detailViewModelTemplete</Shortcut>
+      <Description>Collection Detail View Model Class Template</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>name</ID>
+          <Default>Some</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+  <![CDATA[   public class $name$ : INotifyPropertyChanged, IDisposable
+    {
+        #region Constants -------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly CompositeDisposable _disposables = new();
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 変更通知を発行する
+        /// </summary>
+#pragma warning disable CS0067 // イベント '$name$.PropertyChanged' は使用されていません
+        public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント '$name$.PropertyChanged' は使用されていません
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
+        public $name$()
+        {
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods ---------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 破棄します。
+        /// </summary>
+        public void Dispose()
+        {
+            _disposables.Dispose();
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+    }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
