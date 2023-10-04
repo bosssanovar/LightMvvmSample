@@ -11,8 +11,10 @@
     以下の行を追加することで、自身をバインドする
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
     -->
-    
-    
+
+    <!--
+    バインドするパスは、全て「プロパティ名.Value」とすること。
+    -->
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
             <TextBlock Text="{Binding Text.Value}" Background="Pink" Width="100" Height="20" FontWeight="Bold"/>
