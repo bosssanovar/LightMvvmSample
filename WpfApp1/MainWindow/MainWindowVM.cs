@@ -42,13 +42,10 @@ namespace WpfApp1.MainWindow
         {
             get
             {
-                if (_addCommand == null)
-                {
-                    _addCommand = new Command(new Action(() =>
+                _addCommand ??= new Command(new Action(() =>
                     {
                         _people.Persons.Add(new Person(new NameVO("a", "a"), new BirthdayVO(2012, 1, 1)));
                     }));
-                }
 
                 return _addCommand;
             }

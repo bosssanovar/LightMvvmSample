@@ -30,13 +30,10 @@
         {
             get
             {
-                if (_$name2$Command == null)
-                {
-                    _$name2$Command = new Command(new Action(() =>
+                _$name2$Command ??= new Command(new Action(() =>
                     {
                         $end$
                     }));
-                }
 
                 return _$name2$Command;
             }
