@@ -37,23 +37,23 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactivePropertySlim<int> Age { get; }
 
-        #region Modify Command
+        #region Edit Command
 
-        private Command _modifyCommand;
+        private Command _editCommand;
 
         /// <summary>
-        /// Modify コマンド
+        /// Edit コマンド
         /// </summary>
-        public Command ModifyCommand
+        public Command EditCommand
         {
             get
             {
-                _modifyCommand ??= new Command(new Action(() =>
+                _editCommand ??= new Command(new Action(() =>
                     {
-                        OnModify?.Invoke(_model);
+                        OnEdit?.Invoke(_model);
                     }));
 
-                return _modifyCommand;
+                return _editCommand;
             }
         }
 
@@ -95,7 +95,7 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// 編集要求を発行する。
         /// </summary>
-        public event Action<Person>? OnModify;
+        public event Action<Person>? OnEdit;
 
         /// <summary>
         /// 削除要求を発行する
@@ -136,7 +136,7 @@ namespace WpfApp1.MainWindow
         {
             _disposables.Dispose();
 
-            OnModify = null;
+            OnEdit = null;
             OnDelete = null;
         }
 

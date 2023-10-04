@@ -20,7 +20,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Modify" Command="{Binding ModifyCommand}"/>
+                            <Button Content="Edit" Command="{Binding EditCommand}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
