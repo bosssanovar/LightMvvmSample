@@ -89,7 +89,7 @@ namespace WpfApp1.MainWindow
         /// <param name="e">キャンセルイベントデータ</param>
         protected override void OnClosing(CancelEventArgs e)
         {
-            _disposables.Dispose();
+            DisposeViewModelElement();
 
             base.OnClosing(e);
         }

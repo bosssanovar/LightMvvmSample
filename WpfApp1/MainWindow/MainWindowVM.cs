@@ -111,6 +111,11 @@ namespace WpfApp1.MainWindow
             _people.RemovePerson(index);
         }
 
+        private void DisposeViewModelElement()
+        {
+            _disposables.Dispose();
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
