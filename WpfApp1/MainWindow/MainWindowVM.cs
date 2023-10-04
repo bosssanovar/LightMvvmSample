@@ -70,12 +70,9 @@ namespace WpfApp1.MainWindow
             get
             {
                 _deleteCommand ??= new Command(new Action(() =>
-                    {
-                        if (_people.Persons.Count > 0)
-                        {
-                            _people.Persons.RemoveAt(0);
-                        }
-                    }));
+                {
+                    DeletePerson(0);
+                }));
 
                 return _deleteCommand;
             }
@@ -103,6 +100,16 @@ namespace WpfApp1.MainWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private void DeletePerson(Person person)
+        {
+            _people.RemovePerson(person);
+        }
+
+        private void DeletePerson(int index)
+        {
+            _people.RemovePerson(index);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

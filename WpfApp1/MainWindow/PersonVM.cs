@@ -28,13 +28,6 @@ namespace WpfApp1.MainWindow
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// 変更通知を発行する
-        /// </summary>
-#pragma warning disable CS0067 // イベント 'PersonVM.PropertyChanged' は使用されていません
-        public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore CS0067 // イベント 'PersonVM.PropertyChanged' は使用されていません
-
-        /// <summary>
         /// 名前を取得します。
         /// </summary>
         public ReadOnlyReactivePropertySlim<string?> FullName { get; }
@@ -44,9 +37,70 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactivePropertySlim<int> Age { get; }
 
+        #region Modify Command
+
+        private Command _modifyCommand;
+
+        /// <summary>
+        /// Modify コマンド
+        /// </summary>
+        public Command ModifyCommand
+        {
+            get
+            {
+                _modifyCommand ??= new Command(new Action(() =>
+                    {
+                        OnModify?.Invoke(_model);
+                    }));
+
+                return _modifyCommand;
+            }
+        }
+
+        #endregion
+
+        #region Delete Command
+
+        private Command _deleteCommand;
+
+        /// <summary>
+        /// Delete コマンド
+        /// </summary>
+        public Command DeleteCommand
+        {
+            get
+            {
+                _deleteCommand ??= new Command(new Action(() =>
+                    {
+                        OnDelete?.Invoke(_model);
+                    }));
+
+                return _deleteCommand;
+            }
+        }
+
+        #endregion
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 変更通知を発行する
+        /// </summary>
+#pragma warning disable CS0067 // イベント 'PersonVM.PropertyChanged' は使用されていません
+        public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント 'PersonVM.PropertyChanged' は使用されていません
+
+        /// <summary>
+        /// 編集要求を発行する。
+        /// </summary>
+        public event Action<Person>? OnModify;
+
+        /// <summary>
+        /// 削除要求を発行する
+        /// </summary>
+        public event Action<Person>? OnDelete;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -81,6 +135,9 @@ namespace WpfApp1.MainWindow
         public void Dispose()
         {
             _disposables.Dispose();
+
+            OnModify = null;
+            OnDelete = null;
         }
 
         #endregion --------------------------------------------------------------------------------------------

@@ -49,6 +49,30 @@ namespace Domain
 
         #region Methods - public ------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 個人情報を削除する
+        /// </summary>
+        /// <param name="person">個人情報</param>
+        public void RemovePerson(Person person)
+        {
+            if (Persons.Contains(person))
+            {
+                Persons.Remove(person);
+            }
+        }
+
+        /// <summary>
+        /// 個人情報を削除する
+        /// </summary>
+        /// <param name="index">インデックス</param>
+        public void RemovePerson(int index)
+        {
+            if (index < Persons.Count)
+            {
+                Persons.RemoveAt(index);
+            }
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------
