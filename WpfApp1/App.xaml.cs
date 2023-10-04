@@ -2,6 +2,7 @@
 
 using System.Threading;
 using System.Windows;
+using Domain;
 using Domain.Sample;
 using WpfApp1.MainWindow;
 
@@ -21,6 +22,8 @@ namespace WpfApp1
 
 #if SampleFlg
         private SampleModel _sampleModel;
+#else
+        private People _people;
 #endif
 
         #endregion --------------------------------------------------------------------------------------------
@@ -68,9 +71,10 @@ namespace WpfApp1
 
 #if !SampleFlg
             // ここでアプリケーション初期化
+            _people = new People();
 
             // メイン ウィンドウ表示
-            MainWindowV window = new();
+            MainWindowV window = new(_people);
             window.Show();
 #else
             // ここでアプリケーション初期化

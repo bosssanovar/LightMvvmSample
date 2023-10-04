@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Domain;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 
 namespace WpfApp1.MainWindow
 {
@@ -22,9 +14,80 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public MainWindowV()
+        /// <param name="people">集団</param>
+        public MainWindowV(People people)
         {
+            #region init View Members
+
+            #endregion
+
+            #region init ViewModel Members
+
+            _people = people;
+
+            PersonsCount = _people.Persons
+                .ObserveProperty(x => x.Count).ToReadOnlyReactivePropertySlim()
+                .AddTo(_disposables);
+
+            #endregion
+
             InitializeComponent();
         }
+
+        #region Fields ----------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constants -------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods ---------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AddPerson();
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
+
+        /// <summary>
+        /// Close時処理
+        /// </summary>
+        /// <param name="e">キャンセルイベントデータ</param>
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            _disposables.Dispose();
+
+            base.OnClosing(e);
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
     }
 }

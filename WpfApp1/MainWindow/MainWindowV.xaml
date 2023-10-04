@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.MainWindow"
         mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="MainWindowV" Height="450" Width="800">
     <Grid>
-        
+        <TextBlock Text="{Binding PersonsCount.Value}" Width="100" Height="30" Background="LightGray"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="525,217,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>

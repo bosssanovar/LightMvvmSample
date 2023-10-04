@@ -1,11 +1,16 @@
-﻿using Reactive.Bindings;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Domain
 {
     /// <summary>
-    /// 個人情報クラス
+    /// 集団クラス
     /// </summary>
-    public class Person
+    public class People
     {
         #region Fields ----------------------------------------------------------------------------------------
 
@@ -18,14 +23,9 @@ namespace Domain
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// 名称を取得します。
+        /// 個人情報リストを取得します。
         /// </summary>
-        public ReactivePropertySlim<NameVO> Name { get; }
-
-        /// <summary>
-        /// 誕生日を取得します。
-        /// </summary>
-        public ReactivePropertySlim<BirthdayVO> Birthday { get; }
+        public ObservableCollection<Person> Persons { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -38,12 +38,14 @@ namespace Domain
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        public Person(NameVO name, BirthdayVO birthDay)
+        public People()
         {
-            Birthday = new ReactivePropertySlim<BirthdayVO>(birthDay);
-            Name = new ReactivePropertySlim<NameVO>(name);
+            Persons = new ObservableCollection<Person>();
+
+            for(int i = 1; i <= 10; i++)
+            {
+                Persons.Add(new Person(new NameVO($"苗字{i}", $"名前{i}"), new BirthdayVO(2023, 1, i)));
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -54,7 +56,15 @@ namespace Domain
 
         #endregion --------------------------------------------------------------------------------------------
 
+        #region Methods - protected ---------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
         #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
