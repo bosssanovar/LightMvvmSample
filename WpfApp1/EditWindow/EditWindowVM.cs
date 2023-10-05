@@ -146,7 +146,7 @@ namespace WpfApp1.EditWindow
                 return false;
             }
 
-            if(!BirthdayVO.IsValid(Year, Month, Day))
+            if(BirthdayVO.IsValid(Year, Month, Day) != BirthdayVO.ErrorCause.None)
             {
                 return false;
             }

@@ -67,9 +67,22 @@ namespace Domain
         /// <param name="day">誕生日</param>
         public BirthdayVO(int year, int month, int day)
         {
-            if(!IsValid(year, month, day))
+            ErrorCause cause = IsValid(year, month, day);
+            if (cause != ErrorCause.None)
             {
-                throw new ArgumentOutOfRangeException();
+                switch (cause)
+                {
+                    case ErrorCause.None:
+                        break;
+                    case ErrorCause.Year:
+                        throw new ArgumentOutOfRangeException(nameof(year), "範囲外です");
+                    case ErrorCause.Month:
+                        throw new ArgumentOutOfRangeException(nameof(month), "範囲外です");
+                    case ErrorCause.Day:
+                        throw new ArgumentOutOfRangeException(nameof(day), "範囲外です");
+                    default:
+                        throw new InvalidProgramException();
+                }
             }
 
             _year = year;
@@ -89,24 +102,29 @@ namespace Domain
         /// <param name="year">年</param>
         /// <param name="month">月</param>
         /// <param name="day">日</param>
-        /// <returns>有効ならtrue</returns>
-        public static bool IsValid(int year, int month, int day)
+        /// <returns>エラー種別</returns>
+        public static ErrorCause IsValid(int year, int month, int day)
         {
+            // 年の判定
+            if (year < 1)
+            {
+                return ErrorCause.Year;
+            }
+
             // 月の判定
             if (month < 1 || month > 12)
             {
-                return false;
+                return ErrorCause.Month;
             }
 
             // 日の判定
             if (day < 1)
             {
-                return false;
+                return ErrorCause.Day;
             }
 
             // 月ごとの日の最大値を格納する配列
-            int[] days = new int[12] { 31, 28, 31, 30, 31, 30,
-                                       31, 31, 30, 31, 30, 31 };
+            int[] days = new int[12] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
             // 閏年の場合、2月の最大値を29にする
             if (IsLeapYear(year))
@@ -116,10 +134,10 @@ namespace Domain
 
             if (day > days[month - 1])
             {
-                return false;
+                return ErrorCause.Day;
             }
 
-            return true;
+            return ErrorCause.None;
         }
 
         /// <summary>
@@ -175,5 +193,31 @@ namespace Domain
         #endregion --------------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// エラー内容
+        /// </summary>
+        public enum ErrorCause
+        {
+            /// <summary>
+            /// エラーなし
+            /// </summary>
+            None,
+
+            /// <summary>
+            /// 年が不正
+            /// </summary>
+            Year,
+
+            /// <summary>
+            /// 月が不正
+            /// </summary>
+            Month,
+
+            /// <summary>
+            /// 日が不正
+            /// </summary>
+            Day,
+        }
     }
 }
