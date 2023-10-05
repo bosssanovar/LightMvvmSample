@@ -19,6 +19,11 @@ namespace Domain_Test
         [InlineData(1, 13, 1, true, typeof(ArgumentOutOfRangeException))]
         [InlineData(1, 1, 31, false, null)]
         [InlineData(1, 1, 32, true, typeof(ArgumentOutOfRangeException))]
+        [InlineData(1, 2, 28, false, null)]
+        [InlineData(1, 2, 29, true, typeof(ArgumentOutOfRangeException))]
+        [InlineData(4, 2, 28, false, null)]
+        [InlineData(4, 2, 29, false, null)]
+        [InlineData(4, 2, 30, true, typeof(ArgumentOutOfRangeException))]
         public void コンストラクタ＿例外(int year, int month, int day, bool isException, Type type)
         {
             bool isExcpt = false; ;
