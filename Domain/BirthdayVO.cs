@@ -67,27 +67,9 @@ namespace Domain
         /// <param name="day">誕生日</param>
         public BirthdayVO(int year, int month, int day)
         {
-            if(year < 1)
+            if(!IsValid(year, month, day))
             {
-                throw new ArgumentOutOfRangeException(nameof(year));
-            }
-
-            if (month < 1 || month > 12)
-            {
-                throw new ArgumentOutOfRangeException(nameof(month));
-            }
-
-            if (day < 1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(month));
-            }
-            else
-            {
-                // TODO : 月ごと、閏年などもみて
-                if(day > 31)
-                {
-                    throw new ArgumentOutOfRangeException(nameof(month));
-                }
+                throw new ArgumentOutOfRangeException();
             }
 
             _year = year;
@@ -110,27 +92,31 @@ namespace Domain
         /// <returns>有効ならtrue</returns>
         public static bool IsValid(int year, int month, int day)
         {
-            if (year < 1)
-            {
-                return false;
-            }
-
+            // 月の判定
             if (month < 1 || month > 12)
             {
                 return false;
             }
 
+            // 日の判定
             if (day < 1)
             {
                 return false;
             }
-            else
+
+            // 月ごとの日の最大値を格納する配列
+            int[] days = new int[12] { 31, 28, 31, 30, 31, 30,
+                                       31, 31, 30, 31, 30, 31 };
+
+            // 閏年の場合、2月の最大値を29にする
+            if (IsLeapYear(year))
             {
-                // TODO : 月ごと、閏年などもみて
-                if (day > 31)
-                {
-                    return false;
-                }
+                days[1] = 29;
+            }
+
+            if (day > days[month - 1])
+            {
+                return false;
             }
 
             return true;
@@ -165,6 +151,26 @@ namespace Domain
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private static bool IsLeapYear(int year)
+        {
+            if (year % 400 == 0)
+            {
+                return true;
+            }
+
+            if (year % 100 == 0)
+            {
+                return false;
+            }
+
+            if (year % 4 == 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
