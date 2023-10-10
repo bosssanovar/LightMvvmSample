@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Entity.csproj" />
   </ItemGroup>
 
 </Project>

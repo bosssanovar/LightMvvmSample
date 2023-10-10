@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Entity.csproj" />
-    <ProjectReference Include="..\Network\Network.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
 
