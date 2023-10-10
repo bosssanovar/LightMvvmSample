@@ -1,9 +1,6 @@
-﻿//#define SampleFlg
-
-using System.Threading;
+﻿using System.Threading;
 using System.Windows;
 using Entity;
-using Entity.Sample;
 using WpfApp1.MainWindow;
 
 namespace WpfApp1
@@ -20,11 +17,7 @@ namespace WpfApp1
         /// </summary>
         private static Mutex? _mutex;
 
-#if SampleFlg
-        private SampleModel _sampleModel;
-#else
         private People _people;
-#endif
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -69,21 +62,12 @@ namespace WpfApp1
             // 多重起動チェック
             ShutDownIfMultiActivate();
 
-#if !SampleFlg
             // ここでアプリケーション初期化
             _people = new People();
 
             // メイン ウィンドウ表示
             MainWindowV window = new(_people);
             window.Show();
-#else
-            // ここでアプリケーション初期化
-            _sampleModel = new();
-
-            // メイン ウィンドウ表示
-            Sample window = new(_sampleModel);
-            window.Show();
-#endif
         }
 
         private void ShutDownIfMultiActivate()
