@@ -78,7 +78,7 @@ namespace Entity
         /// <summary>
         /// 個人情報を追加します。
         /// </summary>
-        /// <param name="person"></param>
+        /// <param name="person">個人情報</param>
         public void AddPerson(Person person)
         {
             Persons.Add(person);

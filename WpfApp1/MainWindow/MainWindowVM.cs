@@ -50,8 +50,10 @@ namespace WpfApp1.MainWindow
             {
                 _addCommand ??= new Command(new Action(() =>
                 {
-                    var edit = new EditWindowV(new Person(new NameVO(string.Empty, string.Empty), new BirthdayVO(1900, 1, 1)));
-                    edit.Owner = this;
+                    var edit = new EditWindowV(new Person(new NameVO(string.Empty, string.Empty), new BirthdayVO(1900, 1, 1)))
+                    {
+                        Owner = this,
+                    };
                     edit.ShowDialog();
                     if (edit.IsOk)
                     {
