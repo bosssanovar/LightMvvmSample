@@ -74,8 +74,10 @@ Livetの候補であったが、コーディング量が少ないのでこちら
 ### サンプル説明
 
 * cs_regions：クラスのアウトラインとなるリージョン
+* cs_detailViewModelTemplete：DataGrid等の行詳細ViewModelのテンプレート
 * cs_reactiveProperty：Reactive Property Slimのプロパティ定義
-* cs_viewConstructorRegions：Viewのコンストラクタ内をView用コードとViewModel用コードに分割するリージョン
+* cs_viewClassTemplate：Viewコードビハインドのテンプレート
+* cs_viewModelClassTemplete：Viewの分割クラスとして実装するViewModelのテンプレート
 
 ## ユニットテスト
 
