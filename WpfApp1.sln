@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Re
 		{A27118A7-B397-45B1-BE2E-F8B909727260} = {A27118A7-B397-45B1-BE2E-F8B909727260}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain_Test", "Domain_Test\Domain_Test.csproj", "{72164FB6-5970-47EB-B3D4-6FEB87F23B5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity_Test", "Domain_Test\Entity_Test.csproj", "{72164FB6-5970-47EB-B3D4-6FEB87F23B5F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A27118A7-B397-45B1-BE2E-F8B909727260} = {A27118A7-B397-45B1-BE2E-F8B909727260}
 	EndProjectSection

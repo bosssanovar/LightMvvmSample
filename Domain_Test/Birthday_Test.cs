@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Domain_Test
+namespace Entity_Test
 {
     public class Birthday_Test
     {
