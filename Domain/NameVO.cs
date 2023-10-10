@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace Entity
 {
     /// <summary>
     /// 名前クラス
@@ -73,7 +73,7 @@ namespace Domain
         /// <returns>有効ならtrue</returns>
         public static bool IsValid(string family, string first)
         {
-            if(family == null)
+            if (family == null)
             {
                 return false;
             }

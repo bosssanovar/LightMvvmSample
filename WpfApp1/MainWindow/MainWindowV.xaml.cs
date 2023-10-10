@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using Domain;
+using Entity;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using WpfApp1.EditWindow;

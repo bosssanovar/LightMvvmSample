@@ -1,6 +1,6 @@
 ﻿using Reactive.Bindings;
 
-namespace Domain.Sample
+namespace Entity.Sample
 {
     /// <summary>
     /// サンプルソースのModel

@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp1", "WpfApp1\WpfApp1.
 		{A27118A7-B397-45B1-BE2E-F8B909727260} = {A27118A7-B397-45B1-BE2E-F8B909727260}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{A27118A7-B397-45B1-BE2E-F8B909727260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Domain\Entity.csproj", "{A27118A7-B397-45B1-BE2E-F8B909727260}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Device", "Network\Device.csproj", "{6D3454C7-2976-4E6E-93AF-635BDC2271DD}"
 EndProject
@@ -30,8 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeSnippets", "CodeSnippet
 		CodeSnippets\cs_detailViewModelTemplete.snippet = CodeSnippets\cs_detailViewModelTemplete.snippet
 		CodeSnippets\cs_reactiveProperty.snippet = CodeSnippets\cs_reactiveProperty.snippet
 		CodeSnippets\cs_regions.snippet = CodeSnippets\cs_regions.snippet
-		CodeSnippets\cs_viewModelClassTemplete.snippet = CodeSnippets\cs_viewModelClassTemplete.snippet
 		CodeSnippets\cs_viewClassTemplate.snippet = CodeSnippets\cs_viewClassTemplate.snippet
+		CodeSnippets\cs_viewModelClassTemplete.snippet = CodeSnippets\cs_viewModelClassTemplete.snippet
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DBED188A-D753-475D-B419-60D9D2902DC4}"

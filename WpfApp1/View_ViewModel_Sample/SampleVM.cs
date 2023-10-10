@@ -6,7 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Domain;
+using Entity;
+using Entity.Sample;
 using Reactive.Bindings;
 using Reactive.Bindings.Disposables;
 using Reactive.Bindings.Extensions;
@@ -22,7 +23,7 @@ namespace WpfApp1
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly Domain.Sample.SampleModel _model;
+        private readonly SampleModel _model;
 
         private readonly CompositeDisposable _disposables = new();
 

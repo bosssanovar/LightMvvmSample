@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reactive.Disposables;
-using Domain;
+using Entity;
 using Reactive.Bindings;
 
 namespace WpfApp1.MainWindow

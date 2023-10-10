@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using Domain;
+using Entity;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 

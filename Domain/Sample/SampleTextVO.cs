@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Sample
+namespace Entity.Sample
 {
     /// <summary>
     /// Sampleの文字列ValueObject
@@ -68,12 +68,12 @@ namespace Domain.Sample
         /// <returns>不適合の場合false</returns>
         public static bool IsValid(string text)
         {
-            if(text == null)
+            if (text == null)
             {
                 return false;
             }
 
-            if(text.Length > 10)
+            if (text.Length > 10)
             {
                 return false;
             }

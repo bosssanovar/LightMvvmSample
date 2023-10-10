@@ -1,6 +1,6 @@
 ﻿using Reactive.Bindings;
 
-namespace Domain
+namespace Entity
 {
     /// <summary>
     /// 集団クラス

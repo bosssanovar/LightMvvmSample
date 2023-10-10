@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Domain\Entity.csproj" />
     <ProjectReference Include="..\Network\Device.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>

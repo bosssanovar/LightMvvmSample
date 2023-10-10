@@ -2,8 +2,8 @@
 
 using System.Threading;
 using System.Windows;
-using Domain;
-using Domain.Sample;
+using Entity.Sample;
+using Entity;
 using WpfApp1.MainWindow;
 
 namespace WpfApp1

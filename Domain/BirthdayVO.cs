@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace Entity
 {
     /// <summary>
     /// 誕生日クラス
@@ -106,7 +106,7 @@ namespace Domain
         public static ErrorCause IsValid(int year, int month, int day)
         {
             // 年の判定
-            if (year < 1)
+            if (year < 1 || year > 9999)
             {
                 return ErrorCause.Year;
             }
@@ -148,7 +148,7 @@ namespace Domain
         public int GetAge(DateTime point)
         {
             var birth = new DateTime(_year, _month, _day);
-            if(birth > point)
+            if (birth > point)
             {
                 throw new ArgumentException("指定に日付に生まれていません。", nameof(point));
             }

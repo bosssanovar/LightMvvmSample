@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using Domain.Sample;
+using Entity.Sample;
 using Reactive.Bindings.Extensions;
 
 namespace WpfApp1
