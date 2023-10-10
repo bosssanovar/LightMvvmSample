@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Reactive.Disposables;
 using Entity;
 using Reactive.Bindings;
+using WpfApp1.EditWindow;
 
 namespace WpfApp1.MainWindow
 {
@@ -48,9 +49,15 @@ namespace WpfApp1.MainWindow
             get
             {
                 _addCommand ??= new Command(new Action(() =>
+                {
+                    var edit = new EditWindowV(new Person(new NameVO(string.Empty, string.Empty), new BirthdayVO(1900, 1, 1)));
+                    edit.Owner = this;
+                    edit.ShowDialog();
+                    if (edit.IsOk)
                     {
-                        _people.Persons.Add(new Person(new NameVO("a", "a"), new BirthdayVO(2012, 1, 1)));
-                    }));
+                        _people.AddPerson(edit.Result);
+                    }
+                }));
 
                 return _addCommand;
             }

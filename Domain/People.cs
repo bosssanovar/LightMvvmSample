@@ -75,6 +75,15 @@ namespace Entity
             }
         }
 
+        /// <summary>
+        /// 個人情報を追加します。
+        /// </summary>
+        /// <param name="person"></param>
+        public void AddPerson(Person person)
+        {
+            Persons.Add(person);
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------
