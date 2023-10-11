@@ -1,31 +1,28 @@
-﻿using Reactive.Bindings;
+﻿using Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entity
+namespace Repository
 {
     /// <summary>
-    /// 個人情報クラス
+    /// Peopleエンティティのリポジトリ
     /// </summary>
-    public class Person
+    public class PeopleRepository
     {
-        #region Fields ----------------------------------------------------------------------------------------
-
-        #endregion --------------------------------------------------------------------------------------------
-
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
+        #region Fields ----------------------------------------------------------------------------------------
+
+        private People _people;
+
+        #endregion --------------------------------------------------------------------------------------------
+
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 名称を取得または設定します。
-        /// </summary>
-        public ReactivePropertySlim<NameVO> Name { get; }
-
-        /// <summary>
-        /// 誕生日を取得または設定します。
-        /// </summary>
-        public ReactivePropertySlim<BirthdayVO> Birthday { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -38,12 +35,9 @@ namespace Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        public Person(NameVO name, BirthdayVO birthDay)
+        public PeopleRepository()
         {
-            Birthday = new ReactivePropertySlim<BirthdayVO>(birthDay);
-            Name = new ReactivePropertySlim<NameVO>(name);
+            _people = new People();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -53,24 +47,31 @@ namespace Entity
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 内部値をコピーします。
+        /// Peopleエンティティの複製を取得します。
         /// </summary>
-        /// <param name="other">コピー先</param>
-        public void CopyTo(Person other)
-        {
-            other.Name.Value = Name.Value.Clone();
-            other.Birthday.Value = Birthday.Value.Clone();
-        }
+        /// <returns>Peopleエンティティの複製インスタンス</returns>
+        public People LoadPeople() => _people.Clone();
 
         /// <summary>
-        /// 複製を行います。
+        /// Peopleエンティティを保存します。
         /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(Name.Value.Clone(), Birthday.Value.Clone());
+        /// <param name="people">Peopleエンティティ</param>
+        public void SavePeople(People people)
+        {
+            _people = people.Clone();
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 

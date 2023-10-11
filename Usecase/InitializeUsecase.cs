@@ -1,31 +1,29 @@
-﻿using Reactive.Bindings;
+﻿using Entity;
+using Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entity
+namespace Usecase
 {
     /// <summary>
-    /// 個人情報クラス
+    /// データを初期化するユースケースを提供する
     /// </summary>
-    public class Person
+    public class InitializeUsecase
     {
-        #region Fields ----------------------------------------------------------------------------------------
-
-        #endregion --------------------------------------------------------------------------------------------
-
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
+        #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly PeopleRepository _peopleRepository;
+
+        #endregion --------------------------------------------------------------------------------------------
+
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 名称を取得または設定します。
-        /// </summary>
-        public ReactivePropertySlim<NameVO> Name { get; }
-
-        /// <summary>
-        /// 誕生日を取得または設定します。
-        /// </summary>
-        public ReactivePropertySlim<BirthdayVO> Birthday { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -38,12 +36,10 @@ namespace Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        public Person(NameVO name, BirthdayVO birthDay)
+        /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
+        public InitializeUsecase(PeopleRepository peopleRepository)
         {
-            Birthday = new ReactivePropertySlim<BirthdayVO>(birthDay);
-            Name = new ReactivePropertySlim<NameVO>(name);
+            _peopleRepository = peopleRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -53,24 +49,27 @@ namespace Entity
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 内部値をコピーします。
+        /// 設置値を初期化します。
         /// </summary>
-        /// <param name="other">コピー先</param>
-        public void CopyTo(Person other)
+        public void Initialize()
         {
-            other.Name.Value = Name.Value.Clone();
-            other.Birthday.Value = Birthday.Value.Clone();
+            var people = new People();
+            people.AddPerson(new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)));
+            people.AddPerson(new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)));
+            _peopleRepository.SavePeople(people);
         }
 
-        /// <summary>
-        /// 複製を行います。
-        /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(Name.Value.Clone(), Birthday.Value.Clone());
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Windows;
 using Entity;
+using Usecase;
 using WpfApp1.MainWindow;
 
 namespace WpfApp1
@@ -16,8 +17,6 @@ namespace WpfApp1
         /// 多重起動を防止する為のミューテックス。
         /// </summary>
         private static Mutex? _mutex;
-
-        private People _people;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -62,11 +61,11 @@ namespace WpfApp1
             // 多重起動チェック
             ShutDownIfMultiActivate();
 
-            // ここでアプリケーション初期化
-            _people = new People();
+            // アプリケーション初期化
+            UsecaseProvider.InitializeUsecase.Initialize();
 
             // メイン ウィンドウ表示
-            MainWindowV window = new(_people);
+            MainWindowV window = new();
             window.Show();
         }
 

@@ -86,6 +86,12 @@ namespace Entity
             return true;
         }
 
+        /// <summary>
+        /// インスタンスを複製します。
+        /// </summary>
+        /// <returns>複製したインスタンス</returns>
+        public NameVO Clone() => new(_family, _first);
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------

@@ -1,31 +1,29 @@
-﻿using Reactive.Bindings;
+﻿using Entity;
+using Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entity
+namespace Usecase
 {
     /// <summary>
-    /// 個人情報クラス
+    /// 個人情報リストを表示するユースケース機能を提供します。
     /// </summary>
-    public class Person
+    public class PersonListViewUsecase
     {
-        #region Fields ----------------------------------------------------------------------------------------
-
-        #endregion --------------------------------------------------------------------------------------------
-
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
+        #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly PeopleRepository _peopleRepository;
+
+        #endregion --------------------------------------------------------------------------------------------
+
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 名称を取得または設定します。
-        /// </summary>
-        public ReactivePropertySlim<NameVO> Name { get; }
-
-        /// <summary>
-        /// 誕生日を取得または設定します。
-        /// </summary>
-        public ReactivePropertySlim<BirthdayVO> Birthday { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -38,12 +36,10 @@ namespace Entity
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        public Person(NameVO name, BirthdayVO birthDay)
+        /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
+        public PersonListViewUsecase(PeopleRepository peopleRepository)
         {
-            Birthday = new ReactivePropertySlim<BirthdayVO>(birthDay);
-            Name = new ReactivePropertySlim<NameVO>(name);
+            _peopleRepository = peopleRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -53,24 +49,31 @@ namespace Entity
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 内部値をコピーします。
+        /// Peopleエンティティを取得します。
         /// </summary>
-        /// <param name="other">コピー先</param>
-        public void CopyTo(Person other)
-        {
-            other.Name.Value = Name.Value.Clone();
-            other.Birthday.Value = Birthday.Value.Clone();
-        }
+        /// <returns>Peopleエンティティ</returns>
+        public People GetPeople() => _peopleRepository.LoadPeople();
 
         /// <summary>
-        /// 複製を行います。
+        /// Peopleエンティティを保存します。
         /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(Name.Value.Clone(), Birthday.Value.Clone());
+        /// <param name="people">Peopleエンティティ</param>
+        public void SavePeople(People people)
+        {
+            _peopleRepository.SavePeople(people);
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 

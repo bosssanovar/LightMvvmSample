@@ -35,6 +35,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Domain\Entity.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
+    <ProjectReference Include="..\Usecase\Usecase.csproj" />
   </ItemGroup>
 
 </Project>

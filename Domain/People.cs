@@ -35,11 +35,7 @@ namespace Entity
         /// </summary>
         public People()
         {
-            Persons = new ReactiveCollection<Person>()
-            {
-                new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)),
-                new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)),
-            };
+            Persons = new ReactiveCollection<Person>();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -82,6 +78,22 @@ namespace Entity
         public void AddPerson(Person person)
         {
             Persons.Add(person);
+        }
+
+        /// <summary>
+        /// 複製を取得します。
+        /// </summary>
+        /// <returns>複製されたインスタンス</returns>
+        public People Clone()
+        {
+            var ret = new People();
+
+            foreach(var person in Persons)
+            {
+                ret.AddPerson(person.Clone());
+            }
+
+            return ret;
         }
 
         #endregion --------------------------------------------------------------------------------------------

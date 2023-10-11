@@ -5,6 +5,7 @@ using System.Windows;
 using Entity;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
+using Usecase;
 using WpfApp1.EditWindow;
 
 namespace WpfApp1.MainWindow
@@ -17,8 +18,7 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="people">集団</param>
-        public MainWindowV(People people)
+        public MainWindowV()
         {
             #region init View Members
 
@@ -26,7 +26,9 @@ namespace WpfApp1.MainWindow
 
             #region init ViewModel Members
 
-            _people = people;
+            _personListViewUsecase = UsecaseProvider.PersonListViewUsecase;
+
+            _people = _personListViewUsecase.GetPeople();
 
             PersonsCount = _people.Persons
                 .ObserveProperty(x => x.Count).ToReadOnlyReactivePropertySlim()

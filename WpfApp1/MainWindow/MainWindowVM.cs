@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Reactive.Disposables;
 using Entity;
 using Reactive.Bindings;
+using Usecase;
 using WpfApp1.EditWindow;
 
 namespace WpfApp1.MainWindow
@@ -18,6 +19,8 @@ namespace WpfApp1.MainWindow
         private readonly CompositeDisposable _disposables = new();
 
         private readonly People _people;
+
+        private readonly PersonListViewUsecase _personListViewUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 

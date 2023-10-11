@@ -166,6 +166,12 @@ namespace Entity
             return age;
         }
 
+        /// <summary>
+        /// インスタンスを複製します。
+        /// </summary>
+        /// <returns>複製したインスタンス</returns>
+        public BirthdayVO Clone() => new(_year, _month, _day);
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
