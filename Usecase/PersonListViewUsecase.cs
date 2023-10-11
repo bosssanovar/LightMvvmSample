@@ -29,6 +29,21 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 個人情報が更新されたことを通知します。
+        /// </summary>
+        public event Action<Person> OnUpdatePerson;
+
+        /// <summary>
+        /// 個人情報が削除されたことを通知します。
+        /// </summary>
+        public event Action<Person> OnRemovePerson;
+
+        /// <summary>
+        /// 個人情報が追加されたことを通知します。
+        /// </summary>
+        public event Action<Person> OnAddPerson;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -61,6 +76,55 @@ namespace Usecase
         public void SavePeople(People people)
         {
             _peopleRepository.SavePeople(people);
+        }
+
+        /// <summary>
+        /// 個人情報を削除します。
+        /// </summary>
+        /// <param name="person">個人情報</param>
+        public void RemovePerson(Person person)
+        {
+            var people = _peopleRepository.LoadPeople();
+            people.RemovePerson(person.Identifier);
+            _peopleRepository.SavePeople(people);
+
+            OnRemovePerson?.Invoke(person);
+        }
+
+        /// <summary>
+        /// 個人情報を取得します。
+        /// </summary>
+        /// <param name="id">個人情報識別子</param>
+        /// <returns>個人情報</returns>
+        /// <exception cref="ArgumentException">未登録IDの場合</exception>
+        public Person LoadPerson(Guid id)
+        {
+            var people = _peopleRepository.LoadPeople();
+            var persons = people.Persons;
+
+            return persons.Single(x => x.Identifier == id) ?? throw new ArgumentException("未登録IDです", nameof(id));
+        }
+
+        /// <summary>
+        /// 個人情報を保存します。
+        /// </summary>
+        /// <param name="person">個人情報</param>
+        public void SavePerson(Person person)
+        {
+            var people = _peopleRepository.LoadPeople();
+
+            if (people.Persons.Any(x => x.Identifier == person.Identifier))
+            {
+                person.CopyTo(people.Persons.Single(x => x.Identifier == person.Identifier));
+
+                OnUpdatePerson?.Invoke(person);
+            }
+            else
+            {
+                people.Persons.Add(person);
+
+                OnAddPerson?.Invoke(person);
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

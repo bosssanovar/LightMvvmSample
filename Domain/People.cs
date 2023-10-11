@@ -20,7 +20,7 @@ namespace Entity
         /// <summary>
         /// 個人情報リストを取得します。
         /// </summary>
-        public ReactiveCollection<Person> Persons { get; }
+        public List<Person> Persons { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ namespace Entity
         /// </summary>
         public People()
         {
-            Persons = new ReactiveCollection<Person>();
+            Persons = new List<Person>();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -47,27 +47,26 @@ namespace Entity
         /// <summary>
         /// 個人情報を削除する
         /// </summary>
-        /// <param name="person">個人情報</param>
-        public void RemovePerson(Person person)
+        /// <param name="personIdentifier">個人情報識別子</param>
+        public void RemovePerson(Guid personIdentifier)
         {
-            if (Persons.Contains(person))
+            if (Persons.Select(x => x.Identifier).Contains(personIdentifier))
             {
-                Persons.Remove(person);
+                Persons.RemoveAll(x => x.Identifier == personIdentifier);
             }
         }
 
         /// <summary>
         /// 個人情報を更新します。
         /// </summary>
-        /// <param name="target">更新対象</param>
-        /// <param name="source">更新データ</param>
-        public void UpdatePersons(Person target, Person source)
+        /// <param name="person">更新データ</param>
+        public void UpdatePersons(Person person)
         {
-            var parson = Persons.Single(x => x == target);
+            var p = Persons.Single(x => x.Identifier == person.Identifier);
 
-            if (parson != null)
+            if (p != null)
             {
-                source.CopyTo(parson);
+                person.CopyTo(p);
             }
         }
 

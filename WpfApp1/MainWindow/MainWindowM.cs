@@ -1,17 +1,20 @@
 ﻿using Entity;
+using Reactive.Bindings;
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Usecase;
 
-namespace Usecase
+namespace WpfApp1.MainWindow
 {
     /// <summary>
-    /// データを初期化するユースケースを提供する
+    /// MainWindowのModel
     /// </summary>
-    public class InitializeUsecase
+    public class MainWindowM
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -19,11 +22,16 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly PeopleRepository _peopleRepository;
+        private readonly PersonListViewUsecase _personListViewUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 個人情報リストを取得します。
+        /// </summary>
+        public ReactiveCollection<Person> Persons { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -36,10 +44,17 @@ namespace Usecase
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
-        public InitializeUsecase(PeopleRepository peopleRepository)
+        /// <param name="personListViewUsecase">個人情報リスト表示ユースケース</param>
+        public MainWindowM(PersonListViewUsecase personListViewUsecase)
         {
-            _peopleRepository = peopleRepository;
+            _personListViewUsecase = personListViewUsecase;
+
+            Persons = new ReactiveCollection<Person>();
+            UpdatePersons();
+
+            _personListViewUsecase.OnUpdatePerson += UpdatePersonUsecase_OnUpdatePerson;
+            _personListViewUsecase.OnAddPerson += PersonListViewUsecase_OnAddPerson;
+            _personListViewUsecase.OnRemovePerson += PersonListViewUsecase_OnRemovePerson;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -48,27 +63,6 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 設置値を初期化します。
-        /// </summary>
-        public void Initialize()
-        {
-            var people = new People();
-            people.AddPerson(new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)));
-            people.AddPerson(new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)));
-            people.AddPerson(new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)));
-            people.AddPerson(new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)));
-            people.AddPerson(new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)));
-            people.AddPerson(new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)));
-            people.AddPerson(new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)));
-            people.AddPerson(new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)));
-            people.AddPerson(new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)));
-            people.AddPerson(new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)));
-            people.AddPerson(new Person(new NameVO("山田", "太郎"), new BirthdayVO(1990, 5, 5)));
-            people.AddPerson(new Person(new NameVO("佐藤", "一郎"), new BirthdayVO(1985, 10, 2)));
-            _peopleRepository.SavePeople(people);
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------
@@ -76,6 +70,30 @@ namespace Usecase
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private void UpdatePersonUsecase_OnUpdatePerson(Person person)
+        {
+            UpdatePersons();
+        }
+
+        private void UpdatePersons()
+        {
+            Persons.Clear();
+            foreach (var p in _personListViewUsecase.GetPeople().Persons)
+            {
+                Persons.Add(p);
+            }
+        }
+
+        private void PersonListViewUsecase_OnRemovePerson(Person obj)
+        {
+            UpdatePersons();
+        }
+
+        private void PersonListViewUsecase_OnAddPerson(Person obj)
+        {
+            UpdatePersons();
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

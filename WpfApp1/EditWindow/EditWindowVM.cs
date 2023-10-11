@@ -58,7 +58,7 @@ namespace WpfApp1.EditWindow
         /// <summary>
         /// 個人情報の変更結果を格納します。
         /// </summary>
-        public Person Result { get; private set; }
+        public Person UpdatedPerson { get; private set; }
 
         #region Ok Command
 
@@ -79,7 +79,7 @@ namespace WpfApp1.EditWindow
                             return;
                         }
 
-                        Result = new Person(new NameVO(FamilyName, FirstName), new BirthdayVO(Year, Month, Day));
+                        UpdatedPerson = new Person(new NameVO(FamilyName, FirstName), new BirthdayVO(Year, Month, Day));
                         IsOk = true;
 
                         Close();

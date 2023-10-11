@@ -39,7 +39,7 @@ namespace WpfApp1.EditWindow
 
             #region init ViewModel Members
 
-            _person = person;
+            _person = person.Clone();
 
             FamilyName = _person.Name.Value.Family;
             FirstName = _person.Name.Value.First;
@@ -47,7 +47,7 @@ namespace WpfApp1.EditWindow
             Month = _person.Birthday.Value.Month;
             Day = _person.Birthday.Value.Day;
 
-            Result = _person;
+            UpdatedPerson = _person;
 
             #endregion
 

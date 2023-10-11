@@ -18,7 +18,7 @@ namespace WpfApp1.MainWindow
 
         private readonly CompositeDisposable _disposables = new();
 
-        private readonly People _people;
+        private readonly MainWindowM _model;
 
         private readonly PersonListViewUsecase _personListViewUsecase;
 
@@ -58,10 +58,6 @@ namespace WpfApp1.MainWindow
                         Owner = this,
                     };
                     edit.ShowDialog();
-                    if (edit.IsOk)
-                    {
-                        _people.AddPerson(edit.Result);
-                    }
                 }));
 
                 return _addCommand;
@@ -91,9 +87,9 @@ namespace WpfApp1.MainWindow
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private void DeletePerson(Person person)
+        private void RemovePerson(Person person)
         {
-            _people.RemovePerson(person);
+            _personListViewUsecase.RemovePerson(person);
         }
 
         private void DisposeViewModelElement()

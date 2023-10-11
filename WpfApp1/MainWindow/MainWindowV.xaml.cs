@@ -28,31 +28,27 @@ namespace WpfApp1.MainWindow
 
             _personListViewUsecase = UsecaseProvider.PersonListViewUsecase;
 
-            _people = _personListViewUsecase.GetPeople();
+            _model = new MainWindowM(_personListViewUsecase);
 
-            PersonsCount = _people.Persons
+            PersonsCount = _model.Persons
                 .ObserveProperty(x => x.Count).ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
-            Persons = _people.Persons.ToReadOnlyReactiveCollection(
+            Persons = _model.Persons.ToReadOnlyReactiveCollection(
                 x =>
                 {
                     var ret = new PersonVM(x);
-                    ret.OnEdit += (model) =>
+                    ret.OnEdit += (person) =>
                     {
-                        var editWindow = new EditWindowV(model)
+                        var editWindow = new EditWindowV(person)
                         {
                             Owner = this,
                         };
                         editWindow.ShowDialog();
-                        if (editWindow.IsOk)
-                        {
-                            _people.UpdatePersons(model, editWindow.Result);
-                        }
                     };
                     ret.OnDelete += (model) =>
                     {
-                        DeletePerson(model);
+                        RemovePerson(model);
                     };
                     return ret;
                 })
