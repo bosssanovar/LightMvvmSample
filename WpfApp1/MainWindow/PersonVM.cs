@@ -21,7 +21,7 @@ namespace WpfApp1.MainWindow
 
         private readonly CompositeDisposable _disposables = new();
 
-        private readonly Person _model;
+        private readonly PersonM _model;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -95,12 +95,12 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// 編集要求を発行する。
         /// </summary>
-        public event Action<Person>? OnEdit;
+        public event Action<PersonM>? OnEdit;
 
         /// <summary>
         /// 削除要求を発行する
         /// </summary>
-        public event Action<Person>? OnDelete;
+        public event Action<PersonM>? OnDelete;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -110,7 +110,7 @@ namespace WpfApp1.MainWindow
         /// コンストラクタ
         /// </summary>
         /// <param name="model">モデル</param>
-        public PersonVM(Person model)
+        public PersonVM(PersonM model)
         {
             _model = model ?? throw new ArgumentNullException(nameof(model));
 

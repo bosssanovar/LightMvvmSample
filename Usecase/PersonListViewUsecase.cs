@@ -70,25 +70,20 @@ namespace Usecase
         public People GetPeople() => _peopleRepository.LoadPeople();
 
         /// <summary>
-        /// Peopleエンティティを保存します。
-        /// </summary>
-        /// <param name="people">Peopleエンティティ</param>
-        public void SavePeople(People people)
-        {
-            _peopleRepository.SavePeople(people);
-        }
-
-        /// <summary>
         /// 個人情報を削除します。
         /// </summary>
-        /// <param name="person">個人情報</param>
-        public void RemovePerson(Person person)
+        /// <param name="identifier">個人情報識別子</param>
+        public void RemovePerson(Guid identifier)
         {
             var people = _peopleRepository.LoadPeople();
-            people.RemovePerson(person.Identifier);
+
+            var removed = people.GetPerson(identifier);
+
+            people.RemovePerson(identifier);
+
             _peopleRepository.SavePeople(people);
 
-            OnRemovePerson?.Invoke(person);
+            OnRemovePerson?.Invoke(removed);
         }
 
         /// <summary>
@@ -117,11 +112,15 @@ namespace Usecase
             {
                 person.CopyTo(people.Persons.Single(x => x.Identifier == person.Identifier));
 
+                _peopleRepository.SavePeople(people);
+
                 OnUpdatePerson?.Invoke(person);
             }
             else
             {
                 people.Persons.Add(person);
+
+                _peopleRepository.SavePeople(people);
 
                 OnAddPerson?.Invoke(person);
             }

@@ -31,7 +31,7 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// 個人情報リストを取得します。
         /// </summary>
-        public ReactiveCollection<Person> Persons { get; private set; }
+        public ReactiveCollection<PersonM> Persons { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ namespace WpfApp1.MainWindow
         {
             _personListViewUsecase = personListViewUsecase;
 
-            Persons = new ReactiveCollection<Person>();
+            Persons = new ReactiveCollection<PersonM>();
             UpdatePersons();
 
             _personListViewUsecase.OnUpdatePerson += UpdatePersonUsecase_OnUpdatePerson;
@@ -81,7 +81,7 @@ namespace WpfApp1.MainWindow
             Persons.Clear();
             foreach (var p in _personListViewUsecase.GetPeople().Persons)
             {
-                Persons.Add(p);
+                Persons.Add(new PersonM(p.Identifier, p.Name, p.Birthday));
             }
         }
 

@@ -25,12 +25,12 @@ namespace Entity
         /// <summary>
         /// 名称を取得または設定します。
         /// </summary>
-        public ReactivePropertySlim<NameVO> Name { get; }
+        public NameVO Name { get; private set; }
 
         /// <summary>
         /// 誕生日を取得または設定します。
         /// </summary>
-        public ReactivePropertySlim<BirthdayVO> Birthday { get; }
+        public BirthdayVO Birthday { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -59,8 +59,8 @@ namespace Entity
         public Person(Guid identifier, NameVO name, BirthdayVO birthDay)
         {
             Identifier = identifier;
-            Birthday = new ReactivePropertySlim<BirthdayVO>(birthDay);
-            Name = new ReactivePropertySlim<NameVO>(name);
+            Birthday = birthDay;
+            Name = name;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -75,15 +75,15 @@ namespace Entity
         /// <param name="other">コピー先</param>
         public void CopyTo(Person other)
         {
-            other.Name.Value = Name.Value.Clone();
-            other.Birthday.Value = Birthday.Value.Clone();
+            other.Name = Name.Clone();
+            other.Birthday = Birthday.Clone();
         }
 
         /// <summary>
         /// 複製を行います。
         /// </summary>
         /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(Identifier, Name.Value.Clone(), Birthday.Value.Clone());
+        public Person Clone() => new(Identifier, Name.Clone(), Birthday.Clone());
 
         #endregion --------------------------------------------------------------------------------------------
 

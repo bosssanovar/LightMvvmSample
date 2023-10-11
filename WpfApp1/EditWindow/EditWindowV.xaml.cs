@@ -1,6 +1,11 @@
 ﻿using System.ComponentModel;
+using System.Reactive.Linq;
 using System.Windows;
 using Entity;
+using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
+using Usecase;
+using WpfApp1.MainWindow;
 
 namespace WpfApp1.EditWindow
 {
@@ -30,8 +35,9 @@ namespace WpfApp1.EditWindow
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="person">個人情報</param>
-        public EditWindowV(Person person)
+        /// <param name="model">個人情報</param>
+        /// <param name="personListViewUsecase">個人情報リスト操作ユースケース</param>
+        public EditWindowV(PersonM model, PersonListViewUsecase personListViewUsecase)
         {
             #region init View Members
 
@@ -39,15 +45,23 @@ namespace WpfApp1.EditWindow
 
             #region init ViewModel Members
 
-            _person = person.Clone();
+            _model = model;
+            _personListViewUsecase = personListViewUsecase;
 
-            FamilyName = _person.Name.Value.Family;
-            FirstName = _person.Name.Value.First;
-            Year = _person.Birthday.Value.Year;
-            Month = _person.Birthday.Value.Month;
-            Day = _person.Birthday.Value.Day;
+            FamilyName = _model.FamilyName.ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(_disposables);
 
-            UpdatedPerson = _person;
+            FirstName = _model.FirstName.ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(_disposables);
+
+            Year = _model.Year.ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(_disposables);
+
+            Month = _model.Month.ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(_disposables);
+
+            Day = _model.Day.ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(_disposables);
 
             #endregion
 

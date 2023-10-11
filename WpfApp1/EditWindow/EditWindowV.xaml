@@ -25,17 +25,17 @@
 
             <Label Content="名前 : " Margin="5"/>
             <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <TextBox Margin="5" Width="100" Text="{Binding FamilyName}"/>
-                <TextBox Margin="5" Width="100" Text="{Binding FirstName}"/>
+                <TextBox Margin="5" Width="100" Text="{Binding FamilyName.Value}"/>
+                <TextBox Margin="5" Width="100" Text="{Binding FirstName.Value}"/>
             </StackPanel>
 
             <Label Grid.Row="1" Content="誕生日 : " Margin="5"/>
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5">
-                <TextBox Margin="5" Width="50" Text="{Binding Year}"/>
+                <TextBox Margin="5" Width="50" Text="{Binding Year.Value}"/>
                 <TextBlock VerticalAlignment="Center" Text="年" Margin="5"/>
-                <TextBox Margin="5" Width="30" Text="{Binding Month}"/>
+                <TextBox Margin="5" Width="30" Text="{Binding Month.Value}"/>
                 <TextBlock VerticalAlignment="Center" Text="月" Margin="5"/>
-                <TextBox Margin="5" Width="30" Text="{Binding Day}"/>
+                <TextBox Margin="5" Width="30" Text="{Binding Day.Value}"/>
                 <TextBlock VerticalAlignment="Center" Text="日" Margin="5"/>
             </StackPanel>
         </Grid>

@@ -53,7 +53,7 @@ namespace WpfApp1.MainWindow
             {
                 _addCommand ??= new Command(new Action(() =>
                 {
-                    var edit = new EditWindowV(new Person(new NameVO(string.Empty, string.Empty), new BirthdayVO(1900, 1, 1)))
+                    var edit = new EditWindowV(new PersonM(new NameVO(string.Empty, string.Empty), new BirthdayVO(1900, 1, 1)), _personListViewUsecase)
                     {
                         Owner = this,
                     };
@@ -87,9 +87,9 @@ namespace WpfApp1.MainWindow
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private void RemovePerson(Person person)
+        private void RemovePerson(PersonM person)
         {
-            _personListViewUsecase.RemovePerson(person);
+            _personListViewUsecase.RemovePerson(person.Identifire);
         }
 
         private void DisposeViewModelElement()

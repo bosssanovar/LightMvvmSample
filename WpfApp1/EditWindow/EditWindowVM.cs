@@ -1,8 +1,11 @@
 ﻿using Entity;
+using Reactive.Bindings;
 using System;
 using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Windows;
+using Usecase;
+using WpfApp1.MainWindow;
 
 namespace WpfApp1.EditWindow
 {
@@ -15,7 +18,9 @@ namespace WpfApp1.EditWindow
 
         private readonly CompositeDisposable _disposables = new();
 
-        private readonly Person _person;
+        private readonly PersonM _model;
+
+        private readonly PersonListViewUsecase _personListViewUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -28,37 +33,27 @@ namespace WpfApp1.EditWindow
         /// <summary>
         /// 苗字を設定または取得します。
         /// </summary>
-        public string FamilyName { get; set; }
+        public ReactivePropertySlim<string> FamilyName { get; }
 
         /// <summary>
         /// 名前を設定または取得します。
         /// </summary>
-        public string FirstName { get; set; }
+        public ReactivePropertySlim<string> FirstName { get; }
 
         /// <summary>
         /// 誕生日　年を設定または取得します。
         /// </summary>
-        public int Year { get; set; }
+        public ReactivePropertySlim<int> Year { get; }
 
         /// <summary>
         /// 誕生日　月を設定または取得します。
         /// </summary>
-        public int Month { get; set; }
+        public ReactivePropertySlim<int> Month { get; }
 
         /// <summary>
         /// 誕生日　日を設定または取得します。
         /// </summary>
-        public int Day { get; set; }
-
-        /// <summary>
-        /// OK終了したかを取得します。
-        /// </summary>
-        public bool IsOk { get; private set; } = false;
-
-        /// <summary>
-        /// 個人情報の変更結果を格納します。
-        /// </summary>
-        public Person UpdatedPerson { get; private set; }
+        public ReactivePropertySlim<int> Day { get; }
 
         #region Ok Command
 
@@ -79,8 +74,11 @@ namespace WpfApp1.EditWindow
                             return;
                         }
 
-                        UpdatedPerson = new Person(new NameVO(FamilyName, FirstName), new BirthdayVO(Year, Month, Day));
-                        IsOk = true;
+                        _personListViewUsecase.SavePerson(
+                            new Person(
+                                _model.Identifire,
+                                _model.Name.Value,
+                                _model.Birthday.Value));
 
                         Close();
                     }));
@@ -141,12 +139,12 @@ namespace WpfApp1.EditWindow
 
         private bool IsValidParams()
         {
-            if(!NameVO.IsValid(FamilyName, FirstName))
+            if(!NameVO.IsValid(FamilyName.Value, FirstName.Value))
             {
                 return false;
             }
 
-            if(BirthdayVO.IsValid(Year, Month, Day) != BirthdayVO.ErrorCause.None)
+            if(BirthdayVO.IsValid(Year.Value, Month.Value, Day.Value) != BirthdayVO.ErrorCause.None)
             {
                 return false;
             }

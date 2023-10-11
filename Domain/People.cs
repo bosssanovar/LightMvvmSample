@@ -80,6 +80,16 @@ namespace Entity
         }
 
         /// <summary>
+        /// 個人情報を取得します。
+        /// </summary>
+        /// <param name="identifier">個人情報識別子</param>
+        /// <returns>個人情報</returns>
+        public Person GetPerson(Guid identifier)
+        {
+            return Persons.First(x => x.Identifier == identifier);
+        }
+
+        /// <summary>
         /// 複製を取得します。
         /// </summary>
         /// <returns>複製されたインスタンス</returns>
