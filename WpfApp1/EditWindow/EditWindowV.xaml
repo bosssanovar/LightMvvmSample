@@ -48,7 +48,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="1" Margin="10" Padding="30,5" Content="OK" Command="{Binding OkCommand}"/>
-            <Button Grid.Column="2" Margin="10" Padding="10,5" Content="Cancel" Command="{Binding CacelCommand}"/>
+            <Button Grid.Column="2" Margin="10" Padding="10,5" Content="Cancel" Command="{Binding CancelCommand}"/>
         </Grid>
     </Grid>
 </Window>

@@ -15,6 +15,8 @@ namespace WpfApp1.MainWindow
     {
         #region Fields ----------------------------------------------------------------------------------------
 
+        private readonly Person _person;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -22,11 +24,6 @@ namespace WpfApp1.MainWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 個人情報識別子
-        /// </summary>
-        public Guid Identifire { get; }
 
         /// <summary>
         /// 名称を取得します。
@@ -63,6 +60,20 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReactivePropertySlim<int> Day { get; }
 
+        /// <summary>
+        /// 編集後の個人情報を取得します。
+        /// </summary>
+        public Person Person
+        {
+            get
+            {
+                var ret = _person;
+                ret.Name = Name.Value;
+                ret.Birthday = Birthday.Value;
+                return ret;
+            }
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -77,21 +88,19 @@ namespace WpfApp1.MainWindow
         /// <param name="name">氏名</param>
         /// <param name="birthDay">誕生日</param>
         public PersonM(NameVO name, BirthdayVO birthDay)
-            : this(Guid.NewGuid(), name, birthDay)
+            : this(new Person(name, birthDay))
         {
         }
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="identifier">個人情報識別子</param>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        public PersonM(Guid identifier, NameVO name, BirthdayVO birthDay)
+        /// <param name="person">個人情報</param>
+        public PersonM(Person person)
         {
-            Identifire = identifier;
-            Birthday = new ReactivePropertySlim<BirthdayVO>(birthDay);
-            Name = new ReactivePropertySlim<NameVO>(name);
+            _person = person;
+            Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday.Clone());
+            Name = new ReactivePropertySlim<NameVO>(person.Name.Clone());
 
             Year = new ReactivePropertySlim<int>(Birthday.Value.Year);
             Month = new ReactivePropertySlim<int>(Birthday.Value.Month);
@@ -111,6 +120,12 @@ namespace WpfApp1.MainWindow
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 複製します。
+        /// </summary>
+        /// <returns>複製したインスタンス</returns>
+        public PersonM Clone() => new(Person.Clone());
 
         #endregion --------------------------------------------------------------------------------------------
 

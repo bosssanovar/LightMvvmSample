@@ -9,6 +9,8 @@ namespace Entity
     {
         #region Fields ----------------------------------------------------------------------------------------
 
+        private readonly Guid _identifier;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -18,19 +20,14 @@ namespace Entity
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// 識別子を取得します。
-        /// </summary>
-        public Guid Identifier { get; }
-
-        /// <summary>
         /// 名称を取得または設定します。
         /// </summary>
-        public NameVO Name { get; private set; }
+        public NameVO Name { get; set; }
 
         /// <summary>
         /// 誕生日を取得または設定します。
         /// </summary>
-        public BirthdayVO Birthday { get; private set; }
+        public BirthdayVO Birthday { get; set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -46,21 +43,17 @@ namespace Entity
         /// <param name="name">氏名</param>
         /// <param name="birthDay">誕生日</param>
         public Person(NameVO name, BirthdayVO birthDay)
-            : this(Guid.NewGuid(), name, birthDay)
         {
-        }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="identifier">識別子</param>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        public Person(Guid identifier, NameVO name, BirthdayVO birthDay)
-        {
-            Identifier = identifier;
+            _identifier = Guid.NewGuid();
             Birthday = birthDay;
             Name = name;
+        }
+
+        private Person(Guid identifier, NameVO name, BirthdayVO birthday)
+        {
+            _identifier = identifier;
+            Name = name;
+            Birthday = birthday;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -83,7 +76,17 @@ namespace Entity
         /// 複製を行います。
         /// </summary>
         /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(Identifier, Name.Clone(), Birthday.Clone());
+        public Person Clone() => new(_identifier, Name.Clone(), Birthday.Clone());
+
+        /// <summary>
+        /// 同一性を有しているか
+        /// </summary>
+        /// <param name="target">比較相手</param>
+        /// <returns>同一性を有している場合はtrue</returns>
+        public bool HasSameIdentity(Person target)
+        {
+            return _identifier == target._identifier;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

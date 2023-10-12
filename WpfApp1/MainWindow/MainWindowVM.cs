@@ -89,7 +89,7 @@ namespace WpfApp1.MainWindow
 
         private void RemovePerson(PersonM person)
         {
-            _personListViewUsecase.RemovePerson(person.Identifire);
+            _personListViewUsecase.RemovePerson(person.Person);
         }
 
         private void DisposeViewModelElement()

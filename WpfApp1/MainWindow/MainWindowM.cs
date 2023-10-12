@@ -81,7 +81,7 @@ namespace WpfApp1.MainWindow
             Persons.Clear();
             foreach (var p in _personListViewUsecase.GetPeople().Persons)
             {
-                Persons.Add(new PersonM(p.Identifier, p.Name, p.Birthday));
+                Persons.Add(new PersonM(p));
             }
         }
 

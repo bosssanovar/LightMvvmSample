@@ -47,13 +47,10 @@ namespace Entity
         /// <summary>
         /// 個人情報を削除する
         /// </summary>
-        /// <param name="personIdentifier">個人情報識別子</param>
-        public void RemovePerson(Guid personIdentifier)
+        /// <param name="person">個人情報</param>
+        public void RemovePerson(Person person)
         {
-            if (Persons.Select(x => x.Identifier).Contains(personIdentifier))
-            {
-                Persons.RemoveAll(x => x.Identifier == personIdentifier);
-            }
+            Persons.RemoveAll(x => x.HasSameIdentity(person));
         }
 
         /// <summary>
@@ -62,7 +59,7 @@ namespace Entity
         /// <param name="person">更新データ</param>
         public void UpdatePersons(Person person)
         {
-            var p = Persons.Single(x => x.Identifier == person.Identifier);
+            var p = Persons.Single(x => x.HasSameIdentity(person));
 
             if (p != null)
             {
@@ -82,11 +79,11 @@ namespace Entity
         /// <summary>
         /// 個人情報を取得します。
         /// </summary>
-        /// <param name="identifier">個人情報識別子</param>
+        /// <param name="person">個人情報識別子</param>
         /// <returns>個人情報</returns>
-        public Person GetPerson(Guid identifier)
+        public Person GetPerson(Person person)
         {
-            return Persons.First(x => x.Identifier == identifier);
+            return Persons.First(x => x.HasSameIdentity(person));
         }
 
         /// <summary>

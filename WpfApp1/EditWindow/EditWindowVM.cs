@@ -74,11 +74,7 @@ namespace WpfApp1.EditWindow
                             return;
                         }
 
-                        _personListViewUsecase.SavePerson(
-                            new Person(
-                                _model.Identifire,
-                                _model.Name.Value,
-                                _model.Birthday.Value));
+                        _personListViewUsecase.SavePerson(_model.Person);
 
                         Close();
                     }));
@@ -102,7 +98,7 @@ namespace WpfApp1.EditWindow
             {
                 _cancelCommand ??= new Command(new Action(() =>
                     {
-                        this.Close();
+                        Close();
                     }));
 
                 return _cancelCommand;

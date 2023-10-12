@@ -72,32 +72,18 @@ namespace Usecase
         /// <summary>
         /// 個人情報を削除します。
         /// </summary>
-        /// <param name="identifier">個人情報識別子</param>
-        public void RemovePerson(Guid identifier)
+        /// <param name="person">個人情報</param>
+        public void RemovePerson(Person person)
         {
             var people = _peopleRepository.LoadPeople();
 
-            var removed = people.GetPerson(identifier);
+            var removed = people.GetPerson(person);
 
-            people.RemovePerson(identifier);
+            people.RemovePerson(person);
 
             _peopleRepository.SavePeople(people);
 
             OnRemovePerson?.Invoke(removed);
-        }
-
-        /// <summary>
-        /// 個人情報を取得します。
-        /// </summary>
-        /// <param name="id">個人情報識別子</param>
-        /// <returns>個人情報</returns>
-        /// <exception cref="ArgumentException">未登録IDの場合</exception>
-        public Person LoadPerson(Guid id)
-        {
-            var people = _peopleRepository.LoadPeople();
-            var persons = people.Persons;
-
-            return persons.Single(x => x.Identifier == id) ?? throw new ArgumentException("未登録IDです", nameof(id));
         }
 
         /// <summary>
@@ -108,9 +94,9 @@ namespace Usecase
         {
             var people = _peopleRepository.LoadPeople();
 
-            if (people.Persons.Any(x => x.Identifier == person.Identifier))
+            if (people.Persons.Any(x => x.HasSameIdentity(person)))
             {
-                person.CopyTo(people.Persons.Single(x => x.Identifier == person.Identifier));
+                person.CopyTo(people.Persons.Single(x => x.HasSameIdentity(person)));
 
                 _peopleRepository.SavePeople(people);
 
