@@ -104,7 +104,7 @@ namespace Usecase
             }
             else
             {
-                people.Persons.Add(person);
+                people.AddPerson(person);
 
                 _peopleRepository.SavePeople(people);
 

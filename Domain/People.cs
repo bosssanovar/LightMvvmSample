@@ -1,4 +1,5 @@
 ﻿using Reactive.Bindings;
+using System.Collections.ObjectModel;
 
 namespace Entity
 {
@@ -8,6 +9,8 @@ namespace Entity
     public class People
     {
         #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly List<Person> _persons;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -20,7 +23,13 @@ namespace Entity
         /// <summary>
         /// 個人情報リストを取得します。
         /// </summary>
-        public List<Person> Persons { get; }
+        public ReadOnlyCollection<Person> Persons
+        {
+            get
+            {
+                return _persons.AsReadOnly();
+            }
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -35,7 +44,7 @@ namespace Entity
         /// </summary>
         public People()
         {
-            Persons = new List<Person>();
+            _persons = new List<Person>();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -50,7 +59,7 @@ namespace Entity
         /// <param name="person">個人情報</param>
         public void RemovePerson(Person person)
         {
-            Persons.RemoveAll(x => x.HasSameIdentity(person));
+            _persons.RemoveAll(x => x.HasSameIdentity(person));
         }
 
         /// <summary>
@@ -73,7 +82,7 @@ namespace Entity
         /// <param name="person">個人情報</param>
         public void AddPerson(Person person)
         {
-            Persons.Add(person);
+            _persons.Add(person);
         }
 
         /// <summary>
@@ -94,7 +103,7 @@ namespace Entity
         {
             var ret = new People();
 
-            foreach(var person in Persons)
+            foreach (var person in Persons)
             {
                 ret.AddPerson(person.Clone());
             }
