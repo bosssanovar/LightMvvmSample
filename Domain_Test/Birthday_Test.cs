@@ -104,7 +104,7 @@ namespace Entity_Test
             var a = new BirthdayVO(1000, 10, 10);
             var c = a.Clone();
 
-            Assert.NotEqual(a, c);
+            Assert.Equal(a, c);
             Assert.Equal(a.Year, c.Year);
             Assert.Equal(a.Month, c.Month);
             Assert.Equal(a.Day, c.Day);

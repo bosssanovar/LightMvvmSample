@@ -172,6 +172,71 @@ namespace Entity
         /// <returns>複製したインスタンス</returns>
         public BirthdayVO Clone() => new(_year, _month, _day);
 
+        /// <summary>
+        /// 等価性を判定します。
+        /// </summary>
+        /// <param name="obj">比較対象</param>
+        /// <returns>等価の場合はtrue</returns>
+        public override bool Equals(object? obj)
+        {
+            //objがnullか、型が違うときは、等価でない
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            //NumberとMessageで比較する
+            var c = (BirthdayVO)obj;
+            return (_year == c._year) && (_month == c._month) && (_day == c._day);
+        }
+
+        /// <summary>
+        /// ハッシュコードを取得します。
+        /// </summary>
+        /// <returns>ハッシュ値</returns>
+        public override int GetHashCode()
+        {
+            return _year ^ _month ^ _day;
+        }
+
+        /// <summary>
+        /// == のオーバーライド
+        /// </summary>
+        /// <param name="c1">値１</param>
+        /// <param name="c2">値2</param>
+        /// <returns>等価の場合true</returns>
+        public static bool operator ==(BirthdayVO c1, BirthdayVO c2)
+        {
+            //nullの確認（構造体のようにNULLにならない型では不要）
+            //両方nullか（参照元が同じか）
+            //(c1 == c2)とすると、無限ループ
+            if (object.ReferenceEquals(c1, c2))
+            {
+                return true;
+            }
+
+            //どちらかがnullか
+            //(c1 == null)とすると、無限ループ
+            if ((c1 is null) || (c2 is null))
+            {
+                return false;
+            }
+
+            return (c1._year == c2._year) && (c1._month == c2._month) && (c1._day == c2._day);
+        }
+
+        /// <summary>
+        /// != のオーバーライド
+        /// </summary>
+        /// <param name="c1">値1</param>
+        /// <param name="c2">値2</param>
+        /// <returns>等価でなければtrue</returns>
+        public static bool operator !=(BirthdayVO c1, BirthdayVO c2)
+        {
+            return !(c1 == c2);
+            //(c1 != c2)とすると、無限ループ
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
