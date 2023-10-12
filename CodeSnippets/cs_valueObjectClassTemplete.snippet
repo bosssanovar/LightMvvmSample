@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>cs_valueObjectClassTemplete</Title>
+      <Shortcut>cs_valueObjectClassTemplete</Shortcut>
+      <Description>Value Object Class Template</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>name</ID>
+          <Default>ClassName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+  <![CDATA[    public class $name$VO$end$
+    {
+        #region Fields ----------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constants -------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public $name$VO()
+        {
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods ---------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// パラメータが有効かを判定します。
+        /// </summary>
+        /// <returns>有効ならtrue</returns>
+        public static bool IsValid()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// インスタンスを複製します。
+        /// </summary>
+        /// <returns>複製したインスタンス</returns>
+        public $name$VO Clone() => new();
+
+        /// <summary>
+        /// 等価性を判定します。
+        /// </summary>
+        /// <param name="obj">比較対象</param>
+        /// <returns>等価の場合はtrue</returns>
+        public override bool Equals(object? obj)
+        {
+            //objがnullか、型が違うときは、等価でない
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            //属性値で比較する
+            var c = ($name$VO)obj;
+            //return (_family == c._family) && (_first == c._first);
+            return true;
+        }
+
+        /// <summary>
+        /// ハッシュコードを取得します。
+        /// </summary>
+        /// <returns>ハッシュ値</returns>
+        public override int GetHashCode()
+        {
+            //return _family.GetHashCode() ^ _first.GetHashCode();
+            return 0;
+        }
+
+        /// <summary>
+        /// == のオーバーライド
+        /// </summary>
+        /// <param name="c1">値１</param>
+        /// <param name="c2">値2</param>
+        /// <returns>等価の場合true</returns>
+        public static bool operator ==($name$VO c1, $name$VO c2)
+        {
+            //nullの確認（構造体のようにNULLにならない型では不要）
+            //両方nullか（参照元が同じか）
+            //(c1 == c2)とすると、無限ループ
+            if (object.ReferenceEquals(c1, c2))
+            {
+                return true;
+            }
+
+            //どちらかがnullか
+            //(c1 == null)とすると、無限ループ
+            if ((c1 is null) || (c2 is null))
+            {
+                return false;
+            }
+
+            //return (c1._family == c2._family) && (c1._first == c2._first);
+            return true;
+        }
+
+        /// <summary>
+        /// != のオーバーライド
+        /// </summary>
+        /// <param name="c1">値1</param>
+        /// <param name="c2">値2</param>
+        /// <returns>等価でなければtrue</returns>
+        public static bool operator !=($name$VO c1, $name$VO c2)
+        {
+            return !(c1 == c2);
+            //(c1 != c2)とすると、無限ループ
+        }
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+    }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
