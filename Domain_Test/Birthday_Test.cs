@@ -99,6 +99,26 @@ namespace Entity_Test
         }
 
         [Fact]
+        public void EqualsMethod()
+        {
+            var a = new BirthdayVO(1000, 10, 10);
+            var b = new BirthdayVO(1000, 10, 10);
+            Assert.True(a.Equals(b));
+            Assert.True(a == b);
+            Assert.False(a != b);
+        }
+
+        [Fact]
+        public void NotEqualsMethod()
+        {
+            var a = new BirthdayVO(1000, 10, 10);
+            var b = new BirthdayVO(1001, 10, 10);
+            Assert.False(a.Equals(b));
+            Assert.False(a == b);
+            Assert.True(a != b);
+        }
+
+        [Fact]
         public void クローン()
         {
             var a = new BirthdayVO(1000, 10, 10);
