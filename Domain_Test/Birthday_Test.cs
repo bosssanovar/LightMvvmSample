@@ -83,5 +83,33 @@ namespace Entity_Test
 
             Assert.Fail();
         }
+
+        [Theory]
+        [InlineData(2023, 1, 1, "2023/1/1")]
+        [InlineData(2023, 1, 2, "2023/1/2")]
+        [InlineData(2023, 1, 10, "2023/1/10")]
+        [InlineData(2023, 10, 1, "2023/10/1")]
+        [InlineData(2023, 10, 2, "2023/10/2")]
+        [InlineData(2023, 10, 10, "2023/10/10")]
+        public void 生年月日文字列取得(int year, int month, int day, string text)
+        {
+            var birthday = new BirthdayVO(year, month, day);
+
+            Assert.Equal(text, birthday.Text);
+        }
+
+        [Fact]
+        public void クローン()
+        {
+            var a = new BirthdayVO(1000, 10, 10);
+            var c = a.Clone();
+
+            Assert.NotEqual(a, c);
+            Assert.Equal(a.Year, c.Year);
+            Assert.Equal(a.Month, c.Month);
+            Assert.Equal(a.Day, c.Day);
+            Assert.Equal(a.Text, c.Text);
+            Assert.Equal(a.GetAge(DateTime.Today), c.GetAge(DateTime.Today));
+        }
     }
 }

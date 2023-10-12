@@ -9,7 +9,7 @@ namespace Entity
     /// <summary>
     /// 誕生日クラス
     /// </summary>
-    public class BirthdayVO
+    public class BirthdayVO : ICloneable
     {
         #region Fields ----------------------------------------------------------------------------------------
 
