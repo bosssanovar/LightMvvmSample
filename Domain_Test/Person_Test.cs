@@ -52,7 +52,8 @@ namespace Entity_Test
         public void CopyTo()
         {
             var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
-            var b = new Person(new NameVO("ccccc", "ddddd"), new BirthdayVO(100, 1, 1), Post.Chief);
+            var b = new Person(new NameVO("ccccc", "ddddd"), new BirthdayVO(100, 1, 1));
+            b.UpdatePost(Post.Chief);
             a.CopyTo(b);
             Assert.False(a.HasSameIdentity(b));
             Assert.True(a.Name.Equals(b.Name));
@@ -68,8 +69,10 @@ namespace Entity_Test
         [InlineData(Post.Director, Post.President)]
         public void 役職比較(Post p1, Post p2)
         {
-            var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1), p1);
-            var b = new Person(new NameVO("ccccc", "ddddd"), new BirthdayVO(100, 1, 1), p2);
+            var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
+            a.UpdatePost(p1);
+            var b = new Person(new NameVO("ccccc", "ddddd"), new BirthdayVO(100, 1, 1));
+            b.UpdatePost(p2);
 
             Assert.False(a.IsHigherPostThan(a));
             Assert.False(b.IsHigherPostThan(b));
@@ -85,7 +88,8 @@ namespace Entity_Test
         [InlineData(Post.Director, Post.President)]
         public void 役職変更(Post p1, Post p2)
         {
-            var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1), p1);
+            var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
+            a.UpdatePost(p1);
             var b = a.Clone();
             Assert.False(a.IsHigherPostThan(a));
             Assert.False(b.IsHigherPostThan(b));

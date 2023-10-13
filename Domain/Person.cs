@@ -59,18 +59,6 @@ namespace Entity
             Name = name;
         }
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        /// <param name="post">役職</param>
-        public Person(NameVO name, BirthdayVO birthDay, Post post)
-            : this(name, birthDay)
-        {
-            Post = post;
-        }
-
         private Person(Guid identifier, NameVO name, BirthdayVO birthday, Post post)
         {
             _identifier = identifier;
