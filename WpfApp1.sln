@@ -28,6 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeSnippets", "CodeSnippet
 	ProjectSection(SolutionItems) = preProject
 		CodeSnippets\cs_command.snippet = CodeSnippets\cs_command.snippet
 		CodeSnippets\cs_detailViewModelTemplete.snippet = CodeSnippets\cs_detailViewModelTemplete.snippet
+		CodeSnippets\cs_modelClassTemplate.snippet = CodeSnippets\cs_modelClassTemplate.snippet
 		CodeSnippets\cs_reactiveProperty.snippet = CodeSnippets\cs_reactiveProperty.snippet
 		CodeSnippets\cs_regions.snippet = CodeSnippets\cs_regions.snippet
 		CodeSnippets\cs_valueObjectClassTemplete.snippet = CodeSnippets\cs_valueObjectClassTemplete.snippet

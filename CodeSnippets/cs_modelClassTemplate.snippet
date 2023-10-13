@@ -2,28 +2,28 @@
 <CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>cs_viewModelClassTemplete</Title>
-      <Shortcut>cs_viewModelClassTemplete</Shortcut>
-      <Description>ViewModel Class Templete</Description>
+      <Title>cs_detailViewModelTemplete</Title>
+      <Shortcut>cs_detailViewModelTemplete</Shortcut>
+      <Description>Collection Detail View Model Class Template</Description>
       <Author></Author>
     </Header>
     <Snippet>
       <Declarations>
         <Literal>
-          <ID>windowName</ID>
-          <Default>MainWindow</Default>
+          <ID>name</ID>
+          <Default>Some</Default>
         </Literal>
       </Declarations>
       <Code Language="csharp">
-  <![CDATA[    public partial class $windowName$V : INotifyPropertyChanged
+  <![CDATA[    public class $name$M$end$
     {
-        #region Fields ----------------------------------------------------------------------------------------
-
-        private readonly CompositeDisposable _disposables = new();
+        #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
-        #region Constants -------------------------------------------------------------------------------------
+        #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly CompositeDisposable _disposables = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -33,12 +33,16 @@
 
         #region Events ----------------------------------------------------------------------------------------
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
         /// <summary>
-        /// 不要だが、バインドした際のメモリリーク対策のため固定追加（必須） INotifyPropertyChanged
+        /// コンストラクタ
         /// </summary>
-#pragma warning disable CS0067 // イベント '$windowName$V.PropertyChanged' は使用されていません
-        public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore CS0067 // イベント '$windowName$V.PropertyChanged' は使用されていません
+        public $name$M()
+        {
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -46,21 +50,30 @@
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        #endregion --------------------------------------------------------------------------------------------
-
-        #region Methods - private -----------------------------------------------------------------------------
-
-        private void DisposeViewModelElement()
+        /// <summary>
+        /// 各種破棄処理
+        /// </summary>
+        public void Dispose()
         {
             _disposables.Dispose();
-            
-            // TODO : モデルのDisposeたたく
         }
 
         #endregion --------------------------------------------------------------------------------------------
 
+        #region Methods - protected ---------------------------------------------------------------------------
+
         #endregion --------------------------------------------------------------------------------------------
-    }$end$]]></Code>
+
+        #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+    }]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
