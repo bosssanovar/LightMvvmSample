@@ -11,6 +11,8 @@ namespace Entity
 
         private readonly Guid _identifier;
 
+        private Post _post = Post.Employee;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -28,6 +30,11 @@ namespace Entity
         /// 誕生日を取得または設定します。
         /// </summary>
         public BirthdayVO Birthday { get; set; }
+
+        /// <summary>
+        /// 役職を取得します。
+        /// </summary>
+        public string PostText => _post.GetDisplayText();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -49,11 +56,24 @@ namespace Entity
             Name = name;
         }
 
-        private Person(Guid identifier, NameVO name, BirthdayVO birthday)
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="name">氏名</param>
+        /// <param name="birthDay">誕生日</param>
+        /// <param name="post">役職</param>
+        public Person(NameVO name, BirthdayVO birthDay, Post post)
+            : this(name, birthDay)
+        {
+            _post = post;
+        }
+
+        private Person(Guid identifier, NameVO name, BirthdayVO birthday, Post post)
         {
             _identifier = identifier;
             Name = name;
             Birthday = birthday;
+            _post = post;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -70,13 +90,14 @@ namespace Entity
         {
             other.Name = Name.Clone();
             other.Birthday = Birthday.Clone();
+            other._post = _post;
         }
 
         /// <summary>
         /// 複製を行います。
         /// </summary>
         /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(_identifier, Name.Clone(), Birthday.Clone());
+        public Person Clone() => new(_identifier, Name.Clone(), Birthday.Clone(), _post);
 
         /// <summary>
         /// 同一性を有しているか
@@ -86,6 +107,25 @@ namespace Entity
         public bool HasSameIdentity(Person target)
         {
             return _identifier == target._identifier;
+        }
+
+        /// <summary>
+        /// 役職上位者かを確認します。
+        /// </summary>
+        /// <param name="target">比較対象</param>
+        /// <returns>比較対象の方が役職レベルが高ければtrue</returns>
+        public bool IsHigherPostThan(Person target)
+        {
+            return _post < target._post;
+        }
+
+        /// <summary>
+        /// 役職を更新します。
+        /// </summary>
+        /// <param name="post">変更後の値</param>
+        public void UpdatePost(Post post)
+        {
+            _post = post;
         }
 
         #endregion --------------------------------------------------------------------------------------------
