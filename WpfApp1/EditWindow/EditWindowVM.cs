@@ -21,8 +21,6 @@ namespace WpfApp1.EditWindow
 
         private readonly PersonM _model;
 
-        private readonly PersonListViewUsecase _personListViewUsecase;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -85,7 +83,8 @@ namespace WpfApp1.EditWindow
                             return;
                         }
 
-                        _personListViewUsecase.SavePerson(_model.Person);
+                        OnCompleted?.Invoke(_model.Person);
+                        OnCompleted = null;
 
                         Close();
                     }));
@@ -128,6 +127,11 @@ namespace WpfApp1.EditWindow
 #pragma warning disable CS0067 // イベント 'EditWindowV.PropertyChanged' は使用されていません
         public event PropertyChangedEventHandler? PropertyChanged;
 #pragma warning restore CS0067 // イベント 'EditWindowV.PropertyChanged' は使用されていません
+
+        /// <summary>
+        /// 画面操作完了時イベント
+        /// </summary>
+        public event Action<Person>? OnCompleted;
 
         #endregion --------------------------------------------------------------------------------------------
 

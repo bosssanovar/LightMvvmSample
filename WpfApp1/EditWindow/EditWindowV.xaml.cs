@@ -38,8 +38,7 @@ namespace WpfApp1.EditWindow
         /// コンストラクタ
         /// </summary>
         /// <param name="model">個人情報</param>
-        /// <param name="personListViewUsecase">個人情報リスト操作ユースケース</param>
-        public EditWindowV(PersonM model, PersonListViewUsecase personListViewUsecase)
+        public EditWindowV(PersonM model)
         {
             #region init View Members
 
@@ -48,7 +47,6 @@ namespace WpfApp1.EditWindow
             #region init ViewModel Members
 
             _model = model;
-            _personListViewUsecase = personListViewUsecase;
 
             FamilyName = _model.FamilyName.ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(_disposables);

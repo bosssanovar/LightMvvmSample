@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Usecase
 {
     /// <summary>
-    /// 個人情報リストを表示するユースケース機能を提供します。
+    /// 個人情報を削除するユースケースの機能を提供します。
     /// </summary>
-    public class PersonListViewUsecase
+    public class RemovePersonUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -29,6 +29,11 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 個人情報が削除されたことを通知します。
+        /// </summary>
+        public event Action<Person> OnRemovePerson;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -37,7 +42,7 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
-        public PersonListViewUsecase(PeopleRepository peopleRepository)
+        public RemovePersonUsecase(PeopleRepository peopleRepository)
         {
             _peopleRepository = peopleRepository;
         }
@@ -49,10 +54,21 @@ namespace Usecase
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// Peopleエンティティを取得します。
+        /// 個人情報を削除します。
         /// </summary>
-        /// <returns>Peopleエンティティ</returns>
-        public People GetPeople() => _peopleRepository.LoadPeople();
+        /// <param name="person">個人情報</param>
+        public void RemovePerson(Person person)
+        {
+            var people = _peopleRepository.LoadPeople();
+
+            var removed = people.GetPerson(person);
+
+            people.RemovePerson(person);
+
+            _peopleRepository.SavePeople(people);
+
+            OnRemovePerson?.Invoke(removed);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

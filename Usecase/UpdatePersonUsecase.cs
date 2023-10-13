@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Usecase
 {
     /// <summary>
-    /// 個人情報リストを表示するユースケース機能を提供します。
+    /// 個人情報を更新するユースケースの機能を提供します。
     /// </summary>
-    public class PersonListViewUsecase
+    public class UpdatePersonUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -29,6 +29,11 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 個人情報が更新されたことを通知します。
+        /// </summary>
+        public event Action<Person> OnUpdatePerson;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -37,7 +42,7 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
-        public PersonListViewUsecase(PeopleRepository peopleRepository)
+        public UpdatePersonUsecase(PeopleRepository peopleRepository)
         {
             _peopleRepository = peopleRepository;
         }
@@ -49,10 +54,31 @@ namespace Usecase
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// Peopleエンティティを取得します。
+        /// 個人情報を更新します。
         /// </summary>
-        /// <returns>Peopleエンティティ</returns>
-        public People GetPeople() => _peopleRepository.LoadPeople();
+        /// <param name="person">個人情報</param>
+        public void UpdatePerson(Person person)
+        {
+            var people = _peopleRepository.LoadPeople();
+
+            if (people.Persons.Any(x => x.HasSameIdentity(person)))
+            {
+                person.CopyTo(people.Persons.Single(x => x.HasSameIdentity(person)));
+
+                _peopleRepository.SavePeople(people);
+
+                OnUpdatePerson?.Invoke(person);
+            }
+            else
+            {
+                // TODO K.I : こっちの場合は何もしない
+                //people.AddPerson(person);
+
+                //_peopleRepository.SavePeople(people);
+
+                //OnAddPerson?.Invoke(person);
+            }
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

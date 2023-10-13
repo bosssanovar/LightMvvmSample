@@ -62,7 +62,7 @@ namespace WpfApp1
             ShutDownIfMultiActivate();
 
             // アプリケーション初期化
-            UsecaseProvider.InitializeUsecase.Initialize();
+            PersonUsecaseProvider.InitializeUsecase.Initialize();
 
             // メイン ウィンドウ表示
             MainWindowV window = new();

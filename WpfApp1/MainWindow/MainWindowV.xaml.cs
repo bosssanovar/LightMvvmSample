@@ -26,9 +26,11 @@ namespace WpfApp1.MainWindow
 
             #region init ViewModel Members
 
-            _personListViewUsecase = UsecaseProvider.PersonListViewUsecase;
+            _updatePersonUsecase = PersonUsecaseProvider.UpdatePersonUsecase;
+            _addPersonUsecase = PersonUsecaseProvider.AddPersonUsecase;
+            _removePersonUsecase = PersonUsecaseProvider.RemovePersonUsecase;
 
-            _model = new MainWindowM(_personListViewUsecase);
+            _model = new MainWindowM();
 
             PersonsCount = _model.Persons
                 .ObserveProperty(x => x.Count).ToReadOnlyReactivePropertySlim()
@@ -40,11 +42,13 @@ namespace WpfApp1.MainWindow
                     var ret = new PersonVM(x);
                     ret.OnEdit += (model) =>
                     {
-                        var editWindow = new EditWindowV(model.Clone(), _personListViewUsecase)
+                        var editWindow = new EditWindowV(model.Clone())
                         {
                             Owner = this,
                         };
+                        editWindow.OnCompleted += EditWindow_OnCompletedEdit;
                         editWindow.ShowDialog();
+                        editWindow.OnCompleted -= EditWindow_OnCompletedEdit;
                     };
                     ret.OnDelete += (model) =>
                     {

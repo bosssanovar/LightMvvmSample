@@ -24,6 +24,12 @@ namespace WpfApp1.MainWindow
 
         private readonly PersonListViewUsecase _personListViewUsecase;
 
+        private readonly UpdatePersonUsecase _updatePersonUsecase;
+
+        private readonly AddPersonUsecase _addPersonUsecase;
+
+        private readonly RemovePersonUsecase _removePersonUsecase;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -44,17 +50,19 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="personListViewUsecase">個人情報リスト表示ユースケース</param>
-        public MainWindowM(PersonListViewUsecase personListViewUsecase)
+        public MainWindowM()
         {
-            _personListViewUsecase = personListViewUsecase;
+            _personListViewUsecase = PersonUsecaseProvider.PersonListViewUsecase;
+            _updatePersonUsecase = PersonUsecaseProvider.UpdatePersonUsecase;
+            _addPersonUsecase = PersonUsecaseProvider.AddPersonUsecase;
+            _removePersonUsecase = PersonUsecaseProvider.RemovePersonUsecase;
 
             Persons = new ReactiveCollection<PersonM>();
             UpdatePersons();
 
-            _personListViewUsecase.OnUpdatePerson += UpdatePersonUsecase_OnUpdatePerson;
-            _personListViewUsecase.OnAddPerson += PersonListViewUsecase_OnAddPerson;
-            _personListViewUsecase.OnRemovePerson += PersonListViewUsecase_OnRemovePerson;
+            _updatePersonUsecase.OnUpdatePerson += UpdatePersonUsecase_OnUpdatePerson;
+            _addPersonUsecase.OnAddPerson += PersonListViewUsecase_OnAddPerson;
+            _removePersonUsecase.OnRemovePerson += PersonListViewUsecase_OnRemovePerson;
         }
 
         #endregion --------------------------------------------------------------------------------------------

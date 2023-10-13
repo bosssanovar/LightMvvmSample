@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Usecase
 {
     /// <summary>
-    /// Usecaseインスタンスを提供します。
+    /// 個人情報関連の唯一のUsecaseインスタンスを提供します。
     /// </summary>
-    public static class UsecaseProvider
+    public static class PersonUsecaseProvider
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -28,6 +28,9 @@ namespace Usecase
 
         private static PersonListViewUsecase _personListViewUsecase;
         private static InitializeUsecase _initializeUsecase;
+        private static AddPersonUsecase _addPersonUsecase;
+        private static RemovePersonUsecase _removePersonUsecase;
+        private static UpdatePersonUsecase _updatePersonUsecase;
 
         #endregion
 
@@ -37,13 +40,7 @@ namespace Usecase
 
         #region Repository
 
-        private static PeopleRepository PeopleRepository
-        {
-            get
-            {
-                return _peopleRepository ??= new PeopleRepository();
-            }
-        }
+        private static PeopleRepository PeopleRepository => _peopleRepository ??= new PeopleRepository();
 
         #endregion
 
@@ -58,6 +55,21 @@ namespace Usecase
         /// 設定値を初期化するユースケースを取得します。
         /// </summary>
         public static InitializeUsecase InitializeUsecase => _initializeUsecase ??= new InitializeUsecase(PeopleRepository);
+
+        /// <summary>
+        /// 個人情報を追加するためのユースケースを取得します。
+        /// </summary>
+        public static AddPersonUsecase AddPersonUsecase => _addPersonUsecase ??= new AddPersonUsecase(PeopleRepository);
+
+        /// <summary>
+        /// 個人情報を更新するためのユースケースを取得します。
+        /// </summary>
+        public static UpdatePersonUsecase UpdatePersonUsecase => _updatePersonUsecase ??= new UpdatePersonUsecase(PeopleRepository);
+
+        /// <summary>
+        /// 個人情報を削除するためのユースケースを取得します。
+        /// </summary>
+        public static RemovePersonUsecase RemovePersonUsecase => _removePersonUsecase ??= new RemovePersonUsecase(PeopleRepository);
 
         #endregion
 

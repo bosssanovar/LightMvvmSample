@@ -20,7 +20,11 @@ namespace WpfApp1.MainWindow
 
         private readonly MainWindowM _model;
 
-        private readonly PersonListViewUsecase _personListViewUsecase;
+        private readonly UpdatePersonUsecase _updatePersonUsecase;
+
+        private readonly AddPersonUsecase _addPersonUsecase;
+
+        private readonly RemovePersonUsecase _removePersonUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -53,11 +57,13 @@ namespace WpfApp1.MainWindow
             {
                 _addCommand ??= new Command(new Action(() =>
                 {
-                    var edit = new EditWindowV(new PersonM(new NameVO(string.Empty, string.Empty), new BirthdayVO(1900, 1, 1)), _personListViewUsecase)
+                    var edit = new EditWindowV(new PersonM(new NameVO(string.Empty, string.Empty), new BirthdayVO(1900, 1, 1)))
                     {
                         Owner = this,
                     };
+                    edit.OnCompleted += Edit_OnCompletedAdd;
                     edit.ShowDialog();
+                    edit.OnCompleted -= Edit_OnCompletedAdd;
                 }));
 
                 return _addCommand;
@@ -89,7 +95,17 @@ namespace WpfApp1.MainWindow
 
         private void RemovePerson(PersonM person)
         {
-            _personListViewUsecase.RemovePerson(person.Person);
+            _removePersonUsecase.RemovePerson(person.Person);
+        }
+
+        private void EditWindow_OnCompletedEdit(Person person)
+        {
+            _updatePersonUsecase.UpdatePerson(person);
+        }
+
+        private void Edit_OnCompletedAdd(Person person)
+        {
+            _addPersonUsecase.AddPerson(person);
         }
 
         private void DisposeViewModelElement()
