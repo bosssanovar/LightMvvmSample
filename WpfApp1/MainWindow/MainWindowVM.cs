@@ -111,6 +111,7 @@ namespace WpfApp1.MainWindow
         private void DisposeViewModelElement()
         {
             _disposables.Dispose();
+            _model.Dispose();
         }
 
         #endregion --------------------------------------------------------------------------------------------

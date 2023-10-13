@@ -145,6 +145,8 @@ namespace WpfApp1.MainWindow
         {
             _disposables.Dispose();
 
+            _model.Dispose();
+
             OnEdit = null;
             OnDelete = null;
         }

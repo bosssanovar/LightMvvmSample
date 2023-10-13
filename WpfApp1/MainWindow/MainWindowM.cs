@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using Usecase;
@@ -21,6 +22,8 @@ namespace WpfApp1.MainWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly CompositeDisposable _disposables = new();
 
         private readonly PersonListViewUsecase _personListViewUsecase;
 
@@ -70,6 +73,18 @@ namespace WpfApp1.MainWindow
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 各種破棄処理
+        /// </summary>
+        public void Dispose()
+        {
+            _disposables.Dispose();
+
+            _updatePersonUsecase.OnUpdatePerson -= UpdatePersonUsecase_OnUpdatePerson;
+            _addPersonUsecase.OnAddPerson -= PersonListViewUsecase_OnAddPerson;
+            _removePersonUsecase.OnRemovePerson -= PersonListViewUsecase_OnRemovePerson;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

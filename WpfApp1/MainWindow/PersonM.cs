@@ -1,8 +1,10 @@
 ﻿using Entity;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +16,8 @@ namespace WpfApp1.MainWindow
     public class PersonM
     {
         #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly CompositeDisposable _disposables = new();
 
         private readonly Person _person;
 
@@ -107,25 +111,33 @@ namespace WpfApp1.MainWindow
             _person = person;
 
             // Birthday
-            Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday.Clone());
-            Year = new ReactivePropertySlim<int>(Birthday.Value.Year);
-            Month = new ReactivePropertySlim<int>(Birthday.Value.Month);
-            Day = new ReactivePropertySlim<int>(Birthday.Value.Day);
+            Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday.Clone())
+                .AddTo(_disposables);
+            Year = new ReactivePropertySlim<int>(Birthday.Value.Year)
+                .AddTo(_disposables);
+            Month = new ReactivePropertySlim<int>(Birthday.Value.Month)
+                .AddTo(_disposables);
+            Day = new ReactivePropertySlim<int>(Birthday.Value.Day)
+                .AddTo(_disposables);
 
             Year.Subscribe(y => Birthday.Value = new(y, Birthday.Value.Month, Birthday.Value.Day));
             Month.Subscribe(m => Birthday.Value = new(Birthday.Value.Year, m, Birthday.Value.Day));
             Day.Subscribe(d => Birthday.Value = new(Birthday.Value.Year, Birthday.Value.Month, d));
 
             // Name
-            Name = new ReactivePropertySlim<NameVO>(person.Name.Clone());
-            FamilyName = new ReactivePropertySlim<string>(Name.Value.Family);
-            FirstName = new ReactivePropertySlim<string>(Name.Value.First);
+            Name = new ReactivePropertySlim<NameVO>(person.Name.Clone())
+                .AddTo(_disposables);
+            FamilyName = new ReactivePropertySlim<string>(Name.Value.Family)
+                .AddTo(_disposables);
+            FirstName = new ReactivePropertySlim<string>(Name.Value.First)
+                .AddTo(_disposables);
 
             FamilyName.Subscribe(f => Name.Value = new(f, Name.Value.First));
             FirstName.Subscribe(f => Name.Value = new(Name.Value.Family, f));
 
             // Post
-            Post = new ReactivePropertySlim<Post>(person.Post);
+            Post = new ReactivePropertySlim<Post>(person.Post)
+                .AddTo(_disposables);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -139,6 +151,14 @@ namespace WpfApp1.MainWindow
         /// </summary>
         /// <returns>複製したインスタンス</returns>
         public PersonM Clone() => new(Person.Clone());
+
+        /// <summary>
+        /// 各種破棄処理
+        /// </summary>
+        public void Dispose()
+        {
+            _disposables.Dispose();
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

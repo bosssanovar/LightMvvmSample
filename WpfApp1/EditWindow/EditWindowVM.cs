@@ -146,6 +146,8 @@ namespace WpfApp1.EditWindow
         private void DisposeViewModelElement()
         {
             _disposables.Dispose();
+
+            _model.Dispose();
         }
 
         private bool IsValidParams()
