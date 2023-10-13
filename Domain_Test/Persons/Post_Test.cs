@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Entity_Test
+namespace Entity_Test.Persons
 {
     public class Post_Test
     {
