@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity
+namespace Entity.Persons
 {
     /// <summary>
     /// 誕生日クラス
@@ -187,7 +187,7 @@ namespace Entity
 
             //NumberとMessageで比較する
             var c = (BirthdayVO)obj;
-            return (_year == c._year) && (_month == c._month) && (_day == c._day);
+            return _year == c._year && _month == c._month && _day == c._day;
         }
 
         /// <summary>
@@ -210,19 +210,19 @@ namespace Entity
             //nullの確認（構造体のようにNULLにならない型では不要）
             //両方nullか（参照元が同じか）
             //(c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             //どちらかがnullか
             //(c1 == null)とすると、無限ループ
-            if ((c1 is null) || (c2 is null))
+            if (c1 is null || c2 is null)
             {
                 return false;
             }
 
-            return (c1._year == c2._year) && (c1._month == c2._month) && (c1._day == c2._day);
+            return c1._year == c2._year && c1._month == c2._month && c1._day == c2._day;
         }
 
         /// <summary>

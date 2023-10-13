@@ -1,6 +1,6 @@
 ﻿using Reactive.Bindings;
 
-namespace Entity
+namespace Entity.Persons
 {
     /// <summary>
     /// 個人情報クラス

@@ -1,7 +1,7 @@
 ﻿using Reactive.Bindings;
 using System.Collections.ObjectModel;
 
-namespace Entity
+namespace Entity.Persons
 {
     /// <summary>
     /// 集団クラス

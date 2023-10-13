@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reactive.Disposables;
-using Entity;
+using Entity.Persons;
 using Reactive.Bindings;
 using Usecase;
 using WpfApp1.EditWindow;

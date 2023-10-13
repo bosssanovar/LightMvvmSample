@@ -1,4 +1,4 @@
-﻿using Entity;
+﻿using Entity.Persons;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;

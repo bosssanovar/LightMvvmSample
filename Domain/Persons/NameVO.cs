@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity
+namespace Entity.Persons
 {
     /// <summary>
     /// 名前クラス
@@ -107,7 +107,7 @@ namespace Entity
 
             //NumberとMessageで比較する
             var c = (NameVO)obj;
-            return (_family == c._family) && (_first == c._first);
+            return _family == c._family && _first == c._first;
         }
 
         /// <summary>
@@ -130,19 +130,19 @@ namespace Entity
             //nullの確認（構造体のようにNULLにならない型では不要）
             //両方nullか（参照元が同じか）
             //(c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             //どちらかがnullか
             //(c1 == null)とすると、無限ループ
-            if ((c1 is null) || (c2 is null))
+            if (c1 is null || c2 is null)
             {
                 return false;
             }
 
-            return (c1._family == c2._family) && (c1._first == c2._first);
+            return c1._family == c2._family && c1._first == c2._first;
         }
 
         /// <summary>

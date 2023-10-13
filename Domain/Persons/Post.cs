@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity
+namespace Entity.Persons
 {
     /// <summary>
     /// 役職　列挙子
@@ -78,7 +78,7 @@ namespace Entity
             .Cast<Post>()
             .ToList();
 
-            foreach(var p in postList)
+            foreach (var p in postList)
             {
                 ret.Add((p, p.GetDisplayText()));
             }
