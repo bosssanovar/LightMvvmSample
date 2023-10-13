@@ -1,6 +1,7 @@
 ﻿using Entity;
 using Reactive.Bindings;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Windows;
@@ -31,29 +32,39 @@ namespace WpfApp1.EditWindow
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// 苗字を設定または取得します。
+        /// 苗字を取得します。
         /// </summary>
         public ReactivePropertySlim<string> FamilyName { get; }
 
         /// <summary>
-        /// 名前を設定または取得します。
+        /// 名前を取得します。
         /// </summary>
         public ReactivePropertySlim<string> FirstName { get; }
 
         /// <summary>
-        /// 誕生日　年を設定または取得します。
+        /// 誕生日　年を取得します。
         /// </summary>
         public ReactivePropertySlim<int> Year { get; }
 
         /// <summary>
-        /// 誕生日　月を設定または取得します。
+        /// 誕生日　月を取得します。
         /// </summary>
         public ReactivePropertySlim<int> Month { get; }
 
         /// <summary>
-        /// 誕生日　日を設定または取得します。
+        /// 誕生日　日を取得します。
         /// </summary>
         public ReactivePropertySlim<int> Day { get; }
+
+        /// <summary>
+        /// 選択された役職を取得します。
+        /// </summary>
+        public ReactivePropertySlim<Post> SelectedPost { get; }
+
+        /// <summary>
+        /// 役職リストを取得します。
+        /// </summary>
+        public ObservableCollection<ComboBoxItem<Post>> PostItems { get; }
 
         #region Ok Command
 

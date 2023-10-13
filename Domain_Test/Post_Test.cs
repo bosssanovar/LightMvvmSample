@@ -11,11 +11,13 @@ namespace Entity_Test
 {
     public class Post_Test
     {
+        const int MaxValue = 6;
+
         [Fact]
         public void 表示用文字列の定義漏れ監視()
         {
             var isException = false;
-            var a = (Post)6;
+            var a = (Post)MaxValue;
             try
             {
                 var _ = a.GetDisplayText();
@@ -42,6 +44,13 @@ namespace Entity_Test
         {
             Assert.True(low < high);
             Assert.False(low == high);
+        }
+
+        [Fact]
+        public void 全リスト取得()
+        {
+            var list = PostExtend.GetAllDispValueList();
+            Assert.Equal(MaxValue, list.Count);
         }
     }
 

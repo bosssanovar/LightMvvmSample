@@ -65,5 +65,25 @@ namespace Entity
                 _ => throw new ArgumentOutOfRangeException(nameof(post), "未定義です"),
             };
         }
+
+        /// <summary>
+        /// 役職一覧の表示と値ペアのリストを取得します。
+        /// </summary>
+        /// <returns>役職一覧の表示と値ペアのリスト</returns>
+        public static List<(Post value, string disp)> GetAllDispValueList()
+        {
+            var ret = new List<(Post, string)>();
+
+            var postList = Enum.GetValues(typeof(Post))
+            .Cast<Post>()
+            .ToList();
+
+            foreach(var p in postList)
+            {
+                ret.Add((p, p.GetDisplayText()));
+            }
+
+            return ret;
+        }
     }
 }

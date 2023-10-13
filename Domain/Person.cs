@@ -11,8 +11,6 @@ namespace Entity
 
         private readonly Guid _identifier;
 
-        private Post _post = Post.Employee;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -34,7 +32,12 @@ namespace Entity
         /// <summary>
         /// 役職を取得します。
         /// </summary>
-        public string PostText => _post.GetDisplayText();
+        public Post Post { get; private set; } = Post.Employee;
+
+        /// <summary>
+        /// 役職を取得します。
+        /// </summary>
+        public string PostText => Post.GetDisplayText();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -65,7 +68,7 @@ namespace Entity
         public Person(NameVO name, BirthdayVO birthDay, Post post)
             : this(name, birthDay)
         {
-            _post = post;
+            Post = post;
         }
 
         private Person(Guid identifier, NameVO name, BirthdayVO birthday, Post post)
@@ -73,7 +76,7 @@ namespace Entity
             _identifier = identifier;
             Name = name;
             Birthday = birthday;
-            _post = post;
+            Post = post;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -90,14 +93,14 @@ namespace Entity
         {
             other.Name = Name.Clone();
             other.Birthday = Birthday.Clone();
-            other._post = _post;
+            other.Post = Post;
         }
 
         /// <summary>
         /// 複製を行います。
         /// </summary>
         /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(_identifier, Name.Clone(), Birthday.Clone(), _post);
+        public Person Clone() => new(_identifier, Name.Clone(), Birthday.Clone(), Post);
 
         /// <summary>
         /// 同一性を有しているか
@@ -116,7 +119,7 @@ namespace Entity
         /// <returns>比較対象の方が役職レベルが高ければtrue</returns>
         public bool IsHigherPostThan(Person target)
         {
-            return _post < target._post;
+            return Post < target.Post;
         }
 
         /// <summary>
@@ -125,7 +128,7 @@ namespace Entity
         /// <param name="post">変更後の値</param>
         public void UpdatePost(Post post)
         {
-            _post = post;
+            Post = post;
         }
 
         #endregion --------------------------------------------------------------------------------------------

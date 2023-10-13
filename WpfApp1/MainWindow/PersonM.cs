@@ -61,15 +61,21 @@ namespace WpfApp1.MainWindow
         public ReactivePropertySlim<int> Day { get; }
 
         /// <summary>
+        /// 役職を取得します。
+        /// </summary>
+        public ReactivePropertySlim<Post> Post { get; }
+
+        /// <summary>
         /// 編集後の個人情報を取得します。
         /// </summary>
         public Person Person
         {
             get
             {
-                var ret = _person;
+                var ret = _person.Clone();
                 ret.Name = Name.Value;
                 ret.Birthday = Birthday.Value;
+                ret.UpdatePost(Post.Value);
                 return ret;
             }
         }
@@ -99,20 +105,27 @@ namespace WpfApp1.MainWindow
         public PersonM(Person person)
         {
             _person = person;
-            Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday.Clone());
-            Name = new ReactivePropertySlim<NameVO>(person.Name.Clone());
 
+            // Birthday
+            Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday.Clone());
             Year = new ReactivePropertySlim<int>(Birthday.Value.Year);
             Month = new ReactivePropertySlim<int>(Birthday.Value.Month);
             Day = new ReactivePropertySlim<int>(Birthday.Value.Day);
-            FamilyName = new ReactivePropertySlim<string>(Name.Value.Family);
-            FirstName = new ReactivePropertySlim<string>(Name.Value.First);
 
             Year.Subscribe(y => Birthday.Value = new(y, Birthday.Value.Month, Birthday.Value.Day));
             Month.Subscribe(m => Birthday.Value = new(Birthday.Value.Year, m, Birthday.Value.Day));
             Day.Subscribe(d => Birthday.Value = new(Birthday.Value.Year, Birthday.Value.Month, d));
+
+            // Name
+            Name = new ReactivePropertySlim<NameVO>(person.Name.Clone());
+            FamilyName = new ReactivePropertySlim<string>(Name.Value.Family);
+            FirstName = new ReactivePropertySlim<string>(Name.Value.First);
+
             FamilyName.Subscribe(f => Name.Value = new(f, Name.Value.First));
             FirstName.Subscribe(f => Name.Value = new(Name.Value.Family, f));
+
+            // Post
+            Post = new ReactivePropertySlim<Post>(person.Post);
         }
 
         #endregion --------------------------------------------------------------------------------------------

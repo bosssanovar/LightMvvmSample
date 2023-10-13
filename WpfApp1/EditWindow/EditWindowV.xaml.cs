@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Reactive.Linq;
 using System.Windows;
 using Entity;
@@ -63,6 +65,11 @@ namespace WpfApp1.EditWindow
             Day = _model.Day.ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(_disposables);
 
+            SelectedPost = _model.Post.ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(_disposables);
+
+            PostItems = GetPostItems();
+
             #endregion
 
             InitializeComponent();
@@ -81,6 +88,20 @@ namespace WpfApp1.EditWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private static ObservableCollection<ComboBoxItem<Post>> GetPostItems()
+        {
+            var ret = new ObservableCollection<ComboBoxItem<Post>>();
+
+            var postAllItems = PostExtend.GetAllDispValueList();
+
+            foreach (var (value, disp) in postAllItems)
+            {
+                ret.Add(new ComboBoxItem<Post>(disp, value));
+            }
+
+            return ret;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

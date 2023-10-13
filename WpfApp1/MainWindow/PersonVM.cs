@@ -37,6 +37,11 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactivePropertySlim<int> Age { get; }
 
+        /// <summary>
+        /// 役職を取得します。
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<string?> Post { get; }
+
         #region Edit Command
 
         private Command _editCommand;
@@ -119,6 +124,10 @@ namespace WpfApp1.MainWindow
                 .AddTo(_disposables);
 
             Age = _model.Birthday.Select(x => x.GetAge(DateTime.Today))
+                .ToReadOnlyReactivePropertySlim()
+                .AddTo(_disposables);
+
+            Post = _model.Post.Select(x => x.GetDisplayText())
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
         }
