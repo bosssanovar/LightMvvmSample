@@ -141,6 +141,21 @@ StyleCop.Analyzersを採用。
 https://qiita.com/YoshijiGates/items/d0d11582eec936807951  
 https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 
+## 設計の流れ
+組織構成についての設計を行った際の、オブジェクト指向設計の流れを示す。
+
+### オブジェクト図
+
+![organization_design_object_diagram](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/1c2b9a86-da4c-40a9-90ad-3773daf5e308)
+
+### 単純変換したクラス図
+
+![organization_design_class_diagram1](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/de069b8e-5004-4873-a7d4-2fe869b6f473)
+
+### 共通性可変性分析にかけたクラス図
+
+![organization_design_class_diagram2](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/7c88671e-544d-4ccf-baf6-1f58877f107b)
+
 ## ミニトピック
 * Regionを一気に閉じるため「Collapse All Regions」をVisual Studioの拡張機能で追加。「Ctrl+M, Ctrl+R」で一気に閉じる。一気に開くときは標準の「Ctrl+M, Ctrl+L」で。  
 Collapse All Regions : https://marketplace.visualstudio.com/items?itemName=EngineDesigns.CollapseAllRegions
