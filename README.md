@@ -1,12 +1,17 @@
 # LightMvvmSample
 
-## 概要
+軽量なMVVMのソリューションサンプル。  
 
-軽量なMVVMのソリューションサンプル。
+---
+
+## 概要
 
 業務範囲で必要とされていないViewModelのテスト容易性や、Viewの再利用性と切り替え可能性、Viewのコードビハインドに極力機能実装しないプラクティス等を切り捨てることで、正規のMVVMで必須になるMessengerやTrigger/Action, Behavior等の学習工ストの高い要素を排除した。
 
-また一方で、アーキテクチャの境界を明確化するために、各カテゴリを別プロジェクトとして実装する。これにより、循環参照や越境設計のリスクを完全に排除し、モジュールの独立性を高めた。
+また一方で、アーキテクチャの境界を明確化するために、各カテゴリを別プロジェクトとして実装する。これにより、循環参照や越境設計のリスクを完全に排除し、モジュールの独立性を高めた。  
+
+---
+
 
 ## ソリューション構成
 
@@ -34,6 +39,9 @@
 　├─ Repository プロジェクト：永続データアクセス機能  
 　│  
 　└─ プロダクト プロジェクト：エントリーポイント、各種UI  
+
+---
+
 
 ## アーキテクチャ設計
 ビューロジックアーキテクチャとしてMVVMを、ドメインロジックアーキテクチャとして簡易版のClean Architectureを採用している。
@@ -84,14 +92,17 @@ Entityオブジェクト置き場としての役割のみとなるが、画面�
 
 #### App
 
-アプリUIの実装を行う。
+アプリUIの実装を行う。  
 
+---
 
 ## 変更通知機構 Reactive Property
 
 変更通知機構として、Reactive Propertyを採用している。  
 Livetの候補であったが、コーディング量が少ないのでこちらを採用。（Livetの開発が止まっているという見方もあるが、必要な機能実装が完了しているのであって、オワコンではなく完成形。新しいVisual Studio環境への適応をマイクロソフトの中の人がメンターとなって運用されているため問題なし。現役バリバリで使える。）  
-詳細はググること。
+詳細はググること。  
+
+---
 
 ## コードスニペット
 
@@ -117,7 +128,9 @@ Livetの候補であったが、コーディング量が少ないのでこちら
 * cs_detailViewModelTemplete：DataGrid等の行詳細ViewModelのテンプレート
 * cs_reactiveProperty：Reactive Property Slimのプロパティ定義
 * cs_viewClassTemplate：Viewコードビハインドのテンプレート
-* cs_viewModelClassTemplete：Viewの分割クラスとして実装するViewModelのテンプレート
+* cs_viewModelClassTemplete：Viewの分割クラスとして実装するViewModelのテンプレート  
+
+---
 
 ## ユニットテスト
 
@@ -125,12 +138,16 @@ xUnitフレームワークを採用。
 値オブジェクトと、ユースケースのテストを書く、最低限の運用で十分かと思っている。  
 詳細はググる。  
 
+---
+
 ## テストカバレッジ
 
 Fine Code Coverageを採用。  
 https://qiita.com/imp-kawano/items/1177b3f6ca1fb2107ba6  
 
-ユニットテスト実行時に、カバレッジを取得する。
+ユニットテスト実行時に、カバレッジを取得する。  
+
+---
 
 ## コーディング規約
 
@@ -140,6 +157,8 @@ StyleCop.Analyzersを採用。
 
 https://qiita.com/YoshijiGates/items/d0d11582eec936807951  
 https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
+
+---
 
 ## 設計の流れ
 組織構成についての設計を行った際の、オブジェクト指向設計の流れを示す。
@@ -155,6 +174,8 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 ### 共通性可変性分析にかけたクラス図
 
 ![organization_design_class_diagram2](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/7c88671e-544d-4ccf-baf6-1f58877f107b)
+
+---
 
 ## ミニトピック
 * Regionを一気に閉じるため「Collapse All Regions」をVisual Studioの拡張機能で追加。「Ctrl+M, Ctrl+R」で一気に閉じる。一気に開くときは標準の「Ctrl+M, Ctrl+L」で。  
