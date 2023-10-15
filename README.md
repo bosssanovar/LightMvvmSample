@@ -173,7 +173,7 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 
 ### 共通性可変性分析にかけたクラス図
 
-![organization_design_class_diagram2](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/7c88671e-544d-4ccf-baf6-1f58877f107b)
+![organization_design_class_diagram2](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/8cb9acd9-777f-4fa3-a188-2c7df07a66ad)
 
 ---
 
