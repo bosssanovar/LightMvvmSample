@@ -61,7 +61,7 @@
 
 ※Clean Architectureは、ドメイン外部の要因は状況により変化しやすい部分、ドメイン内部の要因は変化しにくい部分として、ドメイン内部の要因をドメイン外部の要因から隔離することで、ドメイン外部の要因の変化に強い設計を実現することを念頭に置かれた設計である。当該プロジェクトにおいては、ウォーターフォール開発であることから、そこまでドメイン外部の変化が生じないことが予想されるため、品質過剰と判断した。
 
-![test.drawio](Designs\アーキテクチャ設計\Architecture_Design.png)
+![Architecture_Design](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/fe0896d3-f60d-47ff-b00f-3f8795c804dd)
 
 #### Entity
 
