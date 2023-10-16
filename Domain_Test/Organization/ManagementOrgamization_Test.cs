@@ -110,5 +110,21 @@ namespace Entity_Test.Organization
             Assert.True(a.IsContainMember(p1));
             Assert.True(old == boss);
         }
+
+        [Theory]
+        [InlineData("aaa aaa aaa")]
+        [InlineData("")]
+        [InlineData("あああ")]
+        [InlineData(" ")]
+        [InlineData("　")]
+        [InlineData("12345")]
+        [InlineData(null)]
+        public void 組織名称(string name)
+        {
+            var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
+            var a = new ManagementOrganization(new(name), boss, new List<OrganizationBase>());
+
+            Assert.True(a.Name == name);
+        }
     }
 }

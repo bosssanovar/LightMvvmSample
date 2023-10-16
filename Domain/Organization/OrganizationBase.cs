@@ -21,6 +21,7 @@ namespace Entity.Organization
         private readonly Guid _identifier;
         private readonly List<Person> _members;
         private Person _boss;
+        private OrganizationNameVO _name;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -29,7 +30,13 @@ namespace Entity.Organization
         /// <summary>
         /// 組織名を取得します。
         /// </summary>
-        public OrganizationNameVO Name { get; }
+        public string Name
+        {
+            get
+            {
+                return _name.Name;
+            }
+        }
 
         /// <summary>
         /// 直属社員の数
@@ -58,7 +65,7 @@ namespace Entity.Organization
         public OrganizationBase(OrganizationNameVO name, Person boss)
         {
             _identifier = Guid.NewGuid();
-            Name = name;
+            _name = name;
             _boss = boss;
             _members = new List<Person>();
         }
