@@ -178,8 +178,9 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 ---
 
 ## ミニトピック
+
 * Regionを一気に閉じるため「Collapse All Regions」をVisual Studioの拡張機能で追加。「Ctrl+M, Ctrl+R」で一気に閉じる。一気に開くときは標準の「Ctrl+M, Ctrl+L」で。  
-Collapse All Regions : https://marketplace.visualstudio.com/items?itemName=EngineDesigns.CollapseAllRegions
+[Collapse All Regions](https://marketplace.visualstudio.com/items?itemName=EngineDesigns.CollapseAllRegions)
 * コードレビューの視点
   * 登録されたイベントハンドラを解除しているか
   * ReactivePropertyをCompositeDisposableに追加しているか
