@@ -15,7 +15,7 @@ namespace Entity_Test.Organization
         public void 社員追加_と_所属確認()
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new("aa"), boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new("aa"), Lanks.Department, boss, new List<OrganizationBase>());
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
             var p2 = new Person(new("eeee", "ffff"), new(1000, 1, 1));
@@ -41,7 +41,7 @@ namespace Entity_Test.Organization
         public void 社員の重複登録回避()
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new("aa"), boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new("aa"), Lanks.Department, boss, new List<OrganizationBase>());
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
@@ -66,7 +66,7 @@ namespace Entity_Test.Organization
         public void 社員削除()
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new("aa"), boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new("aa"), Lanks.Department, boss, new List<OrganizationBase>());
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
@@ -97,7 +97,7 @@ namespace Entity_Test.Organization
         public void 組織長変更()
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new("aa"), boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new("aa"), Lanks.Department, boss, new List<OrganizationBase>());
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
@@ -122,9 +122,23 @@ namespace Entity_Test.Organization
         public void 組織名称(string name)
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new(name), boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new(name), Lanks.Department, boss, new List<OrganizationBase>());
 
-            Assert.True(a.Name == name);
+            Assert.True(a.Name == (name + " " + Lanks.Department.GetDisplayText()));
+        }
+
+        [Theory]
+        [InlineData(Lanks.Campany)]
+        [InlineData(Lanks.Department)]
+        [InlineData(Lanks.Section)]
+        [InlineData(Lanks.Team)]
+        public void 組織ランク名称(Lanks lank)
+        {
+            var name = "aaaabbbccc";
+            var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
+            var a = new ManagementOrganization(new(name), lank, boss, new List<OrganizationBase>());
+
+            Assert.True(a.Name == (name + " " + lank.GetDisplayText()));
         }
     }
 }

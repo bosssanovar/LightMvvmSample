@@ -20,10 +20,10 @@ namespace Entity_Test.Organization
             var a = new List<OrganizationBase>();
             for(int i=0; i<count; i++)
             {
-                a.Add(new ManagementOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1)), new List<OrganizationBase>()));
+                a.Add(new ManagementOrganization(new("aa"), Lanks.Department, new Person(new("aaa", "bbb"), new(1000, 1, 1)), new List<OrganizationBase>()));
             }
 
-            var b = new ManagementOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1)), a);
+            var b = new ManagementOrganization(new("aa"), Lanks.Department, new Person(new("aaa", "bbb"), new(1000, 1, 1)), a);
 
             Assert.Equal(count, b.OrganizationCount);
         }

@@ -45,10 +45,11 @@ namespace Entity.Organization
         /// コンストラクタ
         /// </summary>
         /// <param name="name">組織名</param>
+        /// <param name="lank">組織ランク</param>
         /// <param name="boss">組織長</param>
         /// <param name="upperOrganizations">下位組織</param>
-        public ManagementOrganization(OrganizationNameVO name, Person boss, List<OrganizationBase> upperOrganizations)
-            : base(name, boss)
+        public ManagementOrganization(OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> upperOrganizations)
+            : base(name, lank, boss)
         {
             _upperOrganizations = upperOrganizations;
         }

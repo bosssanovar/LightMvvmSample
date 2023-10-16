@@ -22,6 +22,7 @@ namespace Entity.Organization
         private readonly List<Person> _members;
         private Person _boss;
         private OrganizationNameVO _name;
+        private Lanks _lank;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -34,7 +35,11 @@ namespace Entity.Organization
         {
             get
             {
-                return _name.Name;
+                var ret = new StringBuilder();
+                ret.Append(_name.Name);
+                ret.Append(' ');
+                ret.Append(_lank.GetDisplayText());
+                return ret.ToString();
             }
         }
 
@@ -61,11 +66,13 @@ namespace Entity.Organization
         /// コンストラクタ
         /// </summary>
         /// <param name="name">組織名</param>
+        /// <param name="lank">組織ランク</param>
         /// <param name="boss">組織長</param>
-        public OrganizationBase(OrganizationNameVO name, Person boss)
+        public OrganizationBase(OrganizationNameVO name, Lanks lank, Person boss)
         {
             _identifier = Guid.NewGuid();
             _name = name;
+            _lank = lank;
             _boss = boss;
             _members = new List<Person>();
         }
