@@ -53,7 +53,7 @@ namespace Entity_Test.Persons
         {
             var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
             var b = new Person(new NameVO("ccccc", "ddddd"), new BirthdayVO(100, 1, 1));
-            b.UpdatePost(Post.Chief);
+            b.UpdatePost(Posts.Chief);
             a.CopyTo(b);
             Assert.False(a == b);
             Assert.True(a.Name.Equals(b.Name));
@@ -62,12 +62,12 @@ namespace Entity_Test.Persons
         }
 
         [Theory]
-        [InlineData(Post.Employee, Post.Chief)]
-        [InlineData(Post.Chief, Post.SectionChief)]
-        [InlineData(Post.SectionChief, Post.Manager)]
-        [InlineData(Post.Manager, Post.Director)]
-        [InlineData(Post.Director, Post.President)]
-        public void 役職比較(Post p1, Post p2)
+        [InlineData(Posts.Employee, Posts.Chief)]
+        [InlineData(Posts.Chief, Posts.SectionChief)]
+        [InlineData(Posts.SectionChief, Posts.Manager)]
+        [InlineData(Posts.Manager, Posts.Director)]
+        [InlineData(Posts.Director, Posts.President)]
+        public void 役職比較(Posts p1, Posts p2)
         {
             var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
             a.UpdatePost(p1);
@@ -81,12 +81,12 @@ namespace Entity_Test.Persons
         }
 
         [Theory]
-        [InlineData(Post.Employee, Post.Chief)]
-        [InlineData(Post.Chief, Post.SectionChief)]
-        [InlineData(Post.SectionChief, Post.Manager)]
-        [InlineData(Post.Manager, Post.Director)]
-        [InlineData(Post.Director, Post.President)]
-        public void 役職変更(Post p1, Post p2)
+        [InlineData(Posts.Employee, Posts.Chief)]
+        [InlineData(Posts.Chief, Posts.SectionChief)]
+        [InlineData(Posts.SectionChief, Posts.Manager)]
+        [InlineData(Posts.Manager, Posts.Director)]
+        [InlineData(Posts.Director, Posts.President)]
+        public void 役職変更(Posts p1, Posts p2)
         {
             var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
             a.UpdatePost(p1);

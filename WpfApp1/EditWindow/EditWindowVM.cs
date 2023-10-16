@@ -57,12 +57,12 @@ namespace WpfApp1.EditWindow
         /// <summary>
         /// 選択された役職を取得します。
         /// </summary>
-        public ReactivePropertySlim<Post> SelectedPost { get; }
+        public ReactivePropertySlim<Posts> SelectedPost { get; }
 
         /// <summary>
         /// 役職リストを取得します。
         /// </summary>
-        public ObservableCollection<ComboBoxItem<Post>> PostItems { get; }
+        public ObservableCollection<ComboBoxItem<Posts>> PostItems { get; }
 
         #region Ok Command
 

@@ -87,15 +87,15 @@ namespace WpfApp1.EditWindow
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private static ObservableCollection<ComboBoxItem<Post>> GetPostItems()
+        private static ObservableCollection<ComboBoxItem<Posts>> GetPostItems()
         {
-            var ret = new ObservableCollection<ComboBoxItem<Post>>();
+            var ret = new ObservableCollection<ComboBoxItem<Posts>>();
 
-            var postAllItems = PostExtend.GetAllDispValueList();
+            var postAllItems = PostsExtend.GetAllDispValueList();
 
             foreach (var (value, disp) in postAllItems)
             {
-                ret.Add(new ComboBoxItem<Post>(disp, value));
+                ret.Add(new ComboBoxItem<Posts>(disp, value));
             }
 
             return ret;

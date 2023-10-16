@@ -9,7 +9,7 @@ namespace Entity.Persons
     /// <summary>
     /// 役職　列挙子
     /// </summary>
-    public enum Post : int
+    public enum Posts : int
     {
         /// <summary>
         /// 従業員
@@ -43,26 +43,26 @@ namespace Entity.Persons
     }
 
     /// <summary>
-    /// <see cref="Post"/>列挙子の拡張メソッド
+    /// <see cref="Posts"/>列挙子の拡張メソッド
     /// </summary>
-    public static partial class PostExtend
+    public static partial class PostsExtend
     {
         /// <summary>
         /// 表示用文字列を取得します。
         /// </summary>
-        /// <param name="post"><see cref="Post"/>列挙子</param>
+        /// <param name="value"><see cref="Posts"/>列挙子</param>
         /// <returns>表示用文字列</returns>
-        public static string GetDisplayText(this Post post)
+        public static string GetDisplayText(this Posts value)
         {
-            return post switch
+            return value switch
             {
-                Post.Employee => "従業員",
-                Post.Chief => "主任",
-                Post.SectionChief => "課長",
-                Post.Manager => "部長",
-                Post.Director => "役員",
-                Post.President => "社長",
-                _ => throw new ArgumentOutOfRangeException(nameof(post), "未定義です"),
+                Posts.Employee => "従業員",
+                Posts.Chief => "主任",
+                Posts.SectionChief => "課長",
+                Posts.Manager => "部長",
+                Posts.Director => "役員",
+                Posts.President => "社長",
+                _ => throw new ArgumentOutOfRangeException(nameof(value), "未定義です"),
             };
         }
 
@@ -70,12 +70,12 @@ namespace Entity.Persons
         /// 役職一覧の表示と値ペアのリストを取得します。
         /// </summary>
         /// <returns>役職一覧の表示と値ペアのリスト</returns>
-        public static List<(Post value, string disp)> GetAllDispValueList()
+        public static List<(Posts value, string disp)> GetAllDispValueList()
         {
-            var ret = new List<(Post, string)>();
+            var ret = new List<(Posts, string)>();
 
-            var postList = Enum.GetValues(typeof(Post))
-            .Cast<Post>()
+            var postList = Enum.GetValues(typeof(Posts))
+            .Cast<Posts>()
             .ToList();
 
             foreach (var p in postList)

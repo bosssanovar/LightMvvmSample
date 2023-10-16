@@ -32,7 +32,8 @@ namespace Entity.Persons
         /// <summary>
         /// 役職を取得します。
         /// </summary>
-        public Post Post { get; private set; } = Post.Employee;
+        public Posts Post { get; private set; } = Posts.Employee;
+        // TODO K.I : ポストは組織構成から引き当てるようにし、個人情報で保持しない
 
         /// <summary>
         /// 役職を取得します。
@@ -59,7 +60,7 @@ namespace Entity.Persons
             Name = name;
         }
 
-        private Person(Guid identifier, NameVO name, BirthdayVO birthday, Post post)
+        private Person(Guid identifier, NameVO name, BirthdayVO birthday, Posts post)
         {
             _identifier = identifier;
             Name = name;
@@ -104,7 +105,7 @@ namespace Entity.Persons
         /// 役職を更新します。
         /// </summary>
         /// <param name="post">変更後の値</param>
-        public void UpdatePost(Post post)
+        public void UpdatePost(Posts post)
         {
             Post = post;
         }

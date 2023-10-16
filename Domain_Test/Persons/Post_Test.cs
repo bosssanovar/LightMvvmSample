@@ -17,7 +17,7 @@ namespace Entity_Test.Persons
         public void 表示用文字列の定義漏れ監視()
         {
             var isException = false;
-            var a = (Post)MaxValue;
+            var a = (Posts)MaxValue;
             try
             {
                 var _ = a.GetDisplayText();
@@ -35,12 +35,12 @@ namespace Entity_Test.Persons
         }
 
         [Theory]
-        [InlineData(Post.Employee, Post.Chief)]
-        [InlineData(Post.Chief, Post.SectionChief)]
-        [InlineData(Post.SectionChief, Post.Manager)]
-        [InlineData(Post.Manager, Post.Director)]
-        [InlineData(Post.Director, Post.President)]
-        public void 比較(Post low, Post high)
+        [InlineData(Posts.Employee, Posts.Chief)]
+        [InlineData(Posts.Chief, Posts.SectionChief)]
+        [InlineData(Posts.SectionChief, Posts.Manager)]
+        [InlineData(Posts.Manager, Posts.Director)]
+        [InlineData(Posts.Director, Posts.President)]
+        public void 比較(Posts low, Posts high)
         {
             Assert.True(low < high);
             Assert.False(low == high);
@@ -49,7 +49,7 @@ namespace Entity_Test.Persons
         [Fact]
         public void 全リスト取得()
         {
-            var list = PostExtend.GetAllDispValueList();
+            var list = PostsExtend.GetAllDispValueList();
             Assert.Equal(MaxValue, list.Count);
         }
     }

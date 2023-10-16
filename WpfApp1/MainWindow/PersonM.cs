@@ -67,7 +67,7 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// 役職を取得します。
         /// </summary>
-        public ReactivePropertySlim<Post> Post { get; }
+        public ReactivePropertySlim<Posts> Post { get; }
 
         /// <summary>
         /// 編集後の個人情報を取得します。
@@ -136,7 +136,7 @@ namespace WpfApp1.MainWindow
             FirstName.Subscribe(f => Name.Value = new(Name.Value.Family, f));
 
             // Post
-            Post = new ReactivePropertySlim<Post>(person.Post)
+            Post = new ReactivePropertySlim<Posts>(person.Post)
                 .AddTo(_disposables);
         }
 
