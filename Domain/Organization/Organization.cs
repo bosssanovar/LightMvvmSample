@@ -1,17 +1,15 @@
-﻿using Entity.Persons;
-using Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Usecase
+namespace Entity.Organization
 {
     /// <summary>
-    /// 個人情報を追加するユースケースの機能を提供します。
+    /// 組織クラス
     /// </summary>
-    public class AddPersonUsecase
+    public class Organization
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -19,7 +17,7 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly PeopleRepository _peopleRepository;
+        private readonly ManagementOrganization _topOrganization;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -29,11 +27,6 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 個人情報が追加されたことを通知します。
-        /// </summary>
-        public event Action<Person> OnAddPerson;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -41,10 +34,10 @@ namespace Usecase
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
-        public AddPersonUsecase(PeopleRepository peopleRepository)
+        /// <param name="builder">組織構成ビルダー</param>
+        public Organization(OrganizaitonBuilder builder)
         {
-            _peopleRepository = peopleRepository;
+            _topOrganization = builder.Build();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -52,33 +45,6 @@ namespace Usecase
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 個人情報を保存します。
-        /// </summary>
-        /// <param name="person">個人情報</param>
-        public void AddPerson(Person person)
-        {
-            var people = _peopleRepository.LoadPeople();
-
-            if (people.Persons.Any(x => x == person))
-            {
-                // TODO K.I : こっちの場合は何もしない
-                //person.CopyTo(people.Persons.Single(x => x.HasSameIdentity(person)));
-
-                //_peopleRepository.SavePeople(people);
-
-                //OnUpdatePerson?.Invoke(person);
-            }
-            else
-            {
-                people.AddPerson(person);
-
-                _peopleRepository.SavePeople(people);
-
-                OnAddPerson?.Invoke(person);
-            }
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 

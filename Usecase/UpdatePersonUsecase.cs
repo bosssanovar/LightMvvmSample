@@ -61,9 +61,9 @@ namespace Usecase
         {
             var people = _peopleRepository.LoadPeople();
 
-            if (people.Persons.Any(x => x.HasSameIdentity(person)))
+            if (people.Persons.Any(x => x == person))
             {
-                person.CopyTo(people.Persons.Single(x => x.HasSameIdentity(person)));
+                person.CopyTo(people.Persons.Single(x => x == person));
 
                 _peopleRepository.SavePeople(people);
 

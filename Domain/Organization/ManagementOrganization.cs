@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entity.Persons;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Entity_Test")]
 
 namespace Entity.Organization
 {
     /// <summary>
-    /// 会社クラス
+    /// 管理組織クラス
     /// </summary>
-    public class Company : OrganizationBase
+    internal class ManagementOrganization : OrganizationBase
     {
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly List<OrganizationBase> _upperOrganizations;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -28,6 +29,18 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="name">組織名</param>
+        /// <param name="boss">組織長</param>
+        /// <param name="upperOrganizations">下位組織</param>
+        public ManagementOrganization(OrganizationNameVO name, Person boss, List<OrganizationBase> upperOrganizations)
+            : base(name, boss)
+        {
+            _upperOrganizations = upperOrganizations;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

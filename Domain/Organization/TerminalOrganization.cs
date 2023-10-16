@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity.Persons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,17 +8,15 @@ using System.Threading.Tasks;
 namespace Entity.Organization
 {
     /// <summary>
-    /// 下部組織クラス
+    /// 末端組織クラス
     /// </summary>
-    public class LowerOrganization : OrganizationBase
+    internal class TerminalOrganization : OrganizationBase
     {
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
-
-        private OrganizationBase _upperOrganization;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,6 +29,16 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="name">社名</param>
+        /// <param name="boss">社長</param>
+        public TerminalOrganization(OrganizationNameVO name, Person boss)
+            : base(name, boss)
+        {
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

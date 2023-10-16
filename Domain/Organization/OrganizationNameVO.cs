@@ -1,15 +1,19 @@
-﻿using Reactive.Bindings;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entity.Persons
+namespace Entity.Organization
 {
     /// <summary>
-    /// 個人情報クラス
+    /// 組織名の値オブジェクト
     /// </summary>
-    public class Person
+    public class OrganizationNameVO
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly Guid _identifier;
+        private readonly string _name;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -18,26 +22,6 @@ namespace Entity.Persons
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 名称を取得または設定します。
-        /// </summary>
-        public NameVO Name { get; set; }
-
-        /// <summary>
-        /// 誕生日を取得または設定します。
-        /// </summary>
-        public BirthdayVO Birthday { get; set; }
-
-        /// <summary>
-        /// 役職を取得します。
-        /// </summary>
-        public Post Post { get; private set; } = Post.Employee;
-
-        /// <summary>
-        /// 役職を取得します。
-        /// </summary>
-        public string PostText => Post.GetDisplayText();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -50,21 +34,10 @@ namespace Entity.Persons
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        public Person(NameVO name, BirthdayVO birthDay)
+        /// <param name="name">組織名</param>
+        public OrganizationNameVO(string name)
         {
-            _identifier = Guid.NewGuid();
-            Birthday = birthDay;
-            Name = name;
-        }
-
-        private Person(Guid identifier, NameVO name, BirthdayVO birthday, Post post)
-        {
-            _identifier = identifier;
-            Name = name;
-            Birthday = birthday;
-            Post = post;
+            _name = name;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -74,44 +47,19 @@ namespace Entity.Persons
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 内部値をコピーします。
+        /// パラメータが有効かを判定します。
         /// </summary>
-        /// <param name="other">コピー先</param>
-        public void CopyTo(Person other)
+        /// <returns>有効ならtrue</returns>
+        public static bool IsValid()
         {
-            other.Name = Name.Clone();
-            other.Birthday = Birthday.Clone();
-            other.Post = Post;
+            return true;
         }
 
         /// <summary>
-        /// 複製を行います。
+        /// インスタンスを複製します。
         /// </summary>
         /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(_identifier, Name.Clone(), Birthday.Clone(), Post);
-
-        /// <summary>
-        /// 役職上位者かを確認します。
-        /// </summary>
-        /// <param name="target">比較対象</param>
-        /// <returns>比較対象の方が役職レベルが高ければtrue</returns>
-        public bool IsHigherPostThan(Person target)
-        {
-            return Post < target.Post;
-        }
-
-        /// <summary>
-        /// 役職を更新します。
-        /// </summary>
-        /// <param name="post">変更後の値</param>
-        public void UpdatePost(Post post)
-        {
-            Post = post;
-        }
-
-        #endregion --------------------------------------------------------------------------------------------
-
-        #region Methods - override -----------------------------------------------------------------------------
+        public OrganizationNameVO Clone() => new(_name);
 
         /// <summary>
         /// 等価性を判定します。
@@ -126,9 +74,10 @@ namespace Entity.Persons
                 return false;
             }
 
-            //NumberとMessageで比較する
-            var c = (Person)obj;
-            return _identifier == c._identifier;
+            //属性値で比較する
+            var c = (OrganizationNameVO)obj;
+
+            return _name == c._name;
         }
 
         /// <summary>
@@ -137,7 +86,7 @@ namespace Entity.Persons
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return _identifier.GetHashCode();
+            return _name.GetHashCode();
         }
 
         /// <summary>
@@ -146,24 +95,24 @@ namespace Entity.Persons
         /// <param name="c1">値１</param>
         /// <param name="c2">値2</param>
         /// <returns>等価の場合true</returns>
-        public static bool operator ==(Person c1, Person c2)
+        public static bool operator ==(OrganizationNameVO c1, OrganizationNameVO c2)
         {
             //nullの確認（構造体のようにNULLにならない型では不要）
             //両方nullか（参照元が同じか）
             //(c1 == c2)とすると、無限ループ
-            if (ReferenceEquals(c1, c2))
+            if (object.ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             //どちらかがnullか
             //(c1 == null)とすると、無限ループ
-            if (c1 is null || c2 is null)
+            if ((c1 is null) || (c2 is null))
             {
                 return false;
             }
 
-            return c1._identifier == c2._identifier;
+            return c1._name == c2._name;
         }
 
         /// <summary>
@@ -172,12 +121,11 @@ namespace Entity.Persons
         /// <param name="c1">値1</param>
         /// <param name="c2">値2</param>
         /// <returns>等価でなければtrue</returns>
-        public static bool operator !=(Person c1, Person c2)
+        public static bool operator !=(OrganizationNameVO c1, OrganizationNameVO c2)
         {
             return !(c1 == c2);
             //(c1 != c2)とすると、無限ループ
         }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------

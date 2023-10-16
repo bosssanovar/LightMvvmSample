@@ -59,7 +59,7 @@ namespace Entity.Persons
         /// <param name="person">個人情報</param>
         public void RemovePerson(Person person)
         {
-            _persons.RemoveAll(x => x.HasSameIdentity(person));
+            _persons.RemoveAll(x => x == person);
         }
 
         /// <summary>
@@ -68,12 +68,13 @@ namespace Entity.Persons
         /// <param name="person">更新データ</param>
         public void UpdatePersons(Person person)
         {
-            var p = Persons.Single(x => x.HasSameIdentity(person));
-
-            if (p != null)
+            if (!Persons.Any(x => x == person))
             {
-                person.CopyTo(p);
+                return;
             }
+
+            Person p = Persons.Single(x => x == person);
+            person.CopyTo(p);
         }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace Entity.Persons
         /// <returns>個人情報</returns>
         public Person GetPerson(Person person)
         {
-            return Persons.First(x => x.HasSameIdentity(person));
+            return Persons.First(x => x == person);
         }
 
         /// <summary>
