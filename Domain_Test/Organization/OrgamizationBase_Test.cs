@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Entity_Test.Organization
 {
-    public class Orgamization_Test
+    public class OrgamizationBase_Test
     {
         [Fact]
         public void 社員追加_と_所属確認()
