@@ -38,6 +38,11 @@ namespace Entity.Organization
         /// </summary>
         protected OrganizationNameVO Name { get; private set; }
 
+        /// <summary>
+        /// 組織ランク
+        /// </summary>
+        protected Lanks Lank { get; private set; }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -49,7 +54,11 @@ namespace Entity.Organization
         {
             get
             {
-                return Name.Name;
+                var ret = new StringBuilder();
+                ret.Append(Name.Name);
+                ret.Append(' ');
+                ret.Append(Lank.GetDisplayText());
+                return ret.ToString();
             }
         }
 
@@ -76,11 +85,13 @@ namespace Entity.Organization
         /// コンストラクタ
         /// </summary>
         /// <param name="name">組織名</param>
+        /// <param name="lank">組織ランク</param>
         /// <param name="boss">組織長</param>
-        public OrganizationBase(OrganizationNameVO name, Person boss)
+        public OrganizationBase(OrganizationNameVO name, Lanks lank, Person boss)
         {
             Identifier = Guid.NewGuid();
             Name = name;
+            Lank = lank;
             Boss = boss;
         }
 
@@ -89,11 +100,13 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="identifier">識別子</param>
         /// <param name="name">組織名称</param>
+        /// <param name="lank">組織ランク</param>
         /// <param name="boss">組織長</param>
-        protected OrganizationBase(Guid identifier, OrganizationNameVO name, Person boss)
+        protected OrganizationBase(Guid identifier, OrganizationNameVO name, Lanks lank, Person boss)
         {
             Identifier = identifier;
             Name = name;
+            Lank = lank;
             Boss = boss;
         }
 

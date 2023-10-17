@@ -45,16 +45,17 @@ namespace Entity.Organization
         /// コンストラクタ
         /// </summary>
         /// <param name="name">組織名</param>
+        /// <param name="lank">組織ランク</param>
         /// <param name="boss">組織長</param>
         /// <param name="upperOrganizations">下位組織</param>
-        public ManagementOrganization(OrganizationNameVO name, Person boss, List<OrganizationBase> upperOrganizations)
-            : base(name, boss)
+        public ManagementOrganization(OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> upperOrganizations)
+            : base(name, lank, boss)
         {
             _upperOrganizations = upperOrganizations;
         }
 
-        private ManagementOrganization(Guid identifier, OrganizationNameVO name, Person boss, List<OrganizationBase> upperOrganizations)
-            : base(identifier, name, boss)
+        private ManagementOrganization(Guid identifier, OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> upperOrganizations)
+            : base(identifier, name, lank, boss)
         {
             _upperOrganizations = upperOrganizations;
         }
@@ -71,7 +72,7 @@ namespace Entity.Organization
         /// <returns>複製したインスタンス</returns>
         public override OrganizationBase Clone()
         {
-            return new ManagementOrganization(Identifier, Name.Clone(), Boss.Clone(), _upperOrganizations.Select(x => x.Clone()).ToList());
+            return new ManagementOrganization(Identifier, Name.Clone(), Lank, Boss.Clone(), _upperOrganizations.Select(x => x.Clone()).ToList());
         }
 
         #endregion --------------------------------------------------------------------------------------------
