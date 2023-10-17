@@ -15,12 +15,29 @@ namespace Entity_Test.Organization
         [InlineData(0)]
         [InlineData(1)]
         [InlineData(10000)]
-        public void 下部組織数(int count)
+        public void 下部組織数_管理組織(int count)
         {
             var a = new List<OrganizationBase>();
             for(int i=0; i<count; i++)
             {
                 a.Add(new ManagementOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1)), new List<OrganizationBase>()));
+            }
+
+            var b = new ManagementOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1)), a);
+
+            Assert.Equal(count, b.OrganizationCount);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(10000)]
+        public void 下部組織数_末端組織(int count)
+        {
+            var a = new List<OrganizationBase>();
+            for (int i = 0; i < count; i++)
+            {
+                a.Add(new TerminalOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1))));
             }
 
             var b = new ManagementOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1)), a);

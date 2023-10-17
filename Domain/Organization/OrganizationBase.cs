@@ -155,6 +155,12 @@ namespace Entity.Organization
         }
 
         /// <summary>
+        /// 複製します。
+        /// </summary>
+        /// <returns>複製インスタンス</returns>
+        public abstract OrganizationBase Clone();
+
+        /// <summary>
         /// 組織長を変更します。
         /// </summary>
         /// <param name="newBoss">新しい組織長</param>

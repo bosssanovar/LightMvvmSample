@@ -1,9 +1,7 @@
 ﻿using Entity.Persons;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Entity_Test")]
 
 namespace Entity.Organization
 {
@@ -40,13 +38,25 @@ namespace Entity.Organization
         {
         }
 
+        private TerminalOrganization(Guid identifier, OrganizationNameVO name, Person boss)
+            : base(identifier, name, boss)
+        {
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        // TODO K.I : Clone追加
+        /// <summary>
+        /// 複製します。
+        /// </summary>
+        /// <returns>複製インスタンス</returns>
+        public override OrganizationBase Clone()
+        {
+            return new TerminalOrganization(Identifier, Name.Clone(), Boss.Clone());
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

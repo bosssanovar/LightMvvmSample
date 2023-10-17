@@ -69,9 +69,9 @@ namespace Entity.Organization
         /// 複製します。
         /// </summary>
         /// <returns>複製したインスタンス</returns>
-        public ManagementOrganization Clone()
+        public override OrganizationBase Clone()
         {
-            return new ManagementOrganization(Identifier, Name, Boss, _upperOrganizations);
+            return new ManagementOrganization(Identifier, Name.Clone(), Boss.Clone(), _upperOrganizations.Select(x => x.Clone()).ToList());
         }
 
         #endregion --------------------------------------------------------------------------------------------
