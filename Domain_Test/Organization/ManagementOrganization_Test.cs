@@ -27,5 +27,22 @@ namespace Entity_Test.Organization
 
             Assert.Equal(count, b.OrganizationCount);
         }
+
+        [Fact]
+        public void Clone()
+        {
+            var a = new List<OrganizationBase>();
+            for (int i = 0; i < 10; i++)
+            {
+                a.Add(new ManagementOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1)), new List<OrganizationBase>()));
+            }
+            var b = new ManagementOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1)), a);
+
+            var c = b.Clone();
+
+            Assert.True(c.DisplayName == b.DisplayName);
+            Assert.True(c.DirectEmployeeCount == b.DirectEmployeeCount);
+            Assert.True(c == b);
+        }
     }
 }

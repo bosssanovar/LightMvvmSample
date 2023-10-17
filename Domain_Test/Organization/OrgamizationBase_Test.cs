@@ -124,7 +124,7 @@ namespace Entity_Test.Organization
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
             var a = new ManagementOrganization(new(name), boss, new List<OrganizationBase>());
 
-            Assert.True(a.Name == name);
+            Assert.True(a.DisplayName == name);
         }
     }
 }

@@ -18,10 +18,25 @@ namespace Entity.Organization
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly Guid _identifier;
-        private readonly List<Person> _members;
-        private Person _boss;
-        private OrganizationNameVO _name;
+        /// <summary>
+        /// 識別子
+        /// </summary>
+        protected Guid Identifier { get; }
+
+        /// <summary>
+        /// 直属社員
+        /// </summary>
+        protected List<Person> Members { get; } = new List<Person>();
+
+        /// <summary>
+        /// 組織長
+        /// </summary>
+        protected Person Boss { get; private set; }
+
+        /// <summary>
+        /// 組織名称
+        /// </summary>
+        protected OrganizationNameVO Name { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -30,11 +45,11 @@ namespace Entity.Organization
         /// <summary>
         /// 組織名を取得します。
         /// </summary>
-        public string Name
+        public string DisplayName
         {
             get
             {
-                return _name.Name;
+                return Name.Name;
             }
         }
 
@@ -45,7 +60,7 @@ namespace Entity.Organization
         {
             get
             {
-                return _members.Count;
+                return Members.Count;
             }
         }
 
@@ -64,10 +79,22 @@ namespace Entity.Organization
         /// <param name="boss">組織長</param>
         public OrganizationBase(OrganizationNameVO name, Person boss)
         {
-            _identifier = Guid.NewGuid();
-            _name = name;
-            _boss = boss;
-            _members = new List<Person>();
+            Identifier = Guid.NewGuid();
+            Name = name;
+            Boss = boss;
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="identifier">識別子</param>
+        /// <param name="name">組織名称</param>
+        /// <param name="boss">組織長</param>
+        protected OrganizationBase(Guid identifier, OrganizationNameVO name, Person boss)
+        {
+            Identifier = identifier;
+            Name = name;
+            Boss = boss;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -87,7 +114,7 @@ namespace Entity.Organization
                 return;
             }
 
-            _members.Add(member);
+            Members.Add(member);
         }
 
         /// <summary>
@@ -101,7 +128,7 @@ namespace Entity.Organization
                 return;
             }
 
-            _members.Remove(member);
+            Members.Remove(member);
         }
 
         /// <summary>
@@ -111,12 +138,12 @@ namespace Entity.Organization
         /// <returns>確認対象社員が所属していればtrue</returns>
         public bool IsContainMember(Person member)
         {
-            if (_boss == member)
+            if (Boss == member)
             {
                 return true;
             }
 
-            foreach (Person m in _members)
+            foreach (Person m in Members)
             {
                 if (m == member)
                 {
@@ -134,9 +161,9 @@ namespace Entity.Organization
         /// <returns>元の組織長</returns>
         public Person ChangeBoss(Person newBoss)
         {
-            var ret = _boss;
+            var ret = Boss;
 
-            _boss = newBoss;
+            Boss = newBoss;
 
             return ret;
         }
@@ -152,6 +179,71 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
+
+        /// <summary>
+        /// 等価性を判定します。
+        /// </summary>
+        /// <param name="obj">比較対象</param>
+        /// <returns>等価の場合はtrue</returns>
+        public override bool Equals(object? obj)
+        {
+            //objがnullか、型が違うときは、等価でない
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            //NumberとMessageで比較する
+            var c = (OrganizationBase)obj;
+            return Identifier == c.Identifier;
+        }
+
+        /// <summary>
+        /// ハッシュコードを取得します。
+        /// </summary>
+        /// <returns>ハッシュ値</returns>
+        public override int GetHashCode()
+        {
+            return Identifier.GetHashCode();
+        }
+
+        /// <summary>
+        /// == のオーバーライド
+        /// </summary>
+        /// <param name="c1">値１</param>
+        /// <param name="c2">値2</param>
+        /// <returns>等価の場合true</returns>
+        public static bool operator ==(OrganizationBase c1, OrganizationBase c2)
+        {
+            //nullの確認（構造体のようにNULLにならない型では不要）
+            //両方nullか（参照元が同じか）
+            //(c1 == c2)とすると、無限ループ
+            if (ReferenceEquals(c1, c2))
+            {
+                return true;
+            }
+
+            //どちらかがnullか
+            //(c1 == null)とすると、無限ループ
+            if (c1 is null || c2 is null)
+            {
+                return false;
+            }
+
+            return c1.Identifier == c2.Identifier;
+        }
+
+        /// <summary>
+        /// != のオーバーライド
+        /// </summary>
+        /// <param name="c1">値1</param>
+        /// <param name="c2">値2</param>
+        /// <returns>等価でなければtrue</returns>
+        public static bool operator !=(OrganizationBase c1, OrganizationBase c2)
+        {
+            return !(c1 == c2);
+            //(c1 != c2)とすると、無限ループ
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

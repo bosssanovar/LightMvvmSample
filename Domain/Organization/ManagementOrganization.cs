@@ -53,11 +53,26 @@ namespace Entity.Organization
             _upperOrganizations = upperOrganizations;
         }
 
+        private ManagementOrganization(Guid identifier, OrganizationNameVO name, Person boss, List<OrganizationBase> upperOrganizations)
+            : base(identifier, name, boss)
+        {
+            _upperOrganizations = upperOrganizations;
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 複製します。
+        /// </summary>
+        /// <returns>複製したインスタンス</returns>
+        public ManagementOrganization Clone()
+        {
+            return new ManagementOrganization(Identifier, Name, Boss, _upperOrganizations);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
