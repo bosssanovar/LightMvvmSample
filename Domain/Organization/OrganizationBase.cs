@@ -118,16 +118,26 @@ namespace Entity.Organization
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
+        /// 複製します。
+        /// </summary>
+        /// <returns>複製インスタンス</returns>
+        public abstract OrganizationBase Clone();
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal ----------------------------------------------------------------------------
+
+        /// <summary>
         /// <see cref="IOrganizationVisitor"/>を受け入れる抽象メソッド
         /// </summary>
         /// <param name="visitor"><see cref="IOrganizationVisitor"/>インスタンス</param>
-        public abstract void Accept(IOrganizationVisitor visitor);
+        internal abstract void Accept(IOrganizationVisitor visitor);
 
         /// <summary>
         /// 直属社員を追加する。
         /// </summary>
         /// <param name="member">追加する社員</param>
-        public void AddMember(Person member)
+        internal void AddMember(Person member)
         {
             if (IsContainMember(member))
             {
@@ -142,7 +152,7 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="member">削除する写真</param>
         /// <returns>指定の社員が削除されたらtrue</returns>
-        public bool RemoveMember(Person member)
+        internal bool RemoveMember(Person member)
         {
             if (!IsContainMember(member))
             {
@@ -178,17 +188,11 @@ namespace Entity.Organization
         }
 
         /// <summary>
-        /// 複製します。
-        /// </summary>
-        /// <returns>複製インスタンス</returns>
-        public abstract OrganizationBase Clone();
-
-        /// <summary>
         /// 組織長を変更します。
         /// </summary>
         /// <param name="newBoss">新しい組織長</param>
         /// <returns>元の組織長</returns>
-        public Person ChangeBoss(Person newBoss)
+        internal Person ChangeBoss(Person newBoss)
         {
             var ret = Boss;
 

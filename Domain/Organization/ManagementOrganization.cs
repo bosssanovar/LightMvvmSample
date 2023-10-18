@@ -71,7 +71,7 @@ namespace Entity.Organization
         /// 複製します。
         /// </summary>
         /// <returns>複製したインスタンス</returns>
-        public override OrganizationBase Clone()
+        public override ManagementOrganization Clone()
         {
             return new ManagementOrganization(Identifier, Name.Clone(), Lank, Boss.Clone(), _lowerOrganizations.Select(x => x.Clone()).ToList());
         }
@@ -92,7 +92,7 @@ namespace Entity.Organization
         /// <see cref="IOrganizationVisitor"/>を受け入れる抽象メソッド
         /// </summary>
         /// <param name="visitor"><see cref="IOrganizationVisitor"/>インスタンス</param>
-        public override void Accept(IOrganizationVisitor visitor)
+        internal override void Accept(IOrganizationVisitor visitor)
         {
             visitor.Visit(this);
 
