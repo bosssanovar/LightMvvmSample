@@ -51,7 +51,7 @@ namespace Entity.Organization
             _lowerOrganizations = lowerOrganizations;
         }
 
-        private ManagementOrganization(Guid identifier, OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> lowerOrganizations)
+        private ManagementOrganization(int identifier, OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> lowerOrganizations)
             : base(identifier, name, lank, boss)
         {
             _lowerOrganizations = lowerOrganizations;

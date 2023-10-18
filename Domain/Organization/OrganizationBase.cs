@@ -13,6 +13,8 @@ namespace Entity.Organization
     /// </summary>
     internal abstract class OrganizationBase
     {
+        private static int counter = 0;
+
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
@@ -22,7 +24,7 @@ namespace Entity.Organization
         /// <summary>
         /// 識別子
         /// </summary>
-        protected Guid Identifier { get; }
+        protected int Identifier { get; }
 
         /// <summary>
         /// 直属社員
@@ -89,7 +91,7 @@ namespace Entity.Organization
         /// <param name="lank">組織ランク</param>
         public OrganizationBase(OrganizationNameVO name, Lanks lank)
         {
-            Identifier = Guid.NewGuid();
+            Identifier = counter++;
             Name = name;
             Lank = lank;
         }
@@ -101,7 +103,7 @@ namespace Entity.Organization
         /// <param name="name">組織名称</param>
         /// <param name="lank">組織ランク</param>
         /// <param name="boss">組織長</param>
-        protected OrganizationBase(Guid identifier, OrganizationNameVO name, Lanks lank, Person boss)
+        protected OrganizationBase(int identifier, OrganizationNameVO name, Lanks lank, Person boss)
         {
             Identifier = identifier;
             Name = name;

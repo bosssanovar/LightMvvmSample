@@ -35,7 +35,7 @@ namespace Entity.Organization
         {
         }
 
-        private TerminalOrganization(Guid identifier, OrganizationNameVO name, Person boss)
+        private TerminalOrganization(int identifier, OrganizationNameVO name, Person boss)
             : base(identifier, name, Lanks.Team, boss)
         {
         }
