@@ -102,7 +102,7 @@ namespace WpfApp1.MainWindow
         private void UpdatePersons()
         {
             Persons.Clear();
-            foreach (var p in _personListViewUsecase.GetPeople().Persons)
+            foreach (var p in _personListViewUsecase.GetPersons())
             {
                 Persons.Add(new PersonM(p));
             }

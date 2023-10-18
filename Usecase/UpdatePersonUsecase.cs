@@ -63,7 +63,8 @@ namespace Usecase
 
             if (people.Persons.Any(x => x == person))
             {
-                person.CopyTo(people.Persons.Single(x => x == person));
+                //person.CopyTo(people.Persons.Single(x => x == person));
+                people.UpdatePersons(person);
 
                 _peopleRepository.SavePeople(people);
 

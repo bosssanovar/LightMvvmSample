@@ -27,7 +27,9 @@ namespace Entity.Persons
         {
             get
             {
-                return _persons.AsReadOnly();
+                return _persons.Select(x => x.Clone())
+                    .ToList()
+                    .AsReadOnly();
             }
         }
 
@@ -68,12 +70,12 @@ namespace Entity.Persons
         /// <param name="person">更新データ</param>
         public void UpdatePersons(Person person)
         {
-            if (!Persons.Any(x => x == person))
+            if (!_persons.Any(x => x == person))
             {
                 return;
             }
 
-            Person p = Persons.Single(x => x == person);
+            Person p = _persons.Single(x => x == person);
             person.CopyTo(p);
         }
 
@@ -93,7 +95,7 @@ namespace Entity.Persons
         /// <returns>個人情報</returns>
         public Person GetPerson(Person person)
         {
-            return Persons.First(x => x == person);
+            return _persons.First(x => x == person).Clone();
         }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace Entity.Persons
         {
             var ret = new People();
 
-            foreach (var person in Persons)
+            foreach (var person in _persons)
             {
                 ret.AddPerson(person.Clone());
             }

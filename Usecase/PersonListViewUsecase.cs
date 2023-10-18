@@ -2,6 +2,7 @@
 using Repository;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,10 +50,15 @@ namespace Usecase
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// Peopleエンティティを取得します。
+        /// 社員リストを取得します。
         /// </summary>
         /// <returns>Peopleエンティティ</returns>
-        public People GetPeople() => _peopleRepository.LoadPeople();
+        public ReadOnlyCollection<Person> GetPersons()
+        {
+            var people = _peopleRepository.LoadPeople();
+
+            return people.Persons;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
