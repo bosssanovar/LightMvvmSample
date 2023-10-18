@@ -48,17 +48,17 @@ namespace Entity.Organization
         /// <param name="name">組織名</param>
         /// <param name="lank">組織ランク</param>
         /// <param name="boss">組織長</param>
-        /// <param name="upperOrganizations">下位組織</param>
-        public ManagementOrganization(OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> upperOrganizations)
+        /// <param name="lowerOrganizations">下位組織</param>
+        public ManagementOrganization(OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> lowerOrganizations)
             : base(name, lank, boss)
         {
-            _lowerOrganizations = upperOrganizations;
+            _lowerOrganizations = lowerOrganizations;
         }
 
-        private ManagementOrganization(Guid identifier, OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> upperOrganizations)
+        private ManagementOrganization(Guid identifier, OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> lowerOrganizations)
             : base(identifier, name, lank, boss)
         {
-            _lowerOrganizations = upperOrganizations;
+            _lowerOrganizations = lowerOrganizations;
         }
 
         #endregion --------------------------------------------------------------------------------------------
