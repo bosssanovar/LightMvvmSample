@@ -34,20 +34,20 @@ namespace Entity_Test.DomainService
             top.AddMember(new Person(new("4", "1"), new(1000, 1, 1)));
             top.AddMember(new Person(new("4", "2"), new(1000, 1, 1)));
 
-            Assert.False(c.IsContainMember(target));
-            Assert.False(b.IsContainMember(target2));
+            Assert.False(c.IsContainDirectEmployee(target));
+            Assert.False(b.IsContainDirectEmployee(target2));
 
             var visitor = new AddDirectEmployeeVisitor(target, c);
             top.Accept(visitor);
 
-            Assert.True(c.IsContainMember(target));
-            Assert.False(b.IsContainMember(target2));
+            Assert.True(c.IsContainDirectEmployee(target));
+            Assert.False(b.IsContainDirectEmployee(target2));
 
             visitor = new AddDirectEmployeeVisitor(target2, b);
             top.Accept(visitor);
 
-            Assert.True(c.IsContainMember(target));
-            Assert.True(b.IsContainMember(target2));
+            Assert.True(c.IsContainDirectEmployee(target));
+            Assert.True(b.IsContainDirectEmployee(target2));
 
         }
     }

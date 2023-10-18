@@ -139,7 +139,7 @@ namespace Entity.Organization
         /// <param name="member">追加する社員</param>
         internal void AddMember(Person member)
         {
-            if (IsContainMember(member))
+            if (IsContainDirectEmployee(member))
             {
                 return;
             }
@@ -154,7 +154,7 @@ namespace Entity.Organization
         /// <returns>指定の社員が削除されたらtrue</returns>
         internal bool RemoveMember(Person member)
         {
-            if (!IsContainMember(member))
+            if (!IsContainDirectEmployee(member))
             {
                 return false;
             }
@@ -165,23 +165,33 @@ namespace Entity.Organization
         }
 
         /// <summary>
-        /// 指定社員が直属社員または組織長として属しているか判定します。
+        /// 指定社員が直属社員として属しているか判定します。
         /// </summary>
         /// <param name="member">確認対象社員</param>
         /// <returns>確認対象社員が所属していればtrue</returns>
-        internal bool IsContainMember(Person member)
+        internal bool IsContainDirectEmployee(Person member)
         {
-            if (Boss == member)
-            {
-                return true;
-            }
-
             foreach (Person m in Members)
             {
                 if (m == member)
                 {
                     return true;
                 }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 指定社員が組織長かどうかを判定します。
+        /// </summary>
+        /// <param name="boss">確認対象社員</param>
+        /// <returns>組織長ならtrue</returns>
+        internal bool IsBoss(Person boss)
+        {
+            if(Boss == boss)
+            {
+                return true;
             }
 
             return false;

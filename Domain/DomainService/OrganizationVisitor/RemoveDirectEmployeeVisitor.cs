@@ -60,7 +60,7 @@ namespace Entity.Service.OrganizationVisitor
                 return;
             }
 
-            if (target.IsContainMember(_targetPerson))
+            if (target.IsContainDirectEmployee(_targetPerson))
             {
                 target.RemoveMember(_targetPerson);
                 _isRemoved = true;

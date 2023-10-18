@@ -20,21 +20,21 @@ namespace Entity_Test.Organization
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
             var p2 = new Person(new("eeee", "ffff"), new(1000, 1, 1));
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.False(a.IsContainMember(p1));
-            Assert.False(a.IsContainMember(p2));
+            Assert.True(a.IsBoss(boss));
+            Assert.False(a.IsContainDirectEmployee(p1));
+            Assert.False(a.IsContainDirectEmployee(p2));
 
             a.AddMember(p1);
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.True(a.IsContainMember(p1));
-            Assert.False(a.IsContainMember(p2));
+            Assert.True(a.IsBoss(boss));
+            Assert.True(a.IsContainDirectEmployee(p1));
+            Assert.False(a.IsContainDirectEmployee(p2));
 
             a.AddMember(p2);
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.True(a.IsContainMember(p1));
-            Assert.True(a.IsContainMember(p2));
+            Assert.True(a.IsBoss(boss));
+            Assert.True(a.IsContainDirectEmployee(p1));
+            Assert.True(a.IsContainDirectEmployee(p2));
         }
 
         [Fact]
@@ -45,20 +45,20 @@ namespace Entity_Test.Organization
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.False(a.IsContainMember(p1));
+            Assert.True(a.IsBoss(boss));
+            Assert.False(a.IsContainDirectEmployee(p1));
             Assert.Equal(0, a.DirectEmployeeCount);
 
             a.AddMember(p1);
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.True(a.IsContainMember(p1));
+            Assert.True(a.IsBoss(boss));
+            Assert.True(a.IsContainDirectEmployee(p1));
             Assert.Equal(1, a.DirectEmployeeCount);
 
             a.AddMember(p1);
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.True(a.IsContainMember(p1));
+            Assert.True(a.IsBoss(boss));
+            Assert.True(a.IsContainDirectEmployee(p1));
             Assert.Equal(1, a.DirectEmployeeCount);
         }
 
@@ -70,26 +70,26 @@ namespace Entity_Test.Organization
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.False(a.IsContainMember(p1));
+            Assert.True(a.IsBoss(boss));
+            Assert.False(a.IsContainDirectEmployee(p1));
             Assert.Equal(0, a.DirectEmployeeCount);
 
             a.RemoveMember(p1.Clone());
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.False(a.IsContainMember(p1));
+            Assert.True(a.IsBoss(boss));
+            Assert.False(a.IsContainDirectEmployee(p1));
             Assert.Equal(0, a.DirectEmployeeCount);
 
             a.AddMember(p1.Clone());
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.True(a.IsContainMember(p1));
+            Assert.True(a.IsBoss(boss));
+            Assert.True(a.IsContainDirectEmployee(p1));
             Assert.Equal(1, a.DirectEmployeeCount);
 
             a.RemoveMember(p1.Clone());
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.False(a.IsContainMember(p1));
+            Assert.True(a.IsBoss(boss));
+            Assert.False(a.IsContainDirectEmployee(p1));
             Assert.Equal(0, a.DirectEmployeeCount);
         }
 
@@ -101,13 +101,13 @@ namespace Entity_Test.Organization
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
-            Assert.True(a.IsContainMember(boss));
-            Assert.False(a.IsContainMember(p1));
+            Assert.True(a.IsBoss(boss));
+            Assert.False(a.IsContainDirectEmployee(p1));
 
             var old = a.ChangeBoss(p1);
 
-            Assert.False(a.IsContainMember(boss));
-            Assert.True(a.IsContainMember(p1));
+            Assert.False(a.IsContainDirectEmployee(boss));
+            Assert.True(a.IsBoss(p1));
             Assert.True(old == boss);
         }
 
