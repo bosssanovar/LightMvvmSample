@@ -1,4 +1,6 @@
-﻿namespace Entity.Organization
+﻿using Entity.Persons;
+
+namespace Entity.Organization
 {
     /// <summary>
     /// 組織ランクの列挙子
@@ -49,23 +51,20 @@
         }
 
         /// <summary>
-        /// 部署ランク一覧の表示と値ペアのリストを取得します。
+        /// 表示用文字列を取得します。
         /// </summary>
-        /// <returns>部署ランク一覧の表示と値ペアのリスト</returns>
-        public static List<(Lanks value, string disp)> GetAllDispValueList()
+        /// <param name="value"><see cref="Lanks"/>列挙子</param>
+        /// <returns>表示用文字列</returns>
+        public static Posts GetBossPost(this Lanks value)
         {
-            var ret = new List<(Lanks, string)>();
-
-            var list = Enum.GetValues(typeof(Lanks))
-            .Cast<Lanks>()
-            .ToList();
-
-            foreach (var p in list)
+            return value switch
             {
-                ret.Add((p, p.GetDisplayText()));
-            }
-
-            return ret;
+                Lanks.Campany => Posts.President,
+                Lanks.Department => Posts.Manager,
+                Lanks.Section => Posts.SectionChief,
+                Lanks.Team => Posts.Chief,
+                _ => throw new ArgumentOutOfRangeException(nameof(value), "未定義です"),
+            };
         }
     }
 }

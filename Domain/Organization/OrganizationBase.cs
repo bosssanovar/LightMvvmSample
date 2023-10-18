@@ -42,7 +42,7 @@ namespace Entity.Organization
         /// <summary>
         /// 組織ランク
         /// </summary>
-        protected Lanks Lank { get; private set; }
+        public Lanks Lank { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
