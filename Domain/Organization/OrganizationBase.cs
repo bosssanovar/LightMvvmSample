@@ -1,4 +1,5 @@
 ﻿using Entity.Persons;
+using Entity.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,6 +118,12 @@ namespace Entity.Organization
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
+        /// <see cref="IOrganizationVisitor"/>を受け入れる抽象メソッド
+        /// </summary>
+        /// <param name="visitor"><see cref="IOrganizationVisitor"/>インスタンス</param>
+        public abstract void Accept(IOrganizationVisitor visitor);
+
+        /// <summary>
         /// 直属社員を追加する。
         /// </summary>
         /// <param name="member">追加する社員</param>
@@ -134,14 +141,17 @@ namespace Entity.Organization
         /// 直属社員を削除します。
         /// </summary>
         /// <param name="member">削除する写真</param>
-        public void RemoveMember(Person member)
+        /// <returns>指定の社員が削除されたらtrue</returns>
+        public bool RemoveMember(Person member)
         {
             if (!IsContainMember(member))
             {
-                return;
+                return false;
             }
 
             Members.Remove(member);
+
+            return true;
         }
 
         /// <summary>
@@ -149,7 +159,7 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="member">確認対象社員</param>
         /// <returns>確認対象社員が所属していればtrue</returns>
-        public bool IsContainMember(Person member)
+        internal bool IsContainMember(Person member)
         {
             if (Boss == member)
             {

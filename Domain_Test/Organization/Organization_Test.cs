@@ -11,7 +11,7 @@ namespace Entity_Test.Organization
     {
 
         [Fact]
-        void 社員の所属組織取得()
+        public void 社員の所属組織取得()
         {
             // TODO K.I : テスト未実装
         }

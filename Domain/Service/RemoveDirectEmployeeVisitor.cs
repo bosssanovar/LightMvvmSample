@@ -1,21 +1,26 @@
-﻿using Entity.Persons;
-using Entity.Service;
-using System.Runtime.CompilerServices;
+﻿using Entity.Organization;
+using Entity.Persons;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-[assembly: InternalsVisibleTo("Entity_Test")]
-
-namespace Entity.Organization
+namespace Entity.Service
 {
     /// <summary>
-    /// 末端組織クラス
+    /// 直属社員を削除するVisitorクラス
     /// </summary>
-    internal class TerminalOrganization : OrganizationBase
+    internal class RemoveDirectEmployeeVisitor : IOrganizationVisitor
     {
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly Person _targetPerson;
+        private bool _isRemoved = false;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -32,16 +37,10 @@ namespace Entity.Organization
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">社名</param>
-        /// <param name="boss">社長</param>
-        public TerminalOrganization(OrganizationNameVO name, Person boss)
-            : base(name, Lanks.Team, boss)
+        /// <param name="targetPerson">削除する直属社員</param>
+        public RemoveDirectEmployeeVisitor(Person targetPerson)
         {
-        }
-
-        private TerminalOrganization(Guid identifier, OrganizationNameVO name, Person boss)
-            : base(identifier, name, Lanks.Team, boss)
-        {
+            _targetPerson = targetPerson;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -51,12 +50,21 @@ namespace Entity.Organization
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 複製します。
+        /// 処理します。
         /// </summary>
-        /// <returns>複製インスタンス</returns>
-        public override OrganizationBase Clone()
+        /// <param name="target">ターゲット</param>
+        public void Visit(OrganizationBase target)
         {
-            return new TerminalOrganization(Identifier, Name.Clone(), Boss.Clone());
+            if (_isRemoved)
+            {
+                return;
+            }
+
+            if (target.IsContainMember(_targetPerson))
+            {
+                target.RemoveMember(_targetPerson);
+                _isRemoved = true;
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -70,15 +78,6 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
-
-        /// <summary>
-        /// <see cref="IOrganizationVisitor"/>を受け入れる抽象メソッド
-        /// </summary>
-        /// <param name="visitor"><see cref="IOrganizationVisitor"/>インスタンス</param>
-        public override void Accept(IOrganizationVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 

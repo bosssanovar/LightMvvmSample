@@ -1,4 +1,5 @@
 ﻿using Entity.Persons;
+using Entity.Service;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Entity_Test")]
@@ -16,7 +17,7 @@ namespace Entity.Organization
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly List<OrganizationBase> _upperOrganizations;
+        private readonly List<OrganizationBase> _lowerOrganizations;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -29,7 +30,7 @@ namespace Entity.Organization
         {
             get
             {
-                return _upperOrganizations.Count;
+                return _lowerOrganizations.Count;
             }
         }
 
@@ -51,13 +52,13 @@ namespace Entity.Organization
         public ManagementOrganization(OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> upperOrganizations)
             : base(name, lank, boss)
         {
-            _upperOrganizations = upperOrganizations;
+            _lowerOrganizations = upperOrganizations;
         }
 
         private ManagementOrganization(Guid identifier, OrganizationNameVO name, Lanks lank, Person boss, List<OrganizationBase> upperOrganizations)
             : base(identifier, name, lank, boss)
         {
-            _upperOrganizations = upperOrganizations;
+            _lowerOrganizations = upperOrganizations;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -72,7 +73,7 @@ namespace Entity.Organization
         /// <returns>複製したインスタンス</returns>
         public override OrganizationBase Clone()
         {
-            return new ManagementOrganization(Identifier, Name.Clone(), Lank, Boss.Clone(), _upperOrganizations.Select(x => x.Clone()).ToList());
+            return new ManagementOrganization(Identifier, Name.Clone(), Lank, Boss.Clone(), _lowerOrganizations.Select(x => x.Clone()).ToList());
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -86,6 +87,17 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
+
+        /// <summary>
+        /// <see cref="IOrganizationVisitor"/>を受け入れる抽象メソッド
+        /// </summary>
+        /// <param name="visitor"><see cref="IOrganizationVisitor"/>インスタンス</param>
+        public override void Accept(IOrganizationVisitor visitor)
+        {
+            visitor.Visit(this);
+
+            _lowerOrganizations.ForEach(x => x.Accept(visitor));
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
