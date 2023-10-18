@@ -32,7 +32,7 @@ namespace Entity.Organization
         /// <summary>
         /// 組織長
         /// </summary>
-        protected Person Boss { get; private set; }
+        protected Person Boss { get; private set; } = new(new(string.Empty, string.Empty), new(1, 1, 1));
 
         /// <summary>
         /// 組織名称
@@ -87,13 +87,11 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="name">組織名</param>
         /// <param name="lank">組織ランク</param>
-        /// <param name="boss">組織長</param>
-        public OrganizationBase(OrganizationNameVO name, Lanks lank, Person boss)
+        public OrganizationBase(OrganizationNameVO name, Lanks lank)
         {
             Identifier = Guid.NewGuid();
             Name = name;
             Lank = lank;
-            Boss = boss;
         }
 
         /// <summary>

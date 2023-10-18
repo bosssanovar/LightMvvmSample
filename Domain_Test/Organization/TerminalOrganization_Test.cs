@@ -13,7 +13,7 @@ namespace Entity_Test.Organization
         [Fact]
         public void Clone()
         {
-            var a = new TerminalOrganization(new("aaaa"), new(new("aaa", "bbb"), new(1000, 1, 1)));
+            var a = new TerminalOrganization(new("aaaa"));
             var b = a.Clone();
 
             Assert.True(a == b);

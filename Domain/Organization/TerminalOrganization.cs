@@ -30,9 +30,8 @@ namespace Entity.Organization
         /// コンストラクタ
         /// </summary>
         /// <param name="name">社名</param>
-        /// <param name="boss">社長</param>
-        public TerminalOrganization(OrganizationNameVO name, Person boss)
-            : base(name, Lanks.Team, boss)
+        public TerminalOrganization(OrganizationNameVO name)
+            : base(name, Lanks.Team)
         {
         }
 

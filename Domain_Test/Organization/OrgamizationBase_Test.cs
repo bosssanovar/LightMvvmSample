@@ -15,7 +15,8 @@ namespace Entity_Test.Organization
         public void 社員追加_と_所属確認()
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new("aa"), Lanks.Department, boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>());
+            a.ChangeBoss(boss);
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
             var p2 = new Person(new("eeee", "ffff"), new(1000, 1, 1));
@@ -41,7 +42,8 @@ namespace Entity_Test.Organization
         public void 社員の重複登録回避()
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new("aa"), Lanks.Department, boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>());
+            a.ChangeBoss(boss);
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
@@ -66,7 +68,8 @@ namespace Entity_Test.Organization
         public void 社員削除()
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new("aa"), Lanks.Department, boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>());
+            a.ChangeBoss(boss);
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
@@ -97,7 +100,8 @@ namespace Entity_Test.Organization
         public void 組織長変更()
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new("aa"), Lanks.Department, boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>());
+            a.ChangeBoss(boss);
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
@@ -122,7 +126,8 @@ namespace Entity_Test.Organization
         public void 組織名称(string name)
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new(name), Lanks.Department, boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new(name), Lanks.Department, new List<OrganizationBase>());
+            a.ChangeBoss(boss);
 
             Assert.True(a.DisplayName == (name + " " + Lanks.Department.GetDisplayText()));
         }
@@ -136,7 +141,8 @@ namespace Entity_Test.Organization
         {
             var name = "aaaabbbccc";
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
-            var a = new ManagementOrganization(new(name), lank, boss, new List<OrganizationBase>());
+            var a = new ManagementOrganization(new(name), lank, new List<OrganizationBase>());
+            a.ChangeBoss(boss);
 
             Assert.True(a.DisplayName == (name + " " + lank.GetDisplayText()));
         }

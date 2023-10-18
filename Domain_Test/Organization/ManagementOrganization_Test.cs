@@ -20,10 +20,10 @@ namespace Entity_Test.Organization
             var a = new List<OrganizationBase>();
             for(int i=0; i<count; i++)
             {
-                a.Add(new ManagementOrganization(new("aa"), Lanks.Department, new Person(new("aaa", "bbb"), new(1000, 1, 1)), new List<OrganizationBase>()));
+                a.Add(new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>()));
             }
 
-            var b = new ManagementOrganization(new("aa"), Lanks.Department, new Person(new("aaa", "bbb"), new(1000, 1, 1)), a);
+            var b = new ManagementOrganization(new("aa"), Lanks.Department, a);
 
             Assert.Equal(count, b.OrganizationCount);
         }
@@ -37,10 +37,10 @@ namespace Entity_Test.Organization
             var a = new List<OrganizationBase>();
             for (int i = 0; i < count; i++)
             {
-                a.Add(new TerminalOrganization(new("aa"), new Person(new("aaa", "bbb"), new(1000, 1, 1))));
+                a.Add(new TerminalOrganization(new("aa")));
             }
 
-            var b = new ManagementOrganization(new("aa"), Lanks.Section, new Person(new("aaa", "bbb"), new(1000, 1, 1)), a);
+            var b = new ManagementOrganization(new("aa"), Lanks.Section, a);
 
             Assert.Equal(count, b.OrganizationCount);
         }
@@ -51,9 +51,9 @@ namespace Entity_Test.Organization
             var a = new List<OrganizationBase>();
             for (int i = 0; i < 10; i++)
             {
-                a.Add(new ManagementOrganization(new("aa"), Lanks.Section, new Person(new("aaa", "bbb"), new(1000, 1, 1)), new List<OrganizationBase>()));
+                a.Add(new ManagementOrganization(new("aa"), Lanks.Section, new List<OrganizationBase>()));
             }
-            var b = new ManagementOrganization(new("aa"), Lanks.Department, new Person(new("aaa", "bbb"), new(1000, 1, 1)), a);
+            var b = new ManagementOrganization(new("aa"), Lanks.Department, a);
 
             var c = b.Clone();
 
