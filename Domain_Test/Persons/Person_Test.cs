@@ -18,7 +18,7 @@ namespace Entity_Test.Persons
             {
                 var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
                 var b = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
-                Assert.False(a == b);
+                Assert.False(a.SameIdentityAs(b));
             }
         }
 
@@ -29,7 +29,7 @@ namespace Entity_Test.Persons
             var b = a;
             b.Name = new NameVO("ccc", "ddd");
             b.Birthday = new(2000, 12, 12);
-            Assert.True(a == b);
+            Assert.True(a.SameIdentityAs(b));
         }
 
         [Fact]
@@ -38,13 +38,13 @@ namespace Entity_Test.Persons
             var a = new Person(new NameVO("aaa", "bbb"), new BirthdayVO(100, 1, 1));
             var b = a.Clone();
 
-            Assert.True(a == b);
+            Assert.True(a.SameIdentityAs(b));
             Assert.True(a.Name.Equals(b.Name));
             Assert.True(a.Birthday.Equals(b.Birthday));
             Assert.Equal(a.PostText, b.PostText);
 
             b.Name = new("cccc", "ddddd");
-            Assert.True(a == b);
+            Assert.True(a.SameIdentityAs(b));
             Assert.False(a.Name.Equals(b.Name));
         }
 
@@ -55,7 +55,7 @@ namespace Entity_Test.Persons
             var b = new Person(new NameVO("ccccc", "ddddd"), new BirthdayVO(100, 1, 1));
             b.UpdatePost(Posts.Chief);
             a.CopyTo(b);
-            Assert.False(a == b);
+            Assert.False(a.SameIdentityAs(b));
             Assert.True(a.Name.Equals(b.Name));
             Assert.True(a.Birthday.Equals(b.Birthday));
             Assert.Equal(a.PostText, b.PostText);

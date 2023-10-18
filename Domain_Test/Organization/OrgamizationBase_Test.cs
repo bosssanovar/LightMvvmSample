@@ -112,7 +112,7 @@ namespace Entity_Test.Organization
 
             Assert.False(a.IsContainDirectEmployee(boss));
             Assert.True(a.IsBoss(p1));
-            Assert.True(old == boss);
+            Assert.True(old.SameIdentityAs(boss));
         }
 
         [Theory]

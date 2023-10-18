@@ -159,7 +159,7 @@ namespace Entity.Organization
                 return false;
             }
 
-            Members.Remove(member);
+            Members.RemoveAll(x => x.SameIdentityAs(member));
 
             return true;
         }
@@ -173,7 +173,7 @@ namespace Entity.Organization
         {
             foreach (Person m in Members)
             {
-                if (m == member)
+                if (m.SameIdentityAs(member))
                 {
                     return true;
                 }
@@ -189,7 +189,7 @@ namespace Entity.Organization
         /// <returns>組織長ならtrue</returns>
         internal bool IsBoss(Person boss)
         {
-            if(Boss == boss)
+            if(Boss.SameIdentityAs(boss))
             {
                 return true;
             }

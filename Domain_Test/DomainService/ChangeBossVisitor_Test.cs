@@ -46,7 +46,7 @@ namespace Entity_Test.DomainService
 
             if (oldBoss is not null)
             {
-                Assert.True(boss == oldBoss);
+                Assert.True(boss.SameIdentityAs(oldBoss));
             }
             else
             {
