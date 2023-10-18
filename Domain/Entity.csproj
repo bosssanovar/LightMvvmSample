@@ -9,12 +9,12 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <CodeAnalysisRuleSet />
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <CodeAnalysisRuleSet />
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
