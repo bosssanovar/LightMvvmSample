@@ -17,6 +17,7 @@ namespace Entity_Test.Organization
             var b = a.Clone();
 
             Assert.True(a == b);
+            Assert.True(a.DisplayName == b.DisplayName);
         }
     }
 }
