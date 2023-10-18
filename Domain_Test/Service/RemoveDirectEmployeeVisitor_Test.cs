@@ -1,6 +1,6 @@
 ﻿using Entity.Organization;
 using Entity.Persons;
-using Entity.Service;
+using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.Service
+namespace Entity.Service.OrganizationVisitor
 {
     /// <summary>
     /// 直属社員を削除するVisitorクラス

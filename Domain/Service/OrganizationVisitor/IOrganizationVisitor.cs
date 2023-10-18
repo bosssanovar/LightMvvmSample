@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.Service
+namespace Entity.Service.OrganizationVisitor
 {
     /// <summary>
     /// <see cref="OrganizationBase"/>を巡るVisitorインターフェース
