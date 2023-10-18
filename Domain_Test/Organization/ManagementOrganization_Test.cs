@@ -59,7 +59,7 @@ namespace Entity_Test.Organization
 
             Assert.True(c.DisplayName == b.DisplayName);
             Assert.True(c.DirectEmployeeCount == b.DirectEmployeeCount);
-            Assert.True(c == b);
+            Assert.True(c.SameIdentityAs(b));
         }
     }
 }

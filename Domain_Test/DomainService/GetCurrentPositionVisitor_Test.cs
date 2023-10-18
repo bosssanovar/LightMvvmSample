@@ -39,19 +39,19 @@ namespace Entity_Test.DomainService
             var visitor = new GetCurrentPositionVisitor(target);
             top.Accept(visitor);
 
-            Assert.True(visitor.AssignedOrganization == c);
+            Assert.True(visitor.AssignedOrganization.SameIdentityAs(c));
             Assert.True(visitor.Post == Posts.Employee);
 
             visitor = new GetCurrentPositionVisitor(target2);
             top.Accept(visitor);
 
-            Assert.True(visitor.AssignedOrganization == b);
+            Assert.True(visitor.AssignedOrganization.SameIdentityAs(b));
             Assert.True(visitor.Post == Posts.Employee);
 
             visitor = new GetCurrentPositionVisitor(targetBoss);
             top.Accept(visitor);
 
-            Assert.True(visitor.AssignedOrganization == a);
+            Assert.True(visitor.AssignedOrganization.SameIdentityAs(a));
             Assert.True(visitor.Post == Posts.Chief);
         }
     }

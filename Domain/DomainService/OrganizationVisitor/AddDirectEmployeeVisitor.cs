@@ -58,7 +58,7 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <param name="target">ターゲット</param>
         public void Visit(OrganizationBase target)
         {
-            if (target == _targetOrganization)
+            if (target.SameIdentityAs(_targetOrganization))
             {
                 target.AddMember(_targetPerson);
             }

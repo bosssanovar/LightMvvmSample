@@ -16,7 +16,7 @@ namespace Entity_Test.Organization
             var a = new TerminalOrganization(new("aaaa"));
             var b = a.Clone();
 
-            Assert.True(a == b);
+            Assert.True(a.SameIdentityAs(b));
             Assert.True(a.DisplayName == b.DisplayName);
         }
     }
