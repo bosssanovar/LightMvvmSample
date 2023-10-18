@@ -1,8 +1,5 @@
 ﻿using Entity.Persons;
 using Entity.Service.OrganizationVisitor;
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("Entity_Test")]
 
 namespace Entity.Organization
 {

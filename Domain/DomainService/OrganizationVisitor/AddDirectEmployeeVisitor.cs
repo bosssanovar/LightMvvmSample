@@ -1,18 +1,27 @@
-﻿using Entity.Persons;
+﻿using Entity.Organization;
+using Entity.Persons;
 using Entity.Service.OrganizationVisitor;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entity.Organization
+namespace Entity.DomainService.OrganizationVisitor
 {
     /// <summary>
-    /// 末端組織クラス
+    /// 直属社員を追加するVisitorクラス
     /// </summary>
-    internal class TerminalOrganization : OrganizationBase
+    internal class AddDirectEmployeeVisitor : IOrganizationVisitor
     {
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly Person _targetPerson;
+        private readonly OrganizationBase _targetOrganization;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -29,16 +38,12 @@ namespace Entity.Organization
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">社名</param>
-        /// <param name="boss">社長</param>
-        public TerminalOrganization(OrganizationNameVO name, Person boss)
-            : base(name, Lanks.Team, boss)
+        /// <param name="targetPerson">追加対象社員</param>
+        /// <param name="targetOrganization">追加対象組織</param>
+        public AddDirectEmployeeVisitor(Person targetPerson, OrganizationBase targetOrganization)
         {
-        }
-
-        private TerminalOrganization(Guid identifier, OrganizationNameVO name, Person boss)
-            : base(identifier, name, Lanks.Team, boss)
-        {
+            _targetPerson = targetPerson;
+            _targetOrganization = targetOrganization;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -48,13 +53,20 @@ namespace Entity.Organization
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 複製します。
+        /// 実行します。
         /// </summary>
-        /// <returns>複製インスタンス</returns>
-        public override TerminalOrganization Clone()
+        /// <param name="target">ターゲット</param>
+        public void Visit(OrganizationBase target)
         {
-            return new TerminalOrganization(Identifier, Name.Clone(), Boss.Clone());
+            if (target == _targetOrganization)
+            {
+                target.AddMember(_targetPerson);
+            }
         }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -67,15 +79,6 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
-
-        /// <summary>
-        /// <see cref="IOrganizationVisitor"/>を受け入れる抽象メソッド
-        /// </summary>
-        /// <param name="visitor"><see cref="IOrganizationVisitor"/>インスタンス</param>
-        internal override void Accept(IOrganizationVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 
