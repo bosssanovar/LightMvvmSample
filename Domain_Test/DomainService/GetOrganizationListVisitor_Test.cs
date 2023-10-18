@@ -31,7 +31,7 @@ namespace Entity_Test.DomainService
             d.AddMember(new Person(new("4", "1"), new(1000, 1, 1)));
             d.AddMember(new Person(new("4", "2"), new(1000, 1, 1)));
             d.AddMember(new Person(new("4", "3"), new(1000, 1, 1)));
-            var e = new TerminalOrganization(new("4"), new Person(new("5", "boss"), new(1000, 1, 1)));
+            var e = new TerminalOrganization(new("5"), new Person(new("5", "boss"), new(1000, 1, 1)));
             e.AddMember(new Person(new("5", "1"), new(1000, 1, 1)));
             e.AddMember(new Person(new("5", "2"), new(1000, 1, 1)));
             var f = new ManagementOrganization(new("6"), Lanks.Section, new Person(new("6", "boss"), new(1000, 1, 1)), new() { d, e });
@@ -46,8 +46,8 @@ namespace Entity_Test.DomainService
             top.Accept(visitor);
 
             Assert.Equal(7, visitor.Oganizations.Count);
-            Assert.Equal("7 社", visitor.Oganizations[0].DisplayName);
-            Assert.Equal("6 部", visitor.Oganizations[5].DisplayName);
+            Assert.Equal("7 部", visitor.Oganizations[0].DisplayName);
+            Assert.Equal("4 チーム", visitor.Oganizations[5].DisplayName);
         }
     }
 }
