@@ -36,9 +36,9 @@ namespace Entity.Organization
         /// コンストラクタ
         /// </summary>
         /// <param name="builder">組織構成ビルダー</param>
-        public Organization(OrganizaitonBuilder builder)
+        public Organization()
         {
-            _topOrganization = builder.Build();
+            _topOrganization = OrganizaitonBuilder.Build();
         }
 
         #endregion --------------------------------------------------------------------------------------------
