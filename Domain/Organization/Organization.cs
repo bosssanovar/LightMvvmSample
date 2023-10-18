@@ -35,7 +35,6 @@ namespace Entity.Organization
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="builder">組織構成ビルダー</param>
         public Organization()
         {
             _topOrganization = OrganizaitonBuilder.Build();
