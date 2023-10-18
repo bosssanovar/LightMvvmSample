@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Entity.Organization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.Organization
+namespace Entity.Service
 {
     /// <summary>
     /// 組織構成を構築するクラス
