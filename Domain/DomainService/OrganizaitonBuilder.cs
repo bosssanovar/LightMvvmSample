@@ -42,29 +42,7 @@ namespace Entity.Service
         /// <returns>構築した組織構成の最上位組織</returns>
         public static ManagementOrganization Build()
         {
-            var departmentList = new List<OrganizationBase>();
-
-            // 部　を生成
-            for(int departmentIndex = 0; departmentIndex < 3; departmentIndex++)
-            {
-                var sectionList = new List<OrganizationBase>();
-
-                // 課　を生成
-                for(int sectionIndex = 0; sectionIndex < 4; sectionIndex++)
-                {
-                    var teamList = new List<OrganizationBase>();
-
-                    // チーム　を生成
-                    for (int teamIndex = 0; teamIndex < 3; teamIndex++)
-                    {
-                        teamList.Add(new TerminalOrganization(new($"第{teamIndex + 1}")));
-                    }
-
-                    sectionList.Add(new ManagementOrganization(new($"第{sectionIndex + 1}"), Lanks.Section, teamList));
-                }
-
-                departmentList.Add(new ManagementOrganization(new($"第{departmentIndex + 1}技術"), Lanks.Department, sectionList));
-            }
+            List<OrganizationBase> departmentList = GetDepartmentList();
 
             var campany = new ManagementOrganization(new("●●エンジニアリング"), Lanks.Campany, departmentList);
 
@@ -78,6 +56,49 @@ namespace Entity.Service
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private static List<OrganizationBase> GetDepartmentList()
+        {
+            var ret = new List<OrganizationBase>();
+
+            // 部　を生成
+            for (int index = 0; index < 3; index++)
+            {
+                List<OrganizationBase> sectionList = GetSectionList();
+
+                ret.Add(new ManagementOrganization(new($"第{index + 1}技術"), Lanks.Department, sectionList));
+            }
+
+            return ret;
+        }
+
+        private static List<OrganizationBase> GetSectionList()
+        {
+            var ret = new List<OrganizationBase>();
+
+            // 課　を生成
+            for (int index = 0; index < 4; index++)
+            {
+                List<OrganizationBase> teamList = GetTeamList();
+
+                ret.Add(new ManagementOrganization(new($"第{index + 1}"), Lanks.Section, teamList));
+            }
+
+            return ret;
+        }
+
+        private static List<OrganizationBase> GetTeamList()
+        {
+            var ret = new List<OrganizationBase>();
+
+            // チーム　を生成
+            for (int index = 0; index < 3; index++)
+            {
+                ret.Add(new TerminalOrganization(new($"第{index + 1}")));
+            }
+
+            return ret;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
