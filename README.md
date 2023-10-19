@@ -175,6 +175,18 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 
 ![organization_design_class_diagram2](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/8cb9acd9-777f-4fa3-a188-2c7df07a66ad)
 
+### 社員異動アクティビティ
+
+![1697623337102](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/b2e24655-5c95-49d2-8de3-2ca8809bd722)
+
+### 組織長変更アクティビティ
+
+![1697623337092](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/0be87701-b874-4b7d-aedb-4d299f68d343)
+
+### 組織内を走査するVisitor
+
+![1697623337085](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/b035ebb7-a1e3-4c46-9516-d21cca368796)
+
 ---
 
 ## ミニトピック
