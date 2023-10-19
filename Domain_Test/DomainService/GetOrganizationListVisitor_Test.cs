@@ -53,8 +53,10 @@ namespace Entity_Test.DomainService
             top.Accept(visitor);
 
             Assert.Equal(7, visitor.Oganizations.Count);
-            Assert.Equal("7部", visitor.Oganizations[0].DisplayName);
-            Assert.Equal("4チーム", visitor.Oganizations[5].DisplayName);
+            Assert.Equal("7部", visitor.Oganizations[0].Organization.DisplayName);
+            Assert.Equal("7部", visitor.Oganizations[0].Name);
+            Assert.Equal("4チーム", visitor.Oganizations[5].Organization.DisplayName);
+            Assert.Equal("7部 6課 4チーム", visitor.Oganizations[5].Name);
         }
     }
 }
