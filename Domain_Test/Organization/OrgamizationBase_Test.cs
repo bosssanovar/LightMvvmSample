@@ -129,7 +129,7 @@ namespace Entity_Test.Organization
             var a = new ManagementOrganization(new(name), Lanks.Department, new List<OrganizationBase>());
             a.ChangeBoss(boss);
 
-            Assert.True(a.DisplayName == (name + " " + Lanks.Department.GetDisplayText()));
+            Assert.True(a.DisplayName == (name + Lanks.Department.GetDisplayText()));
         }
 
         [Theory]
@@ -144,7 +144,7 @@ namespace Entity_Test.Organization
             var a = new ManagementOrganization(new(name), lank, new List<OrganizationBase>());
             a.ChangeBoss(boss);
 
-            Assert.True(a.DisplayName == (name + " " + lank.GetDisplayText()));
+            Assert.True(a.DisplayName == (name + lank.GetDisplayText()));
         }
     }
 }
