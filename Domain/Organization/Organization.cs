@@ -40,11 +40,27 @@ namespace Entity.Organization
             _topOrganization = OrganizaitonBuilder.Build();
         }
 
+        private Organization(ManagementOrganization topOrganization)
+        {
+            _topOrganization = topOrganization;
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 複製する
+        /// </summary>
+        /// <returns>複製インスタンス</returns>
+        public Organization Clone()
+        {
+            var ret = new Organization(_topOrganization.Clone());
+
+            return ret;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -4,11 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Entity.Organization;
 
 namespace Entity_Test.Organization
 {
     public class Organization_Test
     {
+        [Fact]
+        public void Clone()
+        {
+            //var a = new Organization();
+        }
 
         [Fact]
         public void 社員の所属組織取得()
