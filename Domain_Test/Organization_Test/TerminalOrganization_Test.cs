@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Entity_Test.Organization
+namespace Entity_Test.Organization_Test
 {
     public class TerminalOrganization_Test
     {

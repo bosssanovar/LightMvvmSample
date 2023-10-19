@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Entity_Test.Persons
+namespace Entity_Test.Persons_Test
 {
     public class Person_Test
     {

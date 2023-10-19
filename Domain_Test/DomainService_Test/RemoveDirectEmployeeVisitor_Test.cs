@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Entity_Test.Service
+namespace Entity_Test.DomainService_Test
 {
     public class RemoveDirectEmployeeVisitor_Test
     {

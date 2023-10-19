@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Entity_Test.DomainService
+namespace Entity_Test.DomainService_Test
 {
     public class GetCurrentPositionVisitor_Test
     {

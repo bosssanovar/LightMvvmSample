@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using Xunit;
 using Entity.Organization;
 
-namespace Entity_Test.Organization
+namespace Entity_Test.Organization_Test
 {
     public class Organization_Test
     {
         [Fact]
         public void Clone()
         {
-            //var a = new Organization();
+            var a = new Organization();
         }
 
         [Fact]

@@ -1,7 +1,7 @@
 ﻿using Entity.Persons;
 using Xunit;
 
-namespace Entity_Test.Persons
+namespace Entity_Test.Persons_Test
 {
     public class Birthday_Test
     {
