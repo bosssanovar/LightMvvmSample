@@ -31,7 +31,7 @@ namespace Entity_Test.DomainService
             var c = new ManagementOrganization(new("3"), Lanks.Section, new() { a, b });
             c.AddMember(new Person(new("3", "1"), new(1000, 1, 1)));
             c.AddMember(new Person(new("3", "2"), new(1000, 1, 1)));
-            c.AddMember(target); // ※ target here!
+            c.AddMember(target);
             var top = new ManagementOrganization(new("4"), Lanks.Department, new() { c });
             top.AddMember(new Person(new("4", "1"), new(1000, 1, 1)));
             top.AddMember(new Person(new("4", "2"), new(1000, 1, 1)));

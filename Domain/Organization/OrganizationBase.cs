@@ -59,7 +59,6 @@ namespace Entity.Organization
             {
                 var ret = new StringBuilder();
                 ret.Append(Name.Name);
-                ret.Append(' ');
                 ret.Append(Lank.GetDisplayText());
                 return ret.ToString();
             }
