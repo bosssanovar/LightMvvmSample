@@ -90,7 +90,7 @@ namespace Entity_Test.DomainService
                 }
                 else
                 {
-                    throw new ArgumentException();
+                    throw new NotImplementedException();
                 }
 
                 StringBuilder sb = GetNameUntilSection();
