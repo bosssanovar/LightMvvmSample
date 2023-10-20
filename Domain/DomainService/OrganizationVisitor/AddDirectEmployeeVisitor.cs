@@ -27,6 +27,11 @@ namespace Entity.DomainService.OrganizationVisitor
 
         #region Properties ------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 追加が完了したかを取得します。
+        /// </summary>
+        public bool IsCompleted { get; private set; } = false;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -58,9 +63,16 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <param name="target">ターゲット</param>
         public void Visit(OrganizationBase target)
         {
+            if (IsCompleted)
+            {
+                return;
+            }
+
             if (target.SameIdentityAs(_targetOrganization))
             {
                 target.AddMember(_targetPerson);
+
+                IsCompleted = true;
             }
         }
 

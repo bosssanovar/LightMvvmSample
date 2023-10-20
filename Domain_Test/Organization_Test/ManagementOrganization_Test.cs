@@ -11,6 +11,13 @@ namespace Entity_Test.Organization_Test
 {
     public class ManagementOrganization_Test
     {
+        [Fact]
+        public void コンストラクタ_例外()
+        {
+            // TODO K.I : テスト Lankに有効以外を指定
+            throw new NotImplementedException();
+        }
+
         [Theory]
         [InlineData(0)]
         [InlineData(1)]

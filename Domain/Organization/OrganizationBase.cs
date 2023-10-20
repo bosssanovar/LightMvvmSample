@@ -11,7 +11,7 @@ namespace Entity.Organization
     /// <summary>
     /// 組織の抽象クラス
     /// </summary>
-    internal abstract class OrganizationBase
+    public abstract class OrganizationBase
     {
         private static int counter = 0;
 

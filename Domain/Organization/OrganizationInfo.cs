@@ -1,17 +1,15 @@
-﻿using Entity.DomainService;
-using Entity.Organization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.Service
+namespace Entity.Organization
 {
     /// <summary>
-    /// 組織構成を構築するクラス
+    /// 組織情報クラス
     /// </summary>
-    internal class OrganizaitonBuilder : IOrganizationBuilder
+    public class OrganizationInfo
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -19,9 +17,16 @@ namespace Entity.Service
 
         #region Fields ----------------------------------------------------------------------------------------
 
+        private readonly OrganizationBase _organization;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 垂直通貫の組織名を取得します。
+        /// </summary>
+        public string FullName { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -31,24 +36,26 @@ namespace Entity.Service
 
         #region Constructor -----------------------------------------------------------------------------------
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="name">垂直通貫の組織名</param>
+        /// <param name="organization">組織オブジェクト</param>
+        internal OrganizationInfo(string name, OrganizationBase organization)
+        {
+            FullName = name;
+            _organization = organization;
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 組織構成を構築します。
-        /// </summary>
-        /// <returns>構築した組織構成の最上位組織</returns>
-        public OrganizationBase Build()
-        {
-            List<OrganizationBase> departmentList = GetDepartmentList();
+        #endregion --------------------------------------------------------------------------------------------
 
-            var campany = new ManagementOrganization(new("●●エンジニアリング"), Lanks.Campany, departmentList);
-
-            return campany;
-        }
+        #region Methods - internal ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -57,49 +64,6 @@ namespace Entity.Service
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
-
-        private static List<OrganizationBase> GetDepartmentList()
-        {
-            var ret = new List<OrganizationBase>();
-
-            // 部　を生成
-            for (int index = 0; index < 3; index++)
-            {
-                List<OrganizationBase> sectionList = GetSectionList();
-
-                ret.Add(new ManagementOrganization(new($"第{index + 1}技術"), Lanks.Department, sectionList));
-            }
-
-            return ret;
-        }
-
-        private static List<OrganizationBase> GetSectionList()
-        {
-            var ret = new List<OrganizationBase>();
-
-            // 課　を生成
-            for (int index = 0; index < 4; index++)
-            {
-                List<OrganizationBase> teamList = GetTeamList();
-
-                ret.Add(new ManagementOrganization(new($"第{index + 1}"), Lanks.Section, teamList));
-            }
-
-            return ret;
-        }
-
-        private static List<OrganizationBase> GetTeamList()
-        {
-            var ret = new List<OrganizationBase>();
-
-            // チーム　を生成
-            for (int index = 0; index < 3; index++)
-            {
-                ret.Add(new TerminalOrganization(new($"第{index + 1}")));
-            }
-
-            return ret;
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 

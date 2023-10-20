@@ -20,7 +20,7 @@ namespace Entity.DomainService.OrganizationVisitor
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly List<NameAndOrganization> _organizations = new();
+        private readonly List<OrganizationInfo> _organizations = new();
 
         private ManagementOrganization? _upperDepartment;
 
@@ -35,11 +35,11 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <summary>
         /// 組織一覧を取得します。
         /// </summary>
-        public ReadOnlyCollection<NameAndOrganization> Oganizations
+        public ReadOnlyCollection<OrganizationInfo> Oganizations
         {
             get
             {
-                return new ReadOnlyCollection<NameAndOrganization>(_organizations);
+                return new ReadOnlyCollection<OrganizationInfo>(_organizations);
             }
         }
 
@@ -143,32 +143,5 @@ namespace Entity.DomainService.OrganizationVisitor
         #endregion --------------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 垂直通貫の組織名と組織オブジェクトのペア
-        /// </summary>
-        public class NameAndOrganization
-        {
-            /// <summary>
-            /// 垂直通貫の組織名を取得します。
-            /// </summary>
-            public string Name { get; }
-
-            /// <summary>
-            /// 組織オブジェクトを取得します。
-            /// </summary>
-            public OrganizationBase Organization { get; }
-
-            /// <summary>
-            /// コンストラクタ
-            /// </summary>
-            /// <param name="name">垂直通貫の組織名</param>
-            /// <param name="organization">組織オブジェクト</param>
-            internal NameAndOrganization(string name, OrganizationBase organization)
-            {
-                Name = name;
-                Organization = organization;
-            }
-        }
     }
 }
