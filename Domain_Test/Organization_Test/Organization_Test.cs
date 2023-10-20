@@ -48,7 +48,7 @@ namespace Entity_Test.Organization_Test
         public void 所属組織に社員追加()
         {
             var builder = new BuilderMock();
-            var targetOrganization = builder.TestTargetOrganization;
+            var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
             var organization = new Organization(builder);
@@ -56,6 +56,13 @@ namespace Entity_Test.Organization_Test
             organization.RelocateEmployee(targetPerson, targetOrganization);
 
             Assert.True(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(targetPerson)));
+        }
+
+        [Fact]
+        public void 社員が異動()
+        {
+            // TODO K.I : テスト
+            throw new NotImplementedException();
         }
 
         [Fact]
@@ -89,7 +96,7 @@ namespace Entity_Test.Organization_Test
         public void 社員の所属組織取得()
         {
             var builder = new BuilderMock();
-            var targetOrganization = builder.TestTargetOrganization;
+            var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
             var organization = new Organization(builder);
 
@@ -127,7 +134,7 @@ namespace Entity_Test.Organization_Test
         public void 社員の役職取得_直属社員()
         {
             var builder = new BuilderMock();
-            var targetOrganization = builder.TestTargetOrganization;
+            var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
             var organization = new Organization(builder);
 
@@ -213,7 +220,9 @@ namespace Entity_Test.Organization_Test
 
             #region Properties ------------------------------------------------------------------------------------
 
-            public OrganizationBase TestTargetOrganization { get; } = new TerminalOrganization(new("2"));
+            public OrganizationBase TestTargetOrganization1 { get; } = new TerminalOrganization(new("2"));
+
+            public OrganizationBase TestTargetOrganization2 { get; } = new TerminalOrganization(new("5"));
 
             #endregion --------------------------------------------------------------------------------------------
 
@@ -233,10 +242,10 @@ namespace Entity_Test.Organization_Test
             {
                 // 組織構築
                 var a = new TerminalOrganization(new("1"));
-                var b = TestTargetOrganization;
+                var b = TestTargetOrganization1;
                 var c = new ManagementOrganization(new("3"), Lanks.Section, new() { a, b });
                 var d = new TerminalOrganization(new("4"));
-                var e = new TerminalOrganization(new("5"));
+                var e = TestTargetOrganization2;
                 var f = new ManagementOrganization(new("6"), Lanks.Section, new() { d, e });
                 var top = new ManagementOrganization(new("7"), Lanks.Department, new() { c, f });
 

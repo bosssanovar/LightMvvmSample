@@ -122,16 +122,15 @@ namespace Entity.Organization
         /// <exception cref="ArgumentException">指定社員は組織内に存在しない場合</exception>
         public Posts GetPost(Person person)
         {
-            //var visitor = new GetCurrentPositionVisitor(person);
-            //_topOrganization.Accept(visitor);
+            var visitor = new GetCurrentPositionVisitor(person);
+            _topOrganization.Accept(visitor);
 
-            //if (visitor.AssignedOrganization is null)
-            //{
-            //    throw new ArgumentException("指定社員は組織内に存在しません。", nameof(person));
-            //}
+            if (visitor.AssignedOrganization is null)
+            {
+                throw new ArgumentException("指定社員は組織内に存在しません。", nameof(person));
+            }
 
-            //return visitor.Post;
-            throw new NotFiniteNumberException();
+            return visitor.Post;
         }
 
         /// <summary>
@@ -141,7 +140,7 @@ namespace Entity.Organization
         /// <param name="organization">対象組織</param>
         /// <returns>前の組織長</returns>
         /// <exception cref="ArgumentException">指定社員は組織内に存在しない場合</exception>
-        public Person UpdateBoss(Person newBoss, OrganizationBase organization)
+        public Person ChangeBoss(Person newBoss, OrganizationBase organization)
         {
             // TODO K.I : 既に所属している組織から抜く。新規配属（中途採用）にも対応。
             var visitor = new ChangeBossVisitor(newBoss, organization);
