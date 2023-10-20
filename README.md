@@ -189,6 +189,41 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 
 ---
 
+## Visual Studio環境構築
+
+効率的に開発を進めるために、Visual Studioの機能拡張はもはや必須。  
+プレーンで使っているなんて怠惰ですね。の勢いで、地味に作業効率と開発快適性が上がる、もはや無くてはならないレベル。
+
+### CodeNavi 2022
+
+開いているC#ファイルのコード構成を表示する拡張機能。  
+クラスの規模感が見える化される、目的のメンバにスクロール不要で直接飛べる、実装時にフィールド名
+等がすぐ見れてコーディングしやすい、と、良いことしかない。  
+https://marketplace.visualstudio.com/items?itemName=SamirBoulema.CodeNav
+
+![無題](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/93f829a0-4ffa-4758-a72e-9b393f1460ce)
+
+### Notifier 2022
+
+ビルドが完了したことを、ウィンドウズの通知で教えてくれる。  
+TDDしていると、いつテストが終わったのかわかりにくいが、これを入れていると、ビルドが終わったことがぼーっとしていても知れるので、そこからテストが始まるのがわかり、意識的にテスト完了待ちをする必要がある時間が削減で着て、省エネ。
+
+https://github.com/NDiiong/Notifier
+
+![sample](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/f254098d-3a2e-4edb-8b19-98460a53dbfd)
+
+### Error Catcher
+
+エラー、警告、情報の件数が、コードエディタ上に表示される。  
+エラーウィンドウを開く手間が減るので省エネ。  
+エラーウィンドウ開いてみたら大惨事、ってことがなくなり、いつでもエラーが1件でも出た瞬間に知れるので、ストレス軽減。
+
+![adornment](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/db576024-7d08-4a0f-b05d-ddfe77452ca2)
+
+https://github.com/NDiiong/Watcher
+
+---
+
 ## ミニトピック
 
 * Regionを一気に閉じるため「Collapse All Regions」をVisual Studioの拡張機能で追加。「Ctrl+M, Ctrl+R」で一気に閉じる。一気に開くときは標準の「Ctrl+M, Ctrl+L」で。  
