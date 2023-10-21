@@ -48,6 +48,11 @@ namespace Entity.Organization
         public ManagementOrganization(OrganizationNameVO name, Lanks lank, List<OrganizationBase> lowerOrganizations)
             : base(name, lank)
         {
+            if (!IsValidLank(lank))
+            {
+                throw new ArgumentOutOfRangeException("指定が許可された範囲外です。", nameof(lank));
+            }
+
             _lowerOrganizations = lowerOrganizations;
         }
 
@@ -79,6 +84,21 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private static bool IsValidLank(Lanks lank)
+        {
+            switch (lank)
+            {
+                case Lanks.Campany:
+                case Lanks.Department:
+                case Lanks.Section:
+                    return true;
+                case Lanks.Team:
+                    return false;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(lank));
+            }
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

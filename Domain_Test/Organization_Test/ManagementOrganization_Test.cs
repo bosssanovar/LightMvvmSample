@@ -14,8 +14,19 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void コンストラクタ_例外()
         {
-            // TODO K.I : テスト Lankに有効以外を指定
-            throw new NotImplementedException();
+            try
+            {
+                var a = new ManagementOrganization(new("aa"), Lanks.Team, new List<OrganizationBase>());
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return;
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+            Assert.Fail();
         }
 
         [Theory]

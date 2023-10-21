@@ -149,7 +149,6 @@ namespace Entity_Test.Organization_Test
         [InlineData(Lanks.Campany)]
         [InlineData(Lanks.Department)]
         [InlineData(Lanks.Section)]
-        [InlineData(Lanks.Team)]
         public void 組織ランク名称(Lanks lank)
         {
             var name = "aaaabbbccc";
@@ -158,6 +157,17 @@ namespace Entity_Test.Organization_Test
             a.SetBoss(boss);
 
             Assert.True(a.DisplayName == (name + lank.GetDisplayText()));
+        }
+
+        [Fact]
+        public void 組織ランク名称_Team()
+        {
+            var name = "aaaabbbccc";
+            var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
+            var a = new TerminalOrganization(new(name));
+            a.SetBoss(boss);
+
+            Assert.True(a.DisplayName == (name + Lanks.Team.GetDisplayText()));
         }
     }
 }
