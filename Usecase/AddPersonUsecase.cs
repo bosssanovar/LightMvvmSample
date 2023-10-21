@@ -61,23 +61,16 @@ namespace Usecase
         {
             var people = _peopleRepository.LoadPeople();
 
-            if (people.Persons.Any(x => x.SameIdentityAs(person)))
+            if (people.IsContain(person))
             {
-                // TODO K.I : こっちの場合は何もしない
-                //person.CopyTo(people.Persons.Single(x => x.HasSameIdentity(person)));
-
-                //_peopleRepository.SavePeople(people);
-
-                //OnUpdatePerson?.Invoke(person);
+                throw new ArgumentException("重複登録です。", nameof(person));
             }
-            else
-            {
-                people.AddPerson(person);
 
-                _peopleRepository.SavePeople(people);
+            people.AddPerson(person);
 
-                OnAddPerson?.Invoke(person);
-            }
+            _peopleRepository.SavePeople(people);
+
+            OnAddPerson?.Invoke(person);
         }
 
         #endregion --------------------------------------------------------------------------------------------

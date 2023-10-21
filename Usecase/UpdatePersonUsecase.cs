@@ -61,9 +61,8 @@ namespace Usecase
         {
             var people = _peopleRepository.LoadPeople();
 
-            if (people.Persons.Any(x => x.SameIdentityAs(person)))
+            if (people.IsContain(person))
             {
-                //person.CopyTo(people.Persons.Single(x => x == person));
                 people.UpdatePersons(person);
 
                 _peopleRepository.SavePeople(people);
@@ -72,12 +71,7 @@ namespace Usecase
             }
             else
             {
-                // TODO K.I : こっちの場合は何もしない
-                //people.AddPerson(person);
-
-                //_peopleRepository.SavePeople(people);
-
-                //OnAddPerson?.Invoke(person);
+                throw new ArgumentException("個人情報が存在しません。", nameof(person));
             }
         }
 

@@ -114,6 +114,16 @@ namespace Entity.Persons
             return ret;
         }
 
+        /// <summary>
+        /// 個人情報が既に登録済みかを取得します。
+        /// </summary>
+        /// <param name="person">確認する個人情報</param>
+        /// <returns>登録済みの場合 true</returns>
+        public bool IsContain(Person person)
+        {
+            return _persons.Any(x => x.SameIdentityAs(person));
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------

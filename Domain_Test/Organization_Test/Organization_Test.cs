@@ -306,7 +306,6 @@ namespace Entity_Test.Organization_Test
         public void 社員の退社_例外()
         {
             var builder = new BuilderMock();
-            var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
             var organization = new Organization(builder);
 
