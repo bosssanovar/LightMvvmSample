@@ -163,7 +163,7 @@ namespace Entity_Test.Organization_Test
         public void 新組織に組織長設定_例外()
         {
             var builder = new BuilderMock();
-            var targetOrganization = new ManagementOrganization(new("aa"), Lanks.Department, new());
+            var targetOrganization = new ManagementOrganization(new("aa"), Ranks.Department, new());
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
             var organization = new Organization(builder);
 
@@ -437,11 +437,11 @@ namespace Entity_Test.Organization_Test
                 // 組織構築
                 var a = new TerminalOrganization(new("1"));
                 var b = TestTargetOrganization1;
-                var c = new ManagementOrganization(new("3"), Lanks.Section, new() { a, b });
+                var c = new ManagementOrganization(new("3"), Ranks.Section, new() { a, b });
                 var d = new TerminalOrganization(new("4"));
                 var e = TestTargetOrganization2;
-                var f = new ManagementOrganization(new("6"), Lanks.Section, new() { d, e });
-                var top = new ManagementOrganization(new("7"), Lanks.Department, new() { c, f });
+                var f = new ManagementOrganization(new("6"), Ranks.Section, new() { d, e });
+                var top = new ManagementOrganization(new("7"), Ranks.Department, new() { c, f });
 
                 return top;
             }

@@ -45,7 +45,7 @@ namespace Entity.Service
         {
             List<OrganizationBase> departmentList = GetDepartmentList();
 
-            var campany = new ManagementOrganization(new("●●エンジニアリング"), Lanks.Campany, departmentList);
+            var campany = new ManagementOrganization(new("●●エンジニアリング"), Ranks.Campany, departmentList);
 
             return campany;
         }
@@ -67,7 +67,7 @@ namespace Entity.Service
             {
                 List<OrganizationBase> sectionList = GetSectionList();
 
-                ret.Add(new ManagementOrganization(new($"第{index + 1}技術"), Lanks.Department, sectionList));
+                ret.Add(new ManagementOrganization(new($"第{index + 1}技術"), Ranks.Department, sectionList));
             }
 
             return ret;
@@ -82,7 +82,7 @@ namespace Entity.Service
             {
                 List<OrganizationBase> teamList = GetTeamList();
 
-                ret.Add(new ManagementOrganization(new($"第{index + 1}"), Lanks.Section, teamList));
+                ret.Add(new ManagementOrganization(new($"第{index + 1}"), Ranks.Section, teamList));
             }
 
             return ret;

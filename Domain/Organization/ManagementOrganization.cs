@@ -43,21 +43,21 @@ namespace Entity.Organization
         /// コンストラクタ
         /// </summary>
         /// <param name="name">組織名</param>
-        /// <param name="lank">組織ランク</param>
+        /// <param name="rank">組織ランク</param>
         /// <param name="lowerOrganizations">下位組織</param>
-        public ManagementOrganization(OrganizationNameVO name, Lanks lank, List<OrganizationBase> lowerOrganizations)
-            : base(name, lank)
+        public ManagementOrganization(OrganizationNameVO name, Ranks rank, List<OrganizationBase> lowerOrganizations)
+            : base(name, rank)
         {
-            if (!IsValidLank(lank))
+            if (!IsValidLank(rank))
             {
-                throw new ArgumentOutOfRangeException("指定が許可された範囲外です。", nameof(lank));
+                throw new ArgumentOutOfRangeException("指定が許可された範囲外です。", nameof(rank));
             }
 
             _lowerOrganizations = lowerOrganizations;
         }
 
-        private ManagementOrganization(int identifier, OrganizationNameVO name, Lanks lank, Person? boss, List<OrganizationBase> lowerOrganizations)
-            : base(identifier, name, lank, boss)
+        private ManagementOrganization(int identifier, OrganizationNameVO name, Ranks rank, Person? boss, List<OrganizationBase> lowerOrganizations)
+            : base(identifier, name, rank, boss)
         {
             _lowerOrganizations = lowerOrganizations;
         }
@@ -74,7 +74,7 @@ namespace Entity.Organization
         /// <returns>複製したインスタンス</returns>
         public override ManagementOrganization Clone()
         {
-            return new ManagementOrganization(Identifier, Name.Clone(), Lank, Boss?.Clone(), _lowerOrganizations.Select(x => x.Clone()).ToList());
+            return new ManagementOrganization(Identifier, Name.Clone(), Rank, Boss?.Clone(), _lowerOrganizations.Select(x => x.Clone()).ToList());
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -85,18 +85,18 @@ namespace Entity.Organization
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private static bool IsValidLank(Lanks lank)
+        private static bool IsValidLank(Ranks rank)
         {
-            switch (lank)
+            switch (rank)
             {
-                case Lanks.Campany:
-                case Lanks.Department:
-                case Lanks.Section:
+                case Ranks.Campany:
+                case Ranks.Department:
+                case Ranks.Section:
                     return true;
-                case Lanks.Team:
+                case Ranks.Team:
                     return false;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(lank));
+                    throw new ArgumentOutOfRangeException(nameof(rank));
             }
         }
 

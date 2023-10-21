@@ -25,7 +25,7 @@ namespace Entity_Test.DomainService_Test
             b.SetBoss(new Person(new("2", "boss"), new(1000, 1, 1)));
             b.AddMember(new Person(new("2", "1"), new(1000, 1, 1)));
             b.AddMember(new Person(new("2", "2"), new(1000, 1, 1)));
-            var c = new ManagementOrganization(new("3"), Lanks.Section, new() { a, b });
+            var c = new ManagementOrganization(new("3"), Ranks.Section, new() { a, b });
             c.SetBoss(new Person(new("3", "boss"), new(1000, 1, 1)));
             c.AddMember(new Person(new("3", "1"), new(1000, 1, 1)));
             c.AddMember(new Person(new("3", "2"), new(1000, 1, 1)));
@@ -39,12 +39,12 @@ namespace Entity_Test.DomainService_Test
             e.SetBoss(new Person(new("5", "boss"), new(1000, 1, 1)));
             e.AddMember(new Person(new("5", "1"), new(1000, 1, 1)));
             e.AddMember(new Person(new("5", "2"), new(1000, 1, 1)));
-            var f = new ManagementOrganization(new("6"), Lanks.Section, new() { d, e });
+            var f = new ManagementOrganization(new("6"), Ranks.Section, new() { d, e });
             f.SetBoss(new Person(new("6", "boss"), new(1000, 1, 1)));
             f.AddMember(new Person(new("6", "1"), new(1000, 1, 1)));
             f.AddMember(new Person(new("6", "2"), new(1000, 1, 1)));
             f.AddMember(new Person(new("6", "3"), new(1000, 1, 1)));
-            var top = new ManagementOrganization(new("7"), Lanks.Department, new() { c, f });
+            var top = new ManagementOrganization(new("7"), Ranks.Department, new() { c, f });
             top.SetBoss(new Person(new("7", "boss"), new(1000, 1, 1)));
             top.AddMember(new Person(new("7", "1"), new(1000, 1, 1)));
             top.AddMember(new Person(new("7", "2"), new(1000, 1, 1)));

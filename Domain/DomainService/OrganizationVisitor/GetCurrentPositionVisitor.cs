@@ -82,7 +82,7 @@ namespace Entity.DomainService.OrganizationVisitor
             else if (target.IsBoss(_targetParson))
             {
                 AssignedOrganization = target;
-                Post = target.Lank.GetBossPost();
+                Post = target.Rank.GetBossPost();
 
                 _isSearched = true;
             }

@@ -31,12 +31,12 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="name">社名</param>
         public TerminalOrganization(OrganizationNameVO name)
-            : base(name, Lanks.Team)
+            : base(name, Ranks.Team)
         {
         }
 
         private TerminalOrganization(int identifier, OrganizationNameVO name, Person? boss)
-            : base(identifier, name, Lanks.Team, boss)
+            : base(identifier, name, Ranks.Team, boss)
         {
         }
 

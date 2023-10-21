@@ -28,12 +28,12 @@ namespace Entity_Test.DomainService_Test
             b.SetBoss(new Person(new("2", "boss"), new(1000, 1, 1)));
             b.AddMember(new Person(new("2", "1"), new(1000, 1, 1)));
             //b.AddMember(target2);
-            var c = new ManagementOrganization(new("3"), Lanks.Section, new() { a, b });
+            var c = new ManagementOrganization(new("3"), Ranks.Section, new() { a, b });
             c.SetBoss(new Person(new("3", "boss"), new(1000, 1, 1)));
             c.AddMember(new Person(new("3", "1"), new(1000, 1, 1)));
             c.AddMember(new Person(new("3", "2"), new(1000, 1, 1)));
             //c.AddMember(target); // ※ target here!
-            var top = new ManagementOrganization(new("4"), Lanks.Department, new() { c });
+            var top = new ManagementOrganization(new("4"), Ranks.Department, new() { c });
             top.SetBoss(new Person(new("4", "boss"), new(1000, 1, 1)));
             top.AddMember(new Person(new("4", "1"), new(1000, 1, 1)));
             top.AddMember(new Person(new("4", "2"), new(1000, 1, 1)));

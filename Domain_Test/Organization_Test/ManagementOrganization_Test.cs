@@ -16,7 +16,7 @@ namespace Entity_Test.Organization_Test
         {
             try
             {
-                var a = new ManagementOrganization(new("aa"), Lanks.Team, new List<OrganizationBase>());
+                var a = new ManagementOrganization(new("aa"), Ranks.Team, new List<OrganizationBase>());
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -38,10 +38,10 @@ namespace Entity_Test.Organization_Test
             var a = new List<OrganizationBase>();
             for(int i=0; i<count; i++)
             {
-                a.Add(new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>()));
+                a.Add(new ManagementOrganization(new("aa"), Ranks.Department, new List<OrganizationBase>()));
             }
 
-            var b = new ManagementOrganization(new("aa"), Lanks.Department, a);
+            var b = new ManagementOrganization(new("aa"), Ranks.Department, a);
 
             Assert.Equal(count, b.OrganizationCount);
         }
@@ -58,7 +58,7 @@ namespace Entity_Test.Organization_Test
                 a.Add(new TerminalOrganization(new("aa")));
             }
 
-            var b = new ManagementOrganization(new("aa"), Lanks.Section, a);
+            var b = new ManagementOrganization(new("aa"), Ranks.Section, a);
 
             Assert.Equal(count, b.OrganizationCount);
         }
@@ -69,9 +69,9 @@ namespace Entity_Test.Organization_Test
             var a = new List<OrganizationBase>();
             for (int i = 0; i < 10; i++)
             {
-                a.Add(new ManagementOrganization(new("aa"), Lanks.Section, new List<OrganizationBase>()));
+                a.Add(new ManagementOrganization(new("aa"), Ranks.Section, new List<OrganizationBase>()));
             }
-            var b = new ManagementOrganization(new("aa"), Lanks.Department, a);
+            var b = new ManagementOrganization(new("aa"), Ranks.Department, a);
 
             var c = b.Clone();
 

@@ -89,18 +89,18 @@ namespace Entity.DomainService.OrganizationVisitor
 
         private void CreateName(ManagementOrganization organization)
         {
-            if (organization.Lank == Lanks.Campany)
+            if (organization.Rank == Ranks.Campany)
             {
                 _upperDepartment = null;
                 _upperSection = null;
                 return;
             }
-            else if (organization.Lank == Lanks.Department)
+            else if (organization.Rank == Ranks.Department)
             {
                 _upperDepartment = organization;
                 _upperSection = null;
             }
-            else if (organization.Lank == Lanks.Section)
+            else if (organization.Rank == Ranks.Section)
             {
                 _upperSection = organization;
             }
