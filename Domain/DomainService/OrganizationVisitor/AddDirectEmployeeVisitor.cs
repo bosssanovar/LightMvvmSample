@@ -30,7 +30,7 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <summary>
         /// 追加が完了したかを取得します。
         /// </summary>
-        public bool IsCompleted { get; private set; } = false;
+        public bool IsAdded { get; private set; } = false;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <param name="target">ターゲット</param>
         public void Visit(OrganizationBase target)
         {
-            if (IsCompleted)
+            if (IsAdded)
             {
                 return;
             }
@@ -72,7 +72,7 @@ namespace Entity.DomainService.OrganizationVisitor
             {
                 target.AddMember(_targetPerson);
 
-                IsCompleted = true;
+                IsAdded = true;
             }
         }
 

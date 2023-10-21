@@ -22,6 +22,8 @@ namespace Entity.DomainService.OrganizationVisitor
 
         private readonly Person _targetParson;
 
+        private bool _isSearched = false;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -65,15 +67,24 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <param name="target">ターゲット</param>
         public void Visit(OrganizationBase target)
         {
+            if(_isSearched)
+            {
+                return;
+            }
+
             if (target.IsContainDirectEmployee(_targetParson))
             {
                 AssignedOrganization = target;
                 Post = Posts.Employee;
+
+                _isSearched = true;
             }
             else if (target.IsBoss(_targetParson))
             {
                 AssignedOrganization = target;
                 Post = target.Lank.GetBossPost();
+
+                _isSearched = true;
             }
         }
 

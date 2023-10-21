@@ -2,6 +2,7 @@
 using Entity.DomainService.OrganizationVisitor;
 using Entity.Persons;
 using Entity.Service;
+using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,6 +32,16 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 前の組織長がはじき出されたイベント
+        /// </summary>
+        public event Action<OnKickedOutOldBossEnventArgs> OnKickedOutOldBoss;
+
+        /// <summary>
+        /// 組織長ポストが空欄となった場合に発行されるイベント
+        /// </summary>
+        public event Action<OnBecameVacantBossPositionEventArgs> OnBecameVacantBossPosition;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -83,16 +94,25 @@ namespace Entity.Organization
         /// 直属社員を指定組織に異動します。新規配属にも対応。
         /// </summary>
         /// <param name="person">異動する社員</param>
-        /// <param name="organization">社員を追加する組織</param>
-        public void RelocateEmployee(Person person, OrganizationBase organization)
+        /// <param name="newOrganization">社員を追加する組織</param>
+        public void RelocateEmployee(Person person, OrganizationBase newOrganization)
         {
-            // TODO K.I : 既に所属している場合には、そこから抜く
-            var visitor = new AddDirectEmployeeVisitor(person, organization);
-            _topOrganization.Accept(visitor);
+            // 既に所属している場合には、そこから抜く
+            var removeVisitor = new RemovePersonVisitor(person);
+            _topOrganization.Accept(removeVisitor);
 
-            if (!visitor.IsCompleted)
+            if (!removeVisitor.IsRemoved)
             {
-                throw new ArgumentException("追加対象の組織がありません。", nameof(organization));
+                // 新規配属。現状、機能なし
+            }
+
+            // 新しい組織に加入
+            var addVisitor = new AddDirectEmployeeVisitor(person, newOrganization);
+            _topOrganization.Accept(addVisitor);
+
+            if (!addVisitor.IsAdded)
+            {
+                throw new ArgumentException("追加対象の組織がありません。", nameof(newOrganization));
             }
         }
 
@@ -106,12 +126,12 @@ namespace Entity.Organization
             var visitor = new GetCurrentPositionVisitor(person);
             _topOrganization.Accept(visitor);
 
-            if(visitor.AssignedOrganization is null)
+            if (visitor.AssignedOrganization is null)
             {
                 throw new ArgumentException("指定社員は組織内に存在しません。", nameof(person));
             }
 
-            return visitor.AssignedOrganization;
+            return visitor.AssignedOrganization.Clone();
         }
 
         /// <summary>
@@ -134,19 +154,58 @@ namespace Entity.Organization
         }
 
         /// <summary>
-        /// 組織長を変更します。
+        /// 組織長を設定します。
+        /// 前の組織長がはじき出される際には<see cref="OnKickedOutOldBoss"/>イベントを発行します。
+        /// 新しい組織長に指定された社員は、元居た部署から削除されます。
         /// </summary>
         /// <param name="newBoss">対象社員</param>
         /// <param name="organization">対象組織</param>
-        /// <returns>前の組織長</returns>
-        /// <exception cref="ArgumentException">指定社員は組織内に存在しない場合</exception>
-        public Person ChangeBoss(Person newBoss, OrganizationBase organization)
+        public void SetBoss(Person newBoss, OrganizationBase organization)
         {
-            // TODO K.I : 既に所属している組織から抜く。新規配属（中途採用）にも対応。
-            var visitor = new ChangeBossVisitor(newBoss, organization);
-            _topOrganization.Accept(visitor);
+            /* TODO K.I : 既に所属している組織から抜く。新規配属（中途採用）にも対応。*/
 
-            throw new NotFiniteNumberException();
+            var visitor = new SetBossVisitor(newBoss, organization);
+            visitor.OnKickedOutOldBoss += Visitor_OnKickedOutOldBoss;
+            _topOrganization.Accept(visitor);
+            visitor.OnKickedOutOldBoss -= Visitor_OnKickedOutOldBoss;
+
+            if (!visitor.IsSetted)
+            {
+                throw new ArgumentException("指定した組織が存在しません。", nameof(organization));
+            }
+        }
+
+        /// <summary>
+        /// 組織長を取得します。
+        /// </summary>
+        /// <param name="organization">対象組織</param>
+        /// <returns>組織長</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:メンバーを static に設定します", Justification = "<保留中>")]
+        public Person GetBoss(OrganizationBase organization)
+        {
+            if (organization.Boss is null)
+            {
+                throw new ArgumentException("引数で指定された組織に、組織長が設定されていません。");
+            }
+
+            return organization.Boss.Clone();
+        }
+
+        /// <summary>
+        /// 退職します。
+        /// </summary>
+        /// <param name="targetPerson">退職する社員</param>
+        public void Leave(Person targetPerson)
+        {
+            var visitor = new RemovePersonVisitor(targetPerson);
+            visitor.OnBecameVacantBossPosition += Visitor_OnBecameVacantBossPosition;
+            _topOrganization.Accept(visitor);
+            visitor.OnBecameVacantBossPosition -= Visitor_OnBecameVacantBossPosition;
+
+            if (!visitor.IsRemoved)
+            {
+                throw new ArgumentException("指定した社員は組織内に存在しません。", nameof(targetPerson));
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -156,6 +215,16 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private void Visitor_OnKickedOutOldBoss(OnKickedOutOldBossEnventArgs args)
+        {
+            OnKickedOutOldBoss?.Invoke(args);
+        }
+
+        private void Visitor_OnBecameVacantBossPosition(OnBecameVacantBossPositionEventArgs args)
+        {
+            OnBecameVacantBossPosition?.Invoke(args);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

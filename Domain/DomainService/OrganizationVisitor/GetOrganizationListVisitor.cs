@@ -72,7 +72,7 @@ namespace Entity.DomainService.OrganizationVisitor
                 CreateName(t);
             }
 
-            _organizations.Add(new(_name, target));
+            _organizations.Add(new(_name, target.Clone()));
         }
 
         #endregion --------------------------------------------------------------------------------------------

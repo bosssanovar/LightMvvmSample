@@ -3,6 +3,7 @@ using Entity.Persons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -101,18 +102,30 @@ namespace Entity_Test.Organization_Test
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
             var a = new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>());
-            a.ChangeBoss(boss);
-
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
-            Assert.True(a.IsBoss(boss));
+            Assert.False(a.IsBoss(boss));
+            Assert.False(a.IsBoss(p1));
+            Assert.False(a.IsContainDirectEmployee(boss));
             Assert.False(a.IsContainDirectEmployee(p1));
 
-            var old = a.ChangeBoss(p1);
+            a.ChangeBoss(boss);
 
+            Assert.True(a.IsBoss(boss));
+            Assert.False(a.IsBoss(p1));
             Assert.False(a.IsContainDirectEmployee(boss));
+            Assert.False(a.IsContainDirectEmployee(p1));
+
+            a.OnKickedOutOldBoss += (arg) =>
+            {
+                Assert.True(arg.OldBoss.SameIdentityAs(boss));
+            };
+            a.ChangeBoss(p1);
+
+            Assert.False(a.IsBoss(boss));
             Assert.True(a.IsBoss(p1));
-            Assert.True(old.SameIdentityAs(boss));
+            Assert.False(a.IsContainDirectEmployee(boss));
+            Assert.False(a.IsContainDirectEmployee(p1));
         }
 
         [Theory]

@@ -34,7 +34,7 @@ namespace Entity.Organization
         /// <summary>
         /// 組織長
         /// </summary>
-        protected Person Boss { get; private set; } = new(new(string.Empty, string.Empty), new(1, 1, 1));
+        internal Person? Boss { get; private set; }
 
         /// <summary>
         /// 組織名称
@@ -44,7 +44,7 @@ namespace Entity.Organization
         /// <summary>
         /// 組織ランク
         /// </summary>
-        public Lanks Lank { get; private set; }
+        internal Lanks Lank { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -79,6 +79,16 @@ namespace Entity.Organization
 
         #region Events ----------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 組織長が交代して、前の組織長の所属が未定となった場合に発行されるイベント
+        /// </summary>
+        internal event Action<OnKickedOutOldBossEnventArgs> OnKickedOutOldBoss;
+
+        /// <summary>
+        /// 組織長ポストが空欄となった場合に発行されるイベント
+        /// </summary>
+        internal event Action<OnBecameVacantBossPositionEventArgs> OnBecameVacantBossPosition;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -102,7 +112,7 @@ namespace Entity.Organization
         /// <param name="name">組織名称</param>
         /// <param name="lank">組織ランク</param>
         /// <param name="boss">組織長</param>
-        protected OrganizationBase(int identifier, OrganizationNameVO name, Lanks lank, Person boss)
+        protected OrganizationBase(int identifier, OrganizationNameVO name, Lanks lank, Person? boss)
         {
             Identifier = identifier;
             Name = name;
@@ -188,6 +198,11 @@ namespace Entity.Organization
         /// <returns>組織長ならtrue</returns>
         internal bool IsBoss(Person boss)
         {
+            if(Boss is null)
+            {
+                return false;
+            }
+
             if(Boss.SameIdentityAs(boss))
             {
                 return true;
@@ -200,14 +215,26 @@ namespace Entity.Organization
         /// 組織長を変更します。
         /// </summary>
         /// <param name="newBoss">新しい組織長</param>
-        /// <returns>元の組織長</returns>
-        internal Person ChangeBoss(Person newBoss)
+        internal void ChangeBoss(Person newBoss)
         {
-            var ret = Boss;
+            var oldBoss = Boss;
 
             Boss = newBoss;
 
-            return ret;
+            if (oldBoss is not null)
+            {
+                OnKickedOutOldBoss?.Invoke(new OnKickedOutOldBossEnventArgs(oldBoss));
+            }
+        }
+
+        /// <summary>
+        /// ボスが離職します。
+        /// </summary>
+        internal void RemoveBoss()
+        {
+            Boss = null;
+
+            OnBecameVacantBossPosition?.Invoke(new(this));
         }
 
         /// <summary>
