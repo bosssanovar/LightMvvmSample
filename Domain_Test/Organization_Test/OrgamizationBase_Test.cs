@@ -17,7 +17,7 @@ namespace Entity_Test.Organization_Test
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
             var a = new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>());
-            a.ChangeBoss(boss);
+            a.SetBoss(boss);
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
             var p2 = new Person(new("eeee", "ffff"), new(1000, 1, 1));
@@ -44,7 +44,7 @@ namespace Entity_Test.Organization_Test
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
             var a = new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>());
-            a.ChangeBoss(boss);
+            a.SetBoss(boss);
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
@@ -70,7 +70,7 @@ namespace Entity_Test.Organization_Test
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
             var a = new ManagementOrganization(new("aa"), Lanks.Department, new List<OrganizationBase>());
-            a.ChangeBoss(boss);
+            a.SetBoss(boss);
 
             var p1 = new Person(new("ccc", "ddd"), new(1000, 1, 1));
 
@@ -109,7 +109,7 @@ namespace Entity_Test.Organization_Test
             Assert.False(a.IsContainDirectEmployee(boss));
             Assert.False(a.IsContainDirectEmployee(p1));
 
-            a.ChangeBoss(boss);
+            a.SetBoss(boss);
 
             Assert.True(a.IsBoss(boss));
             Assert.False(a.IsBoss(p1));
@@ -120,7 +120,7 @@ namespace Entity_Test.Organization_Test
             {
                 Assert.True(arg.OldBoss.SameIdentityAs(boss));
             };
-            a.ChangeBoss(p1);
+            a.SetBoss(p1);
 
             Assert.False(a.IsBoss(boss));
             Assert.True(a.IsBoss(p1));
@@ -140,7 +140,7 @@ namespace Entity_Test.Organization_Test
         {
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
             var a = new ManagementOrganization(new(name), Lanks.Department, new List<OrganizationBase>());
-            a.ChangeBoss(boss);
+            a.SetBoss(boss);
 
             Assert.True(a.DisplayName == (name + Lanks.Department.GetDisplayText()));
         }
@@ -155,7 +155,7 @@ namespace Entity_Test.Organization_Test
             var name = "aaaabbbccc";
             var boss = new Person(new("aaa", "bbb"), new(1000, 1, 1));
             var a = new ManagementOrganization(new(name), lank, new List<OrganizationBase>());
-            a.ChangeBoss(boss);
+            a.SetBoss(boss);
 
             Assert.True(a.DisplayName == (name + lank.GetDisplayText()));
         }

@@ -31,7 +31,7 @@ namespace Entity_Test.DomainService_Test
             c.AddMember(new Person(new("3", "1"), new(1000, 1, 1)));
             c.AddMember(new Person(new("3", "2"), new(1000, 1, 1)));
             c.AddMember(target); // ※ target here!
-            c.ChangeBoss(targetBoss);
+            c.SetBoss(targetBoss);
             var top = new ManagementOrganization(new("4"), Lanks.Department, new() { c });
             top.AddMember(new Person(new("4", "1"), new(1000, 1, 1)));
             top.AddMember(new Person(new("4", "2"), new(1000, 1, 1)));

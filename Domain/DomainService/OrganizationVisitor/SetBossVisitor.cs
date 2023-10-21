@@ -71,7 +71,7 @@ namespace Entity.DomainService.OrganizationVisitor
             if(target.SameIdentityAs(_targetOrganization))
             {
                 target.OnKickedOutOldBoss += Target_OnKickedOutOldBoss;
-                target.ChangeBoss(_newBoss);
+                target.SetBoss(_newBoss);
                 target.OnKickedOutOldBoss -= Target_OnKickedOutOldBoss;
 
                 IsSetted = true;

@@ -212,10 +212,12 @@ namespace Entity.Organization
         }
 
         /// <summary>
-        /// 組織長を変更します。
+        /// 組織長を設定します。
+        /// 組織長が既に設定されている場合には元組織長として所属が無くなるので、
+        /// <see cref="OnKickedOutOldBoss"/>イベントが発行されます。
         /// </summary>
         /// <param name="newBoss">新しい組織長</param>
-        internal void ChangeBoss(Person newBoss)
+        internal void SetBoss(Person newBoss)
         {
             var oldBoss = Boss;
 

@@ -387,16 +387,20 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織長交代()
         {
-            // TODO K.I : テスト未実装
+            var builder = new BuilderMock();
+            var targetOrganization = builder.TestTargetOrganization1;
+            var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+            var boss2 = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+            var organization = new Organization(builder);
 
-            throw new NotImplementedException();
-        }
+            organization.OnKickedOutOldBoss += (args) =>
+            {
+                Assert.True(args.OldBoss.SameIdentityAs(boss));
+            };
+            organization.SetBoss(boss, targetOrganization);
+            organization.SetBoss(boss2, targetOrganization);
 
-        [Fact]
-        public void 組織長交代_例外()
-        {
-            // TODO K.I : テスト未実装
-            throw new NotImplementedException();
+            Assert.True(boss2.SameIdentityAs(organization.GetBoss(targetOrganization)));
         }
 
         private class BuilderMock : IOrganizationBuilder

@@ -24,7 +24,7 @@ namespace Entity_Test.DomainService_Test
             a.AddMember(new Person(new("1", "2"), new(1000, 1, 1)));
             a.AddMember(new Person(new("1", "3"), new(1000, 1, 1)));
             var b = new TerminalOrganization(new("2"));
-            b.ChangeBoss(boss);
+            b.SetBoss(boss);
             b.AddMember(new Person(new("2", "1"), new(1000, 1, 1)));
             var c = new ManagementOrganization(new("3"), Lanks.Section, new() { a, b });
             c.AddMember(new Person(new("3", "1"), new(1000, 1, 1)));

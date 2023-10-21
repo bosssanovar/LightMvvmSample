@@ -21,7 +21,7 @@ namespace Entity_Test.DomainService_Test
 
             // 組織構築
             var a = new TerminalOrganization(new("1"));
-            a.ChangeBoss(targetBoss);
+            a.SetBoss(targetBoss);
             a.AddMember(new Person(new("1", "1"), new(1000, 1, 1)));
             a.AddMember(new Person(new("1", "2"), new(1000, 1, 1)));
             a.AddMember(new Person(new("1", "3"), new(1000, 1, 1)));
