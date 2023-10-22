@@ -50,7 +50,7 @@ namespace Entity.Organization
         {
             if (!IsValidLank(rank))
             {
-                throw new ArgumentOutOfRangeException("指定が許可された範囲外です。", nameof(rank));
+                throw new ArgumentOutOfRangeException(nameof(rank), "指定が許可された範囲外です。");
             }
 
             _lowerOrganizations = lowerOrganizations;
@@ -87,17 +87,12 @@ namespace Entity.Organization
 
         private static bool IsValidLank(Ranks rank)
         {
-            switch (rank)
+            return rank switch
             {
-                case Ranks.Campany:
-                case Ranks.Department:
-                case Ranks.Section:
-                    return true;
-                case Ranks.Team:
-                    return false;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(rank));
-            }
+                Ranks.Campany or Ranks.Department or Ranks.Section => true,
+                Ranks.Team => false,
+                _ => throw new ArgumentOutOfRangeException(nameof(rank)),
+            };
         }
 
         #endregion --------------------------------------------------------------------------------------------
