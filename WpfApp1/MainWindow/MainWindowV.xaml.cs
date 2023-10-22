@@ -29,6 +29,7 @@ namespace WpfApp1.MainWindow
             _updatePersonUsecase = PersonUsecaseProvider.UpdatePersonUsecase;
             _addPersonUsecase = PersonUsecaseProvider.AddPersonUsecase;
             _removePersonUsecase = PersonUsecaseProvider.RemovePersonUsecase;
+            _personListViewUsecase = PersonUsecaseProvider.PersonListViewUsecase;
 
             _model = new MainWindowM();
 
@@ -42,7 +43,7 @@ namespace WpfApp1.MainWindow
                     var ret = new PersonVM(x);
                     ret.OnEdit += (model) =>
                     {
-                        var editWindow = new EditWindowV(model.Clone())
+                        var editWindow = new EditWindowV(model.Clone(), _personListViewUsecase)
                         {
                             Owner = this,
                         };

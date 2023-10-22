@@ -70,6 +70,11 @@ namespace WpfApp1.MainWindow
         public ReactivePropertySlim<Posts> Post { get; }
 
         /// <summary>
+        /// 所属組織の組織名を取得します。
+        /// </summary>
+        public ReactivePropertySlim<string> AssignedOrgaizationName { get; }
+
+        /// <summary>
         /// 編集後の個人情報を取得します。
         /// </summary>
         public Person Person
@@ -79,7 +84,6 @@ namespace WpfApp1.MainWindow
                 var ret = _person.Clone();
                 ret.Name = Name.Value;
                 ret.Birthday = Birthday.Value;
-                ret.UpdatePost(Post.Value);
                 return ret;
             }
         }
@@ -97,8 +101,10 @@ namespace WpfApp1.MainWindow
         /// </summary>
         /// <param name="name">氏名</param>
         /// <param name="birthDay">誕生日</param>
-        public PersonM(NameVO name, BirthdayVO birthDay)
-            : this(new Person(name, birthDay))
+        /// <param name="post">役職</param>
+        /// <param name="organizationName">所属組織名称</param>
+        public PersonM(NameVO name, BirthdayVO birthDay, Posts post, string organizationName)
+            : this(new Person(name, birthDay), post, organizationName)
         {
         }
 
@@ -106,7 +112,9 @@ namespace WpfApp1.MainWindow
         /// コンストラクタ
         /// </summary>
         /// <param name="person">個人情報</param>
-        public PersonM(Person person)
+        /// <param name="post">役職</param>
+        /// <param name="organizationName">所属組織名称</param>
+        public PersonM(Person person, Posts post, string organizationName)
         {
             _person = person;
 
@@ -135,8 +143,10 @@ namespace WpfApp1.MainWindow
             FamilyName.Subscribe(f => Name.Value = new(f, Name.Value.First));
             FirstName.Subscribe(f => Name.Value = new(Name.Value.Family, f));
 
-            // Post
-            Post = new ReactivePropertySlim<Posts>(person.Post)
+            Post = new ReactivePropertySlim<Posts>(post)
+                .AddTo(_disposables);
+
+            AssignedOrgaizationName = new ReactivePropertySlim<string>(organizationName)
                 .AddTo(_disposables);
         }
 
@@ -150,7 +160,7 @@ namespace WpfApp1.MainWindow
         /// 複製します。
         /// </summary>
         /// <returns>複製したインスタンス</returns>
-        public PersonM Clone() => new(Person.Clone());
+        public PersonM Clone() => new(Person.Clone(), Post.Value, AssignedOrgaizationName.Value);
 
         /// <summary>
         /// 各種破棄処理

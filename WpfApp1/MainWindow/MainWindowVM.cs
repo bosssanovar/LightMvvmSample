@@ -26,6 +26,8 @@ namespace WpfApp1.MainWindow
 
         private readonly RemovePersonUsecase _removePersonUsecase;
 
+        private readonly PersonListViewUsecase _personListViewUsecase;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -57,7 +59,14 @@ namespace WpfApp1.MainWindow
             {
                 _addCommand ??= new Command(new Action(() =>
                 {
-                    var edit = new EditWindowV(new PersonM(new NameVO(string.Empty, string.Empty), new BirthdayVO(1900, 1, 1)))
+                    var edit = new EditWindowV(
+                        new PersonM(
+                            new NameVO(string.Empty, string.Empty),
+                            new BirthdayVO(1900, 1, 1),
+                            Posts.Employee,
+                            string.Empty),
+                        _personListViewUsecase
+                        )
                     {
                         Owner = this,
                     };

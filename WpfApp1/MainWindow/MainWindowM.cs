@@ -104,7 +104,10 @@ namespace WpfApp1.MainWindow
             Persons.Clear();
             foreach (var p in _personListViewUsecase.GetPersons())
             {
-                Persons.Add(new PersonM(p));
+                Persons.Add(new PersonM(
+                    p,
+                    _personListViewUsecase.GetPost(p),
+                    _personListViewUsecase.GetAssignedOrganizationName(p)));
             }
         }
 

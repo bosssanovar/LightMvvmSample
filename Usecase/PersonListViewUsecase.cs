@@ -69,7 +69,7 @@ namespace Usecase
         /// 組織情報一覧を取得します。
         /// </summary>
         /// <returns>組織情報一覧</returns>
-        public ReadOnlyCollection<OrganizationInfo> GetOrganizationInros()
+        public ReadOnlyCollection<OrganizationInfo> GetOrganizationInfos()
         {
             var organization = _organizationRepository.LoadOrganization();
 
@@ -86,6 +86,18 @@ namespace Usecase
             var organization = _organizationRepository.LoadOrganization();
 
             return organization.GetPost(person);
+        }
+
+        /// <summary>
+        /// 所属組織の組織名を取得します。
+        /// </summary>
+        /// <param name="person">社員</param>
+        /// <returns>所属組織名称</returns>
+        public string GetAssignedOrganizationName(Person person)
+        {
+            var organization = _organizationRepository.LoadOrganization();
+
+            return organization.GetOrganizationName(person);
         }
 
         #endregion --------------------------------------------------------------------------------------------

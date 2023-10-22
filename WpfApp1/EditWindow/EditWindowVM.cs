@@ -1,4 +1,5 @@
-﻿using Entity.Persons;
+﻿using Entity.Organization;
+using Entity.Persons;
 using Reactive.Bindings;
 using System;
 using System.Collections.ObjectModel;
@@ -20,6 +21,8 @@ namespace WpfApp1.EditWindow
         private readonly CompositeDisposable _disposables = new();
 
         private readonly PersonM _model;
+
+        private readonly PersonListViewUsecase _personListViewUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -55,14 +58,14 @@ namespace WpfApp1.EditWindow
         public ReactivePropertySlim<int> Day { get; }
 
         /// <summary>
-        /// 選択された役職を取得します。
+        /// 選択された組織を取得します。
         /// </summary>
-        public ReactivePropertySlim<Posts> SelectedPost { get; }
+        public ReactivePropertySlim<OrganizationBase> SelectedOrganization { get; }
 
         /// <summary>
-        /// 役職リストを取得します。
+        /// 組織リストを取得します。
         /// </summary>
-        public ObservableCollection<ComboBoxItem<Posts>> PostItems { get; }
+        public ObservableCollection<ComboBoxItem<OrganizationBase>> OrganizationItems { get; }
 
         #region Ok Command
 
@@ -77,6 +80,7 @@ namespace WpfApp1.EditWindow
             {
                 _okCommand ??= new Command(new Action(() =>
                     {
+                        // TODO K.I : 画面内で情報変更を完結
                         if (!IsValidParams())
                         {
                             MessageBox.Show(this, "データが不正", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reactive.Linq;
 using System.Windows;
+using Entity.Organization;
 using Entity.Persons;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
@@ -38,7 +40,8 @@ namespace WpfApp1.EditWindow
         /// コンストラクタ
         /// </summary>
         /// <param name="model">個人情報</param>
-        public EditWindowV(PersonM model)
+        /// <param name="personListViewUsecase">社員リスト表示ユースケース</param>
+        public EditWindowV(PersonM model, PersonListViewUsecase personListViewUsecase)
         {
             #region init View Members
 
@@ -47,6 +50,7 @@ namespace WpfApp1.EditWindow
             #region init ViewModel Members
 
             _model = model;
+            _personListViewUsecase = personListViewUsecase;
 
             FamilyName = _model.FamilyName.ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(_disposables);
@@ -63,10 +67,12 @@ namespace WpfApp1.EditWindow
             Day = _model.Day.ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(_disposables);
 
-            SelectedPost = _model.Post.ToReactivePropertySlimAsSynchronized(x => x.Value)
+            var organizationList = _personListViewUsecase.GetOrganizationInfos();
+
+            SelectedOrganization = new ReactivePropertySlim<Entity.Organization.OrganizationBase>(organizationList[0].Organization)
                 .AddTo(_disposables);
 
-            PostItems = GetPostItems();
+            OrganizationItems = GetPostItems(organizationList);
 
             #endregion
 
@@ -87,15 +93,14 @@ namespace WpfApp1.EditWindow
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private static ObservableCollection<ComboBoxItem<Posts>> GetPostItems()
+        private static ObservableCollection<ComboBoxItem<OrganizationBase>> GetPostItems(
+            ICollection<OrganizationInfo> infos)
         {
-            var ret = new ObservableCollection<ComboBoxItem<Posts>>();
+            var ret = new ObservableCollection<ComboBoxItem<OrganizationBase>>();
 
-            var postAllItems = PostsExtend.GetAllDispValueList();
-
-            foreach (var (value, disp) in postAllItems)
+            foreach (var info in infos)
             {
-                ret.Add(new ComboBoxItem<Posts>(disp, value));
+                ret.Add(new ComboBoxItem<OrganizationBase>(info.FullName, info.Organization));
             }
 
             return ret;

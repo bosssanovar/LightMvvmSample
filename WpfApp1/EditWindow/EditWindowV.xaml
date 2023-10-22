@@ -40,9 +40,10 @@
                 <TextBlock VerticalAlignment="Center" Text="日" Margin="5"/>
             </StackPanel>
 
-            <Label Grid.Row="2" Content="役職 : " Margin="5"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Margin="10,5" Width="100" HorizontalAlignment="Left"
-                      ItemsSource="{Binding PostItems}" DisplayMemberPath="Disp" SelectedValuePath="Val" SelectedValue="{Binding SelectedPost.Value}"/>
+            <Label Grid.Row="2" Content="所属 : " Margin="5"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Margin="10,5" Width="200" HorizontalAlignment="Left"
+                      ItemsSource="{Binding OrganizationItems}" DisplayMemberPath="Disp" SelectedValuePath="Val"
+                      SelectedValue="{Binding SelectedOrganization.Value}"/>
         </Grid>
 
         <Grid Grid.Row="1">
