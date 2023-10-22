@@ -11,7 +11,7 @@ namespace Entity.Service
     /// <summary>
     /// 組織構成を構築するクラス
     /// </summary>
-    internal class OrganizaitonBuilder : IOrganizationBuilder
+    public class OrganizaitonBuilder : IOrganizationBuilder
     {
         #region Constants -------------------------------------------------------------------------------------
 

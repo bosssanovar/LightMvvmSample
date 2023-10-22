@@ -1,4 +1,5 @@
-﻿using Entity.Persons;
+﻿using Entity.Organization;
+using Entity.Persons;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace Usecase
 
         private readonly PeopleRepository _peopleRepository;
 
+        private readonly OrganizationRepository _organizationRepository;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -37,10 +40,12 @@ namespace Usecase
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
-        public PersonListViewUsecase(PeopleRepository peopleRepository)
+        /// <param name="peopleRepository"><see cref="People"/>エンティティのリポジトリ</param>
+        /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
+        public PersonListViewUsecase(PeopleRepository peopleRepository, OrganizationRepository organizationRepository)
         {
             _peopleRepository = peopleRepository;
+            _organizationRepository = organizationRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -58,6 +63,29 @@ namespace Usecase
             var people = _peopleRepository.LoadPeople();
 
             return people.Persons;
+        }
+
+        /// <summary>
+        /// 組織情報一覧を取得します。
+        /// </summary>
+        /// <returns>組織情報一覧</returns>
+        public ReadOnlyCollection<OrganizationInfo> GetOrganizationInros()
+        {
+            var organization = _organizationRepository.LoadOrganization();
+
+            return organization.GetOrganizationInfos();
+        }
+
+        /// <summary>
+        /// 役職を取得します。
+        /// </summary>
+        /// <param name="person">社員</param>
+        /// <returns>指定社員の役職</returns>
+        public Posts GetPost(Person person)
+        {
+            var organization = _organizationRepository.LoadOrganization();
+
+            return organization.GetPost(person);
         }
 
         #endregion --------------------------------------------------------------------------------------------

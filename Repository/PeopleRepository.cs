@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Repository
 {
     /// <summary>
-    /// Peopleエンティティのリポジトリ
+    /// <see cref="People"/>エンティティのリポジトリ
     /// </summary>
     public class PeopleRepository
     {

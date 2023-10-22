@@ -22,6 +22,8 @@ namespace Usecase
 
         private static PeopleRepository _peopleRepository;
 
+        private static OrganizationRepository _organizationRepository;
+
         #endregion
 
         #region Usecase
@@ -42,6 +44,9 @@ namespace Usecase
 
         private static PeopleRepository PeopleRepository => _peopleRepository ??= new PeopleRepository();
 
+        private static OrganizationRepository OrganizationRepository =>
+            _organizationRepository ??= new OrganizationRepository();
+
         #endregion
 
         #region Usecase
@@ -49,27 +54,38 @@ namespace Usecase
         /// <summary>
         /// 個人情報リストを表示するためのユースケースを取得します。
         /// </summary>
-        public static PersonListViewUsecase PersonListViewUsecase => _personListViewUsecase ??= new PersonListViewUsecase(PeopleRepository);
+        public static PersonListViewUsecase PersonListViewUsecase =>
+            _personListViewUsecase ??= new PersonListViewUsecase(
+                PeopleRepository,
+                OrganizationRepository);
 
         /// <summary>
         /// 設定値を初期化するユースケースを取得します。
         /// </summary>
-        public static InitializeUsecase InitializeUsecase => _initializeUsecase ??= new InitializeUsecase(PeopleRepository);
+        public static InitializeUsecase InitializeUsecase =>
+            _initializeUsecase ??= new InitializeUsecase(
+                PeopleRepository);
 
         /// <summary>
         /// 個人情報を追加するためのユースケースを取得します。
         /// </summary>
-        public static AddPersonUsecase AddPersonUsecase => _addPersonUsecase ??= new AddPersonUsecase(PeopleRepository);
+        public static AddPersonUsecase AddPersonUsecase =>
+            _addPersonUsecase ??= new AddPersonUsecase(
+                PeopleRepository);
 
         /// <summary>
         /// 個人情報を更新するためのユースケースを取得します。
         /// </summary>
-        public static UpdatePersonUsecase UpdatePersonUsecase => _updatePersonUsecase ??= new UpdatePersonUsecase(PeopleRepository);
+        public static UpdatePersonUsecase UpdatePersonUsecase =>
+            _updatePersonUsecase ??= new UpdatePersonUsecase(
+                PeopleRepository);
 
         /// <summary>
         /// 個人情報を削除するためのユースケースを取得します。
         /// </summary>
-        public static RemovePersonUsecase RemovePersonUsecase => _removePersonUsecase ??= new RemovePersonUsecase(PeopleRepository);
+        public static RemovePersonUsecase RemovePersonUsecase =>
+            _removePersonUsecase ??= new RemovePersonUsecase(
+                PeopleRepository);
 
         #endregion
 
