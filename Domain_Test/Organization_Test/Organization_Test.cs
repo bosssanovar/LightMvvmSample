@@ -440,6 +440,42 @@ namespace Entity_Test.Organization_Test
             Assert.Equal(Posts.Chief, organization.GetPost(person));
         }
 
+        [Fact]
+        public void 昇進_主任から課長_同じ課()
+        {
+            var builder = new BuilderMock();
+            var organization = new Organization(builder);
+            var targetOrganization = builder.TestTargetOrganization2;
+            var targetOrganizationNext = builder.TestTargetOrganization3;
+            var person = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.SetBoss(person, targetOrganization);
+
+            Assert.True(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
+            Assert.Equal(Posts.Chief, organization.GetPost(person));
+
+            organization.SetBoss(person, targetOrganizationNext);
+
+            Assert.False(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
+            Assert.True(targetOrganizationNext.SameIdentityAs(organization.GetAssignedOrganization(person)));
+            Assert.Equal(Posts.SectionChief, organization.GetPost(person));
+
+            organization.Leave(person);
+
+            Assert.False(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
+            Assert.False(targetOrganizationNext.SameIdentityAs(organization.GetAssignedOrganization(person)));
+            try
+            {
+                Assert.Equal(Posts.SectionChief, organization.GetPost(person));
+            }
+            catch
+            {
+                return;
+            }
+
+            Assert.Fail();
+        }
+
         private class BuilderMock : IOrganizationBuilder
         {
             #region Constants -------------------------------------------------------------------------------------
@@ -455,6 +491,8 @@ namespace Entity_Test.Organization_Test
             public OrganizationBase TestTargetOrganization1 { get; private set; }
 
             public OrganizationBase TestTargetOrganization2 { get; private set; }
+
+            public OrganizationBase TestTargetOrganization3 { get; private set; }
 
             #endregion --------------------------------------------------------------------------------------------
 
@@ -483,6 +521,7 @@ namespace Entity_Test.Organization_Test
 
                 TestTargetOrganization1 = b;
                 TestTargetOrganization2 = e;
+                TestTargetOrganization3 = f;
 
                 return top;
             }
