@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Entity.Service.OrganizationVisitor
 {
     /// <summary>
-    /// 直属社員を削除するVisitorクラス
+    /// 直属と組織長の堺無く社員を削除するVisitorクラス
     /// </summary>
     internal class RemovePersonVisitor : IOrganizationVisitor
     {

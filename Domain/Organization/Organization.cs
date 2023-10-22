@@ -162,7 +162,10 @@ namespace Entity.Organization
         /// <param name="organization">対象組織</param>
         public void SetBoss(Person newBoss, OrganizationBase organization)
         {
-            /* TODO K.I : 既に所属している組織から抜く。新規配属（中途採用）にも対応。*/
+            var removeVisitor = new RemovePersonVisitor(newBoss);
+            removeVisitor.OnBecameVacantBossPosition += Visitor_OnBecameVacantBossPosition;
+            _topOrganization.Accept(removeVisitor);
+            removeVisitor.OnBecameVacantBossPosition -= Visitor_OnBecameVacantBossPosition;
 
             var visitor = new SetBossVisitor(newBoss, organization);
             visitor.OnKickedOutOldBoss += Visitor_OnKickedOutOldBoss;

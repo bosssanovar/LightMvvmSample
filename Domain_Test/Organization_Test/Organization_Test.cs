@@ -443,6 +443,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 昇進_主任から課長_同じ課()
         {
+
             var builder = new BuilderMock();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization2;
@@ -454,7 +455,9 @@ namespace Entity_Test.Organization_Test
             Assert.True(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
             Assert.Equal(Posts.Chief, organization.GetPost(person));
 
+            organization.OnBecameVacantBossPosition += func;
             organization.SetBoss(person, targetOrganizationNext);
+            organization.OnBecameVacantBossPosition -= func;
 
             Assert.False(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
             Assert.True(targetOrganizationNext.SameIdentityAs(organization.GetAssignedOrganization(person)));
@@ -462,11 +465,9 @@ namespace Entity_Test.Organization_Test
 
             organization.Leave(person);
 
-            Assert.False(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
-            Assert.False(targetOrganizationNext.SameIdentityAs(organization.GetAssignedOrganization(person)));
             try
             {
-                Assert.Equal(Posts.SectionChief, organization.GetPost(person));
+                var _ = organization.GetAssignedOrganization(person);
             }
             catch
             {
@@ -474,6 +475,11 @@ namespace Entity_Test.Organization_Test
             }
 
             Assert.Fail();
+
+            void func(OnBecameVacantBossPositionEventArgs args)
+            {
+                Assert.True(args.Organization.SameIdentityAs(targetOrganization));
+            }
         }
 
         private class BuilderMock : IOrganizationBuilder
