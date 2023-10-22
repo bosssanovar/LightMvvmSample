@@ -273,6 +273,41 @@ namespace Entity_Test.Organization_Test
         }
 
         [Fact]
+        public void 社員の所属組織名を取得()
+        {
+            var builder = new BuilderMock();
+            var organization = new Organization(builder);
+            var targetOrganization = builder.TestTargetOrganization1;
+            var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.RelocateEmployee(targetPerson, targetOrganization);
+
+            Assert.Equal(builder.TestTargetOrganization1Name, organization.GetOrganizationName(targetPerson));
+        }
+
+        [Fact]
+        public void 社員の所属組織名を取得_例外()
+        {
+            var builder = new BuilderMock();
+            var organization = new Organization(builder);
+            var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            try
+            {
+                var _ = organization.GetOrganizationName(targetPerson);
+            }
+            catch (ArgumentException)
+            {
+                return;
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+            Assert.Fail();
+        }
+
+        [Fact]
         public void 社員の退社()
         {
             var builder = new BuilderMock();
@@ -500,6 +535,8 @@ namespace Entity_Test.Organization_Test
 
             public OrganizationBase TestTargetOrganization3 { get; private set; }
 
+            public string TestTargetOrganization1Name { get; private set; }
+
             #endregion --------------------------------------------------------------------------------------------
 
             #region Events ----------------------------------------------------------------------------------------
@@ -528,6 +565,8 @@ namespace Entity_Test.Organization_Test
                 TestTargetOrganization1 = b;
                 TestTargetOrganization2 = e;
                 TestTargetOrganization3 = f;
+
+                TestTargetOrganization1Name = top.DisplayName + " " + c.DisplayName + " " + b.DisplayName;
 
                 return top;
             }

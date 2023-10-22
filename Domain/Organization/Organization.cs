@@ -154,6 +154,29 @@ namespace Entity.Organization
         }
 
         /// <summary>
+        /// 所属する組織の組織名を取得します。
+        /// </summary>
+        /// <param name="person">対象社員</param>
+        /// <returns>組織名称</returns>
+        public string GetOrganizationName(Person person)
+        {
+            var visitor = new GetCurrentPositionVisitor(person);
+            _topOrganization.Accept(visitor);
+            if(visitor.AssignedOrganization is null)
+            {
+                throw new ArgumentException("検索対象が組織内に存在しません", nameof(person));
+            }
+
+            var organization = visitor.AssignedOrganization;
+
+            var infosVisitor = new GetOrganizationListVisitor();
+            _topOrganization.Accept(infosVisitor);
+            var infos = infosVisitor.Oganizations;
+
+            return infos.Single(x => x.Organization.SameIdentityAs(organization)).FullName;
+        }
+
+        /// <summary>
         /// 組織長を設定します。
         /// 前の組織長がはじき出される際には<see cref="OnKickedOutOldBoss"/>イベントを発行します。
         /// 新しい組織長に指定された社員は、元居た部署から削除されます。

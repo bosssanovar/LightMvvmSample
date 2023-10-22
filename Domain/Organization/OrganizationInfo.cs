@@ -17,8 +17,6 @@ namespace Entity.Organization
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly OrganizationBase _organization;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -27,6 +25,11 @@ namespace Entity.Organization
         /// 垂直通貫の組織名を取得します。
         /// </summary>
         public string FullName { get; }
+
+        /// <summary>
+        /// 組織を取得します。
+        /// </summary>
+        public OrganizationBase Organization { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -44,7 +47,7 @@ namespace Entity.Organization
         internal OrganizationInfo(string name, OrganizationBase organization)
         {
             FullName = name;
-            _organization = organization;
+            Organization = organization;
         }
 
         #endregion --------------------------------------------------------------------------------------------
