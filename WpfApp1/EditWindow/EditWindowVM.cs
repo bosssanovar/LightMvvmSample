@@ -67,6 +67,11 @@ namespace WpfApp1.EditWindow
         /// </summary>
         public ObservableCollection<ComboBoxItem<OrganizationBase>> OrganizationItems { get; }
 
+        /// <summary>
+        /// 組織長であるかを取得します。
+        /// </summary>
+        public ReactivePropertySlim<bool> IsBoss { get; }
+
         #region Ok Command
 
         private Command _okCommand;
@@ -80,15 +85,17 @@ namespace WpfApp1.EditWindow
             {
                 _okCommand ??= new Command(new Action(() =>
                     {
-                        // TODO K.I : 画面内で情報変更を完結
                         if (!IsValidParams())
                         {
                             MessageBox.Show(this, "データが不正", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
 
-                        OnCompleted?.Invoke(_model.Person);
-                        OnCompleted = null;
+                        if (_model.AssignedOrganization.Value is not null)
+                        {
+                            OnCompleted?.Invoke(new(_model.Person, _model.AssignedOrganization.Value, IsBoss.Value));
+                            OnCompleted = null;
+                        }
 
                         Close();
                     }));
@@ -135,7 +142,7 @@ namespace WpfApp1.EditWindow
         /// <summary>
         /// 画面操作完了時イベント
         /// </summary>
-        public event Action<Person>? OnCompleted;
+        public event Action<OnEditWindowCompletedEventArgs>? OnCompleted;
 
         #endregion --------------------------------------------------------------------------------------------
 

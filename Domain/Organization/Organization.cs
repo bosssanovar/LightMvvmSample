@@ -162,7 +162,7 @@ namespace Entity.Organization
         {
             var visitor = new GetCurrentPositionVisitor(person);
             _topOrganization.Accept(visitor);
-            if(visitor.AssignedOrganization is null)
+            if (visitor.AssignedOrganization is null)
             {
                 throw new ArgumentException("検索対象が組織内に存在しません", nameof(person));
             }

@@ -58,11 +58,19 @@ namespace Usecase
         /// 社員リストを取得します。
         /// </summary>
         /// <returns>Peopleエンティティ</returns>
-        public ReadOnlyCollection<Person> GetPersons()
+        public ReadOnlyCollection<(Person person, OrganizationBase organiation)> GetPersons()
         {
-            var people = _peopleRepository.LoadPeople();
+            var ret = new List<(Person person, OrganizationBase Organiation)>();
 
-            return people.Persons;
+            var people = _peopleRepository.LoadPeople();
+            var organization = _organizationRepository.LoadOrganization();
+
+            foreach(var person in people.Persons)
+            {
+                ret.Add(new(person, organization.GetAssignedOrganization(person)));
+            }
+
+            return new ReadOnlyCollection<(Person person, OrganizationBase Organiation)>(ret);
         }
 
         /// <summary>

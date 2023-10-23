@@ -63,8 +63,7 @@ namespace WpfApp1.MainWindow
                         new PersonM(
                             new NameVO(string.Empty, string.Empty),
                             new BirthdayVO(1900, 1, 1),
-                            Posts.Employee,
-                            string.Empty),
+                            null),
                         _personListViewUsecase
                         )
                     {
@@ -107,14 +106,14 @@ namespace WpfApp1.MainWindow
             _removePersonUsecase.RemovePerson(person.Person);
         }
 
-        private void EditWindow_OnCompletedEdit(Person person)
+        private void EditWindow_OnCompletedEdit(OnEditWindowCompletedEventArgs args)
         {
-            _updatePersonUsecase.UpdatePerson(person);
+            _updatePersonUsecase.Update(args.Person, args.Organization, args.IsBoss);
         }
 
-        private void Edit_OnCompletedAdd(Person person)
+        private void Edit_OnCompletedAdd(OnEditWindowCompletedEventArgs args)
         {
-            _addPersonUsecase.AddPerson(person);
+            _addPersonUsecase.AddPerson(args.Person, args.Organization, args.IsBoss);
         }
 
         private void DisposeViewModelElement()
