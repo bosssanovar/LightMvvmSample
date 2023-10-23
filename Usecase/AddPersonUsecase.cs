@@ -1,4 +1,5 @@
-﻿using Entity.Persons;
+﻿using Entity.Organization;
+using Entity.Persons;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,8 @@ namespace Usecase
 
         private readonly PeopleRepository _peopleRepository;
 
+        private readonly OrganizationRepository _organizationRepository;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -34,6 +37,11 @@ namespace Usecase
         /// </summary>
         public event Action<Person> OnAddPerson;
 
+        /// <summary>
+        /// 組織長交代となった際に発行されるイベント
+        /// </summary>
+        public event Action<OnKickedOutOldBossEnventArgs> OnKickedOutOldBoss;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -41,10 +49,12 @@ namespace Usecase
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
-        public AddPersonUsecase(PeopleRepository peopleRepository)
+        /// <param name="peopleRepository"><see cref="People"/>エンティティのリポジトリ</param>
+        /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
+        public AddPersonUsecase(PeopleRepository peopleRepository, OrganizationRepository organizationRepository)
         {
             _peopleRepository = peopleRepository;
+            _organizationRepository = organizationRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -57,18 +67,13 @@ namespace Usecase
         /// 個人情報を保存します。
         /// </summary>
         /// <param name="person">個人情報</param>
-        public void AddPerson(Person person)
+        /// <param name="organization">配属組織</param>
+        /// <param name="asBoss">組織長としてか</param>
+        public void AddPerson(Person person, OrganizationBase organization, bool asBoss)
         {
-            var people = _peopleRepository.LoadPeople();
+            AddToPeople(person);
 
-            if (people.IsContain(person))
-            {
-                throw new ArgumentException("重複登録です。", nameof(person));
-            }
-
-            people.AddPerson(person);
-
-            _peopleRepository.SavePeople(people);
+            AddToOrganization(person, organization, asBoss);
 
             OnAddPerson?.Invoke(person);
         }
@@ -80,6 +85,41 @@ namespace Usecase
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private void AddToPeople(Person person)
+        {
+            var people = _peopleRepository.LoadPeople();
+
+            if (people.IsContain(person))
+            {
+                throw new ArgumentException("重複登録です。", nameof(person));
+            }
+
+            people.AddPerson(person);
+
+            _peopleRepository.SavePeople(people);
+        }
+
+        private void AddToOrganization(Person person, OrganizationBase organization, bool asBoss)
+        {
+            var or = _organizationRepository.LoadOrganization();
+
+            if (asBoss)
+            {
+                or.OnKickedOutOldBoss += Or_OnKickedOutOldBoss;
+                or.SetBoss(person, organization);
+                or.OnKickedOutOldBoss -= Or_OnKickedOutOldBoss;
+            }
+            else
+            {
+                or.RelocateEmployee(person, organization);
+            }
+        }
+
+        private void Or_OnKickedOutOldBoss(OnKickedOutOldBossEnventArgs args)
+        {
+            OnKickedOutOldBoss?.Invoke(args);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
