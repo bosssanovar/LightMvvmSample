@@ -12,7 +12,6 @@
 
 ---
 
-
 ## ソリューション構成
 
 プロダクト ソリューション  
@@ -162,6 +161,8 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 
 ## 設計
 
+[設計](Designs/Design.md)
+
 ### ユースケース図
 
 ![Usecases](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/8e87d9fd-664d-4b54-b738-a3f9bbe1c429)
@@ -179,9 +180,11 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 #### 社員追加アクティビティ
 
 ![社員追加_Activity](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/d62192b5-9c51-4baf-a458-1be6303122cd)
+
 ---
 
 ## 設計の流れ
+
 組織構成についての設計を行った際の、オブジェクト指向設計の流れを示す。
 
 ### オブジェクト図
