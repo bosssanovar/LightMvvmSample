@@ -161,29 +161,11 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 
 ## 設計
 
-[設計](Designs/Design.md)
-
-### ユースケース図
-
-![Usecases](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/8e87d9fd-664d-4b54-b738-a3f9bbe1c429)
-
-### コンポーネント図
-
-![Architecture_Design](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/3763f3ce-b699-4054-a6a6-3249ac4a7939)
-
-### アクティビティ図
-
-#### 社員一覧表示アクティビティ
-
-![社員一覧](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/d3414ac7-9ab4-4165-95cb-f494a9faeab1)
-
-#### 社員追加アクティビティ
-
-![社員追加_Activity](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/d62192b5-9c51-4baf-a458-1be6303122cd)
+[設計資料はこちら](Designs/Design.md)
 
 ---
 
-## 設計の流れ
+## 設計の流れの一部紹介
 
 組織構成についての設計を行った際の、オブジェクト指向設計の流れを示す。
 
@@ -199,14 +181,6 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 
 ![organization_design_class_diagram2](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/8cb9acd9-777f-4fa3-a188-2c7df07a66ad)
 
-### 社員異動アクティビティ
-
-![1697623337102](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/b2e24655-5c95-49d2-8de3-2ca8809bd722)
-
-### 組織長変更アクティビティ
-
-![1697623337092](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/0be87701-b874-4b7d-aedb-4d299f68d343)
-
 ### 組織内を走査するVisitor
 
 ![1697623337085](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/b035ebb7-a1e3-4c46-9516-d21cca368796)
@@ -218,25 +192,22 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 効率的に開発を進めるために、Visual Studioの機能拡張はもはや必須。  
 プレーンで使っているなんて怠惰ですね。の勢いで、地味に作業効率と開発快適性が上がる、もはや無くてはならないレベル。
 
-### CodeNavi 2022
+### [CodeNavi 2022](https://marketplace.visualstudio.com/items?itemName=SamirBoulema.CodeNav)
 
 開いているC#ファイルのコード構成を表示する拡張機能。  
 クラスの規模感が見える化される、目的のメンバにスクロール不要で直接飛べる、実装時にフィールド名
 等がすぐ見れてコーディングしやすい、と、良いことしかない。  
-https://marketplace.visualstudio.com/items?itemName=SamirBoulema.CodeNav
 
 ![無題](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/93f829a0-4ffa-4758-a72e-9b393f1460ce)
 
-### Notifier 2022
+### [Notifier 2022](https://github.com/NDiiong/Notifier)
 
 ビルドが完了したことを、ウィンドウズの通知で教えてくれる。  
 TDDしていると、いつテストが終わったのかわかりにくいが、これを入れていると、ビルドが終わったことがぼーっとしていても知れるので、そこからテストが始まるのがわかり、意識的にテスト完了待ちをする必要がある時間が削減で着て、省エネ。
 
-https://github.com/NDiiong/Notifier
-
 ![sample](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/f254098d-3a2e-4edb-8b19-98460a53dbfd)
 
-### Error Catcher
+### [Error Catcher](https://github.com/NDiiong/Watcher)
 
 エラー、警告、情報の件数が、コードエディタ上に表示される。  
 エラーウィンドウを開く手間が減るので省エネ。  
@@ -244,14 +215,15 @@ https://github.com/NDiiong/Notifier
 
 ![adornment](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/db576024-7d08-4a0f-b05d-ddfe77452ca2)
 
-https://github.com/NDiiong/Watcher
+### [Collapse All Regions](https://marketplace.visualstudio.com/items?itemName=EngineDesigns.CollapseAllRegions)
+
+Regionを一気に閉じるため「Collapse All Regions」をVisual Studioの拡張機能で追加。  
+「Ctrl+M, Ctrl+R」で一気に閉じる。一気に開くときは標準の「Ctrl+M, Ctrl+L」で。  
 
 ---
 
 ## ミニトピック
 
-* Regionを一気に閉じるため「Collapse All Regions」をVisual Studioの拡張機能で追加。「Ctrl+M, Ctrl+R」で一気に閉じる。一気に開くときは標準の「Ctrl+M, Ctrl+L」で。  
-[Collapse All Regions](https://marketplace.visualstudio.com/items?itemName=EngineDesigns.CollapseAllRegions)
 * コードレビューの視点
   * 登録されたイベントハンドラを解除しているか
   * ReactivePropertyをCompositeDisposableに追加しているか
