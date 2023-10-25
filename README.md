@@ -160,6 +160,14 @@ https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
 
 ---
 
+## 設計
+
+### コンポーネント図
+
+![Architecture_Design](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/3763f3ce-b699-4054-a6a6-3249ac4a7939)
+
+---
+
 ## 設計の流れ
 組織構成についての設計を行った際の、オブジェクト指向設計の流れを示す。
 
