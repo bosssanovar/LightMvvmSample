@@ -12,7 +12,7 @@
 
 #### 社員一覧表示アクティビティ
 
-![社員一覧](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/d3414ac7-9ab4-4165-95cb-f494a9faeab1)
+![社員一覧](アクティビティ/社員一覧表示.svg)
 
 #### 社員追加アクティビティ
 
