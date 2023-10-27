@@ -4,6 +4,43 @@
 
 ---
 
+- [LightMvvmSample](#lightmvvmsample)
+  - [概要](#概要)
+  - [ソリューション構成](#ソリューション構成)
+  - [アーキテクチャ設計](#アーキテクチャ設計)
+    - [MVVM](#mvvm)
+      - [View](#view)
+      - [ViewModel](#viewmodel)
+      - [Model](#model)
+    - [簡易版 Clean Architecture](#簡易版-clean-architecture)
+      - [Entity](#entity)
+      - [Repository](#repository)
+      - [Usecase](#usecase)
+      - [Infrastructure](#infrastructure)
+      - [App](#app)
+  - [変更通知機構 Reactive Property](#変更通知機構-reactive-property)
+  - [コードスニペット](#コードスニペット)
+    - [運用ルール](#運用ルール)
+    - [実装ルール](#実装ルール)
+    - [サンプル説明](#サンプル説明)
+  - [ユニットテスト](#ユニットテスト)
+  - [テストカバレッジ](#テストカバレッジ)
+  - [コーディング規約](#コーディング規約)
+  - [設計](#設計)
+  - [設計の流れの一部紹介](#設計の流れの一部紹介)
+    - [オブジェクト図](#オブジェクト図)
+    - [単純変換したクラス図](#単純変換したクラス図)
+    - [共通性可変性分析にかけたクラス図](#共通性可変性分析にかけたクラス図)
+    - [組織内を走査するVisitor](#組織内を走査するvisitor)
+  - [Visual Studio環境構築](#visual-studio環境構築)
+    - [CodeNavi 2022](#codenavi-2022)
+    - [Notifier 2022](#notifier-2022)
+    - [Error Catcher](#error-catcher)
+    - [Collapse All Regions](#collapse-all-regions)
+  - [ミニトピック](#ミニトピック)
+
+---
+
 ## 概要
 
 業務範囲で必要とされていないViewModelのテスト容易性や、Viewの再利用性と切り替え可能性、Viewのコードビハインドに極力機能実装しないプラクティス等を切り捨てることで、正規のMVVMで必須になるMessengerやTrigger/Action, Behavior等の学習工ストの高い要素を排除した。
