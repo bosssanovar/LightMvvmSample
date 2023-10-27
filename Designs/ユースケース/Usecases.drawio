@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="2ksgyWF3tp9E1K3VVl34" name="ページ1">
-        <mxGraphModel dx="1386" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1386" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="2" value="usecase&amp;nbsp;" style="shape=umlFrame;whiteSpace=wrap;html=1;width=60;height=20;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
-                    <mxGeometry x="90" y="90" width="840" height="640" as="geometry"/>
+                    <mxGeometry x="90" y="90" width="970" height="720" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="210" y="110" width="680" height="590" as="geometry"/>
@@ -57,7 +57,7 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="7" value="社員を異動する" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="344" y="350" width="140" height="70" as="geometry"/>
+                    <mxGeometry x="375" y="320" width="140" height="70" as="geometry"/>
                 </mxCell>
                 <mxCell id="46" style="edgeStyle=none;html=1;" parent="1" source="11" target="43" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -93,6 +93,9 @@
                 <mxCell id="22" style="edgeStyle=none;html=1;" parent="1" source="3" target="20" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="53" style="edgeStyle=none;html=1;" parent="1" source="3" target="52" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="3" value="ユーザー" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" parent="1" vertex="1">
                     <mxGeometry x="150" y="320" width="30" height="60" as="geometry"/>
                 </mxCell>
@@ -102,40 +105,88 @@
                 <mxCell id="20" value="組織構成を表示する" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="235" y="120" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="23" value="平社員として追加" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="23" value="平社員として追加" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="620" y="200" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="組織長として追加" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="24" value="組織長として追加" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="610" y="280" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="異動：平社員→平社員" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="31" value="異動：平社員→平社員" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="720" y="360" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" value="異動：平社員→組織長" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="32" value="異動：平社員→組織長" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="610" y="420" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" value="異動：組織長→平社員" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="33" value="異動：組織長→平社員" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="630" y="510" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="34" value="異動：組織長→組織長" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="34" value="異動：組織長→組織長" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="480" y="510" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="43" value="削除：平社員" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="43" value="削除：平社員" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="435" y="600" width="140" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="削除：組織長" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="45" value="削除：組織長" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
                     <mxGeometry x="274" y="620" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="社員情報を変更する" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="290" y="410" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="元組織長が宙ぶらりん" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="245" width="140" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="組織長ポストが空席" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="730" width="170" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="" style="endArrow=none;dashed=1;html=1;" parent="1" source="24" target="54" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="680" y="430" as="sourcePoint"/>
+                        <mxPoint x="730" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="58" value="元組織長が宙ぶらりん" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="827" y="445" width="140" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="組織長ポストが空席" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="595" y="710" width="170" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" value="元組織長が宙ぶらりん" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="635" width="140" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="" style="endArrow=none;dashed=1;html=1;" parent="1" source="32" target="58" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="755.3622282111419" y="312.4722395928645" as="sourcePoint"/>
+                        <mxPoint x="810" y="301.31578947368416" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="62" value="" style="endArrow=none;dashed=1;html=1;" parent="1" source="34" target="60" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="765.3622282111419" y="322.4722395928645" as="sourcePoint"/>
+                        <mxPoint x="820" y="311.31578947368416" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="63" value="" style="endArrow=none;dashed=1;html=1;" parent="1" source="34" target="59" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="603.0031509177065" y="582.6167024242152" as="sourcePoint"/>
+                        <mxPoint x="669.2682926829268" y="625" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="64" value="" style="endArrow=none;dashed=1;html=1;" parent="1" source="45" target="55" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="613.0031509177065" y="592.6167024242152" as="sourcePoint"/>
+                        <mxPoint x="679.2682926829268" y="635" as="targetPoint"/>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="JgNJQtiwl_YFSWbjsgjo" name="社員移動パターン">
-        <mxGraphModel dx="1386" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1386" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="aGrvfAMml-kxTOzgBD-_-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;" vertex="1" parent="1">
-                    <mxGeometry x="160" y="100" width="610" height="460" as="geometry"/>
+                <mxCell id="aGrvfAMml-kxTOzgBD-_-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="90" width="610" height="460" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
