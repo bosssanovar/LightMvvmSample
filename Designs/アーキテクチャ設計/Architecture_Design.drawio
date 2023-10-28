@@ -265,6 +265,9 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
+                <mxCell id="ePc4sAz220NZ56gBjfFg-1" value="コンポーネント図" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=default;width=130;height=25;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="14.75" width="630" height="575.25" as="geometry"/>
+                </mxCell>
                 <mxCell id="mIlmoF9bP5TnxBC6kT-x-3" value="Entity" style="html=1;dropTarget=0;" parent="1" vertex="1">
                     <mxGeometry x="500" y="519" width="120" height="51" as="geometry"/>
                 </mxCell>

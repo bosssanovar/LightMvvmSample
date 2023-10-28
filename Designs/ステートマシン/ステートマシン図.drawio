@@ -4,37 +4,40 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="" style="ellipse;fillColor=strokeColor;" vertex="1" parent="1">
+                <mxCell id="31" value="sm 組織人員問題" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;swimlaneFillColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="30" width="610" height="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="ellipse;fillColor=strokeColor;" parent="1" vertex="1">
                     <mxGeometry x="120" y="80" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="11" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="9">
+                <mxCell id="11" style="edgeStyle=none;html=1;" parent="1" source="3" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="[組織長退職]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="11">
+                <mxCell id="12" value="[組織長退職]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="11" vertex="1" connectable="0">
                     <mxGeometry x="-0.3922" y="-2" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="13" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="10">
+                <mxCell id="13" style="edgeStyle=none;html=1;" parent="1" source="3" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="[組織長が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="13">
+                <mxCell id="14" value="[組織長が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="13" vertex="1" connectable="0">
                     <mxGeometry x="-0.431" y="-1" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="18" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="8">
+                <mxCell id="18" style="edgeStyle=none;html=1;" parent="1" source="3" target="8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="19" value="[社員追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="18">
+                <mxCell id="19" value="[社員追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="18" vertex="1" connectable="0">
                     <mxGeometry x="-0.4831" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="3" value="問題なし" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                <mxCell id="3" value="問題なし" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="1" vertex="1">
                     <mxGeometry x="250" y="210" width="140" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" style="edgeStyle=none;html=1;" edge="1" parent="1" source="8" target="3">
+                <mxCell id="20" style="edgeStyle=none;html=1;" parent="1" source="8" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="140" y="230" as="targetPoint"/>
                         <Array as="points">
@@ -42,12 +45,12 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="21" value="[組織に平社員として追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="20">
+                <mxCell id="21" value="[組織に平社員として追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="20" vertex="1" connectable="0">
                     <mxGeometry x="-0.2846" y="-1" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="22" style="edgeStyle=none;html=1;" edge="1" parent="1" source="8" target="9">
+                <mxCell id="22" style="edgeStyle=none;html=1;" parent="1" source="8" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="140" y="670"/>
@@ -55,15 +58,15 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="23" value="[組織に組織長として追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="22">
+                <mxCell id="23" value="[組織に組織長として追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="22" vertex="1" connectable="0">
                     <mxGeometry x="-0.8405" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="8" value="宙ぶらりん" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;comic=0;" vertex="1" parent="1">
+                <mxCell id="8" value="宙ぶらりん" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;comic=0;" parent="1" vertex="1">
                     <mxGeometry x="65" y="370" width="140" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" style="edgeStyle=none;html=1;" edge="1" parent="1" source="9" target="3">
+                <mxCell id="24" style="edgeStyle=none;html=1;" parent="1" source="9" target="3" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="484" y="230" as="targetPoint"/>
                         <Array as="points">
@@ -71,26 +74,26 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="25" value="[平社員が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="24">
+                <mxCell id="25" value="[平社員が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="24" vertex="1" connectable="0">
                     <mxGeometry x="-0.5489" y="-3" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="9" value="組織長空席" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
-                    <mxGeometry x="414" y="370" width="140" height="40" as="geometry"/>
+                <mxCell id="9" value="組織長空席" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="1" vertex="1">
+                    <mxGeometry x="420" y="370" width="140" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="26" style="edgeStyle=none;html=1;" edge="1" parent="1" source="10" target="9">
+                <mxCell id="26" style="edgeStyle=none;html=1;" parent="1" source="10" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" value="[組織に平社員として追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="26">
+                <mxCell id="27" value="[組織に平社員として追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="26" vertex="1" connectable="0">
                     <mxGeometry x="-0.5455" y="3" relative="1" as="geometry">
                         <mxPoint x="18" y="-35" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="10" value="宙ぶらりん&lt;br&gt;且つ&lt;br&gt;組織長空席" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                <mxCell id="10" value="宙ぶらりん&lt;br&gt;且つ&lt;br&gt;組織長空席" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="1" vertex="1">
                     <mxGeometry x="250" y="510" width="150" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" style="edgeStyle=none;html=1;" edge="1" parent="1" source="9" target="9">
+                <mxCell id="15" style="edgeStyle=none;html=1;" parent="1" source="9" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="570" y="460"/>
@@ -99,19 +102,19 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="16" value="[組織長が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="15">
+                <mxCell id="16" value="[組織長が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="15" vertex="1" connectable="0">
                     <mxGeometry x="-0.3367" y="-1" relative="1" as="geometry">
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="29" style="edgeStyle=none;html=1;" edge="1" parent="1" source="10" target="10">
+                <mxCell id="29" style="edgeStyle=none;html=1;" parent="1" source="10" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="370" y="610"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="30" value="組織人員問題を状態として管理するのは&lt;br&gt;設計段階で複雑になってきたので、&lt;br&gt;よくない設計の匂いと捉え、中断" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;comic=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                <mxCell id="30" value="組織人員問題を状態として管理するのは&lt;br&gt;設計段階で複雑になってきたので、&lt;br&gt;よくない設計の匂いと捉え、中断" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;comic=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
                     <mxGeometry x="260" y="80" width="250" height="110" as="geometry"/>
                 </mxCell>
             </root>
