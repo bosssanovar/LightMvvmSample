@@ -36,6 +36,7 @@
     - [CodeNavi 2022](#codenavi-2022)
     - [Notifier 2022](#notifier-2022)
     - [Error Catcher](#error-catcher)
+    - [Solution Error Notifier](#solution-error-notifier)
     - [Collapse All Regions](#collapse-all-regions)
   - [ミニトピック](#ミニトピック)
 
@@ -246,11 +247,21 @@ TDDしていると、いつテストが終わったのかわかりにくいが�
 
 ### [Error Catcher](https://github.com/NDiiong/Watcher)
 
+__※ドキュメント内検索窓と重なって視認性が悪いため、「Solution Error Notifier」に移行。__
+
 エラー、警告、情報の件数が、コードエディタ上に表示される。  
 エラーウィンドウを開く手間が減るので省エネ。  
 エラーウィンドウ開いてみたら大惨事、ってことがなくなり、いつでもエラーが1件でも出た瞬間に知れるので、ストレス軽減。
 
 ![adornment](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/db576024-7d08-4a0f-b05d-ddfe77452ca2)
+
+### [Solution Error Notifier](https://marketplace.visualstudio.com/items?itemName=ShemeerNS.SolutionErrorNotifierX86)
+
+エラー、警告、情報の件数が、コードエディタ上に表示される。  
+エラーウィンドウを開く手間が減るので省エネ。  
+エラーウィンドウ開いてみたら大惨事、ってことがなくなり、いつでもエラーが1件でも出た瞬間に知れるので、ストレス軽減。
+
+![ErrorNotifierExtension](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/f4c02db9-7c15-4b02-a202-1f76baf8c291)
 
 ### [Collapse All Regions](https://marketplace.visualstudio.com/items?itemName=EngineDesigns.CollapseAllRegions)
 
