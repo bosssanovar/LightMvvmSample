@@ -153,7 +153,7 @@
                 <mxCell id="RqNLAM4ClU_KedQnVtMJ-9" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;" parent="O6GPABXBT-3CAoM7LccD-3" source="RqNLAM4ClU_KedQnVtMJ-0" target="RqNLAM4ClU_KedQnVtMJ-5" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="RqNLAM4ClU_KedQnVtMJ-0" value="組織人員問題修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;" parent="O6GPABXBT-3CAoM7LccD-3" vertex="1">
+                <mxCell id="RqNLAM4ClU_KedQnVtMJ-0" value="組織人員問題修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="O6GPABXBT-3CAoM7LccD-3" vertex="1">
                     <mxGeometry x="10" y="1216" width="170" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="oFU3WYejcz0QAUOMjWO2-9" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;" parent="O6GPABXBT-3CAoM7LccD-3" source="RqNLAM4ClU_KedQnVtMJ-5" target="060vt0Wh4Cca71E6mcRc-18" edge="1">
@@ -241,7 +241,7 @@
                         <mxPoint x="27" y="12" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="RqNLAM4ClU_KedQnVtMJ-1" value="組織人員問題" style="rhombus;" parent="O6GPABXBT-3CAoM7LccD-9" vertex="1">
+                <mxCell id="RqNLAM4ClU_KedQnVtMJ-1" value="組織人員問題" style="rhombus;fillColor=#d5e8d4;strokeColor=#82b366;" parent="O6GPABXBT-3CAoM7LccD-9" vertex="1">
                     <mxGeometry x="80" y="1176" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="oFU3WYejcz0QAUOMjWO2-5" value="組織構成変更通知" style="html=1;" parent="O6GPABXBT-3CAoM7LccD-9" vertex="1">
@@ -426,7 +426,7 @@
                 <mxCell id="zscF8s7twt3DxeC_hiO3-60" style="edgeStyle=none;html=1;" parent="UEAOFtX6duUxqp0wNjyg-10" source="zscF8s7twt3DxeC_hiO3-58" target="zscF8s7twt3DxeC_hiO3-54" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="zscF8s7twt3DxeC_hiO3-58" value="組織・人員問題&lt;br&gt;の修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;" parent="UEAOFtX6duUxqp0wNjyg-10" vertex="1">
+                <mxCell id="zscF8s7twt3DxeC_hiO3-58" value="組織・人員問題&lt;br&gt;の修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="UEAOFtX6duUxqp0wNjyg-10" vertex="1">
                     <mxGeometry x="15" y="731" width="160" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="UEAOFtX6duUxqp0wNjyg-16" value="Usecase" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
@@ -491,7 +491,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="zscF8s7twt3DxeC_hiO3-41" value="組織、人員状況&#10;に生じた問題" style="rhombus;" parent="UEAOFtX6duUxqp0wNjyg-16" vertex="1">
+                <mxCell id="zscF8s7twt3DxeC_hiO3-41" value="組織、人員状況&#10;に生じた問題" style="rhombus;fillColor=#d5e8d4;strokeColor=#82b366;" parent="UEAOFtX6duUxqp0wNjyg-16" vertex="1">
                     <mxGeometry x="80" y="671" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="zscF8s7twt3DxeC_hiO3-51" value="組織・人員問題を&lt;br&gt;通知" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="UEAOFtX6duUxqp0wNjyg-16" vertex="1">
@@ -581,11 +581,11 @@
         </mxGraphModel>
     </diagram>
     <diagram id="shFqcNqGrQbPXuR7TPwY" name="組織人員問題修正">
-        <mxGraphModel dx="1386" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1155" dy="688" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="RJEZw6hdCIq70bW08XlS-1" value="アクティビティ図　：　組織人員問題修正" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FFFFFF;width=300;height=30;" parent="1" vertex="1">
+                <mxCell id="RJEZw6hdCIq70bW08XlS-1" value="アクティビティ図　：　組織人員問題修正" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#F5F8FF;width=300;height=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="80" y="30" width="860" height="930" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJEZw6hdCIq70bW08XlS-2" value="Repository" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
@@ -767,7 +767,7 @@
                 <mxCell id="900gYcOkSjUqBO4P_OoK-9" style="edgeStyle=none;html=1;" parent="1" source="900gYcOkSjUqBO4P_OoK-10" target="900gYcOkSjUqBO4P_OoK-8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="900gYcOkSjUqBO4P_OoK-10" value="組織・人員問題&lt;br&gt;の修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;" parent="1" vertex="1">
+                <mxCell id="900gYcOkSjUqBO4P_OoK-10" value="組織・人員問題&lt;br&gt;の修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
                     <mxGeometry x="165" y="850" width="160" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-12" value="組織データ変更通知" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="1" vertex="1">
@@ -781,7 +781,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="900gYcOkSjUqBO4P_OoK-15" value="組織、人員状況&#10;に生じた問題" style="rhombus;" parent="1" vertex="1">
+                <mxCell id="900gYcOkSjUqBO4P_OoK-15" value="組織、人員状況&#10;に生じた問題" style="rhombus;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
                     <mxGeometry x="420" y="790" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-16" value="組織・人員問題を&lt;br&gt;通知" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="1" vertex="1">
@@ -817,6 +817,149 @@
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-25" style="edgeStyle=none;html=1;" parent="1" source="900gYcOkSjUqBO4P_OoK-16" target="900gYcOkSjUqBO4P_OoK-10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="3g9k7xmV3QdFGPxnYOpm" name="組織人員問題検査">
+        <mxGraphModel dx="1320" dy="786" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-1" value="アクティビティ図　：　組織人員問題検査" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#EAFFE9;width=300;height=30;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="30" width="810" height="810" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-2" value="Repository" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="74" width="190" height="746" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-67" value="社員データを提供" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-2">
+                    <mxGeometry x="25" y="106" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-75" value="組織データを提供" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-2">
+                    <mxGeometry x="25" y="236" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-5" value="Entity" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="74" width="190" height="746" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-71" value="社員リストを提供" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-5">
+                    <mxGeometry x="25" y="166" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-9" value="App" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="74" width="190" height="746" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-11" value="Usecase" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="74" width="190" height="746" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-12" value="" style="ellipse;fillColor=strokeColor;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-11">
+                    <mxGeometry x="80" y="56" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-10" value="社員データを要求" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-11">
+                    <mxGeometry x="25" y="106" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-30" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;" edge="1" parent="PvUJ-5FzW4RUjuNWMzyq-11" source="PvUJ-5FzW4RUjuNWMzyq-12" target="PvUJ-5FzW4RUjuNWMzyq-10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-69" value="社員リスト要求" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-11">
+                    <mxGeometry x="25" y="166" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-98" style="edgeStyle=none;html=1;" edge="1" parent="PvUJ-5FzW4RUjuNWMzyq-11" source="PvUJ-5FzW4RUjuNWMzyq-82" target="PvUJ-5FzW4RUjuNWMzyq-96">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="560" y="456"/>
+                            <mxPoint x="560" y="606"/>
+                            <mxPoint x="120" y="606"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-82" value="未所属社員リスト&lt;br&gt;作成" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-11">
+                    <mxGeometry x="25" y="406" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-85" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=strokeColor;rotation=90;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-11">
+                    <mxGeometry x="92.5" y="266" width="5" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-95" style="edgeStyle=none;html=1;" edge="1" parent="PvUJ-5FzW4RUjuNWMzyq-11" source="PvUJ-5FzW4RUjuNWMzyq-94" target="PvUJ-5FzW4RUjuNWMzyq-58">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-94" value="組織人員問題検査結果&lt;br&gt;を提供" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-11">
+                    <mxGeometry x="25" y="640" width="140" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-58" value="" style="ellipse;html=1;shape=endState;fillColor=strokeColor;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-11">
+                    <mxGeometry x="80" y="706" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-99" style="edgeStyle=none;html=1;" edge="1" parent="PvUJ-5FzW4RUjuNWMzyq-11" source="PvUJ-5FzW4RUjuNWMzyq-96" target="PvUJ-5FzW4RUjuNWMzyq-94">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-96" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=strokeColor;rotation=90;" vertex="1" parent="PvUJ-5FzW4RUjuNWMzyq-11">
+                    <mxGeometry x="92.5" y="586" width="5" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-68" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-10" target="PvUJ-5FzW4RUjuNWMzyq-67">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-70" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-67" target="PvUJ-5FzW4RUjuNWMzyq-69">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-72" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-69" target="PvUJ-5FzW4RUjuNWMzyq-71">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-74" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-71" target="PvUJ-5FzW4RUjuNWMzyq-77">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="505" y="314.6578947368421" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-83" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-76" target="PvUJ-5FzW4RUjuNWMzyq-82">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-76" value="社員所属チェック&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;を実施" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="745" y="411" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-77" value="組織データを要求" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="301" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-78" value="社員所属チェック&lt;br&gt;を要求" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="411" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-79" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-77" target="PvUJ-5FzW4RUjuNWMzyq-75">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-81" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-78" target="PvUJ-5FzW4RUjuNWMzyq-76">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-86" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-75" target="PvUJ-5FzW4RUjuNWMzyq-85">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="430" y="360"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-87" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-85" target="PvUJ-5FzW4RUjuNWMzyq-78">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-97" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-88" target="PvUJ-5FzW4RUjuNWMzyq-96">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-88" value="長空席組織リスト&lt;br&gt;作成" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="630" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-89" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-90" target="PvUJ-5FzW4RUjuNWMzyq-88">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-90" value="長空席組織チェック&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;を実施" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="745" y="561" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-91" value="長空席組織チェック&lt;br&gt;を要求" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="561" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-92" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-91" target="PvUJ-5FzW4RUjuNWMzyq-90">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="PvUJ-5FzW4RUjuNWMzyq-93" style="edgeStyle=none;html=1;" edge="1" parent="1" source="PvUJ-5FzW4RUjuNWMzyq-85" target="PvUJ-5FzW4RUjuNWMzyq-91">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="420" y="400"/>
+                            <mxPoint x="350" y="400"/>
+                            <mxPoint x="350" y="560"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>
@@ -962,7 +1105,7 @@
                 <mxCell id="y1DIc0uKcjb39Z2EST4M-18" style="edgeStyle=none;html=1;" parent="y1DIc0uKcjb39Z2EST4M-11" source="y1DIc0uKcjb39Z2EST4M-19" target="y1DIc0uKcjb39Z2EST4M-17" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="y1DIc0uKcjb39Z2EST4M-19" value="組織・人員問題&lt;br&gt;の修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;" parent="y1DIc0uKcjb39Z2EST4M-11" vertex="1">
+                <mxCell id="y1DIc0uKcjb39Z2EST4M-19" value="組織・人員問題&lt;br&gt;の修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="y1DIc0uKcjb39Z2EST4M-11" vertex="1">
                     <mxGeometry x="15" y="714" width="160" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="y1DIc0uKcjb39Z2EST4M-20" value="Usecase" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
@@ -994,7 +1137,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="y1DIc0uKcjb39Z2EST4M-37" value="組織、人員状況&#10;に生じた問題" style="rhombus;" parent="y1DIc0uKcjb39Z2EST4M-20" vertex="1">
+                <mxCell id="y1DIc0uKcjb39Z2EST4M-37" value="組織、人員状況&#10;に生じた問題" style="rhombus;fillColor=#d5e8d4;strokeColor=#82b366;" parent="y1DIc0uKcjb39Z2EST4M-20" vertex="1">
                     <mxGeometry x="80" y="654" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="y1DIc0uKcjb39Z2EST4M-38" value="組織・人員問題を&lt;br&gt;通知" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="y1DIc0uKcjb39Z2EST4M-20" vertex="1">
