@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="4V5n7ObfipNPV2tKb90P" name="ページ1">
-        <mxGraphModel dx="1386" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1130" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -116,6 +116,177 @@
                 </mxCell>
                 <mxCell id="30" value="組織人員問題を状態として管理するのは&lt;br&gt;設計段階で複雑になってきたので、&lt;br&gt;よくない設計の匂いと捉え、中断" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;comic=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
                     <mxGeometry x="260" y="80" width="250" height="110" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="IlWisvvrRemerPjFXJgh" name="組織人員問題">
+        <mxGraphModel dx="1027" dy="750" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-1" value="sm 組織人員問題" style="shape=umlFrame;whiteSpace=wrap;html=1;width=120;height=30;boundedLbl=1;verticalAlign=middle;align=left;spacingLeft=5;swimlaneFillColor=default;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="120" width="620" height="470" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-25" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-2" target="IKEje1sLKcg4UYOIzOtg-9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-2" value="" style="ellipse;fillColor=strokeColor;" vertex="1" parent="1">
+                    <mxGeometry x="305" y="140" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-3" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-9" target="IKEje1sLKcg4UYOIzOtg-17">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-4" value="[組織長退職]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-3">
+                    <mxGeometry x="-0.3922" y="-2" relative="1" as="geometry">
+                        <mxPoint x="31" y="22" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-5" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-9" target="IKEje1sLKcg4UYOIzOtg-20">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="380" y="380"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-6" value="[組織長が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-5">
+                    <mxGeometry x="-0.431" y="-1" relative="1" as="geometry">
+                        <mxPoint x="4" y="26" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-7" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-9" target="IKEje1sLKcg4UYOIzOtg-14">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="230" y="350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-8" value="[社員追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-7">
+                    <mxGeometry x="-0.4831" relative="1" as="geometry">
+                        <mxPoint x="-7" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-35" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-9" target="IKEje1sLKcg4UYOIzOtg-14">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="170" y="300"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-36" value="[平社員が&lt;br&gt;組織長に&lt;br&gt;異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-35">
+                    <mxGeometry x="-0.1918" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-43" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-9" target="IKEje1sLKcg4UYOIzOtg-17">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="490" y="300"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-44" value="[組織長が異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-43">
+                    <mxGeometry x="-0.081" y="-1" relative="1" as="geometry">
+                        <mxPoint x="-4" y="-16" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-9" value="問題なし" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="210" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-10" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-14" target="IKEje1sLKcg4UYOIzOtg-9">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="140" y="230" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="120" y="220"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-11" value="[組織に&lt;br&gt;平社員として&lt;br&gt;追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-10">
+                    <mxGeometry x="-0.2846" y="-1" relative="1" as="geometry">
+                        <mxPoint x="-5" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-14" value="未所属社員あり" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;comic=0;" vertex="1" parent="1">
+                    <mxGeometry x="65" y="370" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-15" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-17" target="IKEje1sLKcg4UYOIzOtg-9">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="484" y="230" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="540" y="220"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-16" value="[平社員が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-15">
+                    <mxGeometry x="-0.5489" y="-3" relative="1" as="geometry">
+                        <mxPoint x="32" y="-55" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-17" value="組織長空席あり" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="370" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-18" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-20" target="IKEje1sLKcg4UYOIzOtg-17">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-19" value="[組織に&lt;br&gt;平社員として&lt;br&gt;追加]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-18">
+                    <mxGeometry x="-0.5455" y="3" relative="1" as="geometry">
+                        <mxPoint x="36" y="-25" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-31" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-20" target="IKEje1sLKcg4UYOIzOtg-9">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="280" y="390"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-32" value="[未所属社員を&lt;br&gt;空席の組織長に&lt;br&gt;設定]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-31">
+                    <mxGeometry x="-0.4453" relative="1" as="geometry">
+                        <mxPoint x="-14" y="-9" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-20" value="未所属社員あり&lt;br&gt;且つ&lt;br&gt;組織長空席あり" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="185" y="500" width="150" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-21" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-17" target="IKEje1sLKcg4UYOIzOtg-17">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="570" y="460"/>
+                            <mxPoint x="600" y="460"/>
+                            <mxPoint x="590" y="390"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-22" value="[組織長が組織長に異動]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-21">
+                    <mxGeometry x="-0.3367" y="-1" relative="1" as="geometry">
+                        <mxPoint y="14" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-23" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-20" target="IKEje1sLKcg4UYOIzOtg-20">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="390" y="510"/>
+                            <mxPoint x="390" y="560"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-26" value="[未所属社員を&lt;br&gt;組織長空席でない&lt;br&gt;組織の組織長に&lt;br&gt;設定]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-23">
+                    <mxGeometry x="-0.3068" y="-4" relative="1" as="geometry">
+                        <mxPoint x="59" y="25" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-27" style="edgeStyle=none;html=1;" edge="1" parent="1" source="IKEje1sLKcg4UYOIzOtg-14" target="IKEje1sLKcg4UYOIzOtg-14">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="40" y="350"/>
+                            <mxPoint x="40" y="440"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="IKEje1sLKcg4UYOIzOtg-28" value="[未所属社員を&lt;br&gt;組織長空席でない組織の&lt;br&gt;組織長に設定]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="IKEje1sLKcg4UYOIzOtg-27">
+                    <mxGeometry x="0.0085" relative="1" as="geometry">
+                        <mxPoint x="60" y="58" as="offset"/>
+                    </mxGeometry>
                 </mxCell>
             </root>
         </mxGraphModel>
