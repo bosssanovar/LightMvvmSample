@@ -581,15 +581,15 @@
         </mxGraphModel>
     </diagram>
     <diagram id="shFqcNqGrQbPXuR7TPwY" name="組織人員問題修正">
-        <mxGraphModel dx="1155" dy="688" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1459" dy="868" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="RJEZw6hdCIq70bW08XlS-1" value="アクティビティ図　：　組織人員問題修正" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#F5F8FF;width=300;height=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-                    <mxGeometry x="80" y="30" width="860" height="930" as="geometry"/>
+                    <mxGeometry x="80" y="30" width="860" height="980" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJEZw6hdCIq70bW08XlS-2" value="Repository" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
-                    <mxGeometry x="530" y="74" width="190" height="866" as="geometry"/>
+                    <mxGeometry x="530" y="74" width="190" height="916" as="geometry"/>
                 </mxCell>
                 <mxCell id="R64WsoGRigsDQjRbJ034-3" value="組織データ提供" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="RJEZw6hdCIq70bW08XlS-2" vertex="1">
                     <mxGeometry x="25" y="166" width="140" height="40" as="geometry"/>
@@ -598,7 +598,7 @@
                     <mxGeometry x="30" y="588" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJEZw6hdCIq70bW08XlS-6" value="Entity" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
-                    <mxGeometry x="720" y="74" width="190" height="866" as="geometry"/>
+                    <mxGeometry x="720" y="74" width="190" height="916" as="geometry"/>
                 </mxCell>
                 <mxCell id="R64WsoGRigsDQjRbJ034-11" value="組織に組織長を&lt;br&gt;設定" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="RJEZw6hdCIq70bW08XlS-6" vertex="1">
                     <mxGeometry x="25" y="296" width="140" height="40" as="geometry"/>
@@ -610,13 +610,13 @@
                     <mxGeometry x="25" y="426" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJEZw6hdCIq70bW08XlS-10" value="App" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
-                    <mxGeometry x="150" y="74" width="190" height="866" as="geometry"/>
+                    <mxGeometry x="150" y="74" width="190" height="916" as="geometry"/>
                 </mxCell>
                 <mxCell id="R64WsoGRigsDQjRbJ034-1" value="問題修正画面&lt;br&gt;表示・入力" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="RJEZw6hdCIq70bW08XlS-10" vertex="1">
                     <mxGeometry x="25" y="51" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJEZw6hdCIq70bW08XlS-16" value="Usecase" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
-                    <mxGeometry x="340" y="74" width="190" height="866" as="geometry"/>
+                    <mxGeometry x="340" y="74" width="190" height="916" as="geometry"/>
                 </mxCell>
                 <mxCell id="RJEZw6hdCIq70bW08XlS-39" value="" style="ellipse;fillColor=strokeColor;" parent="RJEZw6hdCIq70bW08XlS-16" vertex="1">
                     <mxGeometry x="80" y="56" width="30" height="30" as="geometry"/>
@@ -746,6 +746,9 @@
                         <mxPoint x="543" y="750" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
+                <mxCell id="Bmrlees-5Nm4nNB28UB4-3" style="edgeStyle=none;html=1;" edge="1" parent="1" source="900gYcOkSjUqBO4P_OoK-3" target="Bmrlees-5Nm4nNB28UB4-2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=strokeColor;" parent="1" vertex="1">
                     <mxGeometry x="540" y="710" width="5" height="80" as="geometry"/>
                 </mxCell>
@@ -753,7 +756,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-5" value="組織表示を更新" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="1" vertex="1">
-                    <mxGeometry x="175" y="710" width="140" height="40" as="geometry"/>
+                    <mxGeometry x="175" y="760" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-6" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=strokeColor;" parent="1" vertex="1">
                     <mxGeometry x="145" y="710" width="5" height="80" as="geometry"/>
@@ -762,16 +765,16 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-8" value="" style="rhombus;" parent="1" vertex="1">
-                    <mxGeometry x="220" y="780" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="220" y="840" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-9" style="edgeStyle=none;html=1;" parent="1" source="900gYcOkSjUqBO4P_OoK-10" target="900gYcOkSjUqBO4P_OoK-8" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-10" value="組織・人員問題&lt;br&gt;の修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
-                    <mxGeometry x="165" y="850" width="160" height="60" as="geometry"/>
+                    <mxGeometry x="165" y="910" width="160" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-12" value="組織データ変更通知" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="1" vertex="1">
-                    <mxGeometry x="365" y="710" width="140" height="40" as="geometry"/>
+                    <mxGeometry x="365" y="760" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-13" style="edgeStyle=none;html=1;" parent="1" source="900gYcOkSjUqBO4P_OoK-15" target="900gYcOkSjUqBO4P_OoK-16" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -782,10 +785,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-15" value="組織、人員状況&#10;に生じた問題" style="rhombus;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-                    <mxGeometry x="420" y="790" width="30" height="30" as="geometry"/>
+                    <mxGeometry x="420" y="850" width="30" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-16" value="組織・人員問題を&lt;br&gt;通知" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="1" vertex="1">
-                    <mxGeometry x="365" y="850" width="140" height="40" as="geometry"/>
+                    <mxGeometry x="365" y="910" width="140" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-17" style="edgeStyle=none;html=1;" parent="1" source="900gYcOkSjUqBO4P_OoK-11" target="900gYcOkSjUqBO4P_OoK-2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -807,7 +810,7 @@
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-23" style="edgeStyle=none;html=1;" parent="1" source="900gYcOkSjUqBO4P_OoK-15" target="900gYcOkSjUqBO4P_OoK-8" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="230" y="790" as="targetPoint"/>
+                        <mxPoint x="230" y="850" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-24" value="[なし]" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="900gYcOkSjUqBO4P_OoK-23" vertex="1" connectable="0">
@@ -817,6 +820,18 @@
                 </mxCell>
                 <mxCell id="900gYcOkSjUqBO4P_OoK-25" style="edgeStyle=none;html=1;" parent="1" source="900gYcOkSjUqBO4P_OoK-16" target="900gYcOkSjUqBO4P_OoK-10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Bmrlees-5Nm4nNB28UB4-5" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Bmrlees-5Nm4nNB28UB4-1" target="900gYcOkSjUqBO4P_OoK-6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Bmrlees-5Nm4nNB28UB4-1" value="社員リストを更新" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="175" y="703" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="Bmrlees-5Nm4nNB28UB4-4" style="edgeStyle=none;html=1;" edge="1" parent="1" source="Bmrlees-5Nm4nNB28UB4-2" target="Bmrlees-5Nm4nNB28UB4-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Bmrlees-5Nm4nNB28UB4-2" value="社員データ変更通知" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="703" width="140" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
