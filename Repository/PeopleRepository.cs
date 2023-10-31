@@ -10,7 +10,7 @@ namespace Repository
     /// <summary>
     /// <see cref="People"/>エンティティのリポジトリ
     /// </summary>
-    public class PeopleRepository
+    public class PeopleRepository : IPeopleRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -47,13 +47,13 @@ namespace Repository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// Peopleエンティティの複製を取得します。
+        /// <see cref="People"/>エンティティの複製を取得します。
         /// </summary>
         /// <returns>Peopleエンティティの複製インスタンス</returns>
         public People LoadPeople() => _people.Clone();
 
         /// <summary>
-        /// Peopleエンティティを保存します。
+        /// <see cref="People"/>エンティティを保存します。
         /// </summary>
         /// <param name="people">Peopleエンティティ</param>
         public void SavePeople(People people)

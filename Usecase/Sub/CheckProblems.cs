@@ -1,19 +1,16 @@
-﻿using Entity.DomainService;
-using Entity.Organization;
-using Entity.Persons;
-using Entity.Service;
+﻿using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository
+namespace Usecase.Sub
 {
     /// <summary>
-    /// <see cref="Organization"/>エンティティのリポジトリ
+    /// 組織辞任問題を検査するクラス
     /// </summary>
-    public class OrganizationRepository : IOrganizationRepository
+    internal class CheckProblems
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -21,7 +18,9 @@ namespace Repository
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private Organization _organization;
+        private readonly IPeopleRepository _peopleRepository;
+
+        private readonly IOrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -38,9 +37,12 @@ namespace Repository
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public OrganizationRepository()
+        /// <param name="peopleRepository"><see cref="IPeopleRepository"/></param>
+        /// <param name="organizationRepository"><see cref="IOrganizationRepository"/></param>
+        public CheckProblems(IPeopleRepository peopleRepository, IOrganizationRepository organizationRepository)
         {
-            _organization = new Organization(new OrganizaitonBuilder());
+            _peopleRepository = peopleRepository;
+            _organizationRepository = organizationRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -50,18 +52,12 @@ namespace Repository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// <see cref="Organization"/>エンティティの複製を取得します。
+        /// 組織辞任問題を検査する
         /// </summary>
-        /// <returns><see cref="Organization"/>エンティティの複製インスタンス</returns>
-        public Organization LoadOrganization() => _organization.Clone();
-
-        /// <summary>
-        /// <see cref="Organization"/>エンティティを保存します。
-        /// </summary>
-        /// <param name="organization"><see cref="Organization"/>エンティティ</param>
-        public void SaveOrganizaion(Organization organization)
+        /// <returns><see cref="Problems"/>問題一覧</returns>
+        public List<Problems> Check()
         {
-            _organization = organization.Clone();
+            throw new NotImplementedException();
         }
 
         #endregion --------------------------------------------------------------------------------------------
