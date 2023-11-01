@@ -1,4 +1,6 @@
-﻿using Repository;
+﻿using Entity.Organization;
+using Entity.Persons;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +20,23 @@ namespace Usecase.Sub
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly IPeopleRepository _peopleRepository;
+        private readonly IGetPersonsRepository _peopleRepository;
 
-        private readonly IOrganizationRepository _organizationRepository;
+        private readonly ICheckProblemRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 未所属社員の一覧を取得します。
+        /// </summary>
+        public List<Person> UnAssignedPersons { get; private set; } = new List<Person>();
+
+        /// <summary>
+        /// 長不在組織の一覧を取得します。
+        /// </summary>
+        public List<Organization> NoBossOrganizaiotns { get; private set; } = new List<Organization>();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -37,9 +49,9 @@ namespace Usecase.Sub
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="peopleRepository"><see cref="IPeopleRepository"/></param>
-        /// <param name="organizationRepository"><see cref="IOrganizationRepository"/></param>
-        public CheckProblems(IPeopleRepository peopleRepository, IOrganizationRepository organizationRepository)
+        /// <param name="peopleRepository"><see cref="IGetPersonsRepository"/></param>
+        /// <param name="organizationRepository"><see cref="ICheckProblemRepository"/></param>
+        public CheckProblems(IGetPersonsRepository peopleRepository, ICheckProblemRepository organizationRepository)
         {
             _peopleRepository = peopleRepository;
             _organizationRepository = organizationRepository;

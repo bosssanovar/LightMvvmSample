@@ -10,7 +10,7 @@ namespace Repository
     /// <summary>
     /// <see cref="People"/>エンティティのリポジトリ
     /// </summary>
-    public class PeopleRepository : IPeopleRepository
+    public class PeopleRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 

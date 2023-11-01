@@ -13,7 +13,7 @@ namespace Repository
     /// <summary>
     /// <see cref="Organization"/>エンティティのリポジトリ
     /// </summary>
-    public class OrganizationRepository : IOrganizationRepository
+    public class OrganizationRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 

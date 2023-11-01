@@ -17,3 +17,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("680ad3f4-39f1-4b9b-8d7e-033b46a496cb")]
 
 [assembly: InternalsVisibleTo("Entity_Test")]
+[assembly: InternalsVisibleTo("Usecase_Test")]

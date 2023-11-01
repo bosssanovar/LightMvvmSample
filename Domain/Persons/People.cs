@@ -6,7 +6,7 @@ namespace Entity.Persons
     /// <summary>
     /// 集団クラス
     /// </summary>
-    public class People
+    public class People : IGetPersons
     {
         #region Fields ----------------------------------------------------------------------------------------
 
