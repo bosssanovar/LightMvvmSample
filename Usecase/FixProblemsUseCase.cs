@@ -76,6 +76,7 @@ namespace Usecase
         /// <param name="organization">組織</param>
         public void Assign(Person person, OrganizationBase organization)
         {
+            // TODO K.I : 実装
             OnArisedProblems(new(new(), new(), new()));
             OnUpdatePerson(person);
             OnUpdateOrganizaiton(organization);
