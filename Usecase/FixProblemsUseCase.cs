@@ -74,7 +74,8 @@ namespace Usecase
         /// </summary>
         /// <param name="person">社員</param>
         /// <param name="organization">組織</param>
-        public void Assign(Person person, OrganizationBase organization)
+        /// <param name="isBoss">組織長としてアサインする場合 true</param>
+        public void Assign(Person person, OrganizationBase organization, bool isBoss)
         {
             // TODO K.I : 実装
             OnArisedProblems(new(new(), new(), new()));

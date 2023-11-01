@@ -41,7 +41,8 @@ namespace Usecase_Test
             uc.OnUpdatePerson += Uc_OnUpdatePerson;
             uc.OnUpdateOrganizaiton += Uc_OnUpdateOrganizaiton;
 
-            uc.Assign(new Person(new("aaa", "aaaa"), new(1000, 1, 1)), new TerminalOrganization(new("aaa")));
+            // モックの動作と無関係のため適当実装
+            uc.Assign(new Person(new("aaa", "aaaa"), new(1000, 1, 1)), new TerminalOrganization(new("aaa")), false);
         }
 
         [Fact]
@@ -65,15 +66,7 @@ namespace Usecase_Test
             uc.OnUpdatePerson += Uc_OnUpdatePerson;
             uc.OnUpdateOrganizaiton += Uc_OnUpdateOrganizaiton;
 
-            uc.Assign(new Person(new("aaa", "aaaa"), new(1000, 1, 1)), new TerminalOrganization(new("aaa")));
-        }
-
-        [Fact]
-        public void Assign_Entityが正しく更新されること()
-        {
-            var uc = new FixProblemsUseCase(new CheckProblemsMock_問題解消(), new AssignRepositoryMock(_person, _organization));
-
-            uc.Assign(new Person(new("aaa", "aaaa"), new(1000, 1, 1)), new TerminalOrganization(new("aaa")));
+            uc.Assign(new Person(new("aaa", "aaaa"), new(1000, 1, 1)), new TerminalOrganization(new("aaa")), false);
         }
 
         private class CheckProblemsMock_問題解消 : ICheckProblems
