@@ -12,7 +12,7 @@ namespace Usecase.Sub
     /// <summary>
     /// 組織辞任問題を検査するクラス
     /// </summary>
-    internal class CheckProblems
+    internal class CheckProblems : ICheckProblems
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ namespace Usecase.Sub
         /// <summary>
         /// 長不在組織の一覧を取得します。
         /// </summary>
-        public List<Organization> NoBossOrganizaiotns { get; private set; } = new List<Organization>();
+        public List<OrganizationBase> NoBossOrganizaiotns { get; private set; } = new List<OrganizationBase>();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -77,13 +77,13 @@ namespace Usecase.Sub
             var organization = _organizationRepository.LoadProblemChecker();
 
             NoBossOrganizaiotns = organization.GetNoBossOrganizaiotns();
-            if(NoBossOrganizaiotns.Count > 0)
+            if (NoBossOrganizaiotns.Count > 0)
             {
                 ret.Add(Problems.NoBoss);
             }
 
             UnAssignedPersons = organization.GetUnAssignedPersons(persons.ToList());
-            if(UnAssignedPersons.Count > 0)
+            if (UnAssignedPersons.Count > 0)
             {
                 ret.Add(Problems.UnAssigned);
             }

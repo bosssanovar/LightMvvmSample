@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Entity.Organization
 {
     /// <summary>
-    /// 組織人員問題をチェックするインターフェース
+    /// 社員を組織にアサインするインターフェース
     /// </summary>
-    public interface ICheckProblem
+    public interface IAssign
     {
         #region Properties ------------------------------------------------------------------------------------
 
@@ -23,17 +23,12 @@ namespace Entity.Organization
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 未所属社員の一覧を取得します。
+        /// 組織にアサインする。
         /// </summary>
-        /// <param name="persons">社員一覧</param>
-        /// <returns>未所属社員の一覧</returns>
-        public List<Person> GetUnAssignedPersons(List<Person> persons);
-
-        /// <summary>
-        /// 組織長不在組織の一覧を取得します。
-        /// </summary>
-        /// <returns>組織長不在組織の一覧</returns>
-        public List<OrganizationBase> GetNoBossOrganizaiotns();
+        /// <param name="person">社員</param>
+        /// <param name="newOrganization">社員を追加する組織</param>
+        /// <exception cref="ArgumentException">追加対象の組織がない場合</exception>
+        public void Assign(Person person, OrganizationBase newOrganization);
 
         #endregion --------------------------------------------------------------------------------------------
     }

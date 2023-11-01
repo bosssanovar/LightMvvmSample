@@ -83,7 +83,7 @@ namespace Usecase_Test.Sub
         private class PeopleMock : IGetPersons
         {
             // テストで不要なため、雑データ
-            public ReadOnlyCollection<Person> Persons => new ReadOnlyCollection<Person>(new List<Person>() { new Person(new("", ""), new(1000, 1, 1)) });
+            public ReadOnlyCollection<Person> Persons => new(new List<Person>() { new Person(new("", ""), new(1000, 1, 1)) });
         }
 
         private class OrganizationMock : ICheckProblem
@@ -97,14 +97,14 @@ namespace Usecase_Test.Sub
                 _isNoBoss = isNoBoss;
             }
 
-            public List<Organization> GetNoBossOrganizaiotns()
+            public List<OrganizationBase> GetNoBossOrganizaiotns()
             {
-                var ret = new List<Organization>();
+                var ret = new List<OrganizationBase>();
 
                 if (_isNoBoss)
                 {
-                    ret.Add(new(new Builder()));
-                    ret.Add(new(new Builder()));
+                    ret.Add(new TerminalOrganization(new("aaaa")));
+                    ret.Add(new TerminalOrganization(new("aaaa")));
                 }
 
                 return ret;

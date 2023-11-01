@@ -15,7 +15,7 @@ namespace Entity.Organization
     /// <summary>
     /// 組織クラス
     /// </summary>
-    public class Organization
+    public class Organization : IAssign
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -106,7 +106,17 @@ namespace Entity.Organization
                 // 新規配属。現状、機能なし
             }
 
-            // 新しい組織に加入
+            Assign(person, newOrganization);
+        }
+
+        /// <summary>
+        /// 組織にアサインする。
+        /// </summary>
+        /// <param name="person">社員</param>
+        /// <param name="newOrganization">社員を追加する組織</param>
+        /// <exception cref="ArgumentException">追加対象の組織がない場合</exception>
+        public void Assign(Person person, OrganizationBase newOrganization)
+        {
             var addVisitor = new AddDirectEmployeeVisitor(person, newOrganization);
             _topOrganization.Accept(addVisitor);
 

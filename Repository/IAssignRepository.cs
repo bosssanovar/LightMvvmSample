@@ -1,16 +1,16 @@
-﻿using Entity.Persons;
+﻿using Entity.Organization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.Organization
+namespace Repository
 {
     /// <summary>
-    /// 組織人員問題をチェックするインターフェース
+    /// 社員を組織にアサインするEntityを取得するインターフェース
     /// </summary>
-    public interface ICheckProblem
+    public interface IAssignRepository
     {
         #region Properties ------------------------------------------------------------------------------------
 
@@ -23,17 +23,10 @@ namespace Entity.Organization
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 未所属社員の一覧を取得します。
+        /// 組織に社員をアサインするEntityを取得します。
         /// </summary>
-        /// <param name="persons">社員一覧</param>
-        /// <returns>未所属社員の一覧</returns>
-        public List<Person> GetUnAssignedPersons(List<Person> persons);
-
-        /// <summary>
-        /// 組織長不在組織の一覧を取得します。
-        /// </summary>
-        /// <returns>組織長不在組織の一覧</returns>
-        public List<OrganizationBase> GetNoBossOrganizaiotns();
+        /// <returns>組織に社員をアサインするEntity</returns>
+        public IAssign LoadAssigner();
 
         #endregion --------------------------------------------------------------------------------------------
     }

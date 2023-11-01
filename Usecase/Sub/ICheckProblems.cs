@@ -1,18 +1,24 @@
-﻿using Entity.Persons;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entity.Organization;
+using Entity.Persons;
 
-namespace Entity.Organization
+namespace Usecase.Sub
 {
     /// <summary>
-    /// 組織人員問題をチェックするインターフェース
+    /// 組織辞任問題を検査するインタフェース
     /// </summary>
-    public interface ICheckProblem
+    public interface ICheckProblems
     {
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 長不在組織の一覧を取得します。
+        /// </summary>
+        List<OrganizationBase> NoBossOrganizaiotns { get; }
+
+        /// <summary>
+        /// 未所属社員の一覧を取得します。
+        /// </summary>
+        List<Person> UnAssignedPersons { get; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -23,17 +29,10 @@ namespace Entity.Organization
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 未所属社員の一覧を取得します。
+        /// 組織辞任問題を検査する
         /// </summary>
-        /// <param name="persons">社員一覧</param>
-        /// <returns>未所属社員の一覧</returns>
-        public List<Person> GetUnAssignedPersons(List<Person> persons);
-
-        /// <summary>
-        /// 組織長不在組織の一覧を取得します。
-        /// </summary>
-        /// <returns>組織長不在組織の一覧</returns>
-        public List<OrganizationBase> GetNoBossOrganizaiotns();
+        /// <returns><see cref="Problems"/>問題一覧</returns>
+        List<Problems> Check();
 
         #endregion --------------------------------------------------------------------------------------------
     }

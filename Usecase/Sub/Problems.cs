@@ -9,7 +9,7 @@ namespace Usecase.Sub
     /// <summary>
     /// 組織人員問題の状態列挙子
     /// </summary>
-    internal enum Problems
+    public enum Problems
     {
         /// <summary>
         /// 無所属社員あり
