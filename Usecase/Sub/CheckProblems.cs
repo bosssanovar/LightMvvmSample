@@ -69,7 +69,26 @@ namespace Usecase.Sub
         /// <returns><see cref="Problems"/>問題一覧</returns>
         public List<Problems> Check()
         {
-            throw new NotImplementedException();
+            var ret = new List<Problems>();
+
+            var people = _peopleRepository.LoadPersonsGetter();
+            var persons = people.Persons;
+
+            var organization = _organizationRepository.LoadProblemChecker();
+
+            NoBossOrganizaiotns = organization.GetNoBossOrganizaiotns();
+            if(NoBossOrganizaiotns.Count > 0)
+            {
+                ret.Add(Problems.NoBoss);
+            }
+
+            UnAssignedPersons = organization.GetUnAssignedPersons(persons.ToList());
+            if(UnAssignedPersons.Count > 0)
+            {
+                ret.Add(Problems.UnAssigned);
+            }
+
+            return ret;
         }
 
         #endregion --------------------------------------------------------------------------------------------

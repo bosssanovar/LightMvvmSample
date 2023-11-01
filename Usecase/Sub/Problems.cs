@@ -14,7 +14,7 @@ namespace Usecase.Sub
         /// <summary>
         /// 無所属社員あり
         /// </summary>
-        Independent,
+        UnAssigned,
 
         /// <summary>
         /// 長不在組織あり

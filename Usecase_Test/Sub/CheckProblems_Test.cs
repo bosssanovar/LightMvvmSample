@@ -22,7 +22,7 @@ namespace Usecase_Test.Sub
             var checker = new CheckProblems(new PeopleRepositoryMock(), new OrganizationRepositoryMock(false, false));
             var result = checker.Check();
             Assert.Empty(result);
-            Assert.DoesNotContain(Problems.Independent, result);
+            Assert.DoesNotContain(Problems.UnAssigned, result);
             Assert.DoesNotContain(Problems.NoBoss, result);
             Assert.Empty(checker.UnAssignedPersons);
             Assert.Empty(checker.NoBossOrganizaiotns);
@@ -31,7 +31,7 @@ namespace Usecase_Test.Sub
             checker = new CheckProblems(new PeopleRepositoryMock(), new OrganizationRepositoryMock(true, false));
             result = checker.Check();
             Assert.Single(result);
-            Assert.Contains(Problems.Independent, result);
+            Assert.Contains(Problems.UnAssigned, result);
             Assert.DoesNotContain(Problems.NoBoss, result);
             Assert.Equal(3, checker.UnAssignedPersons.Count);
             Assert.Empty(checker.NoBossOrganizaiotns);
@@ -40,22 +40,20 @@ namespace Usecase_Test.Sub
             checker = new CheckProblems(new PeopleRepositoryMock(), new OrganizationRepositoryMock(false, true));
             result = checker.Check();
             Assert.Single(result);
-            Assert.DoesNotContain(Problems.Independent, result);
+            Assert.DoesNotContain(Problems.UnAssigned, result);
             Assert.Contains(Problems.NoBoss, result);
             Assert.Empty(checker.UnAssignedPersons);
             Assert.Equal(2, checker.NoBossOrganizaiotns.Count);
 
             // 無所属社員あり、かつ、長不在組織あり
-            checker = new CheckProblems(new PeopleRepositoryMock(), new OrganizationRepositoryMock(true, false));
+            checker = new CheckProblems(new PeopleRepositoryMock(), new OrganizationRepositoryMock(true, true));
             result = checker.Check();
             Assert.Equal(2, result.Count);
-            Assert.Contains(Problems.Independent, result);
+            Assert.Contains(Problems.UnAssigned, result);
             Assert.Contains(Problems.NoBoss, result);
             Assert.Equal(3, checker.UnAssignedPersons.Count);
             Assert.Equal(2, checker.NoBossOrganizaiotns.Count);
-        }
-
-
+        
 
         private class PeopleRepositoryMock : IGetPersonsRepository
         {
