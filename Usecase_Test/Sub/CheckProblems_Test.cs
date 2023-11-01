@@ -53,7 +53,7 @@ namespace Usecase_Test.Sub
             Assert.Contains(Problems.NoBoss, result);
             Assert.Equal(3, checker.UnAssignedPersons.Count);
             Assert.Equal(2, checker.NoBossOrganizaiotns.Count);
-        
+        }
 
         private class PeopleRepositoryMock : IGetPersonsRepository
         {
