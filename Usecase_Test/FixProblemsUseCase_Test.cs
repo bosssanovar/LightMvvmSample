@@ -136,7 +136,7 @@ namespace Usecase_Test
                 _organization = organization;
             }
 
-            void IAssign.Assign(Person person, OrganizationBase organization)
+            void IAssign.Assign(Person person, OrganizationBase organization, bool isBoss)
             {
                 Assert.True(person.SameIdentityAs(_person));
                 Assert.True(organization.SameIdentityAs(_organization));

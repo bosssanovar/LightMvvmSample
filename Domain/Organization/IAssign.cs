@@ -27,8 +27,9 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="person">社員</param>
         /// <param name="newOrganization">社員を追加する組織</param>
+        /// <param name="isBoss">組織長としてアサインする場合 true</param>
         /// <exception cref="ArgumentException">追加対象の組織がない場合</exception>
-        public void Assign(Person person, OrganizationBase newOrganization);
+        public void Assign(Person person, OrganizationBase newOrganization, bool isBoss);
 
         #endregion --------------------------------------------------------------------------------------------
     }

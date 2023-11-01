@@ -15,7 +15,7 @@ namespace Entity.Organization
     /// <summary>
     /// 組織クラス
     /// </summary>
-    public class Organization : IAssign
+    public class Organization : IAssign, ICheckProblem
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -106,7 +106,7 @@ namespace Entity.Organization
                 // 新規配属。現状、機能なし
             }
 
-            Assign(person, newOrganization);
+            Assign(person, newOrganization, false);
         }
 
         /// <summary>
@@ -114,15 +114,23 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="person">社員</param>
         /// <param name="newOrganization">社員を追加する組織</param>
+        /// <param name="isBoss">組織長としてアサインする場合 true</param>
         /// <exception cref="ArgumentException">追加対象の組織がない場合</exception>
-        public void Assign(Person person, OrganizationBase newOrganization)
+        public void Assign(Person person, OrganizationBase newOrganization, bool isBoss)
         {
-            var addVisitor = new AddDirectEmployeeVisitor(person, newOrganization);
-            _topOrganization.Accept(addVisitor);
-
-            if (!addVisitor.IsAdded)
+            if (!isBoss)
             {
-                throw new ArgumentException("追加対象の組織がありません。", nameof(newOrganization));
+                var addVisitor = new AddDirectEmployeeVisitor(person, newOrganization);
+                _topOrganization.Accept(addVisitor);
+
+                if (!addVisitor.IsAdded)
+                {
+                    throw new ArgumentException("追加対象の組織がありません。", nameof(newOrganization));
+                }
+            }
+            else
+            {
+                SetBoss(person, newOrganization);
             }
         }
 
@@ -242,6 +250,25 @@ namespace Entity.Organization
             {
                 throw new ArgumentException("指定した社員は組織内に存在しません。", nameof(targetPerson));
             }
+        }
+
+        /// <summary>
+        /// 未所属社員の一覧を取得します。
+        /// </summary>
+        /// <param name="persons">社員一覧</param>
+        /// <returns>未所属社員の一覧</returns>
+        public List<Person> GetUnAssignedPersons(List<Person> persons)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 組織長不在組織の一覧を取得します。
+        /// </summary>
+        /// <returns>組織長不在組織の一覧</returns>
+        public List<OrganizationBase> GetNoBossOrganizaiotns()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion --------------------------------------------------------------------------------------------

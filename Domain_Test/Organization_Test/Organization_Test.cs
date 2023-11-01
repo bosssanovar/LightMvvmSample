@@ -478,7 +478,6 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 昇進_主任から課長_同じ課()
         {
-
             var builder = new BuilderMock();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization2;
@@ -515,6 +514,68 @@ namespace Entity_Test.Organization_Test
             {
                 Assert.True(args.Organization.SameIdentityAs(targetOrganization));
             }
+        }
+
+        [Fact]
+        public void 組織人員問題検出_長不在組織あり()
+        {
+            var builder = new BuilderMock2();
+            var organization = new Organization(builder);
+            ICheckProblem problemChecker = organization;
+
+            List<Person> persons = new() { builder.AssignedPerson };
+
+            var unAssignedPersons = problemChecker.GetUnAssignedPersons(persons);
+            Assert.Empty(unAssignedPersons);
+            var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
+            Assert.Single(noBossOrganizations);
+            Assert.Contains(builder.NoBossOrganization, noBossOrganizations);
+        }
+
+        [Fact]
+        public void 組織人員問題検出_長不在組織_And_無所属社員あり()
+        {
+            var builder = new BuilderMock2();
+            var organization = new Organization(builder);
+            ICheckProblem problemChecker = organization;
+
+            List<Person> persons = new() { builder.AssignedPerson };
+
+            // 準備
+            var addPerson = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
+            persons.Add(addPerson);
+
+            // 評価
+            var unAssignedPersons = problemChecker.GetUnAssignedPersons(persons);
+            Assert.Single(unAssignedPersons);
+            Assert.Contains(addPerson, unAssignedPersons);
+            var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
+            Assert.Single(noBossOrganizations);
+            Assert.Contains(builder.NoBossOrganization, noBossOrganizations);
+        }
+
+        [Fact]
+        public void 組織人員問題検出_無所属社員あり()
+        {
+            var builder = new BuilderMock2();
+            var organization = new Organization(builder);
+            ICheckProblem problemChecker = organization;
+            IAssign assigner = organization;
+
+            List<Person> persons = new() { builder.AssignedPerson };
+
+            // 準備
+            var addPerson = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
+            persons.Add(addPerson);
+            assigner.Assign(new(new("aaa", "aaa"), new(1000, 1, 1)), builder.NoBossOrganization, true);
+
+            // 評価
+            var unAssignedPersons = problemChecker.GetUnAssignedPersons(persons);
+            Assert.Single(unAssignedPersons);
+            Assert.Contains(addPerson, unAssignedPersons);
+            var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
+            Assert.Empty(noBossOrganizations);
+            Assert.DoesNotContain(builder.NoBossOrganization, noBossOrganizations);
         }
 
         private class BuilderMock : IOrganizationBuilder
@@ -590,6 +651,36 @@ namespace Entity_Test.Organization_Test
             #endregion --------------------------------------------------------------------------------------------
 
             #endregion --------------------------------------------------------------------------------------------
+        }
+
+        private class BuilderMock2 : IOrganizationBuilder
+        {
+            public OrganizationBase NoBossOrganization { get; private set; }
+
+            public Person AssignedPerson { get; private set; }
+
+            public OrganizationBase Build()
+            {
+                AssignedPerson = new(new("bbb", "bbbbb"), new(1000, 1, 1));
+
+                // 組織構築
+                // 配属社員：AssignedPersonのみ
+                // 長不在組織：NoBossOrganization
+                var a = new TerminalOrganization(new("1"));
+                a.AddMember(AssignedPerson);
+                var b = new TerminalOrganization(new("2"));
+                var c = new ManagementOrganization(new("3"), Ranks.Section, new() { a, b });
+                c.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));
+                var d = new TerminalOrganization(new("4"));
+                var e = new TerminalOrganization(new("5"));
+                var f = new ManagementOrganization(new("6"), Ranks.Section, new() { d, e });
+                var top = new ManagementOrganization(new("7"), Ranks.Department, new() { c, f });
+                top.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));
+
+                NoBossOrganization = f;
+
+                return top;
+            }
         }
     }
 }
