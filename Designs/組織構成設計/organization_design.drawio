@@ -167,10 +167,10 @@
                         <mxPoint x="430" y="445" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="4O1AmUfyVn1h4obBBFB3-56" value="未所属社員" style="html=1;" vertex="1" parent="1">
+                <mxCell id="4O1AmUfyVn1h4obBBFB3-56" value="未所属社員" style="html=1;" parent="1" vertex="1">
                     <mxGeometry x="714.5" y="290" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="4O1AmUfyVn1h4obBBFB3-58" style="edgeStyle=none;jumpSize=10;html=1;strokeWidth=1;endArrow=none;endFill=0;" edge="1" parent="1" source="19" target="4O1AmUfyVn1h4obBBFB3-56">
+                <mxCell id="4O1AmUfyVn1h4obBBFB3-58" style="edgeStyle=none;jumpSize=10;html=1;strokeWidth=1;endArrow=none;endFill=0;" parent="1" source="19" target="4O1AmUfyVn1h4obBBFB3-56" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="630" y="300" as="sourcePoint"/>
                         <mxPoint x="720" y="350" as="targetPoint"/>
@@ -708,15 +708,6 @@
                         <mxPoint x="379" y="-215" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="raC2we05UlT-m9FIHTOu-52" value="未所属社員探索&lt;br&gt;Visitor" style="html=1;fontStyle=4;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-                    <mxGeometry x="100" y="580" width="110" height="50" as="geometry"/>
-                </mxCell>
-                <mxCell id="raC2we05UlT-m9FIHTOu-54" value="" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;" parent="1" source="raC2we05UlT-m9FIHTOu-52" target="raC2we05UlT-m9FIHTOu-1" edge="1">
-                    <mxGeometry width="160" relative="1" as="geometry">
-                        <mxPoint x="98.23529411764707" y="510" as="sourcePoint"/>
-                        <mxPoint x="161.7647058823527" y="390" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
                 <mxCell id="raC2we05UlT-m9FIHTOu-55" value="A山　A男" style="html=1;fontStyle=4" parent="1" vertex="1">
                     <mxGeometry x="620" y="10" width="110" height="50" as="geometry"/>
                 </mxCell>
@@ -750,10 +741,10 @@
                         <mxPoint x="410" y="-110" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="yf5iQHQNS662xg7lvulV-3" value="B山　B男" style="html=1;fontStyle=4;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+                <mxCell id="yf5iQHQNS662xg7lvulV-3" value="B山　B男" style="html=1;fontStyle=4;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
                     <mxGeometry x="250" y="330" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="yf5iQHQNS662xg7lvulV-4" value="" style="endArrow=none;startArrow=diamondThin;endFill=0;startFill=1;html=1;verticalAlign=bottom;labelBackgroundColor=none;strokeWidth=1;startSize=8;endSize=8;" edge="1" parent="1" target="yf5iQHQNS662xg7lvulV-3" source="raC2we05UlT-m9FIHTOu-1">
+                <mxCell id="yf5iQHQNS662xg7lvulV-4" value="" style="endArrow=none;startArrow=diamondThin;endFill=0;startFill=1;html=1;verticalAlign=bottom;labelBackgroundColor=none;strokeWidth=1;startSize=8;endSize=8;" parent="1" source="raC2we05UlT-m9FIHTOu-1" target="yf5iQHQNS662xg7lvulV-3" edge="1">
                     <mxGeometry width="160" relative="1" as="geometry">
                         <mxPoint x="35.5" y="-76.13" as="sourcePoint"/>
                         <mxPoint x="194.5" y="-113.38868725868713" as="targetPoint"/>
