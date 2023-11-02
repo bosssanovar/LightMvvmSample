@@ -124,22 +124,10 @@ namespace Entity_Test.Organization_Test
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
-            try
-            {
-                // 追加しないで取得
-                organization.GetAssignedOrganization(targetPerson);
-            }
-            catch (ArgumentException)
-            {
-                return;
-            }
-            catch (NotImplementedException)
-            {
-                Assert.Fail();
-                return;
-            }
+            // 追加しないで取得
+            var o = organization.GetAssignedOrganization(targetPerson);
 
-            Assert.Fail();
+            Assert.Null(o);
         }
 
         [Fact]
@@ -482,16 +470,9 @@ namespace Entity_Test.Organization_Test
 
             organization.Leave(person);
 
-            try
-            {
-                var _ = organization.GetAssignedOrganization(person);
-            }
-            catch
-            {
-                return;
-            }
+            var o = organization.GetAssignedOrganization(person);
 
-            Assert.Fail();
+            Assert.Null(o);
         }
 
         [Fact]

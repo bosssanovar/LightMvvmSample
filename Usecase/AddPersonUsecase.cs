@@ -22,8 +22,6 @@ namespace Usecase
 
         private readonly PeopleRepository _peopleRepository;
 
-        private readonly OrganizationRepository _organizationRepository;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -45,11 +43,9 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="peopleRepository"><see cref="People"/>エンティティのリポジトリ</param>
-        /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
-        public AddPersonUsecase(PeopleRepository peopleRepository, OrganizationRepository organizationRepository)
+        public AddPersonUsecase(PeopleRepository peopleRepository)
         {
             _peopleRepository = peopleRepository;
-            _organizationRepository = organizationRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -62,13 +58,9 @@ namespace Usecase
         /// 個人情報を保存します。
         /// </summary>
         /// <param name="person">個人情報</param>
-        /// <param name="organization">配属組織</param>
-        /// <param name="asBoss">組織長としてか</param>
-        public void AddPerson(Person person, OrganizationBase organization, bool asBoss)
+        public void AddPerson(Person person)
         {
             AddToPeople(person);
-
-            AddToOrganization(person, organization, asBoss);
 
             OnAddPerson?.Invoke(person);
         }
@@ -93,20 +85,6 @@ namespace Usecase
             people.AddPerson(person);
 
             _peopleRepository.SavePeople(people);
-        }
-
-        private void AddToOrganization(Person person, OrganizationBase organization, bool asBoss)
-        {
-            var or = _organizationRepository.LoadOrganization();
-
-            if (asBoss)
-            {
-                or.SetBoss(person, organization);
-            }
-            else
-            {
-                or.RelocateEmployee(person, organization);
-            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

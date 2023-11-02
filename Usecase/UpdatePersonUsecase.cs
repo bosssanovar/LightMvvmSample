@@ -22,8 +22,6 @@ namespace Usecase
 
         private readonly PeopleRepository _peopleRepository;
 
-        private readonly OrganizationRepository _organizationRepository;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -45,11 +43,9 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="peopleRepository"><see cref="People"/>エンティティのリポジトリ</param>
-        /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
-        public UpdatePersonUsecase(PeopleRepository peopleRepository, OrganizationRepository organizationRepository)
+        public UpdatePersonUsecase(PeopleRepository peopleRepository)
         {
             _peopleRepository = peopleRepository;
-            _organizationRepository = organizationRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -62,13 +58,9 @@ namespace Usecase
         /// 個人情報を更新します。
         /// </summary>
         /// <param name="person">個人情報</param>
-        /// <param name="organization">所属組織</param>
-        /// <param name="isBoss">組織長か</param>
-        public void Update(Person person, OrganizationBase organization, bool isBoss)
+        public void Update(Person person)
         {
             UpdataPerson(person);
-
-            UpdateOrganization(person, organization, isBoss);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -94,20 +86,6 @@ namespace Usecase
             else
             {
                 throw new ArgumentException("個人情報が存在しません。", nameof(person));
-            }
-        }
-
-        private void UpdateOrganization(Person person, OrganizationBase organization, bool isBoss)
-        {
-            var entity = _organizationRepository.LoadOrganization();
-
-            if (isBoss)
-            {
-                entity.SetBoss(person, organization);
-            }
-            else
-            {
-                entity.RelocateEmployee(person, organization);
             }
         }
 

@@ -43,34 +43,9 @@ namespace WpfApp1.MainWindow
         public ReactivePropertySlim<NameVO> Name { get; }
 
         /// <summary>
-        /// 名称の苗字を取得します。
-        /// </summary>
-        public ReactivePropertySlim<string> FamilyName { get; }
-
-        /// <summary>
-        /// 名称の名前を取得します。
-        /// </summary>
-        public ReactivePropertySlim<string> FirstName { get; }
-
-        /// <summary>
         /// 誕生日を取得します。
         /// </summary>
         public ReactivePropertySlim<BirthdayVO> Birthday { get; }
-
-        /// <summary>
-        /// 誕生日　年を取得します。
-        /// </summary>
-        public ReactivePropertySlim<int> Year { get; }
-
-        /// <summary>
-        /// 誕生日　月を取得します。
-        /// </summary>
-        public ReactivePropertySlim<int> Month { get; }
-
-        /// <summary>
-        /// 誕生日　日を取得します。
-        /// </summary>
-        public ReactivePropertySlim<int> Day { get; }
 
         /// <summary>
         /// 所属組織を取得します。
@@ -120,27 +95,10 @@ namespace WpfApp1.MainWindow
             // Birthday
             Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday.Clone())
                 .AddTo(_disposables);
-            Year = new ReactivePropertySlim<int>(Birthday.Value.Year)
-                .AddTo(_disposables);
-            Month = new ReactivePropertySlim<int>(Birthday.Value.Month)
-                .AddTo(_disposables);
-            Day = new ReactivePropertySlim<int>(Birthday.Value.Day)
-                .AddTo(_disposables);
-
-            Year.Subscribe(y => Birthday.Value = new(y, Birthday.Value.Month, Birthday.Value.Day));
-            Month.Subscribe(m => Birthday.Value = new(Birthday.Value.Year, m, Birthday.Value.Day));
-            Day.Subscribe(d => Birthday.Value = new(Birthday.Value.Year, Birthday.Value.Month, d));
 
             // Name
             Name = new ReactivePropertySlim<NameVO>(person.Name.Clone())
                 .AddTo(_disposables);
-            FamilyName = new ReactivePropertySlim<string>(Name.Value.Family)
-                .AddTo(_disposables);
-            FirstName = new ReactivePropertySlim<string>(Name.Value.First)
-                .AddTo(_disposables);
-
-            FamilyName.Subscribe(f => Name.Value = new(f, Name.Value.First));
-            FirstName.Subscribe(f => Name.Value = new(Name.Value.Family, f));
 
             AssignedOrganization = new ReactivePropertySlim<OrganizationBase?>(assignedOrganization)
                 .AddTo(_disposables);

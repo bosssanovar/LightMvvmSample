@@ -71,16 +71,14 @@ namespace Usecase
         /// </summary>
         public static AddPersonUsecase AddPersonUsecase =>
             _addPersonUsecase ??= new AddPersonUsecase(
-                PeopleRepository,
-                OrganizationRepository);
+                PeopleRepository);
 
         /// <summary>
         /// 個人情報を更新するためのユースケースを取得します。
         /// </summary>
         public static UpdatePersonUsecase UpdatePersonUsecase =>
             _updatePersonUsecase ??= new UpdatePersonUsecase(
-                PeopleRepository,
-                OrganizationRepository);
+                PeopleRepository);
 
         /// <summary>
         /// 個人情報を削除するためのユースケースを取得します。

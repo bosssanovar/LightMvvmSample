@@ -49,6 +49,19 @@ namespace Entity.Persons
             Name = name;
         }
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="person">元データ</param>
+        /// <param name="name">氏名</param>
+        /// <param name="birthDay">誕生日</param>
+        public Person(Person person, NameVO name, BirthdayVO birthDay)
+        {
+            _identifier = person._identifier;
+            Birthday = birthDay;
+            Name = name;
+        }
+
         private Person(Guid identifier, NameVO name, BirthdayVO birthday)
         {
             _identifier = identifier;

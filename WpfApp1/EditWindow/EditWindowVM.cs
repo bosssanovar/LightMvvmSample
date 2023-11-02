@@ -91,11 +91,8 @@ namespace WpfApp1.EditWindow
                             return;
                         }
 
-                        if (_model.AssignedOrganization.Value is not null)
-                        {
-                            OnCompleted?.Invoke(new(_model.Person, _model.AssignedOrganization.Value, IsBoss.Value));
-                            OnCompleted = null;
-                        }
+                        OnCompleted?.Invoke(_model.Person);
+                        OnCompleted = null;
 
                         Close();
                     }));
@@ -142,7 +139,7 @@ namespace WpfApp1.EditWindow
         /// <summary>
         /// 画面操作完了時イベント
         /// </summary>
-        public event Action<OnEditWindowCompletedEventArgs>? OnCompleted;
+        public event Action<Person>? OnCompleted;
 
         #endregion --------------------------------------------------------------------------------------------
 
