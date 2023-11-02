@@ -34,7 +34,7 @@ namespace Usecase_Test
                 Assert.True(obj.SameIdentityAs(_organization));
             }
 
-            var uc = new FixProblemsUseCase(new CheckProblemsMock_問題解消(), new AssignRepositoryMock(_person, _organization));
+            var uc = new FixProblemsUseCase(new CheckProblemsMock_問題解消(), new AssignRepositoryMock_アサイン確認(_person, _organization));
             uc.OnArisedProblems += Uc_OnArisedProblems;
             uc.OnUpdatePerson += Uc_OnUpdatePerson;
             uc.OnUpdateOrganizaiton += Uc_OnUpdateOrganizaiton;
@@ -58,7 +58,7 @@ namespace Usecase_Test
                 Assert.True(obj.SameIdentityAs(_organization));
             }
 
-            var uc = new FixProblemsUseCase(new CheckProblemsMock_問題残存(), new AssignRepositoryMock(_person, _organization));
+            var uc = new FixProblemsUseCase(new CheckProblemsMock_問題残存(), new AssignRepositoryMock_アサイン確認(_person, _organization));
             uc.OnArisedProblems += Uc_OnArisedProblems;
             uc.OnUpdatePerson += Uc_OnUpdatePerson;
             uc.OnUpdateOrganizaiton += Uc_OnUpdateOrganizaiton;
@@ -90,12 +90,12 @@ namespace Usecase_Test
             }
         }
 
-        private class AssignRepositoryMock : IAssignRepository
+        private class AssignRepositoryMock_アサイン確認 : IAssignRepository
         {
             private readonly Person _person;
             private readonly OrganizationBase _organization;
 
-            public AssignRepositoryMock(Person person, OrganizationBase organization)
+            public AssignRepositoryMock_アサイン確認(Person person, OrganizationBase organization)
             {
                 _person = person;
                 _organization = organization;
