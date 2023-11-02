@@ -60,7 +60,7 @@ namespace WpfApp1.MainWindow
             {
                 _editCommand ??= new Command(new Action(() =>
                     {
-                        OnEdit?.Invoke(_model);
+                        OnEdit?.Invoke(_model.Person);
                     }));
 
                 return _editCommand;
@@ -82,7 +82,7 @@ namespace WpfApp1.MainWindow
             {
                 _deleteCommand ??= new Command(new Action(() =>
                     {
-                        OnDelete?.Invoke(_model);
+                        OnDelete?.Invoke(_model.Person);
                     }));
 
                 return _deleteCommand;
@@ -105,12 +105,12 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// 編集要求を発行する。
         /// </summary>
-        public event Action<PersonM>? OnEdit;
+        public event Action<Person>? OnEdit;
 
         /// <summary>
         /// 削除要求を発行する
         /// </summary>
-        public event Action<PersonM>? OnDelete;
+        public event Action<Person>? OnDelete;
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -10,17 +10,20 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Usecase;
+using WpfApp1.MainWindow;
 
-namespace WpfApp1.MainWindow
+namespace WpfApp1.EditWindow
 {
     /// <summary>
-    /// 個人情報のModel
+    /// EditWindow画面のモデル
     /// </summary>
-    public class PersonM
+    public class EditWindowM
     {
         #region Fields ----------------------------------------------------------------------------------------
 
         private readonly CompositeDisposable _disposables = new();
+
+        private readonly Person _person;
 
         private readonly PersonListViewUsecase _personListViewUsecase;
 
@@ -31,11 +34,6 @@ namespace WpfApp1.MainWindow
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 個人情報を取得します。
-        /// </summary>
-        public Person Person { get; }
 
         /// <summary>
         /// 名称を取得します。
@@ -87,6 +85,20 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactivePropertySlim<string?> AssignedOrgaizationName { get; }
 
+        /// <summary>
+        /// 編集後の個人情報を取得します。
+        /// </summary>
+        public Person Person
+        {
+            get
+            {
+                var ret = _person.Clone();
+                ret.Name = Name.Value;
+                ret.Birthday = Birthday.Value;
+                return ret;
+            }
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -101,7 +113,7 @@ namespace WpfApp1.MainWindow
         /// <param name="name">氏名</param>
         /// <param name="birthDay">誕生日</param>
         /// <param name="assignedOrganization">所属組織</param>
-        public PersonM(NameVO name, BirthdayVO birthDay, OrganizationBase? assignedOrganization)
+        public EditWindowM(NameVO name, BirthdayVO birthDay, OrganizationBase? assignedOrganization)
             : this(new Person(name, birthDay), assignedOrganization)
         {
         }
@@ -111,9 +123,9 @@ namespace WpfApp1.MainWindow
         /// </summary>
         /// <param name="person">個人情報</param>
         /// <param name="assignedOrganization">所属組織</param>
-        public PersonM(Person person, OrganizationBase? assignedOrganization)
+        public EditWindowM(Person person, OrganizationBase? assignedOrganization)
         {
-            Person = person;
+            _person = person;
 
             _personListViewUsecase = PersonUsecaseProvider.PersonListViewUsecase;
 
@@ -147,27 +159,27 @@ namespace WpfApp1.MainWindow
 
             Post = AssignedOrganization
                 .Select(x =>
+                {
+                    if (assignedOrganization is null)
                     {
-                        if (assignedOrganization is null)
-                        {
-                            return Posts.Employee;
-                        }
+                        return Posts.Employee;
+                    }
 
-                        return _personListViewUsecase.GetPost(Person);
-                    })
+                    return _personListViewUsecase.GetPost(_person);
+                })
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
             AssignedOrgaizationName = AssignedOrganization
                 .Select(x =>
+                {
+                    if (assignedOrganization is null)
                     {
-                        if(assignedOrganization is null)
-                        {
-                            return "無所属";
-                        }
+                        return "無所属";
+                    }
 
-                        return _personListViewUsecase.GetAssignedOrganizationName(Person);
-                    })
+                    return _personListViewUsecase.GetAssignedOrganizationName(_person);
+                })
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
         }

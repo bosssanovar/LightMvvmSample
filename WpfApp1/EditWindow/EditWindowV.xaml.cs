@@ -41,7 +41,7 @@ namespace WpfApp1.EditWindow
         /// </summary>
         /// <param name="model">個人情報</param>
         /// <param name="personListViewUsecase">社員リスト表示ユースケース</param>
-        public EditWindowV(PersonM model, PersonListViewUsecase personListViewUsecase)
+        public EditWindowV(EditWindowM model, PersonListViewUsecase personListViewUsecase)
         {
             #region init View Members
 

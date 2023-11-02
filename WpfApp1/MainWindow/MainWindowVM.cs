@@ -60,7 +60,7 @@ namespace WpfApp1.MainWindow
                 _addCommand ??= new Command(new Action(() =>
                 {
                     var edit = new EditWindowV(
-                        new PersonM(
+                        new EditWindowM(
                             new NameVO(string.Empty, string.Empty),
                             new BirthdayVO(1900, 1, 1),
                             null),
@@ -101,9 +101,9 @@ namespace WpfApp1.MainWindow
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private void RemovePerson(PersonM person)
+        private void RemovePerson(Person person)
         {
-            _removePersonUsecase.RemovePerson(person.Person);
+            _removePersonUsecase.RemovePerson(person);
         }
 
         private void EditWindow_OnCompletedEdit(OnEditWindowCompletedEventArgs args)

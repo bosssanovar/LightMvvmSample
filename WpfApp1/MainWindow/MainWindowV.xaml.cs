@@ -41,9 +41,9 @@ namespace WpfApp1.MainWindow
                 x =>
                 {
                     var ret = new PersonVM(x);
-                    ret.OnEdit += (model) =>
+                    ret.OnEdit += (person) =>
                     {
-                        var editWindow = new EditWindowV(model.Clone(), _personListViewUsecase)
+                        var editWindow = new EditWindowV(new EditWindowM(person, null), _personListViewUsecase)
                         {
                             Owner = this,
                         };

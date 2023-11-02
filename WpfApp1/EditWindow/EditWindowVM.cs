@@ -20,7 +20,7 @@ namespace WpfApp1.EditWindow
 
         private readonly CompositeDisposable _disposables = new();
 
-        private readonly PersonM _model;
+        private readonly EditWindowM _model;
 
         private readonly PersonListViewUsecase _personListViewUsecase;
 
