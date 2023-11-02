@@ -79,8 +79,8 @@
 
 ---
 
-
 ## アーキテクチャ設計
+
 ビューロジックアーキテクチャとしてMVVMを、ドメインロジックアーキテクチャとして簡易版のClean Architectureを採用している。
 
 ### MVVM
@@ -151,21 +151,21 @@ Livetの候補であったが、コーディング量が少ないのでこちら
 
 ### 運用ルール
 
-* 独自コードスニペット置き場は、ソリューション直下の「CodeSnippets」フォルダ内。
-* 仕様上、１つのコードスニペットファイルに複数のスニペットを定義可能であるが、運用面を重視して、１スニペット１ファイルとする。
-* 独自コードスニペット追加時は、PC 上で「CodeSnippets」フォルダ内に直接ファイルを作成し、それファイルを Visual Studio で「追加」>「既存の項目」を行う。（PC 上フォルダにスニペットファイルが存在すれば、コードスニペットの利用に十分だが、目につきやすいソリューションエクスプローラ上に見える化する。）
+- 独自コードスニペット置き場は、ソリューション直下の「CodeSnippets」フォルダ内。
+- 仕様上、１つのコードスニペットファイルに複数のスニペットを定義可能であるが、運用面を重視して、１スニペット１ファイルとする。
+- 独自コードスニペット追加時は、PC 上で「CodeSnippets」フォルダ内に直接ファイルを作成し、それファイルを Visual Studio で「追加」>「既存の項目」を行う。（PC 上フォルダにスニペットファイルが存在すれば、コードスニペットの利用に十分だが、目につきやすいソリューションエクスプローラ上に見える化する。）
 
 ### 実装ルール
 
-* 独自のフォーマットにアクセスしやすいよう、接頭辞「cs\_」をつける。
+- 独自のフォーマットにアクセスしやすいよう、接頭辞「cs\_」をつける。
 
 ### サンプル説明
 
-* cs_regions：クラスのアウトラインとなるリージョン
-* cs_detailViewModelTemplete：DataGrid等の行詳細ViewModelのテンプレート
-* cs_reactiveProperty：Reactive Property Slimのプロパティ定義
-* cs_viewClassTemplate：Viewコードビハインドのテンプレート
-* cs_viewModelClassTemplete：Viewの分割クラスとして実装するViewModelのテンプレート  
+- cs_regions：クラスのアウトラインとなるリージョン
+- cs_detailViewModelTemplete：DataGrid等の行詳細ViewModelのテンプレート
+- cs_reactiveProperty：Reactive Property Slimのプロパティ定義
+- cs_viewClassTemplate：Viewコードビハインドのテンプレート
+- cs_viewModelClassTemplete：Viewの分割クラスとして実装するViewModelのテンプレート  
 
 ---
 
@@ -180,7 +180,7 @@ xUnitフレームワークを採用。
 ## テストカバレッジ
 
 Fine Code Coverageを採用。  
-https://qiita.com/imp-kawano/items/1177b3f6ca1fb2107ba6  
+<https://qiita.com/imp-kawano/items/1177b3f6ca1fb2107ba6>  
 
 ユニットテスト実行時に、カバレッジを取得する。  
 
@@ -192,8 +192,8 @@ StyleCop.Analyzersを採用。
 暫定的に、最低限のルールを整備。  
 プロジェクトごとに.editorconfigを設定する。  
 
-https://qiita.com/YoshijiGates/items/d0d11582eec936807951  
-https://yamaccu.github.io/tils/20210925-Csharp-StyleCop
+<https://qiita.com/YoshijiGates/items/d0d11582eec936807951>  
+<https://yamaccu.github.io/tils/20210925-Csharp-StyleCop>
 
 ---
 
@@ -272,6 +272,7 @@ Regionを一気に閉じるため「Collapse All Regions」をVisual Studioの�
 
 ## ミニトピック
 
-* コードレビューの視点
-  * 登録されたイベントハンドラを解除しているか
-  * ReactivePropertyをCompositeDisposableに追加しているか
+- コードレビューの視点
+  - 登録されたイベントハンドラを解除しているか
+  - ReactivePropertyをCompositeDisposableに追加しているか
+- 値オブジェクトはC#言語仕様（[レコード型](https://ufcpp.net/study/csharp/datatype/record/)）で実現する。
