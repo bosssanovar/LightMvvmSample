@@ -37,11 +37,6 @@ namespace Usecase
         /// </summary>
         public event Action<Person> OnAddPerson;
 
-        /// <summary>
-        /// 組織長交代となった際に発行されるイベント
-        /// </summary>
-        public event Action<OnKickedOutOldBossEnventArgs> OnKickedOutOldBoss;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -106,19 +101,12 @@ namespace Usecase
 
             if (asBoss)
             {
-                or.OnKickedOutOldBoss += Or_OnKickedOutOldBoss;
                 or.SetBoss(person, organization);
-                or.OnKickedOutOldBoss -= Or_OnKickedOutOldBoss;
             }
             else
             {
                 or.RelocateEmployee(person, organization);
             }
-        }
-
-        private void Or_OnKickedOutOldBoss(OnKickedOutOldBossEnventArgs args)
-        {
-            OnKickedOutOldBoss?.Invoke(args);
         }
 
         #endregion --------------------------------------------------------------------------------------------

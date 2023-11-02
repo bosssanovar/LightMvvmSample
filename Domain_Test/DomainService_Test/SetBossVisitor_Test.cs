@@ -37,10 +37,6 @@ namespace Entity_Test.DomainService_Test
             Assert.False(b.IsBoss(newBoss));
 
             var visitor = new SetBossVisitor(newBoss, b);
-            visitor.OnKickedOutOldBoss += (args) =>
-            {
-                Assert.True(boss.SameIdentityAs(args.OldBoss));
-            };
             top.Accept(visitor);
 
             Assert.False(b.IsBoss(boss));

@@ -37,16 +37,6 @@ namespace Usecase
         /// </summary>
         public event Action<Person> OnUpdatePerson;
 
-        /// <summary>
-        /// 組織長が交代して、前の組織長の所属が未定となった場合に発行されるイベント
-        /// </summary>
-        public event Action<OnKickedOutOldBossEnventArgs> OnKickedOutOldBoss;
-
-        /// <summary>
-        /// 組織長ポストが空欄となった場合に発行されるイベント
-        /// </summary>
-        public event Action<OnBecameVacantBossPositionEventArgs> OnBecameVacantBossPosition;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -113,26 +103,12 @@ namespace Usecase
 
             if (isBoss)
             {
-                entity.OnBecameVacantBossPosition += Entity_OnBecameVacantBossPosition;
-                entity.OnKickedOutOldBoss += Entity_OnKickedOutOldBoss;
                 entity.SetBoss(person, organization);
-                entity.OnBecameVacantBossPosition -= Entity_OnBecameVacantBossPosition;
-                entity.OnKickedOutOldBoss -= Entity_OnKickedOutOldBoss;
             }
             else
             {
                 entity.RelocateEmployee(person, organization);
             }
-        }
-
-        private void Entity_OnKickedOutOldBoss(OnKickedOutOldBossEnventArgs args)
-        {
-            OnKickedOutOldBoss?.Invoke(args);
-        }
-
-        private void Entity_OnBecameVacantBossPosition(OnBecameVacantBossPositionEventArgs args)
-        {
-            OnBecameVacantBossPosition?.Invoke(args);
         }
 
         #endregion --------------------------------------------------------------------------------------------

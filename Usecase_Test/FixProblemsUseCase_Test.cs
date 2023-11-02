@@ -48,6 +48,8 @@ namespace Usecase_Test
             void Uc_OnArisedProblems(OnArisedProblemsEventArgs obj)
             {
                 Assert.Equal(2, obj.Problems.Count);
+                Assert.Contains(obj.UnAssignedPersons, x => x.SameIdentityAs(_person));
+                Assert.Contains(obj.NoBossOrganizations, x => x.SameIdentityAs(_organization));
             }
             void Uc_OnUpdatePerson(Person obj)
             {
@@ -58,7 +60,7 @@ namespace Usecase_Test
                 Assert.True(obj.SameIdentityAs(_organization));
             }
 
-            var uc = new FixProblemsUseCase(new CheckProblemsMock_問題残存(), new AssignRepositoryMock_アサイン確認(_person, _organization));
+            var uc = new FixProblemsUseCase(new CheckProblemsMock_問題残存(_person, _organization), new AssignRepositoryMock_アサイン確認(_person, _organization));
             uc.OnArisedProblems += Uc_OnArisedProblems;
             uc.OnUpdatePerson += Uc_OnUpdatePerson;
             uc.OnUpdateOrganizaiton += Uc_OnUpdateOrganizaiton;
@@ -80,9 +82,15 @@ namespace Usecase_Test
 
         private class CheckProblemsMock_問題残存 : ICheckProblems
         {
-            public List<OrganizationBase> NoBossOrganizaiotns => new();
+            public List<OrganizationBase> NoBossOrganizaiotns { get; } = new();
 
-            public List<Person> UnAssignedPersons => new();
+            public List<Person> UnAssignedPersons { get; } = new();
+
+            public CheckProblemsMock_問題残存(Person person, OrganizationBase organization)
+            {
+                NoBossOrganizaiotns.Add(organization);
+                UnAssignedPersons.Add(person);
+            }
 
             public List<Problems> Check()
             {

@@ -150,7 +150,6 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
-            organization.OnKickedOutOldBoss += (args) => Assert.Fail();
             organization.SetBoss(boss, targetOrganization);
 
             Assert.True(boss.SameIdentityAs(organization.GetBoss(targetOrganization)));
@@ -164,7 +163,6 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = new ManagementOrganization(new("aa"), Ranks.Department, new());
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
-            organization.OnKickedOutOldBoss += (args) => Assert.Fail();
             try
             {
                 organization.SetBoss(boss, targetOrganization);
@@ -189,7 +187,6 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
-            organization.OnKickedOutOldBoss += (args) => Assert.Fail();
             organization.SetBoss(boss, targetOrganization);
 
             Assert.True(boss.SameIdentityAs(organization.GetBoss(targetOrganization)));
@@ -366,10 +363,6 @@ namespace Entity_Test.Organization_Test
 
             organization.SetBoss(targetBoss, targetOrganization);
 
-            organization.OnBecameVacantBossPosition += (args) =>
-            {
-                Assert.True(args.Organization.SameIdentityAs(targetOrganization));
-            };
             organization.Leave(targetBoss);
 
             // 例外が出ることが正解
@@ -398,10 +391,6 @@ namespace Entity_Test.Organization_Test
 
             try
             {
-                organization.OnBecameVacantBossPosition += (args) =>
-                {
-                    Assert.Fail();
-                };
                 organization.Leave(targetBoss);
             }
             catch (ArgumentException)
@@ -424,10 +413,6 @@ namespace Entity_Test.Organization_Test
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
             var boss2 = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
-            organization.OnKickedOutOldBoss += (args) =>
-            {
-                Assert.True(args.OldBoss.SameIdentityAs(boss));
-            };
             organization.SetBoss(boss, targetOrganization);
             organization.SetBoss(boss2, targetOrganization);
 
@@ -489,9 +474,7 @@ namespace Entity_Test.Organization_Test
             Assert.True(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
             Assert.Equal(Posts.Chief, organization.GetPost(person));
 
-            organization.OnBecameVacantBossPosition += func;
             organization.SetBoss(person, targetOrganizationNext);
-            organization.OnBecameVacantBossPosition -= func;
 
             Assert.False(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
             Assert.True(targetOrganizationNext.SameIdentityAs(organization.GetAssignedOrganization(person)));
@@ -509,11 +492,6 @@ namespace Entity_Test.Organization_Test
             }
 
             Assert.Fail();
-
-            void func(OnBecameVacantBossPositionEventArgs args)
-            {
-                Assert.True(args.Organization.SameIdentityAs(targetOrganization));
-            }
         }
 
         [Fact]

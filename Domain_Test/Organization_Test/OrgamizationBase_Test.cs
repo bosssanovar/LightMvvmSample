@@ -116,10 +116,6 @@ namespace Entity_Test.Organization_Test
             Assert.False(a.IsContainDirectEmployee(boss));
             Assert.False(a.IsContainDirectEmployee(p1));
 
-            a.OnKickedOutOldBoss += (arg) =>
-            {
-                Assert.True(arg.OldBoss.SameIdentityAs(boss));
-            };
             a.SetBoss(p1);
 
             Assert.False(a.IsBoss(boss));

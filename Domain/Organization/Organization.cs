@@ -33,16 +33,6 @@ namespace Entity.Organization
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 前の組織長がはじき出されたイベント
-        /// </summary>
-        public event Action<OnKickedOutOldBossEnventArgs> OnKickedOutOldBoss;
-
-        /// <summary>
-        /// 組織長ポストが空欄となった場合に発行されるイベント
-        /// </summary>
-        public event Action<OnBecameVacantBossPositionEventArgs> OnBecameVacantBossPosition;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -205,7 +195,6 @@ namespace Entity.Organization
 
         /// <summary>
         /// 組織長を設定します。
-        /// 前の組織長がはじき出される際には<see cref="OnKickedOutOldBoss"/>イベントを発行します。
         /// 新しい組織長に指定された社員は、元居た部署から削除されます。
         /// </summary>
         /// <param name="newBoss">対象社員</param>
@@ -213,14 +202,10 @@ namespace Entity.Organization
         public void SetBoss(Person newBoss, OrganizationBase organization)
         {
             var removeVisitor = new RemovePersonVisitor(newBoss);
-            removeVisitor.OnBecameVacantBossPosition += Visitor_OnBecameVacantBossPosition;
             _topOrganization.Accept(removeVisitor);
-            removeVisitor.OnBecameVacantBossPosition -= Visitor_OnBecameVacantBossPosition;
 
             var visitor = new SetBossVisitor(newBoss, organization);
-            visitor.OnKickedOutOldBoss += Visitor_OnKickedOutOldBoss;
             _topOrganization.Accept(visitor);
-            visitor.OnKickedOutOldBoss -= Visitor_OnKickedOutOldBoss;
 
             if (!visitor.IsSetted)
             {
@@ -251,9 +236,7 @@ namespace Entity.Organization
         public void Leave(Person targetPerson)
         {
             var visitor = new RemovePersonVisitor(targetPerson);
-            visitor.OnBecameVacantBossPosition += Visitor_OnBecameVacantBossPosition;
             _topOrganization.Accept(visitor);
-            visitor.OnBecameVacantBossPosition -= Visitor_OnBecameVacantBossPosition;
 
             if (!visitor.IsRemoved)
             {
@@ -293,16 +276,6 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
-
-        private void Visitor_OnKickedOutOldBoss(OnKickedOutOldBossEnventArgs args)
-        {
-            OnKickedOutOldBoss?.Invoke(args);
-        }
-
-        private void Visitor_OnBecameVacantBossPosition(OnBecameVacantBossPositionEventArgs args)
-        {
-            OnBecameVacantBossPosition?.Invoke(args);
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 

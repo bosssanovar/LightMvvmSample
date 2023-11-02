@@ -34,11 +34,6 @@ namespace Entity.Service.OrganizationVisitor
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 組織長ポストが空欄となった場合に発行されるイベント
-        /// </summary>
-        internal event Action<OnBecameVacantBossPositionEventArgs> OnBecameVacantBossPosition;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -76,10 +71,8 @@ namespace Entity.Service.OrganizationVisitor
             }
             else if (target.IsBoss(_targetPerson))
             {
-                target.OnBecameVacantBossPosition += Target_OnBecameVacantBossPosition;
                 target.RemoveBoss();
                 IsRemoved = true;
-                target.OnBecameVacantBossPosition -= Target_OnBecameVacantBossPosition;
             }
         }
 
@@ -90,11 +83,6 @@ namespace Entity.Service.OrganizationVisitor
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
-
-        private void Target_OnBecameVacantBossPosition(OnBecameVacantBossPositionEventArgs args)
-        {
-            OnBecameVacantBossPosition?.Invoke(args);
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 

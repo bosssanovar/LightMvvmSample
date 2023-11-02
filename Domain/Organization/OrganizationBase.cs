@@ -79,16 +79,6 @@ namespace Entity.Organization
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 組織長が交代して、前の組織長の所属が未定となった場合に発行されるイベント
-        /// </summary>
-        internal event Action<OnKickedOutOldBossEnventArgs> OnKickedOutOldBoss;
-
-        /// <summary>
-        /// 組織長ポストが空欄となった場合に発行されるイベント
-        /// </summary>
-        internal event Action<OnBecameVacantBossPositionEventArgs> OnBecameVacantBossPosition;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -213,20 +203,12 @@ namespace Entity.Organization
 
         /// <summary>
         /// 組織長を設定します。
-        /// 組織長が既に設定されている場合には元組織長として所属が無くなるので、
-        /// <see cref="OnKickedOutOldBoss"/>イベントが発行されます。
+        /// 組織長が既に設定されている場合には元組織長として所属が無くなる。
         /// </summary>
         /// <param name="newBoss">新しい組織長</param>
         internal void SetBoss(Person newBoss)
         {
-            var oldBoss = Boss;
-
             Boss = newBoss;
-
-            if (oldBoss is not null)
-            {
-                OnKickedOutOldBoss?.Invoke(new OnKickedOutOldBossEnventArgs(oldBoss));
-            }
         }
 
         /// <summary>
@@ -235,8 +217,6 @@ namespace Entity.Organization
         internal void RemoveBoss()
         {
             Boss = null;
-
-            OnBecameVacantBossPosition?.Invoke(new(this));
         }
 
         /// <summary>

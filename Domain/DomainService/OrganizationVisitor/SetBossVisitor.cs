@@ -36,11 +36,6 @@ namespace Entity.DomainService.OrganizationVisitor
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 前の組織長がはじき出されたイベント
-        /// </summary>
-        public event Action<OnKickedOutOldBossEnventArgs> OnKickedOutOldBoss;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
@@ -70,9 +65,7 @@ namespace Entity.DomainService.OrganizationVisitor
         {
             if(target.SameIdentityAs(_targetOrganization))
             {
-                target.OnKickedOutOldBoss += Target_OnKickedOutOldBoss;
                 target.SetBoss(_newBoss);
-                target.OnKickedOutOldBoss -= Target_OnKickedOutOldBoss;
 
                 IsSetted = true;
             }
@@ -89,11 +82,6 @@ namespace Entity.DomainService.OrganizationVisitor
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
-
-        private void Target_OnKickedOutOldBoss(OnKickedOutOldBossEnventArgs args)
-        {
-            OnKickedOutOldBoss?.Invoke(args);
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 
