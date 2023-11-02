@@ -13,7 +13,7 @@ namespace Repository
     /// <summary>
     /// <see cref="Organization"/>エンティティのリポジトリ
     /// </summary>
-    public class OrganizationRepository
+    public class OrganizationRepository : IAssignRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -62,6 +62,21 @@ namespace Repository
         public void SaveOrganizaion(Organization organization)
         {
             _organization = organization.Clone();
+        }
+
+        /// <summary>
+        /// 組織に社員をアサインするEntityを取得します。
+        /// </summary>
+        /// <returns>組織に社員をアサインするEntity</returns>
+        public IAssign LoadAssigner() => _organization.Clone();
+
+        /// <summary>
+        /// 組織に社員をアサインするEntityを保存します。
+        /// </summary>
+        /// <param name="assigner">組織に社員をアサインするEntity</param>
+        public void SaveAssigner(IAssign assigner)
+        {
+            _organization = (Organization)assigner.Clone();
         }
 
         #endregion --------------------------------------------------------------------------------------------

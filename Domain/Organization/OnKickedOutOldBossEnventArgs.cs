@@ -11,6 +11,7 @@ namespace Entity.Organization
     /// 組織長が交代して、前の組織長の所属が未定となった場合に発行されるイベントデータ
     /// </summary>
     public class OnKickedOutOldBossEnventArgs
+    /* TODO K.I : 削除*/
     {
         /// <summary>
         /// 未定となった前の組織長を取得します。

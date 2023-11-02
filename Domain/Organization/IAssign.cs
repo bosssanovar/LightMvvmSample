@@ -31,6 +31,12 @@ namespace Entity.Organization
         /// <exception cref="ArgumentException">追加対象の組織がない場合</exception>
         public void Assign(Person person, OrganizationBase newOrganization, bool isBoss);
 
+        /// <summary>
+        /// 複製します。
+        /// </summary>
+        /// <returns>複製</returns>
+        public IAssign Clone();
+
         #endregion --------------------------------------------------------------------------------------------
     }
 }

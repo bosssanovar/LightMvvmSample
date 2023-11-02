@@ -23,6 +23,12 @@ namespace Repository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
+        /// 組織に社員をアサインするEntityを保存します。
+        /// </summary>
+        /// <param name="assigner">組織に社員をアサインするEntity</param>
+        public void SaveAssigner(IAssign assigner);
+
+        /// <summary>
         /// 組織に社員をアサインするEntityを取得します。
         /// </summary>
         /// <returns>組織に社員をアサインするEntity</returns>

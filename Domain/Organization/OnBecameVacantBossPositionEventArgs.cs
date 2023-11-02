@@ -10,6 +10,7 @@ namespace Entity.Organization
     /// 組織長ポストが空欄となった場合に発行されるイベントデータ
     /// </summary>
     public class OnBecameVacantBossPositionEventArgs
+    /* TODO K.I : 削除*/
     {
         /// <summary>
         /// 組織長ポストが空欄になった組織

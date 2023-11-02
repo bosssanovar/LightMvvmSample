@@ -548,10 +548,10 @@ namespace Entity_Test.Organization_Test
             // 評価
             var unAssignedPersons = problemChecker.GetUnAssignedPersons(persons);
             Assert.Single(unAssignedPersons);
-            Assert.Contains(addPerson, unAssignedPersons);
+            Assert.Contains(unAssignedPersons, x => x.SameIdentityAs(addPerson));
             var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
             Assert.Single(noBossOrganizations);
-            Assert.Contains(builder.NoBossOrganization, noBossOrganizations);
+            Assert.Contains(noBossOrganizations, x => x.SameIdentityAs(builder.NoBossOrganization));
         }
 
         [Fact]
@@ -572,10 +572,10 @@ namespace Entity_Test.Organization_Test
             // 評価
             var unAssignedPersons = problemChecker.GetUnAssignedPersons(persons);
             Assert.Single(unAssignedPersons);
-            Assert.Contains(addPerson, unAssignedPersons);
+            Assert.Contains(unAssignedPersons, x => x.SameIdentityAs(addPerson));
             var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
             Assert.Empty(noBossOrganizations);
-            Assert.DoesNotContain(builder.NoBossOrganization, noBossOrganizations);
+            Assert.DoesNotContain(noBossOrganizations, x => x.SameIdentityAs(builder.NoBossOrganization));
         }
 
         private class BuilderMock : IOrganizationBuilder
@@ -667,12 +667,16 @@ namespace Entity_Test.Organization_Test
                 // 配属社員：AssignedPersonのみ
                 // 長不在組織：NoBossOrganization
                 var a = new TerminalOrganization(new("1"));
+                a.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));
                 a.AddMember(AssignedPerson);
                 var b = new TerminalOrganization(new("2"));
+                b.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));
                 var c = new ManagementOrganization(new("3"), Ranks.Section, new() { a, b });
                 c.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));
                 var d = new TerminalOrganization(new("4"));
+                d.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));
                 var e = new TerminalOrganization(new("5"));
+                e.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));
                 var f = new ManagementOrganization(new("6"), Ranks.Section, new() { d, e });
                 var top = new ManagementOrganization(new("7"), Ranks.Department, new() { c, f });
                 top.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));

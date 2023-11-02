@@ -79,6 +79,15 @@ namespace Entity.Organization
         }
 
         /// <summary>
+        /// 複製する
+        /// </summary>
+        /// <returns>複製インスタンス</returns>
+        IAssign IAssign.Clone()
+        {
+            return Clone();
+        }
+
+        /// <summary>
         /// 組織情報を取得します。
         /// </summary>
         /// <returns>組織情報一覧</returns>
@@ -259,7 +268,10 @@ namespace Entity.Organization
         /// <returns>未所属社員の一覧</returns>
         public List<Person> GetUnAssignedPersons(List<Person> persons)
         {
-            throw new NotImplementedException();
+            var visitor = new GetUnAssignedPersonsVisitor(persons);
+            _topOrganization.Accept(visitor);
+
+            return visitor.UnAssignedPersons;
         }
 
         /// <summary>
@@ -268,7 +280,10 @@ namespace Entity.Organization
         /// <returns>組織長不在組織の一覧</returns>
         public List<OrganizationBase> GetNoBossOrganizaiotns()
         {
-            throw new NotImplementedException();
+            var visitor = new GetNoBossOrganizaiotnsVisitor();
+            _topOrganization.Accept(visitor);
+
+            return visitor.NoBossOrganizations;
         }
 
         #endregion --------------------------------------------------------------------------------------------

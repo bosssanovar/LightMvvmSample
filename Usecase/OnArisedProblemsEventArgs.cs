@@ -17,17 +17,17 @@ namespace Usecase
         /// <summary>
         /// 問題一覧を取得します。
         /// </summary>
-        public List<Problems> Problems { get; } = new List<Problems>();
+        public List<Problems> Problems { get; } = new();
 
         /// <summary>
         /// 無所属社員の一覧を取得します。
         /// </summary>
-        public List<Person> UnAssignedPersons { get; } = new List<Person>();
+        public List<Person> UnAssignedPersons { get; } = new();
 
         /// <summary>
         /// 長不在組織の一覧を取得します。
         /// </summary>
-        public List<Organization> NoBossOrganizations { get; } = new List<Organization>();
+        public List<OrganizationBase> NoBossOrganizations { get; } = new();
 
         /// <summary>
         /// コンストラクタ
@@ -35,7 +35,7 @@ namespace Usecase
         /// <param name="problems">問題一覧</param>
         /// <param name="unAssignedPersons">無所属社員の一覧</param>
         /// <param name="noBossOrganizations">長不在組織の一覧</param>
-        public OnArisedProblemsEventArgs(List<Problems> problems, List<Person> unAssignedPersons, List<Organization> noBossOrganizations)
+        public OnArisedProblemsEventArgs(List<Problems> problems, List<Person> unAssignedPersons, List<OrganizationBase> noBossOrganizations)
         {
             Problems = problems;
             UnAssignedPersons = unAssignedPersons;

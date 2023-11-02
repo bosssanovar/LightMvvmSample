@@ -23,9 +23,7 @@ namespace Usecase_Test
         {
             void Uc_OnArisedProblems(OnArisedProblemsEventArgs obj)
             {
-                Assert.Empty(obj.Problems);
-                Assert.Empty(obj.NoBossOrganizations);
-                Assert.Empty(obj.UnAssignedPersons);
+                Assert.Fail("到達してはいけない");
             }
             void Uc_OnUpdatePerson(Person obj)
             {
@@ -41,8 +39,7 @@ namespace Usecase_Test
             uc.OnUpdatePerson += Uc_OnUpdatePerson;
             uc.OnUpdateOrganizaiton += Uc_OnUpdateOrganizaiton;
 
-            // モックの動作と無関係のため適当実装
-            uc.Assign(new Person(new("aaa", "aaaa"), new(1000, 1, 1)), new TerminalOrganization(new("aaa")), false);
+            uc.Assign(_person, _organization, false);
         }
 
         [Fact]
@@ -66,7 +63,7 @@ namespace Usecase_Test
             uc.OnUpdatePerson += Uc_OnUpdatePerson;
             uc.OnUpdateOrganizaiton += Uc_OnUpdateOrganizaiton;
 
-            uc.Assign(new Person(new("aaa", "aaaa"), new(1000, 1, 1)), new TerminalOrganization(new("aaa")), false);
+            uc.Assign(_person, _organization, false);
         }
 
         private class CheckProblemsMock_問題解消 : ICheckProblems
@@ -108,6 +105,10 @@ namespace Usecase_Test
             {
                 return new AssignMock(_person, _organization);
             }
+
+            public void SaveAssigner(IAssign assigner)
+            {
+            }
         }
 
         private class BuilderMock : IOrganizationBuilder
@@ -127,6 +128,11 @@ namespace Usecase_Test
             {
                 _person = person;
                 _organization = organization;
+            }
+
+            public IAssign Clone()
+            {
+                throw new NotImplementedException();
             }
 
             void IAssign.Assign(Person person, OrganizationBase organization, bool isBoss)

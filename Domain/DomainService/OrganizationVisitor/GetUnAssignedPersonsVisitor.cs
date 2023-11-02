@@ -1,19 +1,18 @@
 ﻿using Entity.Organization;
 using Entity.Persons;
-using Repository;
+using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Usecase.Sub;
 
-namespace Usecase
+namespace Entity.DomainService.OrganizationVisitor
 {
     /// <summary>
-    /// 組織人員問題を修正するユースケース
+    ///  無所属社員一覧を取得するVisitor
     /// </summary>
-    public class FixProblemsUseCase
+    internal class GetUnAssignedPersonsVisitor : IOrganizationVisitor
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -21,32 +20,18 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly ICheckProblems _checkProblems;
-
-        private readonly IAssignRepository _assignRepository;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
+        /// <summary>
+        /// 無所属社員一覧を取得します。
+        /// </summary>
+        public List<Person> UnAssignedPersons { get; }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 組織人員問題発生時イベント
-        /// </summary>
-        public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
-
-        /// <summary>
-        /// 社員情報更新時イベント
-        /// </summary>
-        public event Action<Person> OnUpdatePerson;
-
-        /// <summary>
-        /// 組織情報更新時イベント
-        /// </summary>
-        public event Action<OrganizationBase> OnUpdateOrganizaiton;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -55,12 +40,10 @@ namespace Usecase
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="checkProblems">組織人員問題検出</param>
-        /// <param name="assignRepository">社員アサインEntity取得リポジトリ</param>
-        public FixProblemsUseCase(ICheckProblems checkProblems, IAssignRepository assignRepository)
+        /// <param name="persons">社員一覧</param>
+        public GetUnAssignedPersonsVisitor(List<Person> persons)
         {
-            _checkProblems = checkProblems;
-            _assignRepository = assignRepository;
+            UnAssignedPersons = persons.Select(x => x.Clone()).ToList();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -70,27 +53,14 @@ namespace Usecase
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 社員を組織にアサインします。
+        /// 実行する
         /// </summary>
-        /// <param name="person">社員</param>
-        /// <param name="organization">組織</param>
-        /// <param name="isBoss">組織長としてアサインする場合 true</param>
-        public void Assign(Person person, OrganizationBase organization, bool isBoss)
+        /// <param name="target">ターゲット</param>
+        public void Visit(OrganizationBase target)
         {
-            var assigner = _assignRepository.LoadAssigner();
+            List<Person> assignedPersons = GetAssignedPersons(target);
 
-            assigner.Assign(person, organization, isBoss);
-
-            _assignRepository.SaveAssigner(assigner);
-
-            OnUpdatePerson(person);
-            OnUpdateOrganizaiton(organization);
-
-            var checkResult = _checkProblems.Check();
-            if(checkResult.Count > 0)
-            {
-                OnArisedProblems(new(checkResult, _checkProblems.UnAssignedPersons, _checkProblems.NoBossOrganizaiotns));
-            }
+            RemoveAssignedPersons(assignedPersons);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -104,6 +74,32 @@ namespace Usecase
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private List<Person> GetAssignedPersons(OrganizationBase target)
+        {
+            var assignedPersons = new List<Person>();
+            foreach (var p in UnAssignedPersons)
+            {
+                if (target.IsBoss(p))
+                {
+                    assignedPersons.Add(p);
+                }
+                else if (target.IsContainDirectEmployee(p))
+                {
+                    assignedPersons.Add(p);
+                }
+            }
+
+            return assignedPersons;
+        }
+
+        private void RemoveAssignedPersons(List<Person> assignedPersons)
+        {
+            foreach (var p in assignedPersons)
+            {
+                UnAssignedPersons.Remove(p);
+            }
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
