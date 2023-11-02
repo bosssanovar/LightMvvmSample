@@ -17,6 +17,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Full Name" Binding="{Binding FullName.Value, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Age" Binding="{Binding Age.Value, Mode=OneWay}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Assign" Binding="{Binding AssignedOrgaizationName.Value, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Post" Binding="{Binding Post.Value, Mode=OneWay}" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

@@ -174,7 +174,7 @@ namespace WpfApp1.MainWindow
                     {
                         if(assignedOrganization is null)
                         {
-                            return "入社";
+                            return "無所属";
                         }
 
                         return _personListViewUsecase.GetAssignedOrganizationName(_person);

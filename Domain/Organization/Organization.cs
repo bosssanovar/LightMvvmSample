@@ -138,17 +138,12 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="person">ターゲット社員</param>
         /// <returns>所属している組織</returns>
-        public OrganizationBase GetAssignedOrganization(Person person)
+        public OrganizationBase? GetAssignedOrganization(Person person)
         {
             var visitor = new GetCurrentPositionVisitor(person);
             _topOrganization.Accept(visitor);
 
-            if (visitor.AssignedOrganization is null)
-            {
-                throw new ArgumentException("指定社員は組織内に存在しません。", nameof(person));
-            }
-
-            return visitor.AssignedOrganization.Clone();
+            return visitor.AssignedOrganization;
         }
 
         /// <summary>

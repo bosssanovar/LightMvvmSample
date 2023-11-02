@@ -38,6 +38,11 @@ namespace WpfApp1.MainWindow
         public ReadOnlyReactivePropertySlim<int> Age { get; }
 
         /// <summary>
+        /// 所属組織の組織名を取得します。
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<string?> AssignedOrgaizationName { get; }
+
+        /// <summary>
         /// 役職を取得します。
         /// </summary>
         public ReadOnlyReactivePropertySlim<string?> Post { get; }
@@ -124,6 +129,10 @@ namespace WpfApp1.MainWindow
                 .AddTo(_disposables);
 
             Age = _model.Birthday.Select(x => x.GetAge(DateTime.Today))
+                .ToReadOnlyReactivePropertySlim()
+                .AddTo(_disposables);
+
+            AssignedOrgaizationName = _model.AssignedOrgaizationName
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
