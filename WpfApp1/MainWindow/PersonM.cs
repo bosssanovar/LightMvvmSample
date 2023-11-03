@@ -104,28 +104,12 @@ namespace WpfApp1.MainWindow
                 .AddTo(_disposables);
 
             Post = AssignedOrganization
-                .Select(x =>
-                    {
-                        if (assignedOrganization is null)
-                        {
-                            return Posts.Employee;
-                        }
-
-                        return _personListViewUsecase.GetPost(Person);
-                    })
+                .Select(x => _personListViewUsecase.GetPost(Person))
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
             AssignedOrgaizationName = AssignedOrganization
-                .Select(x =>
-                    {
-                        if(assignedOrganization is null)
-                        {
-                            return "無所属";
-                        }
-
-                        return _personListViewUsecase.GetAssignedOrganizationName(Person);
-                    })
+                .Select(x => _personListViewUsecase.GetAssignedOrganizationName(Person))
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
         }
