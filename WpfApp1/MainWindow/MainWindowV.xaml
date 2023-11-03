@@ -14,28 +14,37 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Margin="10" ItemsSource="{Binding Persons}" AutoGenerateColumns="False" CanUserAddRows="False" d:ItemsSource="{d:SampleData ItemCount=20}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Full Name" Binding="{Binding FullName.Value, Mode=OneWay}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Age" Binding="{Binding Age.Value, Mode=OneWay}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Assign" Binding="{Binding AssignedOrgaizationName.Value, Mode=OneWay}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Post" Binding="{Binding Post.Value, Mode=OneWay}" IsReadOnly="True"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="個人情報変更" Command="{Binding EditCommand}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="削除" Command="{Binding DeleteCommand}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Margin="10" ItemsSource="{Binding Persons}" AutoGenerateColumns="False" CanUserAddRows="False" d:ItemsSource="{d:SampleData ItemCount=20}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Full Name" Binding="{Binding FullName.Value, Mode=OneWay}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Age" Binding="{Binding Age.Value, Mode=OneWay}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Assign" Binding="{Binding AssignedOrgaizationName.Value, Mode=OneWay}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Post" Binding="{Binding Post.Value, Mode=OneWay}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="個人情報変更" Command="{Binding EditCommand}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="削除" Command="{Binding DeleteCommand}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Grid.Column="1" Margin="10" Text="{Binding OrganizationInfo.Value}" TextWrapping="Wrap"/>
+        </Grid>
 
         <Grid Grid.Row="1" Margin="10">
             <Grid.ColumnDefinitions>

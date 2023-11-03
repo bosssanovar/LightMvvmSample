@@ -175,6 +175,7 @@ namespace WpfApp1.MainWindow
         private void AddPersonUsecase_OnChangedOrganization()
         {
             // TODO K.I : 実装
+            OrganizationInfo.Value = "Test";
         }
 
         #endregion --------------------------------------------------------------------------------------------

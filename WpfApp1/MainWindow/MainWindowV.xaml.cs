@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using Entity;
+using Entity.Organization;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Usecase;
@@ -59,6 +60,9 @@ namespace WpfApp1.MainWindow
                 .AddTo(_disposables);
 
             ProblemsInfo = _model.ProblemsInfo.ToReadOnlyReactivePropertySlim()
+                .AddTo(_disposables);
+
+            OrganizationInfo = _model.OrganizationInfo.ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
             #endregion

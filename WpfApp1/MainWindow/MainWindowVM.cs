@@ -49,6 +49,11 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactivePropertySlim<string?> ProblemsInfo { get; }
 
+        /// <summary>
+        /// 組織構造を取得します。
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<string?> OrganizationInfo { get; }
+
         #region Add Command
 
         private Command _addCommand;
