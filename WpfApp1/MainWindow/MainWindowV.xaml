@@ -29,6 +29,13 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
+                                <Button Content="異動" Command="{Binding RelocateCommand}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
                                 <Button Content="個人情報変更" Command="{Binding EditCommand}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

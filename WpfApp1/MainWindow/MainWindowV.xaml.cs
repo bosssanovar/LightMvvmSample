@@ -8,6 +8,7 @@ using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Usecase;
 using WpfApp1.EditWindow;
+using WpfApp1.RelocateWindow;
 
 namespace WpfApp1.MainWindow
 {
@@ -54,6 +55,19 @@ namespace WpfApp1.MainWindow
                     ret.OnDelete += (model) =>
                     {
                         RemovePerson(model);
+                    };
+                    ret.OnRelocate += (person) =>
+                    {
+                        var usecase = PersonUsecaseProvider.RelocateUsecase;
+                        usecase.OnPersonUpdate += Usecase_OnPersonUpdate;
+                        usecase.OnArisedProblems += Usecase_OnArisedProblems;
+                        var window = new RelocateWindowV(new RelocateWindowM(person, usecase))
+                        {
+                            Owner = this,
+                        };
+                        window.ShowDialog();
+                        usecase.OnPersonUpdate -= Usecase_OnPersonUpdate;
+                        usecase.OnArisedProblems -= Usecase_OnArisedProblems;
                     };
                     return ret;
                 })

@@ -96,6 +96,8 @@ namespace Usecase
                 organization.SetBoss(person, newOrganization);
             }
 
+            _organizationRepository.SaveOrganizaion(organization);
+
             var checkResult = _problemChecker.Check();
             if(checkResult.Count > 0)
             {

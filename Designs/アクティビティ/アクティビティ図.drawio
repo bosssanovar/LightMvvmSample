@@ -4,101 +4,101 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="アクティビティ図　：　社員一覧表示" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FFFFFF;width=300;height=30;" parent="1" vertex="1">
+                <mxCell id="2" value="アクティビティ図　：　社員一覧表示" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=default;width=300;height=30;strokeColor=default;" parent="1" vertex="1">
                     <mxGeometry x="100" y="110" width="860" height="490" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="App" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+                <mxCell id="3" value="App" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=none;strokeColor=default;fillColor=default;" parent="1" vertex="1">
                     <mxGeometry x="170" y="154" width="190" height="426" as="geometry"/>
                 </mxCell>
-                <mxCell id="10" value="起動" style="html=1;" parent="3" vertex="1">
+                <mxCell id="10" value="起動" style="html=1;strokeColor=default;" parent="3" vertex="1">
                     <mxGeometry x="40" y="60" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="42" value="社員一覧を表示" style="html=1;" parent="3" vertex="1">
+                <mxCell id="42" value="社員一覧を表示" style="html=1;strokeColor=default;" parent="3" vertex="1">
                     <mxGeometry x="40" y="346" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="Usecase" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+                <mxCell id="6" value="Usecase" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=none;strokeColor=default;fillColor=default;" parent="1" vertex="1">
                     <mxGeometry x="360" y="154" width="190" height="426" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="社員リストを要求" style="html=1;" parent="6" vertex="1">
+                <mxCell id="39" value="社員リストを要求" style="html=1;strokeColor=default;" parent="6" vertex="1">
                     <mxGeometry x="40" y="56" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" value="組織データを&lt;br&gt;要求" style="html=1;" parent="6" vertex="1">
+                <mxCell id="41" value="組織データを&lt;br&gt;要求" style="html=1;strokeColor=default;" parent="6" vertex="1">
                     <mxGeometry x="40" y="210" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="社員一覧データ&lt;br&gt;を要求" style="html=1;" parent="6" vertex="1">
+                <mxCell id="45" value="社員一覧データ&lt;br&gt;を要求" style="html=1;strokeColor=default;" parent="6" vertex="1">
                     <mxGeometry x="40" y="136" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="各社員の所属組織&lt;br&gt;を要求する" style="html=1;" parent="6" vertex="1">
+                <mxCell id="52" value="各社員の所属組織&lt;br&gt;を要求する" style="html=1;strokeColor=default;" parent="6" vertex="1">
                     <mxGeometry x="40" y="276" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="社員情報一覧を&lt;br&gt;提供" style="html=1;" parent="6" vertex="1">
+                <mxCell id="56" value="社員情報一覧を&lt;br&gt;提供" style="html=1;strokeColor=default;" parent="6" vertex="1">
                     <mxGeometry x="40" y="346" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="Repository" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+                <mxCell id="7" value="Repository" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=none;strokeColor=default;fillColor=default;" parent="1" vertex="1">
                     <mxGeometry x="550" y="154" width="190" height="426" as="geometry"/>
                 </mxCell>
-                <mxCell id="40" value="社員データを提供" style="html=1;" parent="7" vertex="1">
+                <mxCell id="40" value="社員データを提供" style="html=1;strokeColor=default;" parent="7" vertex="1">
                     <mxGeometry x="40" y="56" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="組織データを提供" style="html=1;" parent="7" vertex="1">
+                <mxCell id="50" value="組織データを提供" style="html=1;strokeColor=default;" parent="7" vertex="1">
                     <mxGeometry x="40" y="216" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="Entity" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+                <mxCell id="8" value="Entity" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=none;strokeColor=default;" parent="1" vertex="1">
                     <mxGeometry x="740" y="154" width="190" height="426" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="社員一覧データを&lt;br&gt;提供" style="html=1;" parent="8" vertex="1">
+                <mxCell id="46" value="社員一覧データを&lt;br&gt;提供" style="html=1;strokeColor=default;" parent="8" vertex="1">
                     <mxGeometry x="40" y="126" width="110" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="54" value="各社員の所属組織情報を&lt;br&gt;提供" style="html=1;" parent="8" vertex="1">
+                <mxCell id="54" value="各社員の所属組織情報を&lt;br&gt;提供" style="html=1;strokeColor=default;" parent="8" vertex="1">
                     <mxGeometry x="22" y="276" width="150" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" style="edgeStyle=none;html=1;" parent="1" source="9" target="10" edge="1">
+                <mxCell id="38" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="9" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="" style="ellipse;fillColor=strokeColor;" parent="1" vertex="1">
+                <mxCell id="9" value="" style="ellipse;fillColor=strokeColor;strokeColor=default;" parent="1" vertex="1">
                     <mxGeometry x="120" y="224" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="35" value="" style="ellipse;html=1;shape=endState;fillColor=strokeColor;" parent="1" vertex="1">
+                <mxCell id="35" value="" style="ellipse;html=1;shape=endState;fillColor=strokeColor;strokeColor=default;" parent="1" vertex="1">
                     <mxGeometry x="130" y="510" width="30" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="43" style="edgeStyle=none;html=1;" parent="1" source="10" target="39" edge="1">
+                <mxCell id="43" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="10" target="39" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" style="edgeStyle=none;html=1;" parent="1" source="39" target="40" edge="1">
+                <mxCell id="44" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="39" target="40" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" style="edgeStyle=none;html=1;" parent="1" source="40" target="45" edge="1">
+                <mxCell id="47" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="40" target="45" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" style="edgeStyle=none;html=1;" parent="1" source="45" target="46" edge="1">
+                <mxCell id="48" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="45" target="46" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="49" style="edgeStyle=none;html=1;" parent="1" source="46" target="41" edge="1">
+                <mxCell id="49" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="46" target="41" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="51" style="edgeStyle=none;html=1;" parent="1" source="41" target="50" edge="1">
+                <mxCell id="51" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="41" target="50" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" style="edgeStyle=none;html=1;" parent="1" source="50" target="52" edge="1">
+                <mxCell id="53" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="50" target="52" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="55" style="edgeStyle=none;html=1;" parent="1" source="52" target="54" edge="1">
+                <mxCell id="55" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="52" target="54" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="57" style="edgeStyle=none;html=1;" parent="1" source="54" target="56" edge="1">
+                <mxCell id="57" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="54" target="56" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="58" style="edgeStyle=none;html=1;" parent="1" source="56" target="42" edge="1">
+                <mxCell id="58" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="56" target="42" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" style="edgeStyle=none;html=1;" parent="1" source="42" target="35" edge="1">
+                <mxCell id="61" style="edgeStyle=none;html=1;strokeColor=default;" parent="1" source="42" target="35" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram name="社員追加" id="ZezTb6tIs2g95xz3kLWa">
-        <mxGraphModel dx="1386" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1386" dy="814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="O6GPABXBT-3CAoM7LccD-0"/>
                 <mxCell id="O6GPABXBT-3CAoM7LccD-1" parent="O6GPABXBT-3CAoM7LccD-0"/>
@@ -283,21 +283,21 @@
                         <mxPoint x="542" y="831.7906976744184" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="xIJeni_eFve8d7gFv1PJ-0" style="edgeStyle=none;html=1;" edge="1" parent="O6GPABXBT-3CAoM7LccD-1" source="O6GPABXBT-3CAoM7LccD-19" target="NAB73ic8YxEJr7RHJm7l-2">
+                <mxCell id="xIJeni_eFve8d7gFv1PJ-0" style="edgeStyle=none;html=1;" parent="O6GPABXBT-3CAoM7LccD-1" source="O6GPABXBT-3CAoM7LccD-19" target="NAB73ic8YxEJr7RHJm7l-2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="COMsJ_IiXkWgfwDp7nn2" name="社員異動">
-        <mxGraphModel dx="1386" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1386" dy="814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="UEAOFtX6duUxqp0wNjyg-1" value="アクティビティ図　：　社員異動" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=#FFFFFF;width=300;height=30;" parent="1" vertex="1">
+                <mxCell id="UEAOFtX6duUxqp0wNjyg-1" value="アクティビティ図　：　社員異動" style="shape=umlFrame;whiteSpace=wrap;html=1;swimlaneFillColor=default;width=300;height=30;" parent="1" vertex="1">
                     <mxGeometry x="80" y="30" width="880" height="890" as="geometry"/>
                 </mxCell>
-                <mxCell id="UEAOFtX6duUxqp0wNjyg-2" value="Repository" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+                <mxCell id="UEAOFtX6duUxqp0wNjyg-2" value="Repository" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="530" y="74" width="190" height="676" as="geometry"/>
                 </mxCell>
                 <mxCell id="zscF8s7twt3DxeC_hiO3-3" value="組織データを提供" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="UEAOFtX6duUxqp0wNjyg-2" vertex="1">
@@ -314,7 +314,7 @@
                 <mxCell id="zscF8s7twt3DxeC_hiO3-43" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=strokeColor;" parent="UEAOFtX6duUxqp0wNjyg-2" vertex="1">
                     <mxGeometry x="10" y="591" width="5" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="UEAOFtX6duUxqp0wNjyg-6" value="Entity" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+                <mxCell id="UEAOFtX6duUxqp0wNjyg-6" value="Entity" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="720" y="74" width="190" height="616" as="geometry"/>
                 </mxCell>
                 <mxCell id="zscF8s7twt3DxeC_hiO3-10" value="組織から抜く" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="UEAOFtX6duUxqp0wNjyg-6" vertex="1">
@@ -326,13 +326,13 @@
                 <mxCell id="FtQvD9dnoq6NEGfQdyvc-4" value="組織に&lt;br&gt;組織長として追加" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="UEAOFtX6duUxqp0wNjyg-6" vertex="1">
                     <mxGeometry x="25" y="356" width="140" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="L4F-Tf_FeLYF84IKlU-c-1" value="はじき出された&lt;br&gt;元組織長は、未所属として&lt;br&gt;上端組織に登録" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" vertex="1" parent="UEAOFtX6duUxqp0wNjyg-6">
+                <mxCell id="L4F-Tf_FeLYF84IKlU-c-1" value="はじき出された&lt;br&gt;元組織長は、未所属として&lt;br&gt;上端組織に登録" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="UEAOFtX6duUxqp0wNjyg-6" vertex="1">
                     <mxGeometry x="20" y="416" width="140" height="54" as="geometry"/>
                 </mxCell>
                 <mxCell id="FtQvD9dnoq6NEGfQdyvc-7" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;" parent="UEAOFtX6duUxqp0wNjyg-6" source="FtQvD9dnoq6NEGfQdyvc-4" target="L4F-Tf_FeLYF84IKlU-c-1" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="UEAOFtX6duUxqp0wNjyg-10" value="App" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+                <mxCell id="UEAOFtX6duUxqp0wNjyg-10" value="App" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="150" y="74" width="190" height="816" as="geometry"/>
                 </mxCell>
                 <mxCell id="UEAOFtX6duUxqp0wNjyg-67" value="異動画面表示・入力" style="html=1;align=center;verticalAlign=top;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;" parent="UEAOFtX6duUxqp0wNjyg-10" vertex="1">
@@ -359,7 +359,7 @@
                 <mxCell id="zscF8s7twt3DxeC_hiO3-58" value="組織・人員問題&lt;br&gt;の修正&lt;br&gt;アクティビティ" style="shape=mxgraph.uml25.behaviorAction;html=1;rounded=1;absoluteArcSize=1;arcSize=10;align=left;spacingLeft=5;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="UEAOFtX6duUxqp0wNjyg-10" vertex="1">
                     <mxGeometry x="15" y="731" width="160" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="UEAOFtX6duUxqp0wNjyg-16" value="Usecase" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+                <mxCell id="UEAOFtX6duUxqp0wNjyg-16" value="Usecase" style="swimlane;fontStyle=1;align=center;horizontal=1;startSize=30;collapsible=0;html=1;swimlaneFillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="340" y="74" width="190" height="796" as="geometry"/>
                 </mxCell>
                 <mxCell id="zscF8s7twt3DxeC_hiO3-7" style="edgeStyle=none;html=1;" parent="UEAOFtX6duUxqp0wNjyg-16" source="zscF8s7twt3DxeC_hiO3-1" target="zscF8s7twt3DxeC_hiO3-4" edge="1">
@@ -504,14 +504,14 @@
                 <mxCell id="FtQvD9dnoq6NEGfQdyvc-6" style="edgeStyle=none;html=1;endArrow=classic;endFill=1;" parent="1" source="FtQvD9dnoq6NEGfQdyvc-1" target="FtQvD9dnoq6NEGfQdyvc-4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="L4F-Tf_FeLYF84IKlU-c-2" style="edgeStyle=none;html=1;" edge="1" parent="1" source="L4F-Tf_FeLYF84IKlU-c-1" target="zscF8s7twt3DxeC_hiO3-38">
+                <mxCell id="L4F-Tf_FeLYF84IKlU-c-2" style="edgeStyle=none;html=1;" parent="1" source="L4F-Tf_FeLYF84IKlU-c-1" target="zscF8s7twt3DxeC_hiO3-38" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram id="shFqcNqGrQbPXuR7TPwY" name="組織人員問題修正">
-        <mxGraphModel dx="1130" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1386" dy="825" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>

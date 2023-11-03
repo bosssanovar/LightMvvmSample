@@ -91,6 +91,28 @@ namespace WpfApp1.MainWindow
 
         #endregion
 
+        #region Relocate Command
+
+        private Command _relocateCommand;
+
+        /// <summary>
+        /// Relocate コマンド
+        /// </summary>
+        public Command RelocateCommand
+        {
+            get
+            {
+                _relocateCommand ??= new Command(new Action(() =>
+                    {
+                        OnRelocate?.Invoke(_model.Person);
+                    }));
+
+                return _relocateCommand;
+            }
+        }
+
+        #endregion
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -111,6 +133,11 @@ namespace WpfApp1.MainWindow
         /// 削除要求を発行する
         /// </summary>
         public event Action<Person>? OnDelete;
+
+        /// <summary>
+        /// 人事異動要求を発行する
+        /// </summary>
+        public event Action<Person>? OnRelocate;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -158,6 +185,7 @@ namespace WpfApp1.MainWindow
 
             OnEdit = null;
             OnDelete = null;
+            OnRelocate = null;
         }
 
         #endregion --------------------------------------------------------------------------------------------

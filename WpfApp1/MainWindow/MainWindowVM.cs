@@ -123,6 +123,16 @@ namespace WpfApp1.MainWindow
             _model.AddPerson(person);
         }
 
+        private void Usecase_OnArisedProblems(OnArisedProblemsEventArgs obj)
+        {
+            _model.UpdateProglemInfo(obj);
+        }
+
+        private void Usecase_OnPersonUpdate(Entity.Persons.Person obj)
+        {
+            _model.UpdatePersons();
+        }
+
         private void DisposeViewModelElement()
         {
             _disposables.Dispose();

@@ -133,6 +133,33 @@ namespace WpfApp1.MainWindow
             _addPersonUsecase.AddPerson(person);
         }
 
+        /// <summary>
+        /// 社員リストを更新します。
+        /// </summary>
+        internal void UpdatePersons()
+        {
+            Persons.Clear();
+            foreach (var (person, organiation) in _personListViewUsecase.GetPersons())
+            {
+                Persons.Add(new PersonM(person, organiation));
+            }
+        }
+
+        /// <summary>
+        /// 組織人員問題表示を更新します。
+        /// </summary>
+        /// <param name="obj">イベントデータ</param>
+        internal void UpdateProglemInfo(OnArisedProblemsEventArgs obj)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("問題一覧　：　" + obj.Problems.Select(x => x.ToString()).DefaultIfEmpty("なし").Aggregate((a, b) => a + ", " + b));
+            sb.AppendLine("無所属社員一覧　：　");
+            sb.AppendLine(obj.UnAssignedPersons.Select(x => x.Name.FullName).DefaultIfEmpty("なし").Aggregate((a, b) => a + ", " + b));
+            sb.AppendLine("長不在組織一覧　：　");
+            sb.AppendLine(obj.NoBossOrganizations.Select(x => x.DisplayName).DefaultIfEmpty("なし").Aggregate((a, b) => a + ", " + b));
+            ProblemsInfo.Value = sb.ToString();
+        }
+
         #endregion
 
         #region Methods - private -----------------------------------------------------------------------------
@@ -140,15 +167,6 @@ namespace WpfApp1.MainWindow
         private void UpdatePersonUsecase_OnUpdatePerson(Person person)
         {
             UpdatePersons();
-        }
-
-        private void UpdatePersons()
-        {
-            Persons.Clear();
-            foreach (var (person, organiation) in _personListViewUsecase.GetPersons())
-            {
-                Persons.Add(new PersonM(person, organiation));
-            }
         }
 
         private void PersonListViewUsecase_OnRemovePerson(Person obj)
@@ -163,19 +181,12 @@ namespace WpfApp1.MainWindow
 
         private void AddPersonUsecase_OnArisedProblems(OnArisedProblemsEventArgs obj)
         {
-            var sb = new StringBuilder();
-            sb.AppendLine("問題一覧　：　" + obj.Problems.Select(x => x.ToString()).Aggregate((a, b) => a + ", " + b));
-            sb.AppendLine("無所属社員一覧　：　");
-            sb.AppendLine(obj.UnAssignedPersons.Select(x => x.Name.FullName).Aggregate((a, b) => a + ", " + b));
-            sb.AppendLine("長不在組織一覧　：　");
-            sb.AppendLine(obj.NoBossOrganizations.Select(x => x.DisplayName).Aggregate((a, b) => a + ", " + b));
-            ProblemsInfo.Value = sb.ToString();
+            UpdateProglemInfo(obj);
         }
 
         private void AddPersonUsecase_OnChangedOrganization()
         {
             // TODO K.I : 実装
-            OrganizationInfo.Value = "Test";
         }
 
         #endregion --------------------------------------------------------------------------------------------
