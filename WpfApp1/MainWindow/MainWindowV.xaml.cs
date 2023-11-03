@@ -58,6 +58,9 @@ namespace WpfApp1.MainWindow
                 })
                 .AddTo(_disposables);
 
+            ProblemsInfo = _model.ProblemsInfo.ToReadOnlyReactivePropertySlim()
+                .AddTo(_disposables);
+
             #endregion
 
             InitializeComponent();

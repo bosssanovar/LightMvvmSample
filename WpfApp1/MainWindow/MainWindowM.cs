@@ -1,5 +1,6 @@
 ﻿using Entity.Persons;
 using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,16 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReactiveCollection<PersonM> Persons { get; private set; }
 
+        /// <summary>
+        /// 組織情報を取得します。
+        /// </summary>
+        public ReactivePropertySlim<string?> OrganizationInfo { get; private set; }
+
+        /// <summary>
+        /// 組織辞任問題情報を取得します。
+        /// </summary>
+        public ReactivePropertySlim<string?> ProblemsInfo { get; private set; }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -65,7 +76,14 @@ namespace WpfApp1.MainWindow
 
             _updatePersonUsecase.OnUpdatePerson += UpdatePersonUsecase_OnUpdatePerson;
             _addPersonUsecase.OnAddedPerson += PersonListViewUsecase_OnAddPerson;
+            _addPersonUsecase.OnChangedOrganization += AddPersonUsecase_OnChangedOrganization;
+            _addPersonUsecase.OnArisedProblems += AddPersonUsecase_OnArisedProblems;
             _removePersonUsecase.OnRemovePerson += PersonListViewUsecase_OnRemovePerson;
+
+            OrganizationInfo = new ReactivePropertySlim<string?>(string.Empty)
+                .AddTo(_disposables);
+            ProblemsInfo = new ReactivePropertySlim<string?>(string.Empty)
+                .AddTo(_disposables);
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -83,6 +101,8 @@ namespace WpfApp1.MainWindow
 
             _updatePersonUsecase.OnUpdatePerson -= UpdatePersonUsecase_OnUpdatePerson;
             _addPersonUsecase.OnAddedPerson -= PersonListViewUsecase_OnAddPerson;
+            _addPersonUsecase.OnChangedOrganization -= AddPersonUsecase_OnChangedOrganization;
+            _addPersonUsecase.OnArisedProblems -= AddPersonUsecase_OnArisedProblems;
             _removePersonUsecase.OnRemovePerson -= PersonListViewUsecase_OnRemovePerson;
         }
 
@@ -132,6 +152,20 @@ namespace WpfApp1.MainWindow
         private void PersonListViewUsecase_OnAddPerson(Person obj)
         {
             UpdatePersons();
+        }
+
+        private void AddPersonUsecase_OnArisedProblems(OnArisedProblemsEventArgs obj)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("問題一覧　：　" + obj.Problems.Select(x => x.ToString()).Aggregate((a, b) => a + ", " + b));
+            sb.AppendLine("無所属社員一覧　：　" + obj.UnAssignedPersons.Select(x => x.Name.FullName).Aggregate((a, b) => a + ", " + b));
+            sb.AppendLine("長不在組織一覧　：　" + obj.NoBossOrganizations.Select(x => x.DisplayName).Aggregate((a, b) => a + ", " + b));
+            ProblemsInfo.Value = sb.ToString();
+        }
+
+        private void AddPersonUsecase_OnChangedOrganization()
+        {
+            // TODO K.I : 実装
         }
 
         #endregion --------------------------------------------------------------------------------------------

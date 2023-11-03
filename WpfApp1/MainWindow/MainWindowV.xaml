@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <DataGrid Margin="10" ItemsSource="{Binding Persons}" AutoGenerateColumns="False" CanUserAddRows="False" d:ItemsSource="{d:SampleData ItemCount=20}">
@@ -36,7 +37,18 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="組織人員問題一覧："/>
+            <TextBlock Grid.Column="1" Text="{Binding ProblemsInfo.Value}"/>
+            <Button Grid.Column="2" Margin="10,0,0,0" Content="修正" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
@@ -45,7 +57,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="1" Text="Count : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="2" Text="{Binding PersonsCount.Value}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="{Binding PersonsCount.Value}" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow"/>
             <Button Grid.Column="3" Height="30" Width="60" Margin="5" Content="Add" Command="{Binding AddCommand}"/>
         </Grid>        
     </Grid>

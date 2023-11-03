@@ -44,6 +44,11 @@ namespace WpfApp1.MainWindow
         /// </summary>
         public ReadOnlyReactiveCollection<PersonVM> Persons { get; }
 
+        /// <summary>
+        /// 組織人員問題を取得します。
+        /// </summary>
+        public ReadOnlyReactivePropertySlim<string?> ProblemsInfo { get; }
+
         #region Add Command
 
         private Command _addCommand;
