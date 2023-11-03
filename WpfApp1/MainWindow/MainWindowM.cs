@@ -165,8 +165,10 @@ namespace WpfApp1.MainWindow
         {
             var sb = new StringBuilder();
             sb.AppendLine("問題一覧　：　" + obj.Problems.Select(x => x.ToString()).Aggregate((a, b) => a + ", " + b));
-            sb.AppendLine("無所属社員一覧　：　" + obj.UnAssignedPersons.Select(x => x.Name.FullName).Aggregate((a, b) => a + ", " + b));
-            sb.AppendLine("長不在組織一覧　：　" + obj.NoBossOrganizations.Select(x => x.DisplayName).Aggregate((a, b) => a + ", " + b));
+            sb.AppendLine("無所属社員一覧　：　");
+            sb.AppendLine(obj.UnAssignedPersons.Select(x => x.Name.FullName).Aggregate((a, b) => a + ", " + b));
+            sb.AppendLine("長不在組織一覧　：　");
+            sb.AppendLine(obj.NoBossOrganizations.Select(x => x.DisplayName).Aggregate((a, b) => a + ", " + b));
             ProblemsInfo.Value = sb.ToString();
         }
 
