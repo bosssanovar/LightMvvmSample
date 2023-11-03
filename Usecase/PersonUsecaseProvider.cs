@@ -64,14 +64,16 @@ namespace Usecase
         /// </summary>
         public static InitializeUsecase InitializeUsecase =>
             _initializeUsecase ??= new InitializeUsecase(
-                PeopleRepository);
+                PeopleRepository,
+                OrganizationRepository);
 
         /// <summary>
         /// 個人情報を追加するためのユースケースを取得します。
         /// </summary>
         public static AddPersonUsecase AddPersonUsecase =>
             _addPersonUsecase ??= new AddPersonUsecase(
-                PeopleRepository);
+                PeopleRepository,
+                OrganizationRepository);
 
         /// <summary>
         /// 個人情報を更新するためのユースケースを取得します。

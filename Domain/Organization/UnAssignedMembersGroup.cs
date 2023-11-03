@@ -1,5 +1,4 @@
-﻿using Entity.Organization;
-using Entity.Persons;
+﻿using Entity.Persons;
 using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
@@ -7,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.DomainService.OrganizationVisitor
+namespace Entity.Organization
 {
     /// <summary>
-    ///  所属長を設定するVisitor
+    /// 無所属社員のグループ
     /// </summary>
-    internal class SetBossVisitor : IOrganizationVisitor
+    internal class UnAssignedMembersGroup : OrganizationBase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -20,22 +19,9 @@ namespace Entity.DomainService.OrganizationVisitor
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly Person _newBoss;
-        private readonly OrganizationBase _targetOrganization;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 所属長設定に成功したかを判断する。
-        /// </summary>
-        public bool IsSetted { get; private set; } = false;
-
-        /// <summary>
-        /// はじき出された元の組織長を取得します。
-        /// </summary>
-        public Person? OldBoss { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -48,12 +34,19 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="newBoss">新しい組織長</param>
-        /// <param name="targetOrganization">ターゲット組織</param>
-        public SetBossVisitor(Person newBoss, OrganizationBase targetOrganization)
+        public UnAssignedMembersGroup()
+            : this(new("無所属"), Ranks.Outside)
         {
-            _newBoss = newBoss;
-            _targetOrganization = targetOrganization;
+        }
+
+        private UnAssignedMembersGroup(UnAssignedMembersGroup original)
+            : base(original)
+        {
+        }
+
+        private UnAssignedMembersGroup(OrganizationNameVO name, Ranks rank)
+            : base(name, rank)
+        {
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -63,17 +56,12 @@ namespace Entity.DomainService.OrganizationVisitor
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 実行します。
+        /// 無所属社員を取得します。
         /// </summary>
-        /// <param name="target">ターゲット</param>
-        public void Visit(OrganizationBase target)
+        /// <returns>無所属社員一覧</returns>
+        public List<Person> GetMembers()
         {
-            if(target.SameIdentityAs(_targetOrganization))
-            {
-                OldBoss = target.SetBoss(_newBoss);
-
-                IsSetted = true;
-            }
+            return Members.Select(x => x.Clone()).ToList();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -91,6 +79,18 @@ namespace Entity.DomainService.OrganizationVisitor
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
+
+        /// <inheritdoc/>
+        public override UnAssignedMembersGroup Clone()
+        {
+            return new UnAssignedMembersGroup(this);
+        }
+
+        /// <inheritdoc/>
+        internal override void Accept(IOrganizationVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

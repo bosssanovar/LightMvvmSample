@@ -26,6 +26,11 @@ namespace Entity.Organization
         /// チーム
         /// </summary>
         Team,
+
+        /// <summary>
+        /// 管理外
+        /// </summary>
+        Outside,
     }
 
     /// <summary>
@@ -46,6 +51,7 @@ namespace Entity.Organization
                 Ranks.Department => "部",
                 Ranks.Section => "課",
                 Ranks.Team => "チーム",
+                Ranks.Outside => string.Empty,
                 _ => throw new ArgumentOutOfRangeException(nameof(value), "未定義です"),
             };
         }
@@ -63,6 +69,7 @@ namespace Entity.Organization
                 Ranks.Department => Posts.Manager,
                 Ranks.Section => Posts.SectionChief,
                 Ranks.Team => Posts.Chief,
+                Ranks.Outside => Posts.Employee,
                 _ => throw new ArgumentOutOfRangeException(nameof(value), "未定義です"),
             };
         }

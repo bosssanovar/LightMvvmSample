@@ -96,18 +96,16 @@ namespace Entity.Organization
         }
 
         /// <summary>
-        /// コンストラクタ
+        /// コピーコンストラクタ
         /// </summary>
-        /// <param name="identifier">識別子</param>
-        /// <param name="name">組織名称</param>
-        /// <param name="rank">組織ランク</param>
-        /// <param name="boss">組織長</param>
-        protected OrganizationBase(int identifier, OrganizationNameVO name, Ranks rank, Person? boss)
+        /// <param name="original">コピー元</param>
+        protected OrganizationBase(OrganizationBase original)
         {
-            Identifier = identifier;
-            Name = name;
-            Rank = rank;
-            Boss = boss;
+            Identifier = original.Identifier;
+            Members = original.Members.Select(x => x.Clone()).ToList();
+            Name = original.Name.Clone();
+            Rank = original.Rank;
+            Boss = original.Boss?.Clone();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -205,10 +203,15 @@ namespace Entity.Organization
         /// 組織長を設定します。
         /// 組織長が既に設定されている場合には元組織長として所属が無くなる。
         /// </summary>
+        /// <returns>元の組織長</returns>
         /// <param name="newBoss">新しい組織長</param>
-        internal void SetBoss(Person newBoss)
+        internal Person? SetBoss(Person newBoss)
         {
+            var oldBoss = Boss;
+
             Boss = newBoss;
+
+            return oldBoss;
         }
 
         /// <summary>

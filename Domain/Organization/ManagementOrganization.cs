@@ -56,10 +56,10 @@ namespace Entity.Organization
             _lowerOrganizations = lowerOrganizations;
         }
 
-        private ManagementOrganization(int identifier, OrganizationNameVO name, Ranks rank, Person? boss, List<OrganizationBase> lowerOrganizations)
-            : base(identifier, name, rank, boss)
+        private ManagementOrganization(ManagementOrganization original)
+            : base(original)
         {
-            _lowerOrganizations = lowerOrganizations;
+            _lowerOrganizations = original._lowerOrganizations.Select(x => x.Clone()).ToList();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ namespace Entity.Organization
         /// <returns>複製したインスタンス</returns>
         public override ManagementOrganization Clone()
         {
-            return new ManagementOrganization(Identifier, Name.Clone(), Rank, Boss?.Clone(), _lowerOrganizations.Select(x => x.Clone()).ToList());
+            return new ManagementOrganization(this);
         }
 
         #endregion --------------------------------------------------------------------------------------------

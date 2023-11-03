@@ -35,8 +35,8 @@ namespace Entity.Organization
         {
         }
 
-        private TerminalOrganization(int identifier, OrganizationNameVO name, Person? boss)
-            : base(identifier, name, Ranks.Team, boss)
+        private TerminalOrganization(TerminalOrganization original)
+            : base(original)
         {
         }
 
@@ -52,7 +52,7 @@ namespace Entity.Organization
         /// <returns>複製インスタンス</returns>
         public override TerminalOrganization Clone()
         {
-            return new TerminalOrganization(Identifier, Name.Clone(), Boss?.Clone());
+            return new TerminalOrganization(this);
         }
 
         #endregion --------------------------------------------------------------------------------------------

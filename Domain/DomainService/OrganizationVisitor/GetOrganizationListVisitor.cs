@@ -63,16 +63,23 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <param name="target">ターゲット</param>
         public void Visit(OrganizationBase target)
         {
-            if (target is ManagementOrganization m)
+            if (target is UnAssignedMembersGroup)
             {
-                CreateName(m);
+                _organizations.Add(new(target.DisplayName, target.Clone()));
             }
-            else if (target is TerminalOrganization t)
+            else
             {
-                CreateName(t);
-            }
+                if (target is ManagementOrganization m)
+                {
+                    CreateName(m);
+                }
+                else if (target is TerminalOrganization t)
+                {
+                    CreateName(t);
+                }
 
-            _organizations.Add(new(_name, target.Clone()));
+                _organizations.Add(new(_name, target.Clone()));
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

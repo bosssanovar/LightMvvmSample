@@ -25,9 +25,8 @@ namespace Entity.Organization
         /// <summary>
         /// 未所属社員の一覧を取得します。
         /// </summary>
-        /// <param name="persons">社員一覧</param>
         /// <returns>未所属社員の一覧</returns>
-        public List<Person> GetUnAssignedPersons(List<Person> persons);
+        public List<Person> GetUnAssignedPersons();
 
         /// <summary>
         /// 組織長不在組織の一覧を取得します。

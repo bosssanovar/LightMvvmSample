@@ -110,7 +110,7 @@ namespace Usecase_Test.Sub
                 return ret;
             }
 
-            public List<Person> GetUnAssignedPersons(List<Person> persons)
+            public List<Person> GetUnAssignedPersons()
             {
                 var ret = new List<Person>();
 

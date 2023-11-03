@@ -22,6 +22,8 @@ namespace Usecase
 
         private readonly PeopleRepository _peopleRepository;
 
+        private readonly OrganizationRepository _organizationRepository;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -43,9 +45,11 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="peopleRepository"><see cref="People"/>エンティティのリポジトリ</param>
-        public AddPersonUsecase(PeopleRepository peopleRepository)
+        /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
+        public AddPersonUsecase(PeopleRepository peopleRepository, OrganizationRepository organizationRepository)
         {
             _peopleRepository = peopleRepository;
+            _organizationRepository = organizationRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -76,6 +80,7 @@ namespace Usecase
         private void AddToPeople(Person person)
         {
             var people = _peopleRepository.LoadPeople();
+            var organization = _organizationRepository.LoadOrganization();
 
             if (people.IsContain(person))
             {
@@ -83,8 +88,10 @@ namespace Usecase
             }
 
             people.AddPerson(person);
+            organization.AddNewMember(person);
 
             _peopleRepository.SavePeople(people);
+            _organizationRepository.SaveOrganizaion(organization);
         }
 
         #endregion --------------------------------------------------------------------------------------------

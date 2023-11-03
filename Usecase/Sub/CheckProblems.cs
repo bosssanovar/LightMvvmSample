@@ -71,9 +71,6 @@ namespace Usecase.Sub
         {
             var ret = new List<Problems>();
 
-            var people = _peopleRepository.LoadPersonsGetter();
-            var persons = people.Persons;
-
             var organization = _organizationRepository.LoadProblemChecker();
 
             NoBossOrganizaiotns = organization.GetNoBossOrganizaiotns();
@@ -82,7 +79,7 @@ namespace Usecase.Sub
                 ret.Add(Problems.NoBoss);
             }
 
-            UnAssignedPersons = organization.GetUnAssignedPersons(persons.ToList());
+            UnAssignedPersons = organization.GetUnAssignedPersons();
             if (UnAssignedPersons.Count > 0)
             {
                 ret.Add(Problems.UnAssigned);

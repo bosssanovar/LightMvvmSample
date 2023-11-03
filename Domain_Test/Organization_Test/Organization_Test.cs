@@ -45,12 +45,27 @@ namespace Entity_Test.Organization_Test
         }
 
         [Fact]
+        public void 新社員追加()
+        {
+            var builder = new BuilderMock();
+            var organization = new Organization(builder);
+            var targetOrganization = builder.TestTargetOrganization1;
+            var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(targetPerson);
+
+            Assert.Equal("無所属", organization.GetOrganizationName(targetPerson));
+        }
+
+        [Fact]
         public void 所属組織に社員追加()
         {
             var builder = new BuilderMock();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(targetPerson);
 
             organization.RelocateEmployee(targetPerson, targetOrganization);
 
@@ -65,6 +80,8 @@ namespace Entity_Test.Organization_Test
             //var targetOrganization = builder.TestTargetOrganization;
             var notTargetOrganization = new TerminalOrganization(new("error"));
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(targetPerson);
 
             try
             {
@@ -92,6 +109,8 @@ namespace Entity_Test.Organization_Test
             var targetOrganization2 = builder.TestTargetOrganization2;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
+            organization.AddNewMember(targetPerson);
+
             organization.RelocateEmployee(targetPerson, targetOrganization);
             organization.RelocateEmployee(targetPerson, targetOrganization2);
 
@@ -112,22 +131,25 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
+            organization.AddNewMember(targetPerson);
+
             organization.RelocateEmployee(targetPerson, targetOrganization);
 
             Assert.True(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(targetPerson)));
         }
 
         [Fact]
-        public void 社員の所属組織取得_例外()
+        public void 未所属社員の所属組織取得()
         {
             var builder = new BuilderMock();
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
-            // 追加しないで取得
+            organization.AddNewMember(targetPerson);
+
             var o = organization.GetAssignedOrganization(targetPerson);
 
-            Assert.Null(o);
+            Assert.IsType<UnAssignedMembersGroup>(o);
         }
 
         [Fact]
@@ -137,6 +159,8 @@ namespace Entity_Test.Organization_Test
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(boss);
 
             organization.SetBoss(boss, targetOrganization);
 
@@ -150,6 +174,8 @@ namespace Entity_Test.Organization_Test
             var organization = new Organization(builder);
             var targetOrganization = new ManagementOrganization(new("aa"), Ranks.Department, new());
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(boss);
 
             try
             {
@@ -175,6 +201,8 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
+            organization.AddNewMember(boss);
+
             organization.SetBoss(boss, targetOrganization);
 
             Assert.True(boss.SameIdentityAs(organization.GetBoss(targetOrganization)));
@@ -187,6 +215,8 @@ namespace Entity_Test.Organization_Test
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(boss);
 
             try
             {
@@ -212,7 +242,22 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
+            organization.AddNewMember(targetPerson);
+
             organization.RelocateEmployee(targetPerson, targetOrganization);
+
+            Assert.Equal(Posts.Employee, organization.GetPost(targetPerson));
+        }
+
+        [Fact]
+        public void 社員の役職取得_無所属()
+        {
+            var builder = new BuilderMock();
+            var organization = new Organization(builder);
+            var targetOrganization = builder.TestTargetOrganization1;
+            var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(targetPerson);
 
             Assert.Equal(Posts.Employee, organization.GetPost(targetPerson));
         }
@@ -224,6 +269,8 @@ namespace Entity_Test.Organization_Test
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(targetPerson);
 
             organization.SetBoss(targetPerson, targetOrganization);
 
@@ -238,6 +285,8 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
             var targetPerson2 = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(targetPerson);
 
             organization.RelocateEmployee(targetPerson, targetOrganization);
 
@@ -265,9 +314,24 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
+            organization.AddNewMember(targetPerson);
+
             organization.RelocateEmployee(targetPerson, targetOrganization);
 
             Assert.Equal(builder.TestTargetOrganization1Name, organization.GetOrganizationName(targetPerson));
+        }
+
+        [Fact]
+        public void 社員の所属組織名を取得_無所属()
+        {
+            var builder = new BuilderMock();
+            var organization = new Organization(builder);
+            var targetOrganization = builder.TestTargetOrganization1;
+            var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(targetPerson);
+
+            Assert.Equal("無所属", organization.GetOrganizationName(targetPerson));
         }
 
         [Fact]
@@ -300,7 +364,36 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
+            organization.AddNewMember(targetPerson);
+
             organization.RelocateEmployee(targetPerson, targetOrganization);
+
+            organization.Leave(targetPerson);
+
+            try
+            {
+                organization.GetPost(targetPerson);
+            }
+            catch (ArgumentException)
+            {
+                return;
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+            Assert.Fail();
+        }
+
+        [Fact]
+        public void 社員の退社_配属前()
+        {
+            var builder = new BuilderMock();
+            var organization = new Organization(builder);
+            var targetOrganization = builder.TestTargetOrganization1;
+            var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(targetPerson);
 
             organization.Leave(targetPerson);
 
@@ -349,6 +442,8 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var targetBoss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
+            organization.AddNewMember(targetBoss);
+
             organization.SetBoss(targetBoss, targetOrganization);
 
             organization.Leave(targetBoss);
@@ -370,29 +465,6 @@ namespace Entity_Test.Organization_Test
         }
 
         [Fact]
-        public void 組織長の退社_例外()
-        {
-            var builder = new BuilderMock();
-            var organization = new Organization(builder);
-            var targetOrganization = builder.TestTargetOrganization1;
-            var targetBoss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
-
-            try
-            {
-                organization.Leave(targetBoss);
-            }
-            catch (ArgumentException)
-            {
-                return;
-            }
-            catch
-            {
-                Assert.Fail();
-            }
-            Assert.Fail();
-        }
-
-        [Fact]
         public void 組織長交代()
         {
             var builder = new BuilderMock();
@@ -400,6 +472,9 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
             var boss2 = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(boss);
+            organization.AddNewMember(boss2);
 
             organization.SetBoss(boss, targetOrganization);
             organization.SetBoss(boss2, targetOrganization);
@@ -414,6 +489,8 @@ namespace Entity_Test.Organization_Test
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var person = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(person);
 
             organization.RelocateEmployee(person, targetOrganization);
 
@@ -434,6 +511,8 @@ namespace Entity_Test.Organization_Test
             var targetOrganization = builder.TestTargetOrganization1;
             var targetOrganization2 = builder.TestTargetOrganization2;
             var person = new Person(new("aaa", "aaa"), new(1000, 1, 1));
+
+            organization.AddNewMember(person);
 
             organization.RelocateEmployee(person, targetOrganization);
 
@@ -457,6 +536,8 @@ namespace Entity_Test.Organization_Test
             var targetOrganizationNext = builder.TestTargetOrganization3;
             var person = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
+            organization.AddNewMember(person);
+
             organization.SetBoss(person, targetOrganization);
 
             Assert.True(targetOrganization.SameIdentityAs(organization.GetAssignedOrganization(person)));
@@ -470,9 +551,21 @@ namespace Entity_Test.Organization_Test
 
             organization.Leave(person);
 
-            var o = organization.GetAssignedOrganization(person);
+            try
+            {
+                var o = organization.GetAssignedOrganization(person);
+            }
+            catch (ArgumentException)
+            {
+                return;
+            }
+            catch
+            {
+                Assert.Fail();
+            }
 
-            Assert.Null(o);
+            Assert.Fail();
+
         }
 
         [Fact]
@@ -482,9 +575,7 @@ namespace Entity_Test.Organization_Test
             var organization = new Organization(builder);
             ICheckProblem problemChecker = organization;
 
-            List<Person> persons = new() { builder.AssignedPerson };
-
-            var unAssignedPersons = problemChecker.GetUnAssignedPersons(persons);
+            var unAssignedPersons = problemChecker.GetUnAssignedPersons();
             Assert.Empty(unAssignedPersons);
             var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
             Assert.Single(noBossOrganizations);
@@ -498,14 +589,12 @@ namespace Entity_Test.Organization_Test
             var organization = new Organization(builder);
             ICheckProblem problemChecker = organization;
 
-            List<Person> persons = new() { builder.AssignedPerson };
-
             // 準備
             var addPerson = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
-            persons.Add(addPerson);
+            organization.AddNewMember(addPerson);
 
             // 評価
-            var unAssignedPersons = problemChecker.GetUnAssignedPersons(persons);
+            var unAssignedPersons = problemChecker.GetUnAssignedPersons();
             Assert.Single(unAssignedPersons);
             Assert.Contains(unAssignedPersons, x => x.SameIdentityAs(addPerson));
             var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
@@ -521,15 +610,15 @@ namespace Entity_Test.Organization_Test
             ICheckProblem problemChecker = organization;
             IAssign assigner = organization;
 
-            List<Person> persons = new() { builder.AssignedPerson };
-
             // 準備
             var addPerson = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
-            persons.Add(addPerson);
-            assigner.Assign(new(new("aaa", "aaa"), new(1000, 1, 1)), builder.NoBossOrganization, true);
+            var boss = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
+            organization.AddNewMember(addPerson);
+            organization.AddNewMember(boss);
+            assigner.Assign(boss, builder.NoBossOrganization, true);
 
             // 評価
-            var unAssignedPersons = problemChecker.GetUnAssignedPersons(persons);
+            var unAssignedPersons = problemChecker.GetUnAssignedPersons();
             Assert.Single(unAssignedPersons);
             Assert.Contains(unAssignedPersons, x => x.SameIdentityAs(addPerson));
             var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
