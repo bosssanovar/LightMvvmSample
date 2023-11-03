@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Usecase.Sub;
 
-namespace Usecase.Sub
+namespace Usecase
 {
     /// <summary>
-    /// 組織辞任問題を検査するクラス
+    /// 組織人員問題状況を取得するユースケース
     /// </summary>
-    internal class CheckProblems : ICheckProblems
+    public class CheckProblemsUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -20,25 +21,20 @@ namespace Usecase.Sub
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly ICheckProblemRepository _organizationRepository;
+        private readonly ICheckProblems _checkProblems;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 未所属社員の一覧を取得します。
-        /// </summary>
-        public List<Person> UnAssignedPersons { get; private set; } = new List<Person>();
-
-        /// <summary>
-        /// 長不在組織の一覧を取得します。
-        /// </summary>
-        public List<OrganizationBase> NoBossOrganizaiotns { get; private set; } = new List<OrganizationBase>();
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 組織人員問題発生時イベント
+        /// </summary>
+        public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -47,10 +43,10 @@ namespace Usecase.Sub
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="organizationRepository"><see cref="ICheckProblemRepository"/></param>
-        public CheckProblems(ICheckProblemRepository organizationRepository)
+        /// <param name="checkProblems">組織人員問題検出</param>
+        public CheckProblemsUsecase(ICheckProblems checkProblems)
         {
-            _organizationRepository = organizationRepository;
+            _checkProblems = checkProblems;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -60,28 +56,15 @@ namespace Usecase.Sub
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 組織辞任問題を検査する
+        /// 社員を組織にアサインします。
         /// </summary>
-        /// <returns><see cref="Problems"/>問題一覧</returns>
-        public List<Problems> Check()
+        public void Check()
         {
-            var ret = new List<Problems>();
-
-            var organization = _organizationRepository.LoadProblemChecker();
-
-            NoBossOrganizaiotns = organization.GetNoBossOrganizaiotns();
-            if (NoBossOrganizaiotns.Count > 0)
+            var checkResult = _checkProblems.Check();
+            if(checkResult.Count > 0)
             {
-                ret.Add(Problems.NoBoss);
+                OnArisedProblems(new(checkResult, _checkProblems.UnAssignedPersons, _checkProblems.NoBossOrganizaiotns));
             }
-
-            UnAssignedPersons = organization.GetUnAssignedPersons();
-            if (UnAssignedPersons.Count > 0)
-            {
-                ret.Add(Problems.UnAssigned);
-            }
-
-            return ret;
         }
 
         #endregion --------------------------------------------------------------------------------------------

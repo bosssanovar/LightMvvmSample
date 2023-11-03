@@ -80,7 +80,7 @@ namespace Usecase
             OnAddedPerson?.Invoke(person);
             OnChangedOrganization?.Invoke();
 
-            CheckProblems checker = new(_peopleRepository, _organizationRepository);
+            CheckProblems checker = new(_organizationRepository);
             var checkResult = checker.Check();
             if(checkResult.Count > 0 )
             {

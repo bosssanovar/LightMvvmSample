@@ -34,6 +34,8 @@ namespace WpfApp1.MainWindow
 
         private readonly RemovePersonUsecase _removePersonUsecase;
 
+        private readonly CheckProblemsUsecase _checkProblemsUsecase;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -70,20 +72,24 @@ namespace WpfApp1.MainWindow
             _updatePersonUsecase = PersonUsecaseProvider.UpdatePersonUsecase;
             _addPersonUsecase = PersonUsecaseProvider.AddPersonUsecase;
             _removePersonUsecase = PersonUsecaseProvider.RemovePersonUsecase;
+            _checkProblemsUsecase = PersonUsecaseProvider.CheckProblemsUsecase;
 
             Persons = new ReactiveCollection<PersonM>();
-            UpdatePersons();
 
             _updatePersonUsecase.OnUpdatePerson += UpdatePersonUsecase_OnUpdatePerson;
             _addPersonUsecase.OnAddedPerson += PersonListViewUsecase_OnAddPerson;
             _addPersonUsecase.OnChangedOrganization += AddPersonUsecase_OnChangedOrganization;
             _addPersonUsecase.OnArisedProblems += AddPersonUsecase_OnArisedProblems;
             _removePersonUsecase.OnRemovePerson += PersonListViewUsecase_OnRemovePerson;
+            _checkProblemsUsecase.OnArisedProblems += AddPersonUsecase_OnArisedProblems;
 
             OrganizationInfo = new ReactivePropertySlim<string?>(string.Empty)
                 .AddTo(_disposables);
             ProblemsInfo = new ReactivePropertySlim<string?>(string.Empty)
                 .AddTo(_disposables);
+
+            UpdatePersons();
+            _checkProblemsUsecase.Check();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -104,6 +110,7 @@ namespace WpfApp1.MainWindow
             _addPersonUsecase.OnChangedOrganization -= AddPersonUsecase_OnChangedOrganization;
             _addPersonUsecase.OnArisedProblems -= AddPersonUsecase_OnArisedProblems;
             _removePersonUsecase.OnRemovePerson -= PersonListViewUsecase_OnRemovePerson;
+            _checkProblemsUsecase.OnArisedProblems -= AddPersonUsecase_OnArisedProblems;
         }
 
         #endregion --------------------------------------------------------------------------------------------

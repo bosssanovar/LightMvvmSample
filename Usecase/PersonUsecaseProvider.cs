@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Usecase.Sub;
 
 namespace Usecase
 {
@@ -33,6 +34,7 @@ namespace Usecase
         private static AddPersonUsecase _addPersonUsecase;
         private static RemovePersonUsecase _removePersonUsecase;
         private static UpdatePersonUsecase _updatePersonUsecase;
+        private static CheckProblemsUsecase _checkProblemsUsecase;
 
         #endregion
 
@@ -42,7 +44,8 @@ namespace Usecase
 
         #region Repository
 
-        private static PeopleRepository PeopleRepository => _peopleRepository ??= new PeopleRepository();
+        private static PeopleRepository PeopleRepository =>
+            _peopleRepository ??= new PeopleRepository();
 
         private static OrganizationRepository OrganizationRepository =>
             _organizationRepository ??= new OrganizationRepository();
@@ -88,6 +91,13 @@ namespace Usecase
         public static RemovePersonUsecase RemovePersonUsecase =>
             _removePersonUsecase ??= new RemovePersonUsecase(
                 PeopleRepository);
+
+        /// <summary>
+        /// 組織人員問題を確認するためのユースケースを取得します。
+        /// </summary>
+        public static CheckProblemsUsecase CheckProblemsUsecase =>
+            _checkProblemsUsecase ??= new CheckProblemsUsecase(
+                new CheckProblems(OrganizationRepository));
 
         #endregion
 
