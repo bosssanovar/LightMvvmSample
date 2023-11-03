@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Usecase.Sub;
 
 namespace Usecase
 {
@@ -35,7 +36,17 @@ namespace Usecase
         /// <summary>
         /// 個人情報が追加されたことを通知します。
         /// </summary>
-        public event Action<Person> OnAddPerson;
+        public event Action<Person> OnAddedPerson;
+
+        /// <summary>
+        /// 組織構成が変更されたことを通知します。
+        /// </summary>
+        public event Action OnChangedOrganization;
+
+        /// <summary>
+        /// 組織人員問題が発生したことを通知します。
+        /// </summary>
+        public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -66,7 +77,15 @@ namespace Usecase
         {
             AddToPeople(person);
 
-            OnAddPerson?.Invoke(person);
+            OnAddedPerson?.Invoke(person);
+            OnChangedOrganization?.Invoke();
+
+            CheckProblems checker = new(_peopleRepository, _organizationRepository);
+            var checkResult = checker.Check();
+            if(checkResult.Count > 0 )
+            {
+                OnArisedProblems(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

@@ -64,7 +64,7 @@ namespace WpfApp1.MainWindow
             UpdatePersons();
 
             _updatePersonUsecase.OnUpdatePerson += UpdatePersonUsecase_OnUpdatePerson;
-            _addPersonUsecase.OnAddPerson += PersonListViewUsecase_OnAddPerson;
+            _addPersonUsecase.OnAddedPerson += PersonListViewUsecase_OnAddPerson;
             _removePersonUsecase.OnRemovePerson += PersonListViewUsecase_OnRemovePerson;
         }
 
@@ -82,7 +82,7 @@ namespace WpfApp1.MainWindow
             _disposables.Dispose();
 
             _updatePersonUsecase.OnUpdatePerson -= UpdatePersonUsecase_OnUpdatePerson;
-            _addPersonUsecase.OnAddPerson -= PersonListViewUsecase_OnAddPerson;
+            _addPersonUsecase.OnAddedPerson -= PersonListViewUsecase_OnAddPerson;
             _removePersonUsecase.OnRemovePerson -= PersonListViewUsecase_OnRemovePerson;
         }
 
@@ -91,6 +91,22 @@ namespace WpfApp1.MainWindow
         #region Methods - protected ---------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal
+
+        /* TODO K.I : アクセス修飾子見直し */
+        /* TODO K.I : 値オブジェクトクラスをrecord型に置き換える */
+
+        /// <summary>
+        /// 社員を追加します。
+        /// </summary>
+        /// <param name="person">新社員</param>
+        internal void AddPerson(Person person)
+        {
+            _addPersonUsecase.AddPerson(person);
+        }
+
+        #endregion
 
         #region Methods - private -----------------------------------------------------------------------------
 

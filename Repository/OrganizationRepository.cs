@@ -13,7 +13,7 @@ namespace Repository
     /// <summary>
     /// <see cref="Organization"/>エンティティのリポジトリ
     /// </summary>
-    public class OrganizationRepository : IAssignRepository
+    public class OrganizationRepository : IAssignRepository, ICheckProblemRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -78,6 +78,9 @@ namespace Repository
         {
             _organization = (Organization)assigner.Clone();
         }
+
+        /// <inheritdoc/>
+        public ICheckProblem LoadProblemChecker() => _organization.Clone();
 
         #endregion --------------------------------------------------------------------------------------------
 

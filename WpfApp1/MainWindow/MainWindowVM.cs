@@ -22,8 +22,6 @@ namespace WpfApp1.MainWindow
 
         private readonly UpdatePersonUsecase _updatePersonUsecase;
 
-        private readonly AddPersonUsecase _addPersonUsecase;
-
         private readonly RemovePersonUsecase _removePersonUsecase;
 
         private readonly PersonListViewUsecase _personListViewUsecase;
@@ -110,9 +108,9 @@ namespace WpfApp1.MainWindow
             _updatePersonUsecase.Update(args);
         }
 
-        private void Edit_OnCompletedAdd(Person args)
+        private void Edit_OnCompletedAdd(Person person)
         {
-            _addPersonUsecase.AddPerson(args);
+            _model.AddPerson(person);
         }
 
         private void DisposeViewModelElement()

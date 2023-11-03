@@ -27,7 +27,6 @@ namespace WpfApp1.MainWindow
             #region init ViewModel Members
 
             _updatePersonUsecase = PersonUsecaseProvider.UpdatePersonUsecase;
-            _addPersonUsecase = PersonUsecaseProvider.AddPersonUsecase;
             _removePersonUsecase = PersonUsecaseProvider.RemovePersonUsecase;
             _personListViewUsecase = PersonUsecaseProvider.PersonListViewUsecase;
 

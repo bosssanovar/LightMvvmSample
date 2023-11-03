@@ -10,7 +10,7 @@ namespace Repository
     /// <summary>
     /// <see cref="People"/>エンティティのリポジトリ
     /// </summary>
-    public class PeopleRepository
+    public class PeopleRepository : IGetPersonsRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -60,6 +60,9 @@ namespace Repository
         {
             _people = people.Clone();
         }
+
+        /// <inheritdoc/>
+        public IGetPersons LoadPersonsGetter() => _people.Clone();
 
         #endregion --------------------------------------------------------------------------------------------
 

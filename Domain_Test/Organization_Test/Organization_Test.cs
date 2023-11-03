@@ -49,7 +49,6 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock();
             var organization = new Organization(builder);
-            var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
             organization.AddNewMember(targetPerson);
@@ -254,7 +253,6 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock();
             var organization = new Organization(builder);
-            var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
             organization.AddNewMember(targetPerson);
@@ -326,7 +324,6 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock();
             var organization = new Organization(builder);
-            var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
             organization.AddNewMember(targetPerson);
@@ -390,7 +387,6 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock();
             var organization = new Organization(builder);
-            var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
             organization.AddNewMember(targetPerson);
