@@ -120,9 +120,6 @@ namespace WpfApp1.MainWindow
 
         #region Methods - internal
 
-        /* TODO K.I : アクセス修飾子見直し */
-        /* TODO K.I : 値オブジェクトクラスをrecord型に置き換える */
-
         /// <summary>
         /// 社員を追加します。
         /// </summary>

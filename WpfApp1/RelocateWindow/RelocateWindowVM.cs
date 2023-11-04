@@ -105,6 +105,8 @@ namespace WpfApp1.RelocateWindow
         {
             var items = new List<ComboBoxItem<OrganizationBase>>();
 
+            // TODO K.I : 無所属の場合には無所属項目を追加。
+            // TODO K.I : 無所属時にはOKできない
             foreach (var info in _model.GetOrganizationInfos())
             {
                 items.Add(new(info.FullName, info.Organization));

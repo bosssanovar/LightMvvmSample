@@ -81,21 +81,16 @@ namespace Entity.Organization
         /// <returns>debug</returns>
         public string DebugPring()/* TODO K.I : 要削除 */
         {
-            string GetIndent(Ranks rank)
+            static string GetIndent(Ranks rank)
             {
-                switch (rank)
+                return rank switch
                 {
-                    case Ranks.Campany:
-                        return string.Empty;
-                    case Ranks.Department:
-                        return "    ";
-                    case Ranks.Section:
-                        return "        ";
-                    case Ranks.Team:
-                        return "            ";
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Ranks.Campany => string.Empty,
+                    Ranks.Department => "    ",
+                    Ranks.Section => "        ",
+                    Ranks.Team => "            ",
+                    _ => throw new NotImplementedException(),
+                };
             }
 
             string indent = GetIndent(Rank);
