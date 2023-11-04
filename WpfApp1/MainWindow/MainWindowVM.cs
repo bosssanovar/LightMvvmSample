@@ -131,6 +131,7 @@ namespace WpfApp1.MainWindow
         private void Usecase_OnPersonUpdate(Entity.Persons.Person obj)
         {
             _model.UpdatePersons();
+            _model.UpdateOrganizationStructure();
         }
 
         private void DisposeViewModelElement()

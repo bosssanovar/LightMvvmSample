@@ -1,17 +1,17 @@
 ﻿using Entity.Organization;
-using Entity.Service.OrganizationVisitor;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity.DomainService.OrganizationVisitor
+namespace Usecase
 {
     /// <summary>
-    /// 組織構成を取得するVisitor
+    /// 組織構造を取得するユースケースを提供します。
     /// </summary>
-    internal class GetOrganizationStructureVisitor : IOrganizationVisitor
+    public class GetOrganizationStructureUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -19,22 +19,11 @@ namespace Entity.DomainService.OrganizationVisitor
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly StringBuilder _sb = new StringBuilder();
+        private readonly OrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 組織構造を取得します。
-        /// </summary>
-        public string OrganizationStructureInfo
-        {
-            get
-            {
-                return _sb.ToString();
-            }
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -44,16 +33,30 @@ namespace Entity.DomainService.OrganizationVisitor
 
         #region Constructor -----------------------------------------------------------------------------------
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="organizationRepository"><see cref="Organization"/>Entityのリポジトリ</param>
+        public GetOrganizationStructureUsecase(OrganizationRepository organizationRepository)
+        {
+            _organizationRepository = organizationRepository;
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <inheritdoc/>
-        public void Visit(OrganizationBase target)
+        /// <summary>
+        /// 組織構造を取得します。
+        /// </summary>
+        /// <returns>組織情報</returns>
+        public string GetOrganizationSructureInfo()
         {
-            _sb.Append(target.DebugPring());
+            var organization = _organizationRepository.LoadOrganization();
+
+            return organization.GetOrganizationStructure();
         }
 
         #endregion --------------------------------------------------------------------------------------------

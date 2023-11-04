@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.MainWindow"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="MainWindowV" Height="650" Width="1300">
+        Title="MainWindowV" Height="850" Width="1300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -50,7 +50,9 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <TextBlock Grid.Column="1" Margin="10" Text="{Binding OrganizationInfo.Value}" TextWrapping="Wrap"/>
+            <ScrollViewer Grid.Column="1" Margin="10" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+                <TextBlock Text="{Binding OrganizationInfo.Value}" TextWrapping="Wrap"/>
+            </ScrollViewer>
         </Grid>
 
         <Grid Grid.Row="1" Margin="10">

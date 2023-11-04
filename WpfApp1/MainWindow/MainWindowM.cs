@@ -27,14 +27,11 @@ namespace WpfApp1.MainWindow
         private readonly CompositeDisposable _disposables = new();
 
         private readonly PersonListViewUsecase _personListViewUsecase;
-
         private readonly UpdatePersonUsecase _updatePersonUsecase;
-
         private readonly AddPersonUsecase _addPersonUsecase;
-
         private readonly RemovePersonUsecase _removePersonUsecase;
-
         private readonly CheckProblemsUsecase _checkProblemsUsecase;
+        private readonly GetOrganizationStructureUsecase _getOrganizationStructureUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -73,6 +70,7 @@ namespace WpfApp1.MainWindow
             _addPersonUsecase = PersonUsecaseProvider.AddPersonUsecase;
             _removePersonUsecase = PersonUsecaseProvider.RemovePersonUsecase;
             _checkProblemsUsecase = PersonUsecaseProvider.CheckProblemsUsecase;
+            _getOrganizationStructureUsecase = PersonUsecaseProvider.GetOrganizationStructureUsecase;
 
             Persons = new ReactiveCollection<PersonM>();
 
@@ -90,6 +88,7 @@ namespace WpfApp1.MainWindow
 
             UpdatePersons();
             _checkProblemsUsecase.Check();
+            UpdateOrganizationStructure();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -160,6 +159,14 @@ namespace WpfApp1.MainWindow
             ProblemsInfo.Value = sb.ToString();
         }
 
+        /// <summary>
+        /// 組織構造を更新します。
+        /// </summary>
+        public void UpdateOrganizationStructure()
+        {
+            OrganizationInfo.Value = _getOrganizationStructureUsecase.GetOrganizationSructureInfo();
+        }
+
         #endregion
 
         #region Methods - private -----------------------------------------------------------------------------
@@ -186,7 +193,7 @@ namespace WpfApp1.MainWindow
 
         private void AddPersonUsecase_OnChangedOrganization()
         {
-            // TODO K.I : 実装
+            UpdateOrganizationStructure();
         }
 
         #endregion --------------------------------------------------------------------------------------------

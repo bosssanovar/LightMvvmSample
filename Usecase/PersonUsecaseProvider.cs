@@ -38,6 +38,7 @@ namespace Usecase
         private static UpdatePersonUsecase _updatePersonUsecase;
         private static CheckProblemsUsecase _checkProblemsUsecase;
         private static RelocateUsecase _relocateUsecase;
+        private static GetOrganizationStructureUsecase _getOrganizationStructureUsecase;
 
         #endregion
 
@@ -112,6 +113,13 @@ namespace Usecase
             _relocateUsecase ??= new RelocateUsecase(
                 OrganizationRepository,
                 ProblemsChecker);
+
+        /// <summary>
+        /// 組織構造情報を取得するためのユースケースを取得します。
+        /// </summary>
+        public static GetOrganizationStructureUsecase GetOrganizationStructureUsecase =>
+            _getOrganizationStructureUsecase ??= new GetOrganizationStructureUsecase(
+                OrganizationRepository);
 
         #endregion
 
