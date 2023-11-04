@@ -58,9 +58,9 @@ namespace Usecase
         /// 社員リストを取得します。
         /// </summary>
         /// <returns>Peopleエンティティ</returns>
-        public ReadOnlyCollection<(Person person, OrganizationBase? organiation)> GetPersons()
+        public ReadOnlyCollection<(Person Person, OrganizationBase? Organiation)> GetPersons()
         {
-            var ret = new List<(Person person, OrganizationBase? Organiation)>();
+            var ret = new List<(Person Person, OrganizationBase? Organiation)>();
 
             var people = _peopleRepository.LoadPeople();
             var organization = _organizationRepository.LoadOrganization();
@@ -70,7 +70,7 @@ namespace Usecase
                 ret.Add(new(person, organization.GetAssignedOrganization(person)));
             }
 
-            return new ReadOnlyCollection<(Person person, OrganizationBase? Organiation)>(ret);
+            return new ReadOnlyCollection<(Person Person, OrganizationBase? Organiation)>(ret);
         }
 
         /// <summary>

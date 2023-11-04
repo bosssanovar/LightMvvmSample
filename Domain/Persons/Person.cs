@@ -1,6 +1,4 @@
-﻿using Reactive.Bindings;
-
-namespace Entity.Persons
+﻿namespace Entity.Persons
 {
     /// <summary>
     /// 個人情報クラス
@@ -60,13 +58,6 @@ namespace Entity.Persons
             _identifier = person._identifier;
             Birthday = birthDay;
             Name = name;
-        }
-
-        private Person(Guid identifier, NameVO name, BirthdayVO birthday)
-        {
-            _identifier = identifier;
-            Name = name;
-            Birthday = birthday;
         }
 
         #endregion --------------------------------------------------------------------------------------------

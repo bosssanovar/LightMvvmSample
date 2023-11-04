@@ -1,5 +1,4 @@
-﻿using Reactive.Bindings;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace Entity.Persons
 {

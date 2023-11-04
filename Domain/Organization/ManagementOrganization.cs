@@ -56,12 +56,6 @@ namespace Entity.Organization
             _lowerOrganizations = lowerOrganizations;
         }
 
-        private ManagementOrganization(ManagementOrganization original)
-            : base(original)
-        {
-            _lowerOrganizations = original._lowerOrganizations;
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------

@@ -70,7 +70,7 @@ namespace Entity.Persons
         /// 役職一覧の表示と値ペアのリストを取得します。
         /// </summary>
         /// <returns>役職一覧の表示と値ペアのリスト</returns>
-        public static List<(Posts value, string disp)> GetAllDispValueList()
+        public static List<(Posts Value, string Disp)> GetAllDispValueList()
         {
             var ret = new List<(Posts, string)>();
 
