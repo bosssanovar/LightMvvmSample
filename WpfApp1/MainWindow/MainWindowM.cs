@@ -174,6 +174,7 @@ namespace WpfApp1.MainWindow
         private void UpdatePersonUsecase_OnUpdatePerson(Person person)
         {
             UpdatePersons();
+            UpdateOrganizationStructure();
         }
 
         private void PersonListViewUsecase_OnRemovePerson(Person obj)

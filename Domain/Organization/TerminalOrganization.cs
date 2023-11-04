@@ -46,15 +46,6 @@ namespace Entity.Organization
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 複製します。
-        /// </summary>
-        /// <returns>複製インスタンス</returns>
-        public override TerminalOrganization Clone()
-        {
-            return new TerminalOrganization(this);
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------

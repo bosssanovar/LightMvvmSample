@@ -93,11 +93,11 @@ namespace WpfApp1.MainWindow
             _personListViewUsecase = PersonUsecaseProvider.PersonListViewUsecase;
 
             // Birthday
-            Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday.Clone())
+            Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday)
                 .AddTo(_disposables);
 
             // Name
-            Name = new ReactivePropertySlim<NameVO>(person.Name.Clone())
+            Name = new ReactivePropertySlim<NameVO>(person.Name)
                 .AddTo(_disposables);
 
             AssignedOrganization = new ReactivePropertySlim<OrganizationBase?>(assignedOrganization)
@@ -119,12 +119,6 @@ namespace WpfApp1.MainWindow
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 複製します。
-        /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public PersonM Clone() => new(Person.Clone(), AssignedOrganization.Value?.Clone());
 
         /// <summary>
         /// 各種破棄処理

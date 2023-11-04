@@ -138,11 +138,6 @@ namespace Usecase_Test
                 _organization = organization;
             }
 
-            public IAssign Clone()
-            {
-                throw new NotImplementedException();
-            }
-
             void IAssign.Assign(Person person, OrganizationBase organization, bool isBoss)
             {
                 Assert.True(person.SameIdentityAs(_person));

@@ -53,7 +53,7 @@ namespace Repository
         /// <see cref="Organization"/>エンティティの複製を取得します。
         /// </summary>
         /// <returns><see cref="Organization"/>エンティティの複製インスタンス</returns>
-        public Organization LoadOrganization() => _organization.Clone();
+        public Organization LoadOrganization() => _organization;
 
         /// <summary>
         /// <see cref="Organization"/>エンティティを保存します。
@@ -61,14 +61,14 @@ namespace Repository
         /// <param name="organization"><see cref="Organization"/>エンティティ</param>
         public void SaveOrganizaion(Organization organization)
         {
-            _organization = organization.Clone();
+            _organization = organization;
         }
 
         /// <summary>
         /// 組織に社員をアサインするEntityを取得します。
         /// </summary>
         /// <returns>組織に社員をアサインするEntity</returns>
-        public IAssign LoadAssigner() => _organization.Clone();
+        public IAssign LoadAssigner() => _organization;
 
         /// <summary>
         /// 組織に社員をアサインするEntityを保存します。
@@ -76,11 +76,11 @@ namespace Repository
         /// <param name="assigner">組織に社員をアサインするEntity</param>
         public void SaveAssigner(IAssign assigner)
         {
-            _organization = (Organization)assigner.Clone();
+            _organization = (Organization)assigner;
         }
 
         /// <inheritdoc/>
-        public ICheckProblem LoadProblemChecker() => _organization.Clone();
+        public ICheckProblem LoadProblemChecker() => _organization;
 
         #endregion --------------------------------------------------------------------------------------------
 

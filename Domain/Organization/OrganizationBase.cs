@@ -21,6 +21,10 @@ namespace Entity.Organization
 
         #region Fields ----------------------------------------------------------------------------------------
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
         /// <summary>
         /// 識別子
         /// </summary>
@@ -45,10 +49,6 @@ namespace Entity.Organization
         /// 組織ランク
         /// </summary>
         internal Ranks Rank { get; private set; }
-
-        #endregion --------------------------------------------------------------------------------------------
-
-        #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
         /// 組織名を取得します。
@@ -134,10 +134,10 @@ namespace Entity.Organization
         protected OrganizationBase(OrganizationBase original)
         {
             Identifier = original.Identifier;
-            Members = original.Members.Select(x => x.Clone()).ToList();
-            Name = original.Name.Clone();
+            Members = original.Members;
+            Name = original.Name;
             Rank = original.Rank;
-            Boss = original.Boss?.Clone();
+            Boss = original.Boss;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -145,12 +145,6 @@ namespace Entity.Organization
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 複製します。
-        /// </summary>
-        /// <returns>複製インスタンス</returns>
-        public abstract OrganizationBase Clone();
 
         #endregion --------------------------------------------------------------------------------------------
 

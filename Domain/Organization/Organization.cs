@@ -50,8 +50,8 @@ namespace Entity.Organization
 
         private Organization(Organization original)
         {
-            _topOrganization = original._topOrganization.Clone();
-            _unAssignedMembersGroup = original._unAssignedMembersGroup.Clone();
+            _topOrganization = original._topOrganization;
+            _unAssignedMembersGroup = original._unAssignedMembersGroup;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -59,26 +59,6 @@ namespace Entity.Organization
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 複製する
-        /// </summary>
-        /// <returns>複製インスタンス</returns>
-        public Organization Clone()
-        {
-            var ret = new Organization(this);
-
-            return ret;
-        }
-
-        /// <summary>
-        /// 複製する
-        /// </summary>
-        /// <returns>複製インスタンス</returns>
-        IAssign IAssign.Clone()
-        {
-            return Clone();
-        }
 
         /// <summary>
         /// 組織情報を取得します。
@@ -246,7 +226,7 @@ namespace Entity.Organization
                 throw new ArgumentException("引数で指定された組織に、組織長が設定されていません。");
             }
 
-            return organization.Boss.Clone();
+            return organization.Boss;
         }
 
         /// <summary>

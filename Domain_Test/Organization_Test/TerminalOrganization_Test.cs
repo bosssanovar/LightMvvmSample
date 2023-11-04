@@ -10,14 +10,5 @@ namespace Entity_Test.Organization_Test
 {
     public class TerminalOrganization_Test
     {
-        [Fact]
-        public void Clone()
-        {
-            var a = new TerminalOrganization(new("aaaa"));
-            var b = a.Clone();
-
-            Assert.True(a.SameIdentityAs(b));
-            Assert.True(a.DisplayName == b.DisplayName);
-        }
     }
 }

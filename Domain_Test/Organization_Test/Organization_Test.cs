@@ -15,22 +15,6 @@ namespace Entity_Test.Organization_Test
     public class Organization_Test
     {
         [Fact]
-        public void Clone()
-        {
-            var a = new Organization(new BuilderMock_組織構造のみ());
-            var b = a.Clone();
-
-            Assert.NotEqual(a, b);
-            Assert.False(a == b);
-
-            var aList = a.GetOrganizationInfos();
-            var bList = b.GetOrganizationInfos();
-
-            Assert.True(aList.Count == bList.Count);
-            Assert.True(aList[2].FullName == bList[2].FullName);
-        }
-
-        [Fact]
         public void 組織一覧取得()
         {
             var a = new Organization(new BuilderMock_組織構造のみ());

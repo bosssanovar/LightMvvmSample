@@ -59,7 +59,7 @@ namespace Entity.Organization
         private ManagementOrganization(ManagementOrganization original)
             : base(original)
         {
-            _lowerOrganizations = original._lowerOrganizations.Select(x => x.Clone()).ToList();
+            _lowerOrganizations = original._lowerOrganizations;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -67,15 +67,6 @@ namespace Entity.Organization
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 複製します。
-        /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public override ManagementOrganization Clone()
-        {
-            return new ManagementOrganization(this);
-        }
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -27,8 +27,7 @@ namespace Entity.Persons
         {
             get
             {
-                return _persons.Select(x => x.Clone())
-                    .ToList()
+                return _persons.ToList()
                     .AsReadOnly();
             }
         }
@@ -95,23 +94,7 @@ namespace Entity.Persons
         /// <returns>個人情報</returns>
         public Person GetPerson(Person person)
         {
-            return _persons.First(x => x.SameIdentityAs(person)).Clone();
-        }
-
-        /// <summary>
-        /// 複製を取得します。
-        /// </summary>
-        /// <returns>複製されたインスタンス</returns>
-        public People Clone()
-        {
-            var ret = new People();
-
-            foreach (var person in _persons)
-            {
-                ret.AddPerson(person.Clone());
-            }
-
-            return ret;
+            return _persons.First(x => x.SameIdentityAs(person));
         }
 
         /// <summary>

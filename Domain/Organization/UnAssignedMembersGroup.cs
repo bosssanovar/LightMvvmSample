@@ -61,7 +61,7 @@ namespace Entity.Organization
         /// <returns>無所属社員一覧</returns>
         public List<Person> GetMembers()
         {
-            return Members.Select(x => x.Clone()).ToList();
+            return Members;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -79,12 +79,6 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
-
-        /// <inheritdoc/>
-        public override UnAssignedMembersGroup Clone()
-        {
-            return new UnAssignedMembersGroup(this);
-        }
 
         /// <inheritdoc/>
         internal override void Accept(IOrganizationVisitor visitor)

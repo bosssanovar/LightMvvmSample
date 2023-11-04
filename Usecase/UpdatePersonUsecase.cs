@@ -73,13 +73,13 @@ namespace Usecase
 
         private void UpdataPerson(Person person)
         {
-            var entity = _peopleRepository.LoadPeople();
+            var people = _peopleRepository.LoadPeople();
 
-            if (entity.IsContain(person))
+            if (people.IsContain(person))
             {
-                entity.UpdatePersons(person);
+                people.UpdatePersons(person);
 
-                _peopleRepository.SavePeople(entity);
+                _peopleRepository.SavePeople(people);
 
                 OnUpdatePerson?.Invoke(person);
             }

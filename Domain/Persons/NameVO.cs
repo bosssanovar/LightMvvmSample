@@ -87,12 +87,6 @@ namespace Entity.Persons
         }
 
         /// <summary>
-        /// インスタンスを複製します。
-        /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public NameVO Clone() => new(_family, _first);
-
-        /// <summary>
         /// 等価性を判定します。
         /// </summary>
         /// <param name="obj">比較対象</param>

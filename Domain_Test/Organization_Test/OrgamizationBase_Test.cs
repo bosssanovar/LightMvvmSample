@@ -78,19 +78,19 @@ namespace Entity_Test.Organization_Test
             Assert.False(a.IsContainDirectEmployee(p1));
             Assert.Equal(0, a.DirectEmployeeCount);
 
-            a.RemoveMember(p1.Clone());
+            a.RemoveMember(p1);
 
             Assert.True(a.IsBoss(boss));
             Assert.False(a.IsContainDirectEmployee(p1));
             Assert.Equal(0, a.DirectEmployeeCount);
 
-            a.AddMember(p1.Clone());
+            a.AddMember(p1);
 
             Assert.True(a.IsBoss(boss));
             Assert.True(a.IsContainDirectEmployee(p1));
             Assert.Equal(1, a.DirectEmployeeCount);
 
-            a.RemoveMember(p1.Clone());
+            a.RemoveMember(p1);
 
             Assert.True(a.IsBoss(boss));
             Assert.False(a.IsContainDirectEmployee(p1));

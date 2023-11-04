@@ -50,7 +50,7 @@ namespace Repository
         /// <see cref="People"/>エンティティの複製を取得します。
         /// </summary>
         /// <returns>Peopleエンティティの複製インスタンス</returns>
-        public People LoadPeople() => _people.Clone();
+        public People LoadPeople() => _people;
 
         /// <summary>
         /// <see cref="People"/>エンティティを保存します。
@@ -58,11 +58,11 @@ namespace Repository
         /// <param name="people">Peopleエンティティ</param>
         public void SavePeople(People people)
         {
-            _people = people.Clone();
+            _people = people;
         }
 
         /// <inheritdoc/>
-        public IGetPersons LoadPersonsGetter() => _people.Clone();
+        public IGetPersons LoadPersonsGetter() => _people;
 
         #endregion --------------------------------------------------------------------------------------------
 

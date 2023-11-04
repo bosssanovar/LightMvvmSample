@@ -65,7 +65,7 @@ namespace Entity.DomainService.OrganizationVisitor
         {
             if (target is UnAssignedMembersGroup)
             {
-                _organizations.Add(new(target.DisplayName, target.Clone()));
+                _organizations.Add(new(target.DisplayName, target));
             }
             else
             {
@@ -78,7 +78,7 @@ namespace Entity.DomainService.OrganizationVisitor
                     CreateName(t);
                 }
 
-                _organizations.Add(new(_name, target.Clone()));
+                _organizations.Add(new(_name, target));
             }
         }
 

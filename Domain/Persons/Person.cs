@@ -22,12 +22,12 @@ namespace Entity.Persons
         /// <summary>
         /// 名称を取得または設定します。
         /// </summary>
-        public NameVO Name { get; set; }
+        public NameVO Name { get; private set; }
 
         /// <summary>
         /// 誕生日を取得または設定します。
         /// </summary>
-        public BirthdayVO Birthday { get; set; }
+        public BirthdayVO Birthday { get; private set; }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -79,24 +79,18 @@ namespace Entity.Persons
         /// 内部値をコピーします。
         /// </summary>
         /// <param name="other">コピー先</param>
-        public void CopyTo(Person other)
+        internal void CopyTo(Person other)
         {
-            other.Name = Name.Clone();
-            other.Birthday = Birthday.Clone();
+            other.Name = Name;
+            other.Birthday = Birthday;
         }
-
-        /// <summary>
-        /// 複製を行います。
-        /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public Person Clone() => new(_identifier, Name.Clone(), Birthday.Clone());
 
         /// <summary>
         /// 同一性を有ているかを判定します。
         /// </summary>
         /// <param name="target">確認対象</param>
         /// <returns>同一性を有している場合 true</returns>
-        public bool SameIdentityAs(Person target)
+        internal bool SameIdentityAs(Person target)
         {
             return _identifier == target._identifier;
         }

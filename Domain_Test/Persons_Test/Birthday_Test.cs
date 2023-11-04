@@ -112,19 +112,5 @@ namespace Entity_Test.Persons_Test
             Assert.False(a == b);
             Assert.True(a != b);
         }
-
-        [Fact]
-        public void クローン()
-        {
-            var a = new BirthdayVO(1000, 10, 10);
-            var c = a.Clone();
-
-            Assert.Equal(a, c);
-            Assert.Equal(a.Year, c.Year);
-            Assert.Equal(a.Month, c.Month);
-            Assert.Equal(a.Day, c.Day);
-            Assert.Equal(a.Text, c.Text);
-            Assert.Equal(a.GetAge(DateTime.Today), c.GetAge(DateTime.Today));
-        }
     }
 }

@@ -167,12 +167,6 @@ namespace Entity.Persons
         }
 
         /// <summary>
-        /// インスタンスを複製します。
-        /// </summary>
-        /// <returns>複製したインスタンス</returns>
-        public BirthdayVO Clone() => new(_year, _month, _day);
-
-        /// <summary>
         /// 等価性を判定します。
         /// </summary>
         /// <param name="obj">比較対象</param>
