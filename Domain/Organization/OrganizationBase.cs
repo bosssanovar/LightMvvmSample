@@ -75,6 +75,38 @@ namespace Entity.Organization
             }
         }
 
+        /// <summary>
+        /// debuug
+        /// </summary>
+        /// <returns>debug</returns>
+        public string DebugPring()/* TODO K.I : 要削除 */
+        {
+            string GetIndent(Ranks rank)
+            {
+                switch (rank)
+                {
+                    case Ranks.Campany:
+                        return string.Empty;
+                    case Ranks.Department:
+                        return "    ";
+                    case Ranks.Section:
+                        return "        ";
+                    case Ranks.Team:
+                        return "            ";
+                    default:
+                        throw new NotImplementedException();
+                }
+            }
+
+            string indent = GetIndent(Rank);
+
+            var sb = new StringBuilder();
+            sb.AppendLine(indent + DisplayName + Rank.GetDisplayText() + ", ボス : " + (Boss?.Name.FullName ?? "【長不在】"));
+            sb.AppendLine(indent + Members.Select(x => x.Name.FullName).DefaultIfEmpty("【直属メンバーなし】").Aggregate((a, b) => a + ", " + b));
+
+            return sb.ToString();
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
@@ -186,12 +218,12 @@ namespace Entity.Organization
         /// <returns>組織長ならtrue</returns>
         internal bool IsBoss(Person boss)
         {
-            if(Boss is null)
+            if (Boss is null)
             {
                 return false;
             }
 
-            if(Boss.SameIdentityAs(boss))
+            if (Boss.SameIdentityAs(boss))
             {
                 return true;
             }

@@ -286,6 +286,18 @@ namespace Entity.Organization
             return visitor.NoBossOrganizations;
         }
 
+        /// <summary>
+        /// 組織構造を取得します。
+        /// </summary>
+        /// <returns>組織構造</returns>
+        public string GetOrganizationStructure()
+        {
+            var visitor = new GetOrganizationStructureVisitor();
+            _topOrganization.Accept(visitor);
+
+            return visitor.OrganizationStructureInfo;
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------

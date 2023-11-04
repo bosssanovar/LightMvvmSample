@@ -17,7 +17,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void Clone()
         {
-            var a = new Organization(new BuilderMock());
+            var a = new Organization(new BuilderMock_組織構造のみ());
             var b = a.Clone();
 
             Assert.NotEqual(a, b);
@@ -33,10 +33,10 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織一覧取得()
         {
-            var a = new Organization(new BuilderMock());
+            var a = new Organization(new BuilderMock_組織構造のみ());
             var aList = a.GetOrganizationInfos();
 
-            var b = new BuilderMock().Build();
+            var b = new BuilderMock_組織構造のみ().Build();
             var visitor = new GetOrganizationListVisitor();
             b.Accept(visitor);
 
@@ -47,7 +47,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 新社員追加()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
@@ -59,7 +59,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 所属組織に社員追加()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -74,7 +74,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 所属組織に社員追加_例外()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             //var targetOrganization = builder.TestTargetOrganization;
             var notTargetOrganization = new TerminalOrganization(new("error"));
@@ -102,7 +102,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員が異動()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetOrganization2 = builder.TestTargetOrganization2;
@@ -125,7 +125,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の所属組織取得()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -140,7 +140,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 未所属社員の所属組織取得()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
@@ -154,7 +154,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 新組織に組織長設定()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -169,7 +169,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 新組織に組織長設定_例外()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = new ManagementOrganization(new("aa"), Ranks.Department, new());
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -195,7 +195,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織長を取得()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -210,7 +210,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織長を取得_例外()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -236,7 +236,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の役職取得_直属社員()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -251,7 +251,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の役職取得_無所属()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
@@ -263,7 +263,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の役職取得_Boss()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -278,7 +278,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の役職取得_例外()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -307,7 +307,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の所属組織名を取得()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -322,7 +322,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の所属組織名を取得_無所属()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
@@ -334,7 +334,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の所属組織名を取得_例外()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
@@ -356,7 +356,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の退社()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -385,7 +385,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の退社_配属前()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
@@ -411,7 +411,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 社員の退社_例外()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetPerson = new Person(new("aaa", "aaa"), new(1000, 1, 1));
 
@@ -433,7 +433,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織長の退社()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetBoss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -463,7 +463,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織長交代()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var boss = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -481,7 +481,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 昇進_平から主任_同じチーム()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var person = new Person(new("aaa", "aaa"), new(1000, 1, 1));
@@ -502,7 +502,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 昇進_平から主任_別チーム()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization1;
             var targetOrganization2 = builder.TestTargetOrganization2;
@@ -526,7 +526,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 昇進_主任から課長_同じ課()
         {
-            var builder = new BuilderMock();
+            var builder = new BuilderMock_組織構造のみ();
             var organization = new Organization(builder);
             var targetOrganization = builder.TestTargetOrganization2;
             var targetOrganizationNext = builder.TestTargetOrganization3;
@@ -567,7 +567,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織人員問題検出_長不在組織あり()
         {
-            var builder = new BuilderMock2();
+            var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
             ICheckProblem problemChecker = organization;
 
@@ -581,7 +581,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織人員問題検出_長不在組織_And_無所属社員あり()
         {
-            var builder = new BuilderMock2();
+            var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
             ICheckProblem problemChecker = organization;
 
@@ -601,7 +601,7 @@ namespace Entity_Test.Organization_Test
         [Fact]
         public void 組織人員問題検出_無所属社員あり()
         {
-            var builder = new BuilderMock2();
+            var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
             ICheckProblem problemChecker = organization;
             IAssign assigner = organization;
@@ -622,18 +622,19 @@ namespace Entity_Test.Organization_Test
             Assert.DoesNotContain(noBossOrganizations, x => x.SameIdentityAs(builder.NoBossOrganization));
         }
 
-        private class BuilderMock : IOrganizationBuilder
+        [Fact]
+        public void 組織構造情報()
         {
-            #region Constants -------------------------------------------------------------------------------------
+            var builder = new BuilderMock_組織情報収集用();
+            var organization = new Organization(builder);
 
-            #endregion --------------------------------------------------------------------------------------------
+            var structure = organization.GetOrganizationStructure();
 
-            #region Fields ----------------------------------------------------------------------------------------
+            Assert.True(structure != null);
+        }
 
-            #endregion --------------------------------------------------------------------------------------------
-
-            #region Properties ------------------------------------------------------------------------------------
-
+        private class BuilderMock_組織構造のみ : IOrganizationBuilder
+        {
             public OrganizationBase TestTargetOrganization1 { get; private set; }
 
             public OrganizationBase TestTargetOrganization2 { get; private set; }
@@ -641,20 +642,6 @@ namespace Entity_Test.Organization_Test
             public OrganizationBase TestTargetOrganization3 { get; private set; }
 
             public string TestTargetOrganization1Name { get; private set; }
-
-            #endregion --------------------------------------------------------------------------------------------
-
-            #region Events ----------------------------------------------------------------------------------------
-
-            #endregion --------------------------------------------------------------------------------------------
-
-            #region Constructor -----------------------------------------------------------------------------------
-
-            #endregion --------------------------------------------------------------------------------------------
-
-            #region Methods ---------------------------------------------------------------------------------------
-
-            #region Methods - public ------------------------------------------------------------------------------
 
             public OrganizationBase Build()
             {
@@ -675,29 +662,9 @@ namespace Entity_Test.Organization_Test
 
                 return top;
             }
-
-            #endregion --------------------------------------------------------------------------------------------
-
-            #region Methods - internal ----------------------------------------------------------------------------
-
-            #endregion --------------------------------------------------------------------------------------------
-
-            #region Methods - protected ---------------------------------------------------------------------------
-
-            #endregion --------------------------------------------------------------------------------------------
-
-            #region Methods - private -----------------------------------------------------------------------------
-
-            #endregion --------------------------------------------------------------------------------------------
-
-            #region Methods - override ----------------------------------------------------------------------------
-
-            #endregion --------------------------------------------------------------------------------------------
-
-            #endregion --------------------------------------------------------------------------------------------
         }
 
-        private class BuilderMock2 : IOrganizationBuilder
+        private class BuilderMock_一部組織人員問題あり : IOrganizationBuilder
         {
             public OrganizationBase NoBossOrganization { get; private set; }
 
@@ -726,6 +693,46 @@ namespace Entity_Test.Organization_Test
                 top.SetBoss(new(new("aaa", "aaa"), new(1000, 1, 1)));
 
                 NoBossOrganization = f;
+
+                return top;
+            }
+        }
+
+        private class BuilderMock_組織情報収集用 : IOrganizationBuilder
+        {
+            public OrganizationBase Build()
+            {
+                // 組織構築
+                // 配属社員：AssignedPersonのみ
+                // 長不在組織：NoBossOrganization
+                var a = new TerminalOrganization(new("1"));
+                a.SetBoss(new(new("第１チーム", "ボス"), new(1000, 1, 1)));
+                a.AddMember(new(new("だい１ちーむ", "ひら１"), new(1000, 1, 1)));
+                a.AddMember(new(new("だい１ちーむ", "ひら２"), new(1000, 1, 1)));
+                a.AddMember(new(new("だい１ちーむ", "ひら３"), new(1000, 1, 1)));
+                var b = new TerminalOrganization(new("2"));
+                b.SetBoss(new(new("第２チーム", "ボス"), new(1000, 1, 1)));
+                b.AddMember(new(new("だい2ちーむ", "ひら１"), new(1000, 1, 1)));
+                b.AddMember(new(new("だい2ちーむ", "ひら２"), new(1000, 1, 1)));
+                b.AddMember(new(new("だい2ちーむ", "ひら３"), new(1000, 1, 1)));
+                var c = new ManagementOrganization(new("3"), Ranks.Section, new() { a, b });
+                c.SetBoss(new(new("第３課", "ボス"), new(1000, 1, 1)));
+                c.AddMember(new(new("だい３か", "ひら１"), new(1000, 1, 1)));
+                c.AddMember(new(new("だい３か", "ひら２"), new(1000, 1, 1)));
+                c.AddMember(new(new("だい３か", "ひら３"), new(1000, 1, 1)));
+                var d = new TerminalOrganization(new("4"));
+                d.AddMember(new(new("だい４ちーむ", "ひら１"), new(1000, 1, 1)));
+                d.AddMember(new(new("だい４ちーむ", "ひら２"), new(1000, 1, 1)));
+                d.AddMember(new(new("だい４ちーむ", "ひら３"), new(1000, 1, 1)));
+                var e = new TerminalOrganization(new("5"));
+                e.SetBoss(new(new("第5チーム", "ボス"), new(1000, 1, 1)));
+                e.AddMember(new(new("だい５ちーむ", "ひら１"), new(1000, 1, 1)));
+                e.AddMember(new(new("だい５ちーむ", "ひら２"), new(1000, 1, 1)));
+                e.AddMember(new(new("だい５ちーむ", "ひら３"), new(1000, 1, 1)));
+                var f = new ManagementOrganization(new("6"), Ranks.Section, new() { d, e });
+                f.SetBoss(new(new("第6課", "ボス"), new(1000, 1, 1)));
+                var top = new ManagementOrganization(new("7"), Ranks.Department, new() { c, f });
+                top.SetBoss(new(new("第7部", "ボス"), new(1000, 1, 1)));
 
                 return top;
             }
