@@ -63,7 +63,7 @@ namespace Entity.Service
             var ret = new List<OrganizationBase>();
 
             // 部　を生成
-            for (int index = 0; index < 3; index++)
+            for (int index = 0; index < 2; index++)
             {
                 List<OrganizationBase> sectionList = GetSectionList();
 
@@ -78,7 +78,7 @@ namespace Entity.Service
             var ret = new List<OrganizationBase>();
 
             // 課　を生成
-            for (int index = 0; index < 4; index++)
+            for (int index = 0; index < 2; index++)
             {
                 List<OrganizationBase> teamList = GetTeamList();
 

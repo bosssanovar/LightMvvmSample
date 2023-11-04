@@ -101,7 +101,7 @@ namespace Entity.Organization
             string indent = GetIndent(Rank);
 
             var sb = new StringBuilder();
-            sb.Append(indent + DisplayName + Rank.GetDisplayText() + ", ボス : " + (Boss?.Name.FullName ?? "【長不在】"));
+            sb.Append(indent + DisplayName + ", ボス : " + (Boss?.Name.FullName ?? "【長不在】"));
             sb.AppendLine(", " + Members.Select(x => x.Name.FullName).DefaultIfEmpty("【直属メンバーなし】").Aggregate((a, b) => a + ", " + b));
 
             return sb.ToString();
