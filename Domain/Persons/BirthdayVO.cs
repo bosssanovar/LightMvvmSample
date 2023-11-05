@@ -102,6 +102,36 @@ namespace Entity.Persons
             return ErrorCause.None;
         }
 
+        /// <summary>
+        /// 年齢を取得する。
+        /// </summary>
+        /// <param name="point">年齢算出の時間地点。今日時点を取りたければ、DateTime.Todayを指定する。</param>
+        /// <returns>年齢</returns>
+        public int GetAge(DateTime point)
+        {
+            var birth = new DateTime(Year, Month, Day);
+            if (birth > point)
+            {
+                throw new ArgumentException("指定に日付に生まれていません。", nameof(point));
+            }
+
+            int age = point.Year - Year;
+
+            // 誕生日がまだ来ていなければ、1引く
+            if (point.Month < Month ||
+                (point.Month == Month &&
+                point.Day < Day))
+            {
+                age--;
+            }
+
+            return age;
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
         private static bool IsValidYear(int year)
         {
             return year >= 1 && year <= 9999;
@@ -132,36 +162,6 @@ namespace Entity.Persons
 
             return isDay;
         }
-
-        /// <summary>
-        /// 年齢を取得する。
-        /// </summary>
-        /// <param name="point">年齢算出の時間地点。今日時点を取りたければ、DateTime.Todayを指定する。</param>
-        /// <returns>年齢</returns>
-        public int GetAge(DateTime point)
-        {
-            var birth = new DateTime(Year, Month, Day);
-            if (birth > point)
-            {
-                throw new ArgumentException("指定に日付に生まれていません。", nameof(point));
-            }
-
-            int age = point.Year - Year;
-
-            // 誕生日がまだ来ていなければ、1引く
-            if (point.Month < Month ||
-                (point.Month == Month &&
-                point.Day < Day))
-            {
-                age--;
-            }
-
-            return age;
-        }
-
-        #endregion --------------------------------------------------------------------------------------------
-
-        #region Methods - private -----------------------------------------------------------------------------
 
         private static bool IsLeapYear(int year)
         {
