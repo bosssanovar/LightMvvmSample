@@ -79,7 +79,7 @@ namespace Entity.Organization
         /// debuug
         /// </summary>
         /// <returns>debug</returns>
-        public string DebugPring()/* TODO K.I : 要削除 */
+        public string DebugPring()
         {
             static string GetIndent(Ranks rank)
             {
@@ -96,8 +96,14 @@ namespace Entity.Organization
             string indent = GetIndent(Rank);
 
             var sb = new StringBuilder();
-            sb.Append(indent + DisplayName + ", ボス : " + (Boss?.Name.FullName ?? "【長不在】"));
-            sb.AppendLine(", " + Members.Select(x => x.Name.FullName).DefaultIfEmpty("【直属メンバーなし】").Aggregate((a, b) => a + ", " + b));
+            sb.Append(indent + DisplayName);
+            sb.Append(", ");
+            sb.Append("ボス : " + (Boss?.Name.FullName ?? "【長不在】"));
+            sb.Append(", ");
+            sb.AppendLine(
+                Members.Select(x => x.Name.FullName)
+                .DefaultIfEmpty("【直属メンバーなし】")
+                .Aggregate((a, b) => a + ", " + b));
 
             return sb.ToString();
         }
