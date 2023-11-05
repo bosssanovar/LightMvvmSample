@@ -9,6 +9,9 @@ namespace Entity.Persons
     /// <summary>
     /// 誕生日クラス
     /// </summary>
+    /// <param name="Year">念</param>
+    /// <param name="Month">月</param>
+    /// <param name="Day">日</param>
     public record BirthdayVO(int Year, int Month, int Day)
     {
         #region Fields ----------------------------------------------------------------------------------------
@@ -20,6 +23,30 @@ namespace Entity.Persons
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 誕生日　念
+        /// </summary>
+        public int Year { get; }
+            = IsValidYear(Year)
+                ? Year
+                : throw new ArgumentOutOfRangeException(nameof(Year), "範囲外です。");
+
+        /// <summary>
+        /// 誕生日　月
+        /// </summary>
+        public int Month { get; }
+            = IsValidMonth(Month)
+                ? Month
+                : throw new ArgumentOutOfRangeException(nameof(Month), "範囲外です。");
+
+        /// <summary>
+        /// 誕生日　日
+        /// </summary>
+        public int Day { get; }
+            = IsValidDay(Year, Month, Day)
+                ? Day
+                : throw new ArgumentOutOfRangeException(nameof(Day), "範囲外です。");
 
         /// <summary>
         /// 生年月日の文字列を取得します。
@@ -56,23 +83,38 @@ namespace Entity.Persons
         public static ErrorCause IsValid(int year, int month, int day)
         {
             // 年の判定
-            if (year < 1 || year > 9999)
+            if (!IsValidYear(year))
             {
                 return ErrorCause.Year;
             }
 
             // 月の判定
-            if (month < 1 || month > 12)
+            if (!IsValidMonth(month))
             {
                 return ErrorCause.Month;
             }
 
-            // 日の判定
-            if (day < 1)
+            if (!IsValidDay(year, month, day))
             {
                 return ErrorCause.Day;
             }
 
+            return ErrorCause.None;
+        }
+
+        private static bool IsValidYear(int year)
+        {
+            return year >= 1 && year <= 9999;
+        }
+
+        private static bool IsValidMonth(int month)
+        {
+            return month >= 1 && month <= 12;
+        }
+
+        private static bool IsValidDay(int year, int month, int day)
+        {
+            // 日の判定
             // 月ごとの日の最大値を格納する配列
             int[] days = new int[12] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -82,12 +124,13 @@ namespace Entity.Persons
                 days[1] = 29;
             }
 
-            if (day > days[month - 1])
+            var isDay = true;
+            if (day < 1 || day > days[month - 1])
             {
-                return ErrorCause.Day;
+                isDay = false;
             }
 
-            return ErrorCause.None;
+            return isDay;
         }
 
         /// <summary>
