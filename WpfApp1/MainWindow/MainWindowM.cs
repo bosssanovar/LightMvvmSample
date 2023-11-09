@@ -5,6 +5,7 @@ using Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
@@ -32,6 +33,7 @@ namespace WpfApp1.MainWindow
         private readonly RemovePersonUsecase _removePersonUsecase;
         private readonly CheckProblemsUsecase _checkProblemsUsecase;
         private readonly GetOrganizationStructureUsecase _getOrganizationStructureUsecase;
+        private readonly SaveLoadDataUsecase _saveLoadDataUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -71,6 +73,7 @@ namespace WpfApp1.MainWindow
             _removePersonUsecase = PersonUsecaseProvider.RemovePersonUsecase;
             _checkProblemsUsecase = PersonUsecaseProvider.CheckProblemsUsecase;
             _getOrganizationStructureUsecase = PersonUsecaseProvider.GetOrganizationStructureUsecase;
+            _saveLoadDataUsecase = PersonUsecaseProvider.SaveLoadDataUsecase;
 
             Persons = new ReactiveCollection<PersonM>();
 
@@ -80,6 +83,8 @@ namespace WpfApp1.MainWindow
             _addPersonUsecase.OnArisedProblems += AddPersonUsecase_OnArisedProblems;
             _removePersonUsecase.OnRemovePerson += PersonListViewUsecase_OnRemovePerson;
             _checkProblemsUsecase.OnArisedProblems += AddPersonUsecase_OnArisedProblems;
+            _saveLoadDataUsecase.OnPeopleUpdated += SaveLoadDataUsecase_OnPeopleUpdated;
+            _saveLoadDataUsecase.OnOrganizationUpdated += SaveLoadDataUsecase_OnOrganizationUpdated;
 
             OrganizationInfo = new ReactivePropertySlim<string?>(string.Empty)
                 .AddTo(_disposables);
@@ -110,6 +115,8 @@ namespace WpfApp1.MainWindow
             _addPersonUsecase.OnArisedProblems -= AddPersonUsecase_OnArisedProblems;
             _removePersonUsecase.OnRemovePerson -= PersonListViewUsecase_OnRemovePerson;
             _checkProblemsUsecase.OnArisedProblems -= AddPersonUsecase_OnArisedProblems;
+            _saveLoadDataUsecase.OnPeopleUpdated -= SaveLoadDataUsecase_OnPeopleUpdated;
+            _saveLoadDataUsecase.OnOrganizationUpdated -= SaveLoadDataUsecase_OnOrganizationUpdated;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -164,6 +171,26 @@ namespace WpfApp1.MainWindow
             OrganizationInfo.Value = _getOrganizationStructureUsecase.GetOrganizationSructureInfo();
         }
 
+        /// <summary>
+        /// データファイルから読み込みます。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        internal async Task Load(string path)
+        {
+            await _saveLoadDataUsecase.Load(path);
+        }
+
+        /// <summary>
+        /// データファイルに保存します。
+        /// </summary>
+        /// <param name="path">ファイルパス</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        internal async Task Save(string path)
+        {
+            await _saveLoadDataUsecase.Save(path);
+        }
+
         #endregion
 
         #region Methods - private -----------------------------------------------------------------------------
@@ -190,6 +217,16 @@ namespace WpfApp1.MainWindow
         }
 
         private void AddPersonUsecase_OnChangedOrganization()
+        {
+            UpdateOrganizationStructure();
+        }
+
+        private void SaveLoadDataUsecase_OnPeopleUpdated()
+        {
+            UpdatePersons();
+        }
+
+        private void SaveLoadDataUsecase_OnOrganizationUpdated()
         {
             UpdateOrganizationStructure();
         }

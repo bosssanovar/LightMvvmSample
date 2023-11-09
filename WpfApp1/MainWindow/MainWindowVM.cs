@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reactive.Disposables;
+using System.Windows;
 using Entity.Persons;
+using Microsoft.Win32;
 using Reactive.Bindings;
 using Usecase;
 using WpfApp1.EditWindow;
@@ -82,6 +84,69 @@ namespace WpfApp1.MainWindow
                 }));
 
                 return _addCommand;
+            }
+        }
+
+        #endregion
+
+        #region Load Command
+
+        private Command _loadCommand;
+
+        /// <summary>
+        /// Load コマンド
+        /// </summary>
+        public Command LoadCommand
+        {
+            get
+            {
+                _loadCommand ??= new Command(new Action(async () =>
+                    {
+                        var ofd = new OpenFileDialog
+                        {
+                            Filter = "DATファイル（*.dat）|*.dat",
+                        };
+                        if (ofd.ShowDialog() == true)
+                        {
+                            await _model.Load(ofd.FileName);
+                        }
+                    }));
+
+                return _loadCommand;
+            }
+        }
+
+        #endregion
+
+        #region Save Command
+
+        private Command _saveCommand;
+
+        /// <summary>
+        /// Save コマンド
+        /// </summary>
+        public Command SaveCommand
+        {
+            get
+            {
+                _saveCommand ??= new Command(new Action(async () =>
+                    {
+                        var dialog = new SaveFileDialog
+                        {
+                            Filter = "DATファイル（*.dat）|*.dat",
+                        };
+
+                        var result = dialog.ShowDialog() ?? false;
+
+                        if (!result)
+                        {
+                            return;
+                        }
+
+                        await _model.Save(dialog.FileName);
+                    }));
+
+                return _saveCommand;
             }
         }
 

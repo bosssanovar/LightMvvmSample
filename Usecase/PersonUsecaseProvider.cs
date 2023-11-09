@@ -39,6 +39,7 @@ namespace Usecase
         private static CheckProblemsUsecase _checkProblemsUsecase;
         private static RelocateUsecase _relocateUsecase;
         private static GetOrganizationStructureUsecase _getOrganizationStructureUsecase;
+        private static SaveLoadDataUsecase _saveLoadDataUsecase;
 
         #endregion
 
@@ -119,6 +120,14 @@ namespace Usecase
         /// </summary>
         public static GetOrganizationStructureUsecase GetOrganizationStructureUsecase =>
             _getOrganizationStructureUsecase ??= new GetOrganizationStructureUsecase(
+                OrganizationRepository);
+
+        /// <summary>
+        /// データファイルの保存・読み込みを行うユースケースを取得します。
+        /// </summary>
+        public static SaveLoadDataUsecase SaveLoadDataUsecase =>
+            _saveLoadDataUsecase ??= new SaveLoadDataUsecase(
+                PeopleRepository,
                 OrganizationRepository);
 
         #endregion

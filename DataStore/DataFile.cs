@@ -12,7 +12,7 @@ namespace DataStore
     /// <summary>
     /// データファイルクラス
     /// </summary>
-    internal static class DataFile
+    public static class DataFile
     {
         /// <summary>
         /// データファイルからEntityのデータパケットを取得します。

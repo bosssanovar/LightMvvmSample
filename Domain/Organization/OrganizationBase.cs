@@ -189,6 +189,14 @@ namespace Entity.Organization
         }
 
         /// <summary>
+        /// 直属社員を全て削除します。
+        /// </summary>
+        internal void RemoveAllMember()
+        {
+            Members.Clear();
+        }
+
+        /// <summary>
         /// 指定社員が直属社員として属しているか判定します。
         /// </summary>
         /// <param name="member">確認対象社員</param>

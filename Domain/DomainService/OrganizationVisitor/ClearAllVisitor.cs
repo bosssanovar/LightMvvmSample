@@ -1,23 +1,23 @@
 ﻿using Entity.Organization;
-using Entity.Persons;
-using Repository;
+using Entity.Service.OrganizationVisitor;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Usecase
+namespace Entity.DomainService.OrganizationVisitor
 {
     /// <summary>
-    /// データを初期化するユースケースを提供する
+    /// 初期化
     /// </summary>
-    public class InitializeUsecase
+    internal class ClearAllVisitor : IOrganizationVisitor
     {
         #region Constants -------------------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Fields ----------------------------------------------------------------------------------------
-
-        private readonly PeopleRepository _peopleRepository;
-
-        private readonly OrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -31,41 +31,22 @@ namespace Usecase
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="peopleRepository">Peopleエンティティのリポジトリ</param>
-        /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
-        public InitializeUsecase(PeopleRepository peopleRepository, OrganizationRepository organizationRepository)
-        {
-            _peopleRepository = peopleRepository;
-            _organizationRepository = organizationRepository;
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 設置値を初期化します。
-        /// </summary>
-        public void Initialize()
+        /// <inheritdoc/>
+        public void Visit(OrganizationBase target)
         {
-            var organization = _organizationRepository.LoadOrganization();
-
-            var people = new People();
-
-            _peopleRepository.SavePeople(people);
-            _organizationRepository.SaveOrganizaion(organization);
+            target.RemoveBoss();
+            target.RemoveAllMember();
         }
 
-        private static void AddNewMember(Person person, People people, Organization organization)
-        {
-            people.AddPerson(person);
-            organization.AddNewMember(person);
-        }
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 

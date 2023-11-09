@@ -272,6 +272,15 @@ namespace Entity.Organization
             return visitor.OrganizationStructureInfo;
         }
 
+        /// <summary>
+        /// 設定を全て初期化
+        /// </summary>
+        public void ClearAll()
+        {
+            var visitor = new ClearAllVisitor();
+            _topOrganization.Accept(visitor);
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------

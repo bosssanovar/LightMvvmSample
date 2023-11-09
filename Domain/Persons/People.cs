@@ -112,7 +112,6 @@ namespace Entity.Persons
         /// <param name="packet">データパケット</param>
         public void ImportPacket(PeoplePacket packet)
         {
-            _persons.Clear();
             foreach(var person in packet.Persons)
             {
                 AddPerson(person.Get());
@@ -124,6 +123,14 @@ namespace Entity.Persons
         /// </summary>
         /// <returns>データパケット</returns>
         public PeoplePacket ExportPacket() => new() { Persons = _persons.Select(x => x.ExportPacket()).ToList() };
+
+        /// <summary>
+        /// 社員を全て削除します。
+        /// </summary>
+        public void ClearAll()
+        {
+            _persons.Clear();
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
