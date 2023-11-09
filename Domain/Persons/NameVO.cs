@@ -63,6 +63,12 @@ namespace Entity.Persons
             return true;
         }
 
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
+        internal NameVOPacket ExportPacket() => new() { Family = Family, First = First };
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------

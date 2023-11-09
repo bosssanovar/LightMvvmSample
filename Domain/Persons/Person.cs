@@ -86,6 +86,12 @@
             return _identifier == target._identifier;
         }
 
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
+        internal PersonPacket ExportPacket() => new() { Birthday = Birthday.ExportPacket(), Name = Name.ExportPacket() };
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override -----------------------------------------------------------------------------

@@ -128,6 +128,12 @@ namespace Entity.Persons
             return age;
         }
 
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
+        internal BirthdayVOPacket ExportPacket() => new() { Year = Year, Month = Month, Day = Day };
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------

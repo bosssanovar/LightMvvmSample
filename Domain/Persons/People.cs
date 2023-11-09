@@ -106,6 +106,25 @@ namespace Entity.Persons
             return _persons.Any(x => x.SameIdentityAs(person));
         }
 
+        /// <summary>
+        /// データパケットを取り込みます。
+        /// </summary>
+        /// <param name="packet">データパケット</param>
+        public void ImportPacket(PeoplePacket packet)
+        {
+            _persons.Clear();
+            foreach(var person in packet.Persons)
+            {
+                AddPerson(person.Get());
+            }
+        }
+
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
+        public PeoplePacket ExportPacket() => new() { Persons = _persons.Select(x => x.ExportPacket()).ToList() };
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------
