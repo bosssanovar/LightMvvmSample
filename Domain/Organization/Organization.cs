@@ -279,6 +279,7 @@ namespace Entity.Organization
         {
             var visitor = new ClearAllVisitor();
             _topOrganization.Accept(visitor);
+            _unAssignedMembersGroup.RemoveAllMember();
         }
 
         #endregion --------------------------------------------------------------------------------------------
