@@ -48,12 +48,6 @@ namespace Entity.Organization
             _topOrganization = builder.Build();
         }
 
-        private Organization(Organization original)
-        {
-            _topOrganization = original._topOrganization;
-            _unAssignedMembersGroup = original._unAssignedMembersGroup;
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------
