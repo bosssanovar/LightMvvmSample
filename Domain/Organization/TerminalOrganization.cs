@@ -35,11 +35,6 @@ namespace Entity.Organization
         {
         }
 
-        private TerminalOrganization(TerminalOrganization original)
-            : base(original)
-        {
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------

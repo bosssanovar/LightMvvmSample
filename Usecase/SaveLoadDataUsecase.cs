@@ -23,9 +23,9 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private PeopleRepository _peopleRepository;
+        private readonly PeopleRepository _peopleRepository;
 
-        private OrganizationRepository _organizationRepository;
+        private readonly OrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
