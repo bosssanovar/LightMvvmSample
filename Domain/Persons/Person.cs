@@ -1,4 +1,6 @@
-﻿namespace Entity.Persons
+﻿using Entity.Persons.DataPackets;
+
+namespace Entity.Persons
 {
     /// <summary>
     /// 個人情報クラス
