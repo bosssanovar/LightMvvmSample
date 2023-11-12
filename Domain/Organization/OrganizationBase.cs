@@ -1,4 +1,5 @@
-﻿using Entity.Persons;
+﻿using Entity.Organization.DataPackets;
+using Entity.Persons;
 using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace Entity.Organization
         /// <summary>
         /// 組織長
         /// </summary>
-        internal Person? Boss { get; private set; }
+        internal Person? Boss { get; private set; }/* TODO K.I : 非null化 */
 
         /// <summary>
         /// 組織名称
@@ -265,6 +266,20 @@ namespace Entity.Organization
         internal bool SameIdentityAs(OrganizationBase target)
         {
             return Identifier == target.Identifier;
+        }
+
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
+        internal OrganizationBasePackte ExportPacket()
+        {
+            return new()
+            {
+                Identifier = Identifier,
+                MemberIds = Members.Select(x => x.Identifier).ToList(),
+                BossId = Boss?.Identifier ?? Guid.Empty,
+            };
         }
 
         #endregion --------------------------------------------------------------------------------------------

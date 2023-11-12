@@ -1,4 +1,5 @@
-﻿using Entity.Persons.DataPackets;
+﻿using Entity.Organization.DataPackets;
+using Entity.Persons.DataPackets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,10 @@ namespace Entity
         /// <see cref="Entity.Persons.People"/>クラスのデータパケット
         /// </summary>
         public PeoplePacket People { get; set; }
+
+        /// <summary>
+        /// <see cref="Entity.Organization.Organization"/>クラスのデータパケット
+        /// </summary>
+        public OrganizationPacket Organization { get; set; }
     }
 }

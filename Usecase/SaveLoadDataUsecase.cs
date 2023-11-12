@@ -74,8 +74,16 @@ namespace Usecase
         public async Task Save(string path)
         {
             var people = _peopleRepository.LoadPeople();
+            var organization = _organizationRepository.LoadOrganization();
+
             var peoplePacket = people.ExportPacket();
-            var packet = new Entity.EntityPacket() { People = peoplePacket };
+            var organizationPacket = organization.ExportPacket();
+
+            var packet = new Entity.EntityPacket()
+            {
+                People = peoplePacket,
+                Organization = organizationPacket,
+            };
 
             await DataFile.SaveData(path, packet);
         }

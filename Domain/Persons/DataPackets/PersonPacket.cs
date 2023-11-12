@@ -12,6 +12,11 @@ namespace Entity.Persons.DataPackets
     public class PersonPacket
     {
         /// <summary>
+        /// 識別子
+        /// </summary>
+        public Guid Identifier { get; set; }
+
+        /// <summary>
         /// 名前
         /// </summary>
         public NameVOPacket Name { get; set; }
@@ -27,7 +32,7 @@ namespace Entity.Persons.DataPackets
         /// <returns><see cref="Person"/>インスタンス</returns>
         public Person Get()
         {
-            return new(Name.Get(), Birthday.Get());
+            return new(Identifier, Name.Get(), Birthday.Get());
         }
     }
 }

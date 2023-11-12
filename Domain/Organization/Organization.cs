@@ -1,5 +1,6 @@
 ﻿using Entity.DomainService;
 using Entity.DomainService.OrganizationVisitor;
+using Entity.Organization.DataPackets;
 using Entity.Persons;
 using Entity.Service;
 using Entity.Service.OrganizationVisitor;
@@ -280,6 +281,17 @@ namespace Entity.Organization
             var visitor = new ClearAllVisitor();
             _topOrganization.Accept(visitor);
             _unAssignedMembersGroup.RemoveAllMember();
+        }
+
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
+        public OrganizationPacket ExportPacket()
+        {
+            var visitor = new GetOrganizationPacketVisitor();
+            _topOrganization.Accept(visitor);
+            return new() { Organizations = visitor.Packets };
         }
 
         #endregion --------------------------------------------------------------------------------------------
