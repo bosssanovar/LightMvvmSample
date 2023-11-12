@@ -15,5 +15,10 @@ namespace Entity.Organization.DataPackets
         /// 単位組織
         /// </summary>
         public List<OrganizationBasePackte> Organizations { get; set; }
+
+        /// <summary>
+        /// 無所属社員一覧
+        /// </summary>
+        public List<Guid> UnAssignedPersons { get; set; }
     }
 }

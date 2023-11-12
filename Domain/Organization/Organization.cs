@@ -291,7 +291,11 @@ namespace Entity.Organization
         {
             var visitor = new GetOrganizationPacketVisitor();
             _topOrganization.Accept(visitor);
-            return new() { Organizations = visitor.Packets };
+            return new()
+            {
+                Organizations = visitor.Packets,
+                UnAssignedPersons = _unAssignedMembersGroup.GetMembers().Select(x => x.Identifier).ToList(),
+            };
         }
 
         #endregion --------------------------------------------------------------------------------------------
