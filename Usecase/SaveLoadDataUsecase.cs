@@ -1,5 +1,6 @@
 ﻿using DataStore;
 using Entity.Organization;
+using Entity.Organization.DataPackets;
 using Entity.Persons;
 using Entity.Persons.DataPackets;
 using Repository;
@@ -96,12 +97,14 @@ namespace Usecase
         public async Task Load(string path)
         {
             PeoplePacket peoplePacket;
+            OrganizationPacket organizationPacket;
 
             try
             {
                 // Get data packets
                 var packet = await DataFile.LoadData(path);
                 peoplePacket = packet.People;
+                organizationPacket = packet.Organization;
             }
             catch
             {
@@ -118,8 +121,7 @@ namespace Usecase
 
             // Import
             people.ImportPacket(peoplePacket);
-            people.Persons.ToList().ForEach(x => organization.AddNewMember(x));
-            // TODO : organization.Import
+            organization.ImportPacket(organizationPacket, people.Persons.ToList());
 
             // Save entities
             _peopleRepository.SavePeople(people);
