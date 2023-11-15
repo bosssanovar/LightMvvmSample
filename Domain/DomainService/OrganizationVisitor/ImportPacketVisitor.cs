@@ -1,5 +1,6 @@
 ﻿using Entity.Organization;
 using Entity.Organization.DataPackets;
+using Entity.Persons;
 using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ using System.Threading.Tasks;
 namespace Entity.DomainService.OrganizationVisitor
 {
     /// <summary>
-    /// <see cref="OrganizationBasePacket"/>を収集するVisitor
+    /// データパケットをインポートするVisitor
     /// </summary>
-    internal class GetOrganizationPacketVisitor : IOrganizationVisitor
+    internal class ImportPacketVisitor : IOrganizationVisitor
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -20,14 +21,13 @@ namespace Entity.DomainService.OrganizationVisitor
 
         #region Fields ----------------------------------------------------------------------------------------
 
+        private readonly List<Person> _persons;
+
+        private readonly OrganizationPacket _organizationPacket;
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// <see cref="OrganizationBasePacket"/>リストを取得します。
-        /// </summary>
-        public List<OrganizationBasePacket> Packets { get; init; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -36,6 +36,17 @@ namespace Entity.DomainService.OrganizationVisitor
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constructor -----------------------------------------------------------------------------------
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="persons">社員リスト</param>
+        /// <param name="organizationPacket">組織データパケット</param>
+        public ImportPacketVisitor(List<Person> persons, OrganizationPacket organizationPacket)
+        {
+            _persons = persons;
+            _organizationPacket = organizationPacket;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -46,7 +57,24 @@ namespace Entity.DomainService.OrganizationVisitor
         /// <inheritdoc/>
         public void Visit(OrganizationBase target)
         {
-            Packets.Add(target.ExportPacket());
+            OrganizationBasePacket organizationPacket = _organizationPacket.Organizations
+                .Find(x => x.Identifier == target.Identifier)
+                ?? throw new ArgumentException("対象がありません。", nameof(target));
+
+            // TODO K.I : Boss存在チェックパラメータをデータパケットに追加
+            if (organizationPacket.BossId != Guid.Empty)
+            {
+                Person boss = _persons.Find(x => x.Identifier == organizationPacket.BossId)
+                    ?? throw new ArgumentException("対象がありません。", nameof(target));
+                target.SetBoss(boss);
+            }
+
+            foreach(var employeeId in organizationPacket.MemberIds)
+            {
+                Person employee = _persons.Find(x => x.Identifier == employeeId)
+                    ?? throw new ArgumentException("対象がありません。", nameof(target));
+                target.AddMember(employee);
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

@@ -14,7 +14,7 @@ namespace Entity.Organization.DataPackets
         /// <summary>
         /// 単位組織
         /// </summary>
-        public List<OrganizationBasePackte> Organizations { get; set; }
+        public List<OrganizationBasePacket> Organizations { get; set; }
 
         /// <summary>
         /// 無所属社員一覧

@@ -9,7 +9,7 @@ namespace Entity.Organization.DataPackets
     /// <summary>
     /// 組織単位のデータパケット
     /// </summary>
-    public class OrganizationBasePackte
+    public class OrganizationBasePacket
     {
         /// <summary>
         /// 識別子

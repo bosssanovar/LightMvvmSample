@@ -9,6 +9,8 @@ using Entity.Service;
 using Entity.DomainService.OrganizationVisitor;
 using Entity.DomainService;
 using Entity.Persons;
+using DataStore;
+using Entity;
 
 namespace Entity_Test.Organization_Test
 {
@@ -615,6 +617,70 @@ namespace Entity_Test.Organization_Test
             var structure = organization.GetOrganizationStructure();
 
             Assert.True(structure != null);
+        }
+
+        [Fact]
+        public async Task 組織データパケット読み込み()
+        {
+            var builder = new BuilderMock_組織構造のみ();
+            var organization = new Organization(builder);
+
+            var person = new Person(new("aaaa", "bbbbbbb"), new(1000, 1, 1));
+            organization.AddNewMember(person);
+            organization.RelocateEmployee(person, builder.TestTargetOrganization1);
+
+            var boss = new Person(new("aaaa", "bbbbbbb"), new(1000, 1, 1));
+            organization.AddNewMember(boss);
+            organization.SetBoss(boss, builder.TestTargetOrganization2);
+
+            var entityPacket = new EntityPacket() { Organization = organization.ExportPacket() };
+
+            const string path = "Test_組織データパケット読み込み.dat";
+            await DataFile.SaveData(path, entityPacket);
+            entityPacket = await DataFile.LoadData(path);
+
+            Assert.Equal(1, builder.TestTargetOrganization1.DirectEmployeeCount);
+            Assert.True(builder.TestTargetOrganization2.IsBoss(boss));
+            organization.ClearAll();
+            Assert.Equal(0, builder.TestTargetOrganization1.DirectEmployeeCount);
+            Assert.False(builder.TestTargetOrganization2.IsBoss(boss));
+
+            var persons = new List<Person>() { person, boss };
+            organization.ImportPacket(entityPacket.Organization, persons);
+            Assert.Equal(1, builder.TestTargetOrganization1.DirectEmployeeCount);
+            Assert.True(builder.TestTargetOrganization2.IsBoss(boss));
+        }
+
+        [Fact]
+        public async Task 組織データパケット読み込み_無所属社員確認()
+        {
+            var builder = new BuilderMock_組織構造のみ();
+            var organization = new Organization(builder);
+
+            var person = new Person(new("aaaa", "bbbbbbb"), new(1000, 1, 1));
+            organization.AddNewMember(person);
+
+            var boss = new Person(new("aaaa", "bbbbbbb"), new(1000, 1, 1));
+            organization.AddNewMember(boss);
+
+            var entityPacket = new EntityPacket() { Organization = organization.ExportPacket() };
+
+            const string path = "Test_組織データパケット読み込み.dat";
+            await DataFile.SaveData(path, entityPacket);
+            entityPacket = await DataFile.LoadData(path);
+
+            organization.ClearAll();
+
+            var persons = new List<Person>() { person, boss };
+            organization.ImportPacket(entityPacket.Organization, persons);
+            Assert.Equal(0, builder.TestTargetOrganization1.DirectEmployeeCount);
+            Assert.False(builder.TestTargetOrganization2.IsBoss(boss));
+
+            organization.RelocateEmployee(person, builder.TestTargetOrganization1);
+            organization.SetBoss(boss, builder.TestTargetOrganization2);
+
+            Assert.Equal(1, builder.TestTargetOrganization1.DirectEmployeeCount);
+            Assert.True(builder.TestTargetOrganization2.IsBoss(boss));
         }
 
         private class BuilderMock_組織構造のみ : IOrganizationBuilder

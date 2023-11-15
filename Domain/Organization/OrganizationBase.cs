@@ -29,7 +29,7 @@ namespace Entity.Organization
         /// <summary>
         /// 識別子
         /// </summary>
-        protected int Identifier { get; }
+        public int Identifier { get; }
 
         /// <summary>
         /// 直属社員
@@ -272,7 +272,7 @@ namespace Entity.Organization
         /// データパケットを出力します。
         /// </summary>
         /// <returns>データパケット</returns>
-        internal OrganizationBasePackte ExportPacket()
+        internal OrganizationBasePacket ExportPacket()
         {
             return new()
             {
