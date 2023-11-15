@@ -29,7 +29,7 @@ namespace Entity.Organization
         /// <summary>
         /// 識別子
         /// </summary>
-        public int Identifier { get; }
+        internal int Identifier { get; }
 
         /// <summary>
         /// 直属社員

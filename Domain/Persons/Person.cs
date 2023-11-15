@@ -20,7 +20,7 @@ namespace Entity.Persons
         /// <summary>
         /// 識別子
         /// </summary>
-        public Guid Identifier { get; init; }
+        internal Guid Identifier { get; init; }
 
         /// <summary>
         /// 名称を取得または設定します。
