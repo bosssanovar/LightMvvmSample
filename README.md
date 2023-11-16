@@ -4,41 +4,39 @@
 
 ---
 
-- [LightMvvmSample](#lightmvvmsample)
-  - [概要](#概要)
-  - [ソリューション構成](#ソリューション構成)
-  - [アーキテクチャ設計](#アーキテクチャ設計)
-    - [MVVM](#mvvm)
-      - [View](#view)
-      - [ViewModel](#viewmodel)
-      - [Model](#model)
-    - [簡易版 Clean Architecture](#簡易版-clean-architecture)
-      - [Entity](#entity)
-      - [Repository](#repository)
-      - [Usecase](#usecase)
-      - [Infrastructure](#infrastructure)
-      - [App](#app)
-  - [変更通知機構 Reactive Property](#変更通知機構-reactive-property)
-  - [コードスニペット](#コードスニペット)
-    - [運用ルール](#運用ルール)
-    - [実装ルール](#実装ルール)
-    - [サンプル説明](#サンプル説明)
-  - [ユニットテスト](#ユニットテスト)
-  - [テストカバレッジ](#テストカバレッジ)
-  - [コーディング規約](#コーディング規約)
-  - [設計](#設計)
-  - [設計の流れの一部紹介](#設計の流れの一部紹介)
-    - [オブジェクト図](#オブジェクト図)
-    - [単純変換したクラス図](#単純変換したクラス図)
-    - [共通性可変性分析にかけたクラス図](#共通性可変性分析にかけたクラス図)
-    - [組織内を走査するVisitor](#組織内を走査するvisitor)
-  - [Visual Studio環境構築](#visual-studio環境構築)
-    - [CodeNavi 2022](#codenavi-2022)
-    - [Notifier 2022](#notifier-2022)
-    - [Error Catcher](#error-catcher)
-    - [Solution Error Notifier](#solution-error-notifier)
-    - [Collapse All Regions](#collapse-all-regions)
-  - [ミニトピック](#ミニトピック)
+- [概要](#概要)
+- [ソリューション構成](#ソリューション構成)
+- [アーキテクチャ設計](#アーキテクチャ設計)
+  - [MVVM](#mvvm)
+    - [View](#view)
+    - [ViewModel](#viewmodel)
+    - [Model](#model)
+  - [簡易版 Clean Architecture](#簡易版-clean-architecture)
+    - [Entity](#entity)
+    - [Repository](#repository)
+    - [Usecase](#usecase)
+    - [Infrastructure](#infrastructure)
+    - [App](#app)
+- [変更通知機構 Reactive Property](#変更通知機構-reactive-property)
+- [コードスニペット](#コードスニペット)
+  - [運用ルール](#運用ルール)
+  - [実装ルール](#実装ルール)
+  - [サンプル説明](#サンプル説明)
+- [ユニットテスト](#ユニットテスト)
+- [テストカバレッジ](#テストカバレッジ)
+- [コーディング規約](#コーディング規約)
+- [設計](#設計)
+- [設計の流れの一部紹介](#設計の流れの一部紹介)
+  - [オブジェクト図](#オブジェクト図)
+  - [単純変換したクラス図](#単純変換したクラス図)
+  - [共通性可変性分析にかけたクラス図](#共通性可変性分析にかけたクラス図)
+  - [組織内を走査するVisitor](#組織内を走査するvisitor)
+- [Visual Studio環境構築](#visual-studio環境構築)
+  - [Notifier 2022](#notifier-2022)
+  - [Solution Error Notifier](#solution-error-notifier)
+  - [Collapse All Regions](#collapse-all-regions)
+- [チェックリスト](#チェックリスト)
+- [ミニトピック](#ミニトピック)
 
 ---
 
@@ -230,30 +228,12 @@ StyleCop.Analyzersを採用。
 効率的に開発を進めるために、Visual Studioの機能拡張はもはや必須。  
 プレーンで使っているなんて怠惰ですね。の勢いで、地味に作業効率と開発快適性が上がる、もはや無くてはならないレベル。
 
-### [CodeNavi 2022](https://marketplace.visualstudio.com/items?itemName=SamirBoulema.CodeNav)
-
-開いているC#ファイルのコード構成を表示する拡張機能。  
-クラスの規模感が見える化される、目的のメンバにスクロール不要で直接飛べる、実装時にフィールド名
-等がすぐ見れてコーディングしやすい、と、良いことしかない。  
-
-![無題](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/93f829a0-4ffa-4758-a72e-9b393f1460ce)
-
 ### [Notifier 2022](https://github.com/NDiiong/Notifier)
 
 ビルドが完了したことを、ウィンドウズの通知で教えてくれる。  
 TDDしていると、いつテストが終わったのかわかりにくいが、これを入れていると、ビルドが終わったことがぼーっとしていても知れるので、そこからテストが始まるのがわかり、意識的にテスト完了待ちをする必要がある時間が削減で着て、省エネ。
 
 ![sample](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/f254098d-3a2e-4edb-8b19-98460a53dbfd)
-
-### [Error Catcher](https://github.com/NDiiong/Watcher)
-
-__※ドキュメント内検索窓と重なって視認性が悪いため、「Solution Error Notifier」に移行。__
-
-エラー、警告、情報の件数が、コードエディタ上に表示される。  
-エラーウィンドウを開く手間が減るので省エネ。  
-エラーウィンドウ開いてみたら大惨事、ってことがなくなり、いつでもエラーが1件でも出た瞬間に知れるので、ストレス軽減。
-
-![adornment](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/db576024-7d08-4a0f-b05d-ddfe77452ca2)
 
 ### [Solution Error Notifier](https://marketplace.visualstudio.com/items?itemName=ShemeerNS.SolutionErrorNotifierX86)
 
@@ -267,6 +247,12 @@ __※ドキュメント内検索窓と重なって視認性が悪いため、「
 
 Regionを一気に閉じるため「Collapse All Regions」をVisual Studioの拡張機能で追加。  
 「Ctrl+M, Ctrl+R」で一気に閉じる。一気に開くときは標準の「Ctrl+M, Ctrl+L」で。  
+
+---
+
+## チェックリスト
+
+[こちら](Processs/チェックリスト.md)
 
 ---
 
