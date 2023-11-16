@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Usecase.Sub;
 
 namespace Usecase
 {
@@ -45,6 +46,11 @@ namespace Usecase
         /// 組織構成が変更されたことを通知します。
         /// </summary>
         public event Action OnOrganizationUpdated;
+
+        /// <summary>
+        /// 組織人員問題を通知します。
+        /// </summary>
+        public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -127,10 +133,17 @@ namespace Usecase
             _peopleRepository.SavePeople(people);
             _organizationRepository.SaveOrganizaion(organization);
 
+            // Check Problems
+            var checker = new CheckProblems(_organizationRepository);
+            var checkResult = checker.Check();
+
             // Notify
             OnPeopleUpdated?.Invoke();
             OnOrganizationUpdated?.Invoke();
-            // TODO K.I : 組織人員問題を通知
+            if (checkResult.Count > 0)
+            {
+                OnArisedProblems?.Invoke(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

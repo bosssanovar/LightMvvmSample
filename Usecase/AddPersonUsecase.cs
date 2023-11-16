@@ -84,7 +84,7 @@ namespace Usecase
             var checkResult = checker.Check();
             if(checkResult.Count > 0 )
             {
-                OnArisedProblems(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
+                OnArisedProblems?.Invoke(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
             }
         }
 

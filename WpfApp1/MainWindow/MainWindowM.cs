@@ -85,6 +85,7 @@ namespace WpfApp1.MainWindow
             _checkProblemsUsecase.OnArisedProblems += AddPersonUsecase_OnArisedProblems;
             _saveLoadDataUsecase.OnPeopleUpdated += SaveLoadDataUsecase_OnPeopleUpdated;
             _saveLoadDataUsecase.OnOrganizationUpdated += SaveLoadDataUsecase_OnOrganizationUpdated;
+            _saveLoadDataUsecase.OnArisedProblems += SaveLoadDataUsecase_OnArisedProblems;
 
             OrganizationInfo = new ReactivePropertySlim<string?>(string.Empty)
                 .AddTo(_disposables);
@@ -117,6 +118,7 @@ namespace WpfApp1.MainWindow
             _checkProblemsUsecase.OnArisedProblems -= AddPersonUsecase_OnArisedProblems;
             _saveLoadDataUsecase.OnPeopleUpdated -= SaveLoadDataUsecase_OnPeopleUpdated;
             _saveLoadDataUsecase.OnOrganizationUpdated -= SaveLoadDataUsecase_OnOrganizationUpdated;
+            _saveLoadDataUsecase.OnArisedProblems -= SaveLoadDataUsecase_OnArisedProblems;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -229,6 +231,11 @@ namespace WpfApp1.MainWindow
         private void SaveLoadDataUsecase_OnOrganizationUpdated()
         {
             UpdateOrganizationStructure();
+        }
+
+        private void SaveLoadDataUsecase_OnArisedProblems(OnArisedProblemsEventArgs obj)
+        {
+            UpdateProglemInfo(obj);
         }
 
         #endregion --------------------------------------------------------------------------------------------
