@@ -39,7 +39,7 @@ namespace Entity.Organization
         /// <summary>
         /// 組織長
         /// </summary>
-        internal Person? Boss { get; private set; }/* TODO K.I : 非null化 */
+        internal Person? Boss { get; private set; }
 
         /// <summary>
         /// 組織名称
@@ -202,18 +202,7 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="member">確認対象社員</param>
         /// <returns>確認対象社員が所属していればtrue</returns>
-        internal bool IsContainDirectEmployee(Person member)
-        {
-            foreach (Person m in Members)
-            {
-                if (m.SameIdentityAs(member))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        internal bool IsContainDirectEmployee(Person member) => Members.Any(x => x.SameIdentityAs(member));
 
         /// <summary>
         /// 指定社員が組織長かどうかを判定します。
