@@ -61,7 +61,6 @@ namespace Entity.DomainService.OrganizationVisitor
                 .Find(x => x.Identifier == target.Identifier)
                 ?? throw new ArgumentException("対象がありません。", nameof(target));
 
-            // TODO K.I : Boss存在チェックパラメータをデータパケットに追加
             if (organizationPacket.BossId != Guid.Empty)
             {
                 Person boss = _persons.Find(x => x.Identifier == organizationPacket.BossId)
