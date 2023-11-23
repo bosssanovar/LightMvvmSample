@@ -37,7 +37,8 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="OK" IsDefault="True" Padding="30,5" Margin="5" Command="{Binding RelocateCommand}"/>
+            <Button Content="OK" IsDefault="True" Padding="30,5" Margin="5" Command="{Binding RelocateCommand}"
+                    IsEnabled="{Binding IsOkEnabled.Value}"/>
 
             <Button Grid.Column="1" Content="Cancel" IsCancel="True" Padding="10,5" Margin="5"/>
 
