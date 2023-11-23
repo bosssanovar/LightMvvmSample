@@ -254,6 +254,7 @@ namespace Entity.Organization
         /// <returns>同一性を有している場合 true</returns>
         internal bool SameIdentityAs(OrganizationBase target)
         {
+            // TODO K.I : 異動画面の初期値に現所属
             return Identifier == target.Identifier;
         }
 
