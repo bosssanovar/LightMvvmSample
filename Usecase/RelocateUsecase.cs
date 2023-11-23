@@ -107,6 +107,18 @@ namespace Usecase
             OnPersonUpdate?.Invoke(person);
         }
 
+        /// <summary>
+        /// 所属組織を取得します。
+        /// </summary>
+        /// <param name="personn">調査対象</param>
+        /// <returns>所属組織</returns>
+        public OrganizationBase GetAssignedOrganization(Person personn)
+        {
+            var organization = _organizationRepository.LoadOrganization();
+
+            return organization.GetAssignedOrganization(personn);
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - internal ----------------------------------------------------------------------------

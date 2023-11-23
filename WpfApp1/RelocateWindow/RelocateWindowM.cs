@@ -63,7 +63,7 @@ namespace WpfApp1.RelocateWindow
         {
             _relocateUsecase = relocateUsecase;
             Person = person;
-            SelectedOrganization = new ReactivePropertySlim<OrganizationBase>();
+            SelectedOrganization = new ReactivePropertySlim<OrganizationBase>(relocateUsecase.GetAssignedOrganization(person));
             IsBoss = new ReactivePropertySlim<bool>(false);
         }
 
