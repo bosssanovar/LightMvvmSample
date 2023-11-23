@@ -100,6 +100,7 @@ namespace Entity.DomainService.OrganizationVisitor
             {
                 _upperDepartment = null;
                 _upperSection = null;
+                _name = organization.DisplayName;
                 return;
             }
             else if (organization.Rank == Ranks.Department)
