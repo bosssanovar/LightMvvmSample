@@ -61,12 +61,6 @@ namespace Usecase
             _organizationRepository.SaveOrganizaion(organization);
         }
 
-        private static void AddNewMember(Person person, People people, Organization organization)
-        {
-            people.AddPerson(person);
-            organization.AddNewMember(person);
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------

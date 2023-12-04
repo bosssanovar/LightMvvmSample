@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Entity.Persons.DataPackets;
 
 namespace Entity.Persons
 {

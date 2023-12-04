@@ -1,21 +1,18 @@
 ﻿using Entity.Organization;
-using Entity.Persons;
-using Reactive.Bindings;
+using Entity.Organization.DataPackets;
+using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
-using Usecase;
 
-namespace WpfApp1.RelocateWindow
+namespace Entity.DomainService.OrganizationVisitor
 {
     /// <summary>
-    /// Relocate Windowのモデル
+    /// <see cref="OrganizationBasePacket"/>を収集するVisitor
     /// </summary>
-    public class RelocateWindowM
+    internal class GetOrganizationPacketVisitor : IOrganizationVisitor
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -23,28 +20,14 @@ namespace WpfApp1.RelocateWindow
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly CompositeDisposable _disposables = new();
-
-        private readonly RelocateUsecase _relocateUsecase;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
         /// <summary>
-        /// 異動対象社員を取得します。
+        /// <see cref="OrganizationBasePacket"/>リストを取得します。
         /// </summary>
-        public Person Person { get; init; }
-
-        /// <summary>
-        /// 異動先の設定値
-        /// </summary>
-        public ReactivePropertySlim<OrganizationBase> SelectedOrganization { get; }
-
-        /// <summary>
-        /// 組織長として異動するかの設定値
-        /// </summary>
-        public ReactivePropertySlim<bool> IsBoss { get; }
+        public List<OrganizationBasePacket> Packets { get; init; } = new();
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -54,49 +37,21 @@ namespace WpfApp1.RelocateWindow
 
         #region Constructor -----------------------------------------------------------------------------------
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="person">異動対象社員</param>
-        /// <param name="relocateUsecase">異動ユースケース</param>
-        public RelocateWindowM(Person person, RelocateUsecase relocateUsecase)
-        {
-            _relocateUsecase = relocateUsecase;
-            Person = person;
-            SelectedOrganization = new ReactivePropertySlim<OrganizationBase>(relocateUsecase.GetAssignedOrganization(person));
-            IsBoss = new ReactivePropertySlim<bool>(false);
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 組織情報一覧を取得します。
-        /// </summary>
-        /// <returns>組織情報一覧</returns>
-        public ReadOnlyCollection<OrganizationInfo> GetOrganizationInfos()
+        /// <inheritdoc/>
+        public void Visit(OrganizationBase target)
         {
-            return _relocateUsecase.Organizations;
+            Packets.Add(target.ExportPacket());
         }
 
-        /// <summary>
-        /// 各種破棄処理
-        /// </summary>
-        public void Dispose()
-        {
-            _disposables.Dispose();
-        }
+        #endregion --------------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 社員を異動します。
-        /// </summary>
-        internal void Relocate()
-        {
-            _relocateUsecase.Relocate(Person, SelectedOrganization.Value, IsBoss.Value);
-        }
+        #region Methods - internal ----------------------------------------------------------------------------
 
         #endregion --------------------------------------------------------------------------------------------
 

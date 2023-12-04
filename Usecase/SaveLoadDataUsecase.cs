@@ -1,6 +1,8 @@
 ﻿using DataStore;
 using Entity.Organization;
+using Entity.Organization.DataPackets;
 using Entity.Persons;
+using Entity.Persons.DataPackets;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Usecase.Sub;
 
 namespace Usecase
 {
@@ -22,9 +25,9 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private PeopleRepository _peopleRepository;
+        private readonly PeopleRepository _peopleRepository;
 
-        private OrganizationRepository _organizationRepository;
+        private readonly OrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -43,6 +46,11 @@ namespace Usecase
         /// 組織構成が変更されたことを通知します。
         /// </summary>
         public event Action OnOrganizationUpdated;
+
+        /// <summary>
+        /// 組織人員問題を通知します。
+        /// </summary>
+        public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -73,8 +81,16 @@ namespace Usecase
         public async Task Save(string path)
         {
             var people = _peopleRepository.LoadPeople();
+            var organization = _organizationRepository.LoadOrganization();
+
             var peoplePacket = people.ExportPacket();
-            var packet = new Entity.EntityPacket() { People = peoplePacket };
+            var organizationPacket = organization.ExportPacket();
+
+            var packet = new Entity.EntityPacket()
+            {
+                People = peoplePacket,
+                Organization = organizationPacket,
+            };
 
             await DataFile.SaveData(path, packet);
         }
@@ -87,12 +103,14 @@ namespace Usecase
         public async Task Load(string path)
         {
             PeoplePacket peoplePacket;
+            OrganizationPacket organizationPacket;
 
             try
             {
                 // Get data packets
                 var packet = await DataFile.LoadData(path);
                 peoplePacket = packet.People;
+                organizationPacket = packet.Organization;
             }
             catch
             {
@@ -109,17 +127,23 @@ namespace Usecase
 
             // Import
             people.ImportPacket(peoplePacket);
-            people.Persons.ToList().ForEach(x => organization.AddNewMember(x));
-            // TODO : organization.Import
+            organization.ImportPacket(organizationPacket, people.Persons.ToList());
 
             // Save entities
             _peopleRepository.SavePeople(people);
             _organizationRepository.SaveOrganizaion(organization);
 
+            // Check Problems
+            var checker = new CheckProblems(_organizationRepository);
+            var checkResult = checker.Check();
+
             // Notify
             OnPeopleUpdated?.Invoke();
             OnOrganizationUpdated?.Invoke();
-            // TODO K.I : 組織人員問題を通知
+            if (checkResult.Count > 0)
+            {
+                OnArisedProblems?.Invoke(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

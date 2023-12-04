@@ -1,4 +1,5 @@
-﻿using Entity.Persons;
+﻿using Entity.Organization.DataPackets;
+using Entity.Persons;
 using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Entity.Organization
         /// <summary>
         /// 識別子
         /// </summary>
-        protected int Identifier { get; }
+        internal int Identifier { get; }
 
         /// <summary>
         /// 直属社員
@@ -201,18 +202,7 @@ namespace Entity.Organization
         /// </summary>
         /// <param name="member">確認対象社員</param>
         /// <returns>確認対象社員が所属していればtrue</returns>
-        internal bool IsContainDirectEmployee(Person member)
-        {
-            foreach (Person m in Members)
-            {
-                if (m.SameIdentityAs(member))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        internal bool IsContainDirectEmployee(Person member) => Members.Any(x => x.SameIdentityAs(member));
 
         /// <summary>
         /// 指定社員が組織長かどうかを判定します。
@@ -265,6 +255,20 @@ namespace Entity.Organization
         internal bool SameIdentityAs(OrganizationBase target)
         {
             return Identifier == target.Identifier;
+        }
+
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
+        internal OrganizationBasePacket ExportPacket()
+        {
+            return new()
+            {
+                Identifier = Identifier,
+                MemberIds = Members.Select(x => x.Identifier).ToList(),
+                BossId = Boss?.Identifier ?? Guid.Empty,
+            };
         }
 
         #endregion --------------------------------------------------------------------------------------------

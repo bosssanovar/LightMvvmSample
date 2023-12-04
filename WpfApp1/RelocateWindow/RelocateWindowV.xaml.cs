@@ -1,10 +1,12 @@
 ﻿using Entity.Organization;
+using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -61,6 +63,11 @@ namespace WpfApp1.RelocateWindow
                 .AddTo(_disposables);
 
             IsBoss = _model.IsBoss.ToReactivePropertySlimAsSynchronized(x => x.Value)
+                .AddTo(_disposables);
+
+            IsOkEnabled = _model.SelectedOrganization
+                .Select(x => x is not null)
+                .ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
             #endregion

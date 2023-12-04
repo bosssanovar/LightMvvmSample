@@ -1,4 +1,6 @@
-﻿namespace Entity.Persons
+﻿using Entity.Persons.DataPackets;
+
+namespace Entity.Persons
 {
     /// <summary>
     /// 個人情報クラス
@@ -7,8 +9,6 @@
     {
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly Guid _identifier;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -16,6 +16,11 @@
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 識別子
+        /// </summary>
+        internal Guid Identifier { get; init; }
 
         /// <summary>
         /// 名称を取得または設定します。
@@ -42,7 +47,7 @@
         /// <param name="birthDay">誕生日</param>
         public Person(NameVO name, BirthdayVO birthDay)
         {
-            _identifier = Guid.NewGuid();
+            Identifier = Guid.NewGuid();
             Birthday = birthDay;
             Name = name;
         }
@@ -55,9 +60,22 @@
         /// <param name="birthDay">誕生日</param>
         public Person(Person person, NameVO name, BirthdayVO birthDay)
         {
-            _identifier = person._identifier;
+            Identifier = person.Identifier;
             Birthday = birthDay;
             Name = name;
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="identifier">識別子</param>
+        /// <param name="name">名前</param>
+        /// <param name="birthday">誕生日</param>
+        internal Person(Guid identifier, NameVO name, BirthdayVO birthday)
+        {
+            Identifier = identifier;
+            Name = name;
+            Birthday = birthday;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -83,14 +101,19 @@
         /// <returns>同一性を有している場合 true</returns>
         internal bool SameIdentityAs(Person target)
         {
-            return _identifier == target._identifier;
+            return Identifier == target.Identifier;
         }
 
         /// <summary>
         /// データパケットを出力します。
         /// </summary>
         /// <returns>データパケット</returns>
-        internal PersonPacket ExportPacket() => new() { Birthday = Birthday.ExportPacket(), Name = Name.ExportPacket() };
+        internal PersonPacket ExportPacket() => new()
+        {
+            Identifier = Identifier,
+            Birthday = Birthday.ExportPacket(),
+            Name = Name.ExportPacket(),
+        };
 
         #endregion --------------------------------------------------------------------------------------------
 

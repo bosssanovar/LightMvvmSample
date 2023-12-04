@@ -19,7 +19,7 @@ namespace Entity.DomainService.OrganizationVisitor
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly StringBuilder _sb = new StringBuilder();
+        private readonly StringBuilder _sb = new();
 
         #endregion --------------------------------------------------------------------------------------------
 

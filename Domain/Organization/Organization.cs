@@ -1,5 +1,6 @@
 ﻿using Entity.DomainService;
 using Entity.DomainService.OrganizationVisitor;
+using Entity.Organization.DataPackets;
 using Entity.Persons;
 using Entity.Service;
 using Entity.Service.OrganizationVisitor;
@@ -282,6 +283,33 @@ namespace Entity.Organization
             _unAssignedMembersGroup.RemoveAllMember();
         }
 
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
+        public OrganizationPacket ExportPacket()
+        {
+            var visitor = new GetOrganizationPacketVisitor();
+            _topOrganization.Accept(visitor);
+            return new()
+            {
+                Organizations = visitor.Packets,
+                UnAssignedPersons = _unAssignedMembersGroup.GetMembers().Select(x => x.Identifier).ToList(),
+            };
+        }
+
+        /// <summary>
+        /// データパケットを読み込みます。
+        /// </summary>
+        /// <param name="packet">データパケット</param>
+        /// <param name="persons">社員リスト</param>
+        public void ImportPacket(OrganizationPacket packet, List<Person> persons)
+        {
+            ImportToUnAssignedList(packet, persons);
+
+            ImportToOrganizationMember(packet, persons);
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - protected ---------------------------------------------------------------------------
@@ -289,6 +317,22 @@ namespace Entity.Organization
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - private -----------------------------------------------------------------------------
+
+        private void ImportToUnAssignedList(OrganizationPacket packet, List<Person> persons)
+        {
+            foreach (var unAssigned in packet.UnAssignedPersons)
+            {
+                _unAssignedMembersGroup.AddMember(
+                    persons.Find(x => x.Identifier == unAssigned)
+                    ?? throw new ArgumentException("社員データ不一致", nameof(persons)));
+            }
+        }
+
+        private void ImportToOrganizationMember(OrganizationPacket packet, List<Person> persons)
+        {
+            var visitor = new ImportPacketVisitor(persons, packet);
+            _topOrganization.Accept(visitor);
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 

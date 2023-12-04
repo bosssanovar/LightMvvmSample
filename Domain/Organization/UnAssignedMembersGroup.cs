@@ -39,11 +39,6 @@ namespace Entity.Organization
         {
         }
 
-        private UnAssignedMembersGroup(UnAssignedMembersGroup original)
-            : base(original)
-        {
-        }
-
         private UnAssignedMembersGroup(OrganizationNameVO name, Ranks rank)
             : base(name, rank)
         {

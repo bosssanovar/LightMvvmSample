@@ -1,20 +1,19 @@
 ﻿using Entity.Organization;
+using Entity.Organization.DataPackets;
 using Entity.Persons;
-using Repository;
+using Entity.Service.OrganizationVisitor;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Usecase.Sub;
 
-namespace Usecase
+namespace Entity.DomainService.OrganizationVisitor
 {
     /// <summary>
-    /// 社員異動のユースケースを提供します。
+    /// データパケットをインポートするVisitor
     /// </summary>
-    public class RelocateUsecase
+    internal class ImportPacketVisitor : IOrganizationVisitor
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -22,39 +21,17 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly OrganizationRepository _organizationRepository;
+        private readonly List<Person> _persons;
 
-        private readonly ICheckProblems _problemChecker;
+        private readonly OrganizationPacket _organizationPacket;
 
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 組織情報一覧を取得します。
-        /// </summary>
-        public ReadOnlyCollection<OrganizationInfo> Organizations
-        {
-            get
-            {
-                var organization = _organizationRepository.LoadOrganization();
-                return organization.GetOrganizationInfos();
-            }
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
-
-        /// <summary>
-        /// 社員の所属組織変更が発生したイベント
-        /// </summary>
-        public event Action<Person> OnPersonUpdate;
-
-        /// <summary>
-        /// 組織人員問題が発生したイベント
-        /// </summary>
-        public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -63,12 +40,12 @@ namespace Usecase
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
-        /// <param name="problemChecker">組織人員問題検出</param>
-        public RelocateUsecase(OrganizationRepository organizationRepository, ICheckProblems problemChecker)
+        /// <param name="persons">社員リスト</param>
+        /// <param name="organizationPacket">組織データパケット</param>
+        public ImportPacketVisitor(List<Person> persons, OrganizationPacket organizationPacket)
         {
-            _organizationRepository = organizationRepository;
-            _problemChecker = problemChecker;
+            _persons = persons;
+            _organizationPacket = organizationPacket;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -77,46 +54,26 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 異動します。
-        /// </summary>
-        /// <param name="person">対象社員</param>
-        /// <param name="newOrganization">異動先</param>
-        /// <param name="isBoss">組織長として異動の場合　true</param>
-        public void Relocate(Person person, OrganizationBase newOrganization, bool isBoss)
+        /// <inheritdoc/>
+        public void Visit(OrganizationBase target)
         {
-            var organization = _organizationRepository.LoadOrganization();
+            OrganizationBasePacket organizationPacket = _organizationPacket.Organizations
+                .Find(x => x.Identifier == target.Identifier)
+                ?? throw new ArgumentException("対象がありません。", nameof(target));
 
-            if (!isBoss)
+            if (organizationPacket.BossId != Guid.Empty)
             {
-                organization.RelocateEmployee(person, newOrganization);
-            }
-            else
-            {
-                organization.SetBoss(person, newOrganization);
-            }
-
-            _organizationRepository.SaveOrganizaion(organization);
-
-            var checkResult = _problemChecker.Check();
-            if(checkResult.Count > 0)
-            {
-                OnArisedProblems?.Invoke(new(checkResult, _problemChecker.UnAssignedPersons, _problemChecker.NoBossOrganizaiotns));
+                Person boss = _persons.Find(x => x.Identifier == organizationPacket.BossId)
+                    ?? throw new ArgumentException("対象がありません。", nameof(target));
+                target.SetBoss(boss);
             }
 
-            OnPersonUpdate?.Invoke(person);
-        }
-
-        /// <summary>
-        /// 所属組織を取得します。
-        /// </summary>
-        /// <param name="personn">調査対象</param>
-        /// <returns>所属組織</returns>
-        public OrganizationBase GetAssignedOrganization(Person personn)
-        {
-            var organization = _organizationRepository.LoadOrganization();
-
-            return organization.GetAssignedOrganization(personn);
+            foreach(var employeeId in organizationPacket.MemberIds)
+            {
+                Person employee = _persons.Find(x => x.Identifier == employeeId)
+                    ?? throw new ArgumentException("対象がありません。", nameof(target));
+                target.AddMember(employee);
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

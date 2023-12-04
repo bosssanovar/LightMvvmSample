@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataStore\DataStore.csproj" />
     <ProjectReference Include="..\Domain\Entity.csproj" />
   </ItemGroup>
 
