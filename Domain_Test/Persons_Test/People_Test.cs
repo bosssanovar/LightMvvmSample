@@ -15,7 +15,7 @@ namespace Entity_Test.Persons_Test
         public void IGetPerson_社員リスト取得()
         {
             var people = new People();
-            IPeople personsGetter = people;
+            IGetPersons personsGetter = people;
             Person p = new(new("aaa", "aaaaa"), new(1000, 1, 1));
             Person p2 = new(new("aaa", "aaaaa"), new(1000, 1, 1));
 

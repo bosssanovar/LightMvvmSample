@@ -1,6 +1,5 @@
 ﻿using Entity.DomainService;
 using Entity.Organization;
-using Entity.Organization.DataPackets;
 using Entity.Persons;
 using Repository;
 using System;
@@ -56,7 +55,7 @@ namespace Usecase_Test.Sub
             Assert.Equal(2, checker.NoBossOrganizaiotns.Count);
         }
 
-        private class OrganizationRepositoryMock : IOrganizationRepository
+        private class OrganizationRepositoryMock : ICheckProblemRepository
         {
             readonly bool _isUnAssigned = false;
             readonly bool _isNoBoss = false;
@@ -67,35 +66,13 @@ namespace Usecase_Test.Sub
                 _isNoBoss = isNoBoss;
             }
 
-            public IOrganization LoadProblemChecker()
+            public ICheckProblem LoadProblemChecker()
             {
                 return new OrganizationMock(_isUnAssigned, _isNoBoss);
             }
-
-            #region 不要インターフェースメソッド
-            public IOrganization LoadAssigner()
-            {
-                throw new NotImplementedException();
-            }
-
-            public Organization LoadOrganization()
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SaveAssigner(IOrganization assigner)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SaveOrganizaion(Organization organization)
-            {
-                throw new NotImplementedException();
-            }
-            #endregion
         }
 
-        private class OrganizationMock : IOrganization
+        private class OrganizationMock : ICheckProblem
         {
             readonly bool _isUnAssigned = false;
             readonly bool _isNoBoss = false;
@@ -104,20 +81,6 @@ namespace Usecase_Test.Sub
             {
                 _isUnAssigned = isUnAssigned;
                 _isNoBoss = isNoBoss;
-            }
-
-            public List<Person> GetUnAssignedPersons()
-            {
-                var ret = new List<Person>();
-
-                if (_isUnAssigned)
-                {
-                    ret.Add(new(new("aaaa", "AAAA"), new(1000, 1, 1)));
-                    ret.Add(new(new("aaaa", "AAAA"), new(1000, 1, 1)));
-                    ret.Add(new(new("aaaa", "AAAA"), new(1000, 1, 1)));
-                }
-
-                return ret;
             }
 
             public List<OrganizationBase> GetNoBossOrganizaiotns()
@@ -133,77 +96,19 @@ namespace Usecase_Test.Sub
                 return ret;
             }
 
-            #region 不要インターフェースメソッド
-            public void AddNewMember(Person person)
+            public List<Person> GetUnAssignedPersons()
             {
-                throw new NotImplementedException();
-            }
+                var ret = new List<Person>();
 
-            public void Assign(Person person, OrganizationBase newOrganization, bool isBoss)
-            {
-                throw new NotImplementedException();
-            }
+                if (_isUnAssigned)
+                {
+                    ret.Add(new(new("aaaa", "AAAA"), new(1000, 1, 1)));
+                    ret.Add(new(new("aaaa", "AAAA"), new(1000, 1, 1)));
+                    ret.Add(new(new("aaaa", "AAAA"), new(1000, 1, 1)));
+                }
 
-            public void ClearAll()
-            {
-                throw new NotImplementedException();
+                return ret;
             }
-
-            public OrganizationPacket ExportPacket()
-            {
-                throw new NotImplementedException();
-            }
-
-            public OrganizationBase GetAssignedOrganization(Person person)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Person GetBoss(OrganizationBase organization)
-            {
-                throw new NotImplementedException();
-            }
-
-            public ReadOnlyCollection<OrganizationInfo> GetOrganizationInfos()
-            {
-                throw new NotImplementedException();
-            }
-
-            public string GetOrganizationName(Person person)
-            {
-                throw new NotImplementedException();
-            }
-
-            public string GetOrganizationStructure()
-            {
-                throw new NotImplementedException();
-            }
-
-            public Posts GetPost(Person person)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void ImportPacket(OrganizationPacket packet, List<Person> persons)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void Leave(Person targetPerson)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void RelocateEmployee(Person person, OrganizationBase newOrganization)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SetBoss(Person newBoss, OrganizationBase organization)
-            {
-                throw new NotImplementedException();
-            }
-            #endregion
         }
 
         private class Builder : IOrganizationBuilder

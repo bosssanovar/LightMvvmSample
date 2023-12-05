@@ -16,7 +16,7 @@ namespace Entity.Organization
     /// <summary>
     /// 組織クラス
     /// </summary>
-    public class Organization : IOrganization
+    public class Organization : IAssign, ICheckProblem
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -55,7 +55,10 @@ namespace Entity.Organization
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 組織情報を取得します。
+        /// </summary>
+        /// <returns>組織情報一覧</returns>
         public ReadOnlyCollection<OrganizationInfo> GetOrganizationInfos()
         {
             var visitor = new GetOrganizationListVisitor();
@@ -64,13 +67,20 @@ namespace Entity.Organization
             return visitor.Oganizations;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 新入社員を登録する。
+        /// </summary>
+        /// <param name="person">侵入社員</param>
         public void AddNewMember(Person person)
         {
             _unAssignedMembersGroup.AddMember(person);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 直属社員を指定組織に異動します。
+        /// </summary>
+        /// <param name="person">異動する社員</param>
+        /// <param name="newOrganization">社員を追加する組織</param>
         public void RelocateEmployee(Person person, OrganizationBase newOrganization)
         {
             Leave(person);
@@ -78,7 +88,13 @@ namespace Entity.Organization
             Assign(person, newOrganization, false);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 組織にアサインする。
+        /// </summary>
+        /// <param name="person">社員</param>
+        /// <param name="newOrganization">社員を追加する組織</param>
+        /// <param name="isBoss">組織長としてアサインする場合 true</param>
+        /// <exception cref="ArgumentException">追加対象の組織がない場合</exception>
         public void Assign(Person person, OrganizationBase newOrganization, bool isBoss)
         {
             if (!isBoss)
@@ -97,14 +113,18 @@ namespace Entity.Organization
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 社員の所属組織を取得します。
+        /// </summary>
+        /// <param name="person">ターゲット社員</param>
+        /// <returns>所属している組織</returns>
         public OrganizationBase GetAssignedOrganization(Person person)
         {
             var visitor = new GetCurrentPositionVisitor(person);
             _unAssignedMembersGroup.Accept(visitor);
             _topOrganization.Accept(visitor);
 
-            if (visitor.AssignedOrganization is null)
+            if(visitor.AssignedOrganization is null)
             {
                 throw new ArgumentException("指定社員は組織内に存在しません。", nameof(person));
             }
@@ -112,7 +132,12 @@ namespace Entity.Organization
             return visitor.AssignedOrganization;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 社員の現在の役職を取得します。
+        /// </summary>
+        /// <param name="person">対象社員</param>
+        /// <returns>役職</returns>
+        /// <exception cref="ArgumentException">指定社員は組織内に存在しない場合</exception>
         public Posts GetPost(Person person)
         {
             var visitor = new GetCurrentPositionVisitor(person);
@@ -127,7 +152,11 @@ namespace Entity.Organization
             return visitor.Post;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 所属する組織の組織名を取得します。
+        /// </summary>
+        /// <param name="person">対象社員</param>
+        /// <returns>組織名称</returns>
         public string GetOrganizationName(Person person)
         {
             var visitor = new GetCurrentPositionVisitor(person);
@@ -148,7 +177,12 @@ namespace Entity.Organization
             return infos.Single(x => x.Organization.SameIdentityAs(organization)).FullName;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 組織長を設定します。
+        /// 新しい組織長に指定された社員は、元居た部署から削除されます。
+        /// </summary>
+        /// <param name="newBoss">対象社員</param>
+        /// <param name="organization">対象組織</param>
         public void SetBoss(Person newBoss, OrganizationBase organization)
         {
             var removeVisitor = new RemovePersonVisitor(newBoss);
@@ -163,7 +197,7 @@ namespace Entity.Organization
             var visitor = new SetBossVisitor(newBoss, organization);
             _topOrganization.Accept(visitor);
 
-            if (visitor.OldBoss is not null)
+            if(visitor.OldBoss is not null)
             {
                 _unAssignedMembersGroup.AddMember(visitor.OldBoss);
             }
@@ -174,7 +208,11 @@ namespace Entity.Organization
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 組織長を取得します。
+        /// </summary>
+        /// <param name="organization">対象組織</param>
+        /// <returns>組織長</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:メンバーを static に設定します", Justification = "<保留中>")]
         public Person GetBoss(OrganizationBase organization)
         {
@@ -186,7 +224,10 @@ namespace Entity.Organization
             return organization.Boss;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 退職します。
+        /// </summary>
+        /// <param name="targetPerson">退職する社員</param>
         public void Leave(Person targetPerson)
         {
             var visitor = new RemovePersonVisitor(targetPerson);
@@ -199,13 +240,19 @@ namespace Entity.Organization
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 未所属社員の一覧を取得します。
+        /// </summary>
+        /// <returns>未所属社員の一覧</returns>
         public List<Person> GetUnAssignedPersons()
         {
             return _unAssignedMembersGroup.GetMembers();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 組織長不在組織の一覧を取得します。
+        /// </summary>
+        /// <returns>組織長不在組織の一覧</returns>
         public List<OrganizationBase> GetNoBossOrganizaiotns()
         {
             var visitor = new GetNoBossOrganizaiotnsVisitor();
@@ -214,7 +261,10 @@ namespace Entity.Organization
             return visitor.NoBossOrganizations;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 組織構造を取得します。
+        /// </summary>
+        /// <returns>組織構造</returns>
         public string GetOrganizationStructure()
         {
             var visitor = new GetOrganizationStructureVisitor();
@@ -223,7 +273,9 @@ namespace Entity.Organization
             return visitor.OrganizationStructureInfo;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 設定を全て初期化
+        /// </summary>
         public void ClearAll()
         {
             var visitor = new ClearAllVisitor();
@@ -231,7 +283,10 @@ namespace Entity.Organization
             _unAssignedMembersGroup.RemoveAllMember();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
         public OrganizationPacket ExportPacket()
         {
             var visitor = new GetOrganizationPacketVisitor();
@@ -243,7 +298,11 @@ namespace Entity.Organization
             };
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// データパケットを読み込みます。
+        /// </summary>
+        /// <param name="packet">データパケット</param>
+        /// <param name="persons">社員リスト</param>
         public void ImportPacket(OrganizationPacket packet, List<Person> persons)
         {
             ImportToUnAssignedList(packet, persons);

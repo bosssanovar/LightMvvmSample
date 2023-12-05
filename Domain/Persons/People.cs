@@ -6,7 +6,7 @@ namespace Entity.Persons
     /// <summary>
     /// 集団クラス
     /// </summary>
-    public class People : IPeople
+    public class People : IGetPersons
     {
         #region Fields ----------------------------------------------------------------------------------------
 
@@ -20,7 +20,9 @@ namespace Entity.Persons
 
         #region Properties ------------------------------------------------------------------------------------
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 個人情報リストを取得します。
+        /// </summary>
         public ReadOnlyCollection<Person> Persons
         {
             get
@@ -52,13 +54,19 @@ namespace Entity.Persons
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 個人情報を削除する
+        /// </summary>
+        /// <param name="person">個人情報</param>
         public void RemovePerson(Person person)
         {
             _persons.RemoveAll(x => x.SameIdentityAs(person));
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 個人情報を更新します。
+        /// </summary>
+        /// <param name="person">更新データ</param>
         public void UpdatePersons(Person person)
         {
             if (!_persons.Any(x => x.SameIdentityAs(person)))
@@ -70,37 +78,56 @@ namespace Entity.Persons
             person.CopyTo(p);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 個人情報を追加します。
+        /// </summary>
+        /// <param name="person">個人情報</param>
         public void AddPerson(Person person)
         {
             _persons.Add(person);
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 個人情報を取得します。
+        /// </summary>
+        /// <param name="person">個人情報識別子</param>
+        /// <returns>個人情報</returns>
         public Person GetPerson(Person person)
         {
             return _persons.First(x => x.SameIdentityAs(person));
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 個人情報が既に登録済みかを取得します。
+        /// </summary>
+        /// <param name="person">確認する個人情報</param>
+        /// <returns>登録済みの場合 true</returns>
         public bool IsContain(Person person)
         {
             return _persons.Any(x => x.SameIdentityAs(person));
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// データパケットを取り込みます。
+        /// </summary>
+        /// <param name="packet">データパケット</param>
         public void ImportPacket(PeoplePacket packet)
         {
-            foreach (var person in packet.Persons)
+            foreach(var person in packet.Persons)
             {
                 AddPerson(person.Get());
             }
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// データパケットを出力します。
+        /// </summary>
+        /// <returns>データパケット</returns>
         public PeoplePacket ExportPacket() => new() { Persons = _persons.Select(x => x.ExportPacket()).ToList() };
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// 社員を全て削除します。
+        /// </summary>
         public void ClearAll()
         {
             _persons.Clear();

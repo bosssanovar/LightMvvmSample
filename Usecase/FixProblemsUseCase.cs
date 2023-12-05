@@ -23,7 +23,7 @@ namespace Usecase
 
         private readonly ICheckProblems _checkProblems;
 
-        private readonly IOrganizationRepository _assignRepository;
+        private readonly IAssignRepository _assignRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -57,9 +57,8 @@ namespace Usecase
         /// </summary>
         /// <param name="checkProblems">組織人員問題検出</param>
         /// <param name="assignRepository">社員アサインEntity取得リポジトリ</param>
-        public FixProblemsUseCase(ICheckProblems checkProblems, IOrganizationRepository assignRepository)
+        public FixProblemsUseCase(ICheckProblems checkProblems, IAssignRepository assignRepository)
         {
-            // TODO K.I : 変数名を修正　全ソースで
             _checkProblems = checkProblems;
             _assignRepository = assignRepository;
         }

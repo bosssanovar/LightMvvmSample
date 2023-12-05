@@ -1,11 +1,9 @@
 ﻿using Entity.DomainService;
 using Entity.Organization;
-using Entity.Organization.DataPackets;
 using Entity.Persons;
 using Repository;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,7 +98,7 @@ namespace Usecase_Test
             }
         }
 
-        private class AssignRepositoryMock_アサイン確認 : IOrganizationRepository
+        private class AssignRepositoryMock_アサイン確認 : IAssignRepository
         {
             private readonly Person _person;
             private readonly OrganizationBase _organization;
@@ -111,31 +109,14 @@ namespace Usecase_Test
                 _organization = organization;
             }
 
-            public IOrganization LoadAssigner()
+            public IAssign LoadAssigner()
             {
                 return new AssignMock(_person, _organization);
             }
 
-            public void SaveAssigner(IOrganization assigner)
+            public void SaveAssigner(IAssign assigner)
             {
             }
-
-            #region 不要インターフェースメソッド
-            public Organization LoadOrganization()
-            {
-                throw new NotImplementedException();
-            }
-
-            public IOrganization LoadProblemChecker()
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SaveOrganizaion(Organization organization)
-            {
-                throw new NotImplementedException();
-            }
-            #endregion
         }
 
         private class BuilderMock : IOrganizationBuilder
@@ -146,7 +127,7 @@ namespace Usecase_Test
             }
         }
 
-        private class AssignMock : IOrganization
+        private class AssignMock : IAssign
         {
             private readonly Person _person;
             private readonly OrganizationBase _organization;
@@ -157,86 +138,7 @@ namespace Usecase_Test
                 _organization = organization;
             }
 
-            #region 不要インターフェースメソッド
-
-            public void AddNewMember(Person person)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void ClearAll()
-            {
-                throw new NotImplementedException();
-            }
-
-            public OrganizationPacket ExportPacket()
-            {
-                throw new NotImplementedException();
-            }
-
-            public OrganizationBase GetAssignedOrganization(Person person)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Person GetBoss(OrganizationBase organization)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<OrganizationBase> GetNoBossOrganizaiotns()
-            {
-                throw new NotImplementedException();
-            }
-
-            public ReadOnlyCollection<OrganizationInfo> GetOrganizationInfos()
-            {
-                throw new NotImplementedException();
-            }
-
-            public string GetOrganizationName(Person person)
-            {
-                throw new NotImplementedException();
-            }
-
-            public string GetOrganizationStructure()
-            {
-                throw new NotImplementedException();
-            }
-
-            public Posts GetPost(Person person)
-            {
-                throw new NotImplementedException();
-            }
-
-            public List<Person> GetUnAssignedPersons()
-            {
-                throw new NotImplementedException();
-            }
-
-            public void ImportPacket(OrganizationPacket packet, List<Person> persons)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void Leave(Person targetPerson)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void RelocateEmployee(Person person, OrganizationBase newOrganization)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SetBoss(Person newBoss, OrganizationBase organization)
-            {
-                throw new NotImplementedException();
-            }
-
-            #endregion
-
-            void IOrganization.Assign(Person person, OrganizationBase organization, bool isBoss)
+            void IAssign.Assign(Person person, OrganizationBase organization, bool isBoss)
             {
                 Assert.True(person.SameIdentityAs(_person));
                 Assert.True(organization.SameIdentityAs(_organization));

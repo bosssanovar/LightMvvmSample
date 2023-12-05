@@ -13,7 +13,7 @@ namespace Repository
     /// <summary>
     /// <see cref="Organization"/>エンティティのリポジトリ
     /// </summary>
-    public class OrganizationRepository : IOrganizationRepository
+    public class OrganizationRepository : IAssignRepository, ICheckProblemRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -49,26 +49,38 @@ namespace Repository
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// <see cref="Organization"/>エンティティの複製を取得します。
+        /// </summary>
+        /// <returns><see cref="Organization"/>エンティティの複製インスタンス</returns>
         public Organization LoadOrganization() => _organization;
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// <see cref="Organization"/>エンティティを保存します。
+        /// </summary>
+        /// <param name="organization"><see cref="Organization"/>エンティティ</param>
         public void SaveOrganizaion(Organization organization)
         {
             _organization = organization;
         }
 
-        /// <inheritdoc/>
-        public IOrganization LoadAssigner() => _organization;
+        /// <summary>
+        /// 組織に社員をアサインするEntityを取得します。
+        /// </summary>
+        /// <returns>組織に社員をアサインするEntity</returns>
+        public IAssign LoadAssigner() => _organization;
 
-        /// <inheritdoc/>
-        public void SaveAssigner(IOrganization assigner)
+        /// <summary>
+        /// 組織に社員をアサインするEntityを保存します。
+        /// </summary>
+        /// <param name="assigner">組織に社員をアサインするEntity</param>
+        public void SaveAssigner(IAssign assigner)
         {
             _organization = (Organization)assigner;
         }
 
         /// <inheritdoc/>
-        public IOrganization LoadProblemChecker() => _organization;
+        public ICheckProblem LoadProblemChecker() => _organization;
 
         #endregion --------------------------------------------------------------------------------------------
 
