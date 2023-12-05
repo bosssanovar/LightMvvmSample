@@ -555,7 +555,7 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
-            ICheckProblem problemChecker = organization;
+            IOrganization problemChecker = organization;
 
             var unAssignedPersons = problemChecker.GetUnAssignedPersons();
             Assert.Empty(unAssignedPersons);
@@ -569,7 +569,7 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
-            ICheckProblem problemChecker = organization;
+            IOrganization problemChecker = organization;
 
             // 準備
             var addPerson = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
@@ -589,8 +589,8 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
-            ICheckProblem problemChecker = organization;
-            IAssign assigner = organization;
+            IOrganization problemChecker = organization;
+            IOrganization assigner = organization;
 
             // 準備
             var addPerson = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));

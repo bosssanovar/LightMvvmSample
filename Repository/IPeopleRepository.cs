@@ -1,16 +1,11 @@
 ﻿using Entity.Persons;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository
 {
     /// <summary>
-    /// 社員リスト取得のためのRepositoryを取得するインターフェース
+    /// 社員データリポジトリのインターフェース
     /// </summary>
-    public interface IGetPersonsRepository
+    public interface IPeopleRepository
     {
         #region Properties ------------------------------------------------------------------------------------
 
@@ -23,10 +18,22 @@ namespace Repository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <summary>
-        /// 社員一覧を取得するためのEntityを取得します。
+        /// <see cref="People"/>エンティティの複製を取得します。
         /// </summary>
-        /// <returns>社員一覧を取得するためのEntity</returns>
-        public IGetPersons LoadPersonsGetter();
+        /// <returns>Peopleエンティティの複製インスタンス</returns>
+        People LoadPeople();
+
+        /// <summary>
+        /// 削除予定
+        /// </summary>
+        /// <returns>  aa</returns>
+        IPeople LoadPersonsGetter();
+
+        /// <summary>
+        /// <see cref="People"/>エンティティを保存します。
+        /// </summary>
+        /// <param name="people">Peopleエンティティ</param>
+        void SavePeople(People people);
 
         #endregion --------------------------------------------------------------------------------------------
     }
