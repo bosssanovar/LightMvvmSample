@@ -20,7 +20,7 @@ namespace Usecase.Sub
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly ICheckProblemRepository _organizationRepository;
+        private readonly IOrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -47,8 +47,8 @@ namespace Usecase.Sub
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="organizationRepository"><see cref="ICheckProblemRepository"/></param>
-        public CheckProblems(ICheckProblemRepository organizationRepository)
+        /// <param name="organizationRepository"><see cref="IOrganizationRepository"/></param>
+        public CheckProblems(IOrganizationRepository organizationRepository)
         {
             _organizationRepository = organizationRepository;
         }

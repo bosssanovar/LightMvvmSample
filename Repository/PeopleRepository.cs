@@ -10,7 +10,7 @@ namespace Repository
     /// <summary>
     /// <see cref="People"/>エンティティのリポジトリ
     /// </summary>
-    public class PeopleRepository : IGetPersonsRepository
+    public class PeopleRepository : IPeopleRepository
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -46,23 +46,17 @@ namespace Repository
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// <see cref="People"/>エンティティの複製を取得します。
-        /// </summary>
-        /// <returns>Peopleエンティティの複製インスタンス</returns>
+        /// <inheritdoc/>
         public People LoadPeople() => _people;
 
-        /// <summary>
-        /// <see cref="People"/>エンティティを保存します。
-        /// </summary>
-        /// <param name="people">Peopleエンティティ</param>
+        /// <inheritdoc/>
         public void SavePeople(People people)
         {
             _people = people;
         }
 
         /// <inheritdoc/>
-        public IGetPersons LoadPersonsGetter() => _people;
+        public IPeople LoadPersonsGetter() => _people;
 
         #endregion --------------------------------------------------------------------------------------------
 
