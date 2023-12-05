@@ -175,7 +175,6 @@ namespace Entity.Organization
         }
 
         /// <inheritdoc/>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:メンバーを static に設定します", Justification = "<保留中>")]
         public Person GetBoss(OrganizationBase organization)
         {
             if (organization.Boss is null)

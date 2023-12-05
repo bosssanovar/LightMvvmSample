@@ -67,7 +67,7 @@ namespace Usecase.Sub
         {
             var ret = new List<Problems>();
 
-            var organization = _organizationRepository.LoadProblemChecker();
+            var organization = _organizationRepository.LoadOrganization();
 
             NoBossOrganizaiotns = organization.GetNoBossOrganizaiotns();
             if (NoBossOrganizaiotns.Count > 0)

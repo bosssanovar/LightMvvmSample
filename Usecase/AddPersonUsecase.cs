@@ -21,9 +21,9 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly PeopleRepository _peopleRepository;
+        private readonly IPeopleRepository _peopleRepository;
 
-        private readonly OrganizationRepository _organizationRepository;
+        private readonly IOrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ namespace Usecase
         /// </summary>
         /// <param name="peopleRepository"><see cref="People"/>エンティティのリポジトリ</param>
         /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
-        public AddPersonUsecase(PeopleRepository peopleRepository, OrganizationRepository organizationRepository)
+        public AddPersonUsecase(IPeopleRepository peopleRepository, IOrganizationRepository organizationRepository)
         {
             _peopleRepository = peopleRepository;
             _organizationRepository = organizationRepository;

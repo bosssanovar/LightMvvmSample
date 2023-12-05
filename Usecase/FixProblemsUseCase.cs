@@ -23,7 +23,7 @@ namespace Usecase
 
         private readonly ICheckProblems _checkProblems;
 
-        private readonly IOrganizationRepository _assignRepository;
+        private readonly IOrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -56,12 +56,11 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="checkProblems">組織人員問題検出</param>
-        /// <param name="assignRepository">社員アサインEntity取得リポジトリ</param>
-        public FixProblemsUseCase(ICheckProblems checkProblems, IOrganizationRepository assignRepository)
+        /// <param name="organizationRepository">社員アサインEntity取得リポジトリ</param>
+        public FixProblemsUseCase(ICheckProblems checkProblems, IOrganizationRepository organizationRepository)
         {
-            // TODO K.I : 変数名を修正　全ソースで
             _checkProblems = checkProblems;
-            _assignRepository = assignRepository;
+            _organizationRepository = organizationRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -73,19 +72,19 @@ namespace Usecase
         /// <summary>
         /// 社員を組織にアサインします。
         /// </summary>
-        /// <param name="person">社員</param>
-        /// <param name="organization">組織</param>
+        /// <param name="targetPerson">社員</param>
+        /// <param name="destOrganization">組織</param>
         /// <param name="isBoss">組織長としてアサインする場合 true</param>
-        public void Assign(Person person, OrganizationBase organization, bool isBoss)
+        public void Assign(Person targetPerson, OrganizationBase destOrganization, bool isBoss)
         {
-            var assigner = _assignRepository.LoadAssigner();
+            var organization = _organizationRepository.LoadOrganization();
 
-            assigner.Assign(person, organization, isBoss);
+            organization.Assign(targetPerson, destOrganization, isBoss);
 
-            _assignRepository.SaveAssigner(assigner);
+            _organizationRepository.SaveOrganizaion(organization);
 
-            OnUpdatePerson(person);
-            OnUpdateOrganizaiton(organization);
+            OnUpdatePerson(targetPerson);
+            OnUpdateOrganizaiton(destOrganization);
 
             var checkResult = _checkProblems.Check();
             if(checkResult.Count > 0)

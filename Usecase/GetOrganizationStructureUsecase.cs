@@ -19,7 +19,7 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly OrganizationRepository _organizationRepository;
+        private readonly IOrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="organizationRepository"><see cref="Organization"/>Entityのリポジトリ</param>
-        public GetOrganizationStructureUsecase(OrganizationRepository organizationRepository)
+        public GetOrganizationStructureUsecase(IOrganizationRepository organizationRepository)
         {
             _organizationRepository = organizationRepository;
         }

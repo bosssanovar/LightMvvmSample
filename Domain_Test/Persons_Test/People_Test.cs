@@ -15,7 +15,6 @@ namespace Entity_Test.Persons_Test
         public void IGetPerson_社員リスト取得()
         {
             var people = new People();
-            IPeople personsGetter = people;
             Person p = new(new("aaa", "aaaaa"), new(1000, 1, 1));
             Person p2 = new(new("aaa", "aaaaa"), new(1000, 1, 1));
 
@@ -29,7 +28,7 @@ namespace Entity_Test.Persons_Test
             people.AddPerson(new(new("aaa", "aaaa"), new(1000, 1, 1)));
 
             // 実行
-            var list = personsGetter.Persons;
+            var list = people.Persons;
 
             // 評価
             Assert.Equal(7, list.Count);

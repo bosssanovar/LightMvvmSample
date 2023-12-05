@@ -22,7 +22,7 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly OrganizationRepository _organizationRepository;
+        private readonly IOrganizationRepository _organizationRepository;
 
         private readonly ICheckProblems _problemChecker;
 
@@ -65,7 +65,7 @@ namespace Usecase
         /// </summary>
         /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
         /// <param name="problemChecker">組織人員問題検出</param>
-        public RelocateUsecase(OrganizationRepository organizationRepository, ICheckProblems problemChecker)
+        public RelocateUsecase(IOrganizationRepository organizationRepository, ICheckProblems problemChecker)
         {
             _organizationRepository = organizationRepository;
             _problemChecker = problemChecker;

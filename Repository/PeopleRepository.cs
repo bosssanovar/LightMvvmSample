@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Repository
 {
     /// <summary>
-    /// <see cref="People"/>エンティティのリポジトリ
+    /// <see cref="IPeople"/>エンティティのリポジトリ
     /// </summary>
     public class PeopleRepository : IPeopleRepository
     {
@@ -18,7 +18,7 @@ namespace Repository
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private People _people;
+        private IPeople _people;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -47,16 +47,13 @@ namespace Repository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public People LoadPeople() => _people;
+        public IPeople LoadPeople() => _people;
 
         /// <inheritdoc/>
-        public void SavePeople(People people)
+        public void SavePeople(IPeople people)
         {
             _people = people;
         }
-
-        /// <inheritdoc/>
-        public IPeople LoadPersonsGetter() => _people;
 
         #endregion --------------------------------------------------------------------------------------------
 

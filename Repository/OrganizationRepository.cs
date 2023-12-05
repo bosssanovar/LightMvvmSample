@@ -21,7 +21,7 @@ namespace Repository
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private Organization _organization;
+        private IOrganization _organization;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -50,25 +50,13 @@ namespace Repository
         #region Methods - public ------------------------------------------------------------------------------
 
         /// <inheritdoc/>
-        public Organization LoadOrganization() => _organization;
+        public IOrganization LoadOrganization() => _organization;
 
         /// <inheritdoc/>
-        public void SaveOrganizaion(Organization organization)
+        public void SaveOrganizaion(IOrganization organization)
         {
             _organization = organization;
         }
-
-        /// <inheritdoc/>
-        public IOrganization LoadAssigner() => _organization;
-
-        /// <inheritdoc/>
-        public void SaveAssigner(IOrganization assigner)
-        {
-            _organization = (Organization)assigner;
-        }
-
-        /// <inheritdoc/>
-        public IOrganization LoadProblemChecker() => _organization;
 
         #endregion --------------------------------------------------------------------------------------------
 

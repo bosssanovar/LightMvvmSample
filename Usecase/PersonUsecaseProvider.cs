@@ -21,9 +21,9 @@ namespace Usecase
 
         #region Repository
 
-        private static PeopleRepository _peopleRepository;
+        private static IPeopleRepository _peopleRepository;
 
-        private static OrganizationRepository _organizationRepository;
+        private static IOrganizationRepository _organizationRepository;
 
         private static CheckProblems _problemsChecker;
 
@@ -49,10 +49,10 @@ namespace Usecase
 
         #region Repository
 
-        private static PeopleRepository PeopleRepository =>
+        private static IPeopleRepository PeopleRepository =>
             _peopleRepository ??= new PeopleRepository();
 
-        private static OrganizationRepository OrganizationRepository =>
+        private static IOrganizationRepository OrganizationRepository =>
             _organizationRepository ??= new OrganizationRepository();
 
         private static CheckProblems ProblemsChecker =>

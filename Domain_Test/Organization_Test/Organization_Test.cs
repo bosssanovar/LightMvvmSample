@@ -555,11 +555,10 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
-            IOrganization problemChecker = organization;
 
-            var unAssignedPersons = problemChecker.GetUnAssignedPersons();
+            var unAssignedPersons = organization.GetUnAssignedPersons();
             Assert.Empty(unAssignedPersons);
-            var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
+            var noBossOrganizations = organization.GetNoBossOrganizaiotns();
             Assert.Single(noBossOrganizations);
             Assert.Contains(builder.NoBossOrganization, noBossOrganizations);
         }
@@ -569,17 +568,16 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
-            IOrganization problemChecker = organization;
 
             // 準備
             var addPerson = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
             organization.AddNewMember(addPerson);
 
             // 評価
-            var unAssignedPersons = problemChecker.GetUnAssignedPersons();
+            var unAssignedPersons = organization.GetUnAssignedPersons();
             Assert.Single(unAssignedPersons);
             Assert.Contains(unAssignedPersons, x => x.SameIdentityAs(addPerson));
-            var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
+            var noBossOrganizations = organization.GetNoBossOrganizaiotns();
             Assert.Single(noBossOrganizations);
             Assert.Contains(noBossOrganizations, x => x.SameIdentityAs(builder.NoBossOrganization));
         }
@@ -589,21 +587,19 @@ namespace Entity_Test.Organization_Test
         {
             var builder = new BuilderMock_一部組織人員問題あり();
             var organization = new Organization(builder);
-            IOrganization problemChecker = organization;
-            IOrganization assigner = organization;
 
             // 準備
             var addPerson = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
             var boss = new Person(new("aaaa", "bbbbbb"), new(1000, 1, 1));
             organization.AddNewMember(addPerson);
             organization.AddNewMember(boss);
-            assigner.Assign(boss, builder.NoBossOrganization, true);
+            organization.Assign(boss, builder.NoBossOrganization, true);
 
             // 評価
-            var unAssignedPersons = problemChecker.GetUnAssignedPersons();
+            var unAssignedPersons = organization.GetUnAssignedPersons();
             Assert.Single(unAssignedPersons);
             Assert.Contains(unAssignedPersons, x => x.SameIdentityAs(addPerson));
-            var noBossOrganizations = problemChecker.GetNoBossOrganizaiotns();
+            var noBossOrganizations = organization.GetNoBossOrganizaiotns();
             Assert.Empty(noBossOrganizations);
             Assert.DoesNotContain(noBossOrganizations, x => x.SameIdentityAs(builder.NoBossOrganization));
         }

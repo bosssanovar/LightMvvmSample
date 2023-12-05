@@ -20,7 +20,7 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly PeopleRepository _peopleRepository;
+        private readonly IPeopleRepository _peopleRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="peopleRepository"><see cref="People"/>エンティティのリポジトリ</param>
-        public UpdatePersonUsecase(PeopleRepository peopleRepository)
+        public UpdatePersonUsecase(IPeopleRepository peopleRepository)
         {
             _peopleRepository = peopleRepository;
         }

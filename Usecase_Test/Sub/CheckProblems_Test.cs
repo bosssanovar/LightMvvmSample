@@ -17,7 +17,7 @@ namespace Usecase_Test.Sub
     public class CheckProblems_Test
     {
         [Fact]
-        public void Check()
+        public void Check_問題なし()
         {
             // 問題なし
             var checker = new CheckProblems(new OrganizationRepositoryMock(false, false));
@@ -27,28 +27,43 @@ namespace Usecase_Test.Sub
             Assert.DoesNotContain(Problems.NoBoss, result);
             Assert.Empty(checker.UnAssignedPersons);
             Assert.Empty(checker.NoBossOrganizaiotns);
+        }
+
+        [Fact]
+        public void Check_無所属社員あり()
+        {
 
             // 無所属社員あり
-            checker = new CheckProblems(new OrganizationRepositoryMock(true, false));
-            result = checker.Check();
+            var checker = new CheckProblems(new OrganizationRepositoryMock(true, false));
+            var result = checker.Check();
             Assert.Single(result);
             Assert.Contains(Problems.UnAssigned, result);
             Assert.DoesNotContain(Problems.NoBoss, result);
             Assert.Equal(3, checker.UnAssignedPersons.Count);
             Assert.Empty(checker.NoBossOrganizaiotns);
+        }
+
+        [Fact]
+        public void Check_長不在組織あり()
+        {
 
             // 長不在組織あり
-            checker = new CheckProblems(new OrganizationRepositoryMock(false, true));
-            result = checker.Check();
+            var checker = new CheckProblems(new OrganizationRepositoryMock(false, true));
+            var result = checker.Check();
             Assert.Single(result);
             Assert.DoesNotContain(Problems.UnAssigned, result);
             Assert.Contains(Problems.NoBoss, result);
             Assert.Empty(checker.UnAssignedPersons);
             Assert.Equal(2, checker.NoBossOrganizaiotns.Count);
+        }
+
+        [Fact]
+        public void Check_無所属社員あり_かつ_長不在組織あり()
+        {
 
             // 無所属社員あり、かつ、長不在組織あり
-            checker = new CheckProblems(new OrganizationRepositoryMock(true, true));
-            result = checker.Check();
+            var checker = new CheckProblems(new OrganizationRepositoryMock(true, true));
+            var result = checker.Check();
             Assert.Equal(2, result.Count);
             Assert.Contains(Problems.UnAssigned, result);
             Assert.Contains(Problems.NoBoss, result);
@@ -67,28 +82,14 @@ namespace Usecase_Test.Sub
                 _isNoBoss = isNoBoss;
             }
 
-            public IOrganization LoadProblemChecker()
+            public IOrganization LoadOrganization()
             {
                 return new OrganizationMock(_isUnAssigned, _isNoBoss);
             }
 
             #region 不要インターフェースメソッド
-            public IOrganization LoadAssigner()
-            {
-                throw new NotImplementedException();
-            }
 
-            public Organization LoadOrganization()
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SaveAssigner(IOrganization assigner)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SaveOrganizaion(Organization organization)
+            public void SaveOrganizaion(IOrganization organization)
             {
                 throw new NotImplementedException();
             }
