@@ -129,19 +129,6 @@ namespace Entity.Organization
             Rank = rank;
         }
 
-        /// <summary>
-        /// コピーコンストラクタ
-        /// </summary>
-        /// <param name="original">コピー元</param>
-        protected OrganizationBase(OrganizationBase original)
-        {
-            Identifier = original.Identifier;
-            Members = original.Members;
-            Name = original.Name;
-            Rank = original.Rank;
-            Boss = original.Boss;
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods ---------------------------------------------------------------------------------------

@@ -35,12 +35,7 @@ namespace Entity.Organization
         /// コンストラクタ
         /// </summary>
         public UnAssignedMembersGroup()
-            : this(new("無所属"), Ranks.Outside)
-        {
-        }
-
-        private UnAssignedMembersGroup(OrganizationNameVO name, Ranks rank)
-            : base(name, rank)
+            : base(new("無所属"), Ranks.Outside)
         {
         }
 
