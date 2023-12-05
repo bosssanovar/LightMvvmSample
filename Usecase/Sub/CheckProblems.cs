@@ -12,7 +12,7 @@ namespace Usecase.Sub
     /// <summary>
     /// 組織辞任問題を検査するクラス
     /// </summary>
-    internal class CheckProblems : ICheckProblems
+    internal class CheckProblems : ICheckProblems/*TODO K.I : IcheckProblems不要では？*/
     {
         #region Constants -------------------------------------------------------------------------------------
 
