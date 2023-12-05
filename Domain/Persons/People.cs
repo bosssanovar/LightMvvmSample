@@ -43,6 +43,7 @@ namespace Entity.Persons
         /// </summary>
         public People()
         {
+            // TODO K.I : Peopleのユニットテスト拡充
             _persons = new List<Person>();
         }
 
