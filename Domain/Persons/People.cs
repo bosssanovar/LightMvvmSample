@@ -60,11 +60,12 @@ namespace Entity.Persons
         }
 
         /// <inheritdoc/>
+        /// <exception cref="ArgumentException">指定した社員が存在しない場合</exception>
         public void UpdatePersons(Person person)
         {
             if (!_persons.Any(x => x.SameIdentityAs(person)))
             {
-                return;
+                throw new ArgumentException("指定した社員は存在しません。", nameof(person));
             }
 
             Person p = _persons.Single(x => x.SameIdentityAs(person));

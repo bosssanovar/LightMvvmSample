@@ -18,7 +18,7 @@ namespace Entity_Test.Persons_Test
             Person p = new(new("aaa", "aaaaa"), new(1000, 1, 1));
             Person p2 = new(new("aaa", "aaaaa"), new(1000, 1, 1));
 
-            // 下準備
+            // 追加と取得
             people.AddPerson(new(new("aaa", "aaaa"), new(1000, 1, 1)));
             people.AddPerson(new(new("aaa", "aaaa"), new(1000, 1, 1)));
             people.AddPerson(new(new("aaa", "aaaa"), new(1000, 1, 1)));
@@ -26,14 +26,53 @@ namespace Entity_Test.Persons_Test
             people.AddPerson(p);
             people.AddPerson(new(new("aaa", "aaaa"), new(1000, 1, 1)));
             people.AddPerson(new(new("aaa", "aaaa"), new(1000, 1, 1)));
-
-            // 実行
             var list = people.Persons;
 
-            // 評価
+            Assert.Equal(7, list.Count);
+            Assert.True(people.IsContain(p));
+            Assert.Contains(list, x => x.SameIdentityAs(p));
+            Assert.False(people.IsContain(p2));
+            Assert.DoesNotContain(list, x => x.SameIdentityAs(p2));
+
+            // 変更
+            Person pp = new(p, new("zzz", "zzzzz"), new(1001, 1, 1));
+            people.UpdatePersons(pp);
+            list = people.Persons;
+
             Assert.Equal(7, list.Count);
             Assert.Contains(list, x => x.SameIdentityAs(p));
-            Assert.DoesNotContain(list, x => x.SameIdentityAs(p2));
+            Assert.Contains(list, x => x.SameIdentityAs(pp));
+            var getP = people.GetPerson(p);
+            Assert.Equal(getP.Name, pp.Name);
+            Assert.Equal(getP.Name, p.Name);
+
+            var isException = false;
+            try
+            {
+                people.UpdatePersons(p2);
+            }
+            catch (ArgumentException)
+            {
+                isException = true;
+            }
+            catch
+            {
+                Assert.Fail();
+            }
+            Assert.True(isException);
+
+            // 削除
+            people.RemovePerson(p);
+            list = people.Persons;
+
+            Assert.Equal(6, list.Count);
+            Assert.DoesNotContain(list, x => x.SameIdentityAs(p));
+
+            // 初期化
+            people.ClearAll();
+            list = people.Persons;
+
+            Assert.Empty(list);
         }
 
         [Fact]
