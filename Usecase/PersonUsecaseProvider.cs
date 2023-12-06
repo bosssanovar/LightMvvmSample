@@ -25,8 +25,6 @@ namespace Usecase
 
         private static IOrganizationRepository _organizationRepository;
 
-        private static CheckProblems _problemsChecker;
-
         #endregion
 
         #region Usecase
@@ -54,9 +52,6 @@ namespace Usecase
 
         private static IOrganizationRepository OrganizationRepository =>
             _organizationRepository ??= new OrganizationRepository();
-
-        private static CheckProblems ProblemsChecker =>
-            _problemsChecker ??= new CheckProblems(OrganizationRepository);
 
         #endregion
 
@@ -105,15 +100,14 @@ namespace Usecase
         /// </summary>
         public static CheckProblemsUsecase CheckProblemsUsecase =>
             _checkProblemsUsecase ??= new CheckProblemsUsecase(
-                ProblemsChecker);
+                OrganizationRepository);
 
         /// <summary>
         /// 社員異動のためのユースケースを取得します。
         /// </summary>
         public static RelocateUsecase RelocateUsecase =>
             _relocateUsecase ??= new RelocateUsecase(
-                OrganizationRepository,
-                ProblemsChecker);
+                OrganizationRepository);
 
         /// <summary>
         /// 組織構造情報を取得するためのユースケースを取得します。

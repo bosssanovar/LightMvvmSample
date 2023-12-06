@@ -24,8 +24,6 @@ namespace Usecase
 
         private readonly IOrganizationRepository _organizationRepository;
 
-        private readonly ICheckProblems _problemChecker;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Properties ------------------------------------------------------------------------------------
@@ -64,11 +62,9 @@ namespace Usecase
         /// コンストラクタ
         /// </summary>
         /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
-        /// <param name="problemChecker">組織人員問題検出</param>
-        public RelocateUsecase(IOrganizationRepository organizationRepository, ICheckProblems problemChecker)
+        public RelocateUsecase(IOrganizationRepository organizationRepository)
         {
             _organizationRepository = organizationRepository;
-            _problemChecker = problemChecker;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -98,10 +94,11 @@ namespace Usecase
 
             _organizationRepository.SaveOrganizaion(organization);
 
-            var checkResult = _problemChecker.Check();
+            var checker = new CheckProblems(_organizationRepository);
+            var checkResult = checker.Check();
             if(checkResult.Count > 0)
             {
-                OnArisedProblems?.Invoke(new(checkResult, _problemChecker.UnAssignedPersons, _problemChecker.NoBossOrganizaiotns));
+                OnArisedProblems?.Invoke(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
             }
 
             OnPersonUpdate?.Invoke(person);

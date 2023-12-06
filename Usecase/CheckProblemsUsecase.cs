@@ -21,7 +21,7 @@ namespace Usecase
 
         #region Fields ----------------------------------------------------------------------------------------
 
-        private readonly ICheckProblems _checkProblems;
+        private readonly IOrganizationRepository _organizationRepository;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -43,10 +43,10 @@ namespace Usecase
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="checkProblems">組織人員問題検出</param>
-        public CheckProblemsUsecase(ICheckProblems checkProblems)
+        /// <param name="organizationRepository"><see cref="IOrganization"/>リポジトリ</param>
+        public CheckProblemsUsecase(IOrganizationRepository organizationRepository)
         {
-            _checkProblems = checkProblems;
+            _organizationRepository = organizationRepository;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -60,10 +60,11 @@ namespace Usecase
         /// </summary>
         public void Check()
         {
-            var checkResult = _checkProblems.Check();
+            var checker = new CheckProblems(_organizationRepository);
+            var checkResult = checker.Check();
             if(checkResult.Count > 0)
             {
-                OnArisedProblems(new(checkResult, _checkProblems.UnAssignedPersons, _checkProblems.NoBossOrganizaiotns));
+                OnArisedProblems(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
             }
         }
 
