@@ -26,20 +26,13 @@ namespace WpfApp1
             this.action = action;
         }
 
-        /// <summary>
-        /// 実行可能かを判定します。
-        /// </summary>
-        /// <param name="parameter">パラメータ</param>
-        /// <returns>実行可能ならtrue</returns>
+        /// <inheritdoc/>
         public bool CanExecute(object? parameter)
         {
             return true;
         }
 
-        /// <summary>
-        /// コマンドアクションを実行します。
-        /// </summary>
-        /// <param name="parameter">パラメータ</param>
+        /// <inheritdoc/>
         public void Execute(object? parameter)
         {
             action?.Invoke();
