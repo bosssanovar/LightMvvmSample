@@ -100,11 +100,12 @@ namespace Entity.Organization
             sb.Append(indent + DisplayName);
             sb.Append(", ");
             sb.Append("ボス : " + (Boss?.Name.FullName ?? "【長不在】"));
-            sb.Append(", ");
-            sb.AppendLine(
+            sb.Append(", メンバー：[");
+            sb.Append(
                 Members.Select(x => x.Name.FullName)
                 .DefaultIfEmpty("【直属メンバーなし】")
                 .Aggregate((a, b) => a + ", " + b));
+            sb.AppendLine("]");
 
             return sb.ToString();
         }
