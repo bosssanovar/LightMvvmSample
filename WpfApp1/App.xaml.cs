@@ -49,11 +49,30 @@ namespace WpfApp1
 
         #region Methods - private -----------------------------------------------------------------------------
 
+        private void ShutDownIfMultiActivate()
+        {
+            App._mutex = new Mutex(false, "Test-{C9386A33-46F3-072b-86C4-5BF04D0A0235}");
+            if (!App._mutex.WaitOne(0, false))
+            {
+                App._mutex.Close();
+                App._mutex = null;
+                this.Shutdown();
+                return;
+            }
+
+            return;
+        }
+
         private static void InitObjects()
         {
-            PersonUsecaseProvider.SetDataStore(new DataFile());
+            InitForDependencyInjection();
 
             PersonUsecaseProvider.InitializeUsecase.Initialize();
+        }
+
+        private static void InitForDependencyInjection()
+        {
+            PersonUsecaseProvider.SetDataStore(new DataFile());
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -75,20 +94,6 @@ namespace WpfApp1
             // メイン ウィンドウ表示
             MainWindowV window = new();
             window.Show();
-        }
-
-        private void ShutDownIfMultiActivate()
-        {
-            App._mutex = new Mutex(false, "Test-{C9386A33-46F3-072b-86C4-5BF04D0A0235}");
-            if (!App._mutex.WaitOne(0, false))
-            {
-                App._mutex.Close();
-                App._mutex = null;
-                this.Shutdown();
-                return;
-            }
-
-            return;
         }
 
         /// <summary>
