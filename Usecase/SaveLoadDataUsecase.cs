@@ -92,7 +92,8 @@ namespace Usecase
                 Organization = organizationPacket,
             };
 
-            await DataFile.SaveData(path, packet);
+            var dataFile = new DataFile(path);
+            await dataFile.SaveData(packet);
         }
 
         /// <summary>
@@ -108,7 +109,8 @@ namespace Usecase
             try
             {
                 // Get data packets
-                var packet = await DataFile.LoadData(path);
+                var dataFile = new DataFile(path);
+                var packet = await dataFile.LoadData();
                 peoplePacket = packet.People;
                 organizationPacket = packet.Organization;
             }

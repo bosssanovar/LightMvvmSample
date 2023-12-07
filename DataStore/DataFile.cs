@@ -12,14 +12,24 @@ namespace DataStore
     /// <summary>
     /// データファイルクラス
     /// </summary>
-    public static class DataFile
+    public class DataFile
     {
+        private readonly string _filePath;
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="filePath">ファイルパス</param>
+        public DataFile(string filePath)
+        {
+            _filePath = filePath;
+        }
+
         /// <summary>
         /// データファイルからEntityのデータパケットを取得します。
         /// </summary>
-        /// <param name="path">ファイルパス</param>
         /// <returns>Entityデータパケット</returns>
-        public static async Task<EntityPacket> LoadData(string path)
+        public async Task<EntityPacket> LoadData()
         {
             var options = new JsonSerializerOptions
             {
@@ -27,19 +37,18 @@ namespace DataStore
                 PropertyNameCaseInsensitive = true,
             };
 
-            using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            using var stream = new FileStream(_filePath, FileMode.Open, FileAccess.Read);
 
             return await JsonSerializer.DeserializeAsync<EntityPacket>(stream, options)
-                ?? throw new ArgumentException("読み込みに失敗しました。", nameof(path));
+                ?? throw new ArgumentException("読み込みに失敗しました。");
         }
 
         /// <summary>
         /// データファイルに保存します。
         /// </summary>
-        /// <param name="path">ファイルパス</param>
         /// <param name="packet">データパケット</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        public static async Task SaveData(string path, EntityPacket packet)
+        public async Task SaveData(EntityPacket packet)
         {
             JsonSerializerOptions options = new()
             {
@@ -48,7 +57,7 @@ namespace DataStore
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             };
 
-            using FileStream fileStream = File.Create(path);
+            using FileStream fileStream = File.Create(_filePath);
             using StreamWriter writer = new(fileStream, System.Text.Encoding.UTF8);
             string str = JsonSerializer.Serialize<EntityPacket>(packet, options);
             await writer.WriteLineAsync(str);

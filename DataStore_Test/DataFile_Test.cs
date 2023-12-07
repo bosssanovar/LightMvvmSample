@@ -10,8 +10,9 @@ namespace DataStore_Test
         [Fact]
         public async Task SaveOpen()
         {
-            await DataFile.SaveData("testData.txt", Package);
-            var loaded = await DataFile.LoadData("testData.txt");
+            var dataFile = new DataFile("testData.txt");
+            await dataFile.SaveData(Package);
+            var loaded = await dataFile.LoadData();
 
             for (int i = 0; i < Package.People.Persons.Count; i++)
             {
