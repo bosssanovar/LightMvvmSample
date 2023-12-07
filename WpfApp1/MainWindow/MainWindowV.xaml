@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.MainWindow"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="MainWindowV" Height="550" Width="1000">
+        Title="MainWindowV" Height="600" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
