@@ -1,15 +1,8 @@
-﻿using DataStore;
-using Entity.Organization;
+﻿using Entity.Organization;
 using Entity.Organization.DataPackets;
 using Entity.Persons;
 using Entity.Persons.DataPackets;
 using Repository;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Usecase.Sub;
 
 namespace Usecase
@@ -28,6 +21,8 @@ namespace Usecase
         private readonly IPeopleRepository _peopleRepository;
 
         private readonly IOrganizationRepository _organizationRepository;
+
+        private readonly IDataStore _dataStore;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -61,10 +56,15 @@ namespace Usecase
         /// </summary>
         /// <param name="peopleRepository"><see cref="People"/>エンティティのリポジトリ</param>
         /// <param name="organizationRepository"><see cref="Organization"/>エンティティのリポジトリ</param>
-        public SaveLoadDataUsecase(IPeopleRepository peopleRepository, IOrganizationRepository organizationRepository)
+        /// <param name="dataStore"><see cref="IDataStore"/>を実装したクラスインスタンス</param>
+        public SaveLoadDataUsecase(
+            IPeopleRepository peopleRepository,
+            IOrganizationRepository organizationRepository,
+            IDataStore dataStore)
         {
             _peopleRepository = peopleRepository;
             _organizationRepository = organizationRepository;
+            _dataStore = dataStore;
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -92,8 +92,7 @@ namespace Usecase
                 Organization = organizationPacket,
             };
 
-            var dataFile = new DataFile(path);
-            await dataFile.SaveData(packet);
+            await _dataStore.SaveData(path, packet);
         }
 
         /// <summary>
@@ -109,8 +108,7 @@ namespace Usecase
             try
             {
                 // Get data packets
-                var dataFile = new DataFile(path);
-                var packet = await dataFile.LoadData();
+                var packet = await _dataStore.LoadData(path);
                 peoplePacket = packet.People;
                 organizationPacket = packet.Organization;
             }

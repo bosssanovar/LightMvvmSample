@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Windows;
+using DataStore;
 using Entity;
 using Usecase;
 using WpfApp1.MainWindow;
@@ -48,6 +49,13 @@ namespace WpfApp1
 
         #region Methods - private -----------------------------------------------------------------------------
 
+        private static void InitObjects()
+        {
+            PersonUsecaseProvider.SetDataStore(new DataFile());
+
+            PersonUsecaseProvider.InitializeUsecase.Initialize();
+        }
+
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------
@@ -62,7 +70,7 @@ namespace WpfApp1
             ShutDownIfMultiActivate();
 
             // アプリケーション初期化
-            PersonUsecaseProvider.InitializeUsecase.Initialize();
+            InitObjects();
 
             // メイン ウィンドウ表示
             MainWindowV window = new();

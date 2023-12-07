@@ -55,7 +55,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStore", "DataStore\Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Usecase", "Usecase\Usecase.csproj", "{2A1D365F-7DD3-4795-BA79-F86B2BB3936E}"
 	ProjectSection(ProjectDependencies) = postProject
-		{16CF1E9A-AF6B-40C5-988A-C50AF0439F24} = {16CF1E9A-AF6B-40C5-988A-C50AF0439F24}
 		{A27118A7-B397-45B1-BE2E-F8B909727260} = {A27118A7-B397-45B1-BE2E-F8B909727260}
 		{CF0415CA-50FE-4C07-85A6-96D462C7AB6A} = {CF0415CA-50FE-4C07-85A6-96D462C7AB6A}
 	EndProjectSection
@@ -64,7 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Usecase_Test", "Usecase_Tes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B2086CA8-07CF-4B00-8C81-02D98D36347C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore_Test", "DataStore_Test\DataStore_Test.csproj", "{B0964188-DB37-4337-B619-8CAD4E15F430}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStore_Test", "DataStore_Test\DataStore_Test.csproj", "{B0964188-DB37-4337-B619-8CAD4E15F430}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataStore\DataStore.csproj" />
     <ProjectReference Include="..\Domain\Entity.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
     <ProjectReference Include="..\Usecase\Usecase.csproj" />

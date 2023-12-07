@@ -632,9 +632,9 @@ namespace Entity_Test.Organization_Test
             var entityPacket = new EntityPacket() { Organization = organization.ExportPacket() };
 
             const string path = "Test_組織データパケット読み込み.dat";
-            var dataFile = new DataFile(path);
-            await dataFile.SaveData(entityPacket);
-            entityPacket = await dataFile.LoadData();
+            var dataFile = new DataFile();
+            await dataFile.SaveData(path, entityPacket);
+            entityPacket = await dataFile.LoadData(path);
 
             Assert.Equal(1, builder.TestTargetOrganization1.DirectEmployeeCount);
             Assert.True(builder.TestTargetOrganization2.IsBoss(boss));
@@ -663,9 +663,9 @@ namespace Entity_Test.Organization_Test
             var entityPacket = new EntityPacket() { Organization = organization.ExportPacket() };
 
             const string path = "Test_組織データパケット読み込み.dat";
-            var dataFile = new DataFile(path);
-            await dataFile.SaveData(entityPacket);
-            entityPacket = await dataFile.LoadData();
+            var dataFile = new DataFile();
+            await dataFile.SaveData(path, entityPacket);
+            entityPacket = await dataFile.LoadData(path);
 
             organization.ClearAll();
 

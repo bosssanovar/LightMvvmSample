@@ -25,6 +25,8 @@ namespace Usecase
 
         private static IOrganizationRepository _organizationRepository;
 
+        private static IDataStore _dataStore;
+
         #endregion
 
         #region Usecase
@@ -122,7 +124,8 @@ namespace Usecase
         public static SaveLoadDataUsecase SaveLoadDataUsecase =>
             _saveLoadDataUsecase ??= new SaveLoadDataUsecase(
                 PeopleRepository,
-                OrganizationRepository);
+                OrganizationRepository,
+                _dataStore);
 
         #endregion
 
@@ -139,6 +142,15 @@ namespace Usecase
         #region Methods ---------------------------------------------------------------------------------------
 
         #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// データを保存・読み込みを行うクラスオブジェクトを設定します。
+        /// </summary>
+        /// <param name="dataStore"><see cref="IDataStore"/>を実装したクラスインスタンス</param>
+        public static void SetDataStore(IDataStore dataStore)
+        {
+            _dataStore = dataStore;
+        }
 
         #endregion --------------------------------------------------------------------------------------------
 
