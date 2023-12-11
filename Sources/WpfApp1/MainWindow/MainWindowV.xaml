@@ -23,8 +23,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Content="読み込み" Margin="5" Padding="20, 5" Command="{Binding LoadCommand}"/>
-            <Button Grid.Column="2" Content="保存" Margin="5" Padding="20, 5" Command="{Binding SaveCommand}"/>
+            <Button Grid.Column="1" Content="読み込み(_O)" Margin="5" Padding="20, 5" Command="{Binding LoadCommand}"/>
+            <Button Grid.Column="2" Content="保存(_S)" Margin="5" Padding="20, 5" Command="{Binding SaveCommand}"/>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -89,7 +89,7 @@
 
             <TextBlock Grid.Column="1" Text="Count : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Grid.Column="2" Text="{Binding PersonsCount.Value}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Button Grid.Column="3" Height="30" Width="60" Margin="5" Content="Add" Command="{Binding AddCommand}"/>
+            <Button Grid.Column="3" Height="30" Width="60" Margin="5" Content="_Add" Command="{Binding AddCommand}"/>
         </Grid>        
     </Grid>
 </Window>
