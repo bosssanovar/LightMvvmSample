@@ -7,7 +7,7 @@ namespace Usecase
     /// <summary>
     /// データを初期化するユースケースを提供する
     /// </summary>
-    public class InitializeUsecase : IInitializeUsecase
+    public class InitializeUsecaseDummy : IInitializeUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ namespace Usecase
         /// </summary>
         /// <param name="peopleRepository"><see cref="IPeople"/>エンティティのリポジトリ</param>
         /// <param name="organizationRepository"><see cref="IOrganization"/>エンティティのリポジトリ</param>
-        public InitializeUsecase(IPeopleRepository peopleRepository, IOrganizationRepository organizationRepository)
+        public InitializeUsecaseDummy(IPeopleRepository peopleRepository, IOrganizationRepository organizationRepository)
         {
             _peopleRepository = peopleRepository;
             _organizationRepository = organizationRepository;
@@ -52,11 +52,23 @@ namespace Usecase
         public void Initialize()
         {
             var organization = _organizationRepository.LoadOrganization();
+            var organizations = organization.GetOrganizationInfos().Select(x => x.Organization).ToList();
 
             var people = new People();
+            AddPerson(new(new("aaa", "aaaaaa"), new(1000, 1, 2)), 0);
+            AddPerson(new(new("bbb", "bbb"), new(1000, 1, 2)), 0, true);
+            AddPerson(new(new("c", "cc"), new(1000, 1, 2)), 0);
+            AddPerson(new(new("dddd", "d"), new(1000, 1, 2)), 1);
 
             _peopleRepository.SavePeople(people);
             _organizationRepository.SaveOrganizaion(organization);
+
+            void AddPerson(Person person, int organizationIndex, bool isBoss = false)
+            {
+                people.AddPerson(person);
+                organization.AddNewMember(person);
+                organization.Assign(person, organizations[organizationIndex], isBoss);
+            }
         }
 
         #endregion --------------------------------------------------------------------------------------------

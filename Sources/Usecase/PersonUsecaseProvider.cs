@@ -32,7 +32,7 @@ namespace Usecase
         #region Usecase
 
         private static PersonListViewUsecase _personListViewUsecase;
-        private static InitializeUsecase _initializeUsecase;
+        private static IInitializeUsecase _initializeUsecase;
         private static AddPersonUsecase _addPersonUsecase;
         private static RemovePersonUsecase _removePersonUsecase;
         private static UpdatePersonUsecase _updatePersonUsecase;
@@ -70,10 +70,16 @@ namespace Usecase
         /// <summary>
         /// 設定値を初期化するユースケースを取得します。
         /// </summary>
-        public static InitializeUsecase InitializeUsecase =>
+        public static IInitializeUsecase InitializeUsecase =>
+#if DUMMY
+            _initializeUsecase ??= new InitializeUsecaseDummy(
+                PeopleRepository,
+                OrganizationRepository);
+#else
             _initializeUsecase ??= new InitializeUsecase(
                 PeopleRepository,
                 OrganizationRepository);
+#endif
 
         /// <summary>
         /// 個人情報を追加するためのユースケースを取得します。
@@ -127,9 +133,9 @@ namespace Usecase
                 OrganizationRepository,
                 _dataStore);
 
-        #endregion
+#endregion
 
-        #endregion --------------------------------------------------------------------------------------------
+#endregion --------------------------------------------------------------------------------------------
 
         #region Events ----------------------------------------------------------------------------------------
 
