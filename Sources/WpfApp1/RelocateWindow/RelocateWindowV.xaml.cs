@@ -66,7 +66,7 @@ namespace WpfApp1.RelocateWindow
                 .AddTo(_disposables);
 
             IsOkEnabled = _model.SelectedOrganization
-                .Select(x => x is not null)
+                .Select(x => OrganizationItems.Any(item => item.Val == x))
                 .ToReadOnlyReactivePropertySlim()
                 .AddTo(_disposables);
 
