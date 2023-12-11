@@ -7,16 +7,7 @@
 - [概要](#概要)
 - [ソリューション構成](#ソリューション構成)
 - [アーキテクチャ設計](#アーキテクチャ設計)
-  - [MVVM](#mvvm)
-    - [View](#view)
-    - [ViewModel](#viewmodel)
-    - [Model](#model)
   - [簡易版 Clean Architecture](#簡易版-clean-architecture)
-    - [Entity](#entity)
-    - [Repository](#repository)
-    - [Usecase](#usecase)
-    - [Infrastructure](#infrastructure)
-    - [App](#app)
 - [変更通知機構 Reactive Property](#変更通知機構-reactive-property)
 - [コードスニペット](#コードスニペット)
   - [運用ルール](#運用ルール)
@@ -76,20 +67,16 @@
 
 ビューロジックアーキテクチャとしてMVVMを、ドメインロジックアーキテクチャとして簡易版のClean Architectureを採用している。
 
-### MVVM
-
+MVVM  
 ビューとロジックを分離するために、MVVMを採用する。  
 
-#### View
-
+View  
 内部値に影響を受けない表示ロジック  
 
-#### ViewModel
-
+ViewModel  
 内部値に影響を受ける表示ロジック、ViewとModelの設定値変換  
 
-#### Model
-
+Model  
 ビジネスロジック（ドメインロジック）  
 
 ### 簡易版 Clean Architecture
@@ -101,27 +88,22 @@
 
 ![Architecture_Design](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/b109558e-56f7-43ed-a6e4-96440c4d3d53)
 
-#### Entity
-
+Entity  
 値オブジェクトやエンティティの定義を行う。
 
-#### Repository
-
+Repository  
 Entityオブジェクトを保持し、その取得や保存のみを行う。  
 受け持つEntityの中の部分的な取得や保存の機能は持たず、受け持つEntity全体の取得保存だけを行う。  
 DDDにおける本来のRepositoryは、その裏に永続化の手段（オンメモリ、DB、クラウド等）を隠ぺいするための機能を有するが、本設計においてはオンメモリだけの簡略版となっている。  
 Entityオブジェクト置き場としての役割のみとなるが、画面とデータを分離するための大切な設計箇所である。
 
-#### Usecase
-
+Usecase  
 ユースケース単位で、Repositoryを利用して、Entityオブジェクトを取得し、ドメインロジックを実行する。
 
-#### Infrastructure
-
+Infrastructure  
 外部要因の実装を行う。
 
-#### App
-
+App  
 アプリUIの実装を行う。  
 
 ---
