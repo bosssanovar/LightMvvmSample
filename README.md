@@ -197,7 +197,7 @@ StyleCop.Analyzersを採用。
 
 ## 設計
 
-[設計資料はこちら](Designs/Design.md)
+[設計資料はこちら](Documents/Designs/Design.md)
 
 ---
 
