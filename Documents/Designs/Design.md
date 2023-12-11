@@ -31,6 +31,11 @@
     - [長未設定組織を把握するアクティビティ](#長未設定組織を把握するアクティビティ)
 - [組織人員問題を修正する](#組織人員問題を修正する)
   - [組織人員問題を修正するアクティビティ](#組織人員問題を修正するアクティビティ)
+- [設計の流れの一部紹介](#設計の流れの一部紹介)
+  - [オブジェクト図](#オブジェクト図)
+  - [単純変換したクラス図](#単純変換したクラス図)
+  - [共通性可変性分析にかけたクラス図](#共通性可変性分析にかけたクラス図)
+  - [組織内を走査するVisitor](#組織内を走査するvisitor)
 - [付録](#付録)
   - [組織人員問題の状態管理【ボツ設計】](#組織人員問題の状態管理ボツ設計)
 
@@ -219,6 +224,28 @@ JSONシリアライザの基本情報には保存するEntityを直接食わせ�
 組織人員問題を修正するを表示するアクティビティ。  
 
 ![組織人員問題修正アクティビティ](アクティビティ/組織人員問題修正.svg)
+
+---
+
+## 設計の流れの一部紹介
+
+組織構成についての設計を行った際の、オブジェクト指向設計の流れを示す。
+
+### オブジェクト図
+
+![organization_design_object_diagram](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/1c2b9a86-da4c-40a9-90ad-3773daf5e308)
+
+### 単純変換したクラス図
+
+![organization_design_class_diagram1](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/de069b8e-5004-4873-a7d4-2fe869b6f473)
+
+### 共通性可変性分析にかけたクラス図
+
+![organization_design_class_diagram2](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/8cb9acd9-777f-4fa3-a188-2c7df07a66ad)
+
+### 組織内を走査するVisitor
+
+![1697623337085](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/b035ebb7-a1e3-4c46-9516-d21cca368796)
 
 ---
 

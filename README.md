@@ -26,11 +26,6 @@
 - [テストカバレッジ](#テストカバレッジ)
 - [コーディング規約](#コーディング規約)
 - [設計](#設計)
-- [設計の流れの一部紹介](#設計の流れの一部紹介)
-  - [オブジェクト図](#オブジェクト図)
-  - [単純変換したクラス図](#単純変換したクラス図)
-  - [共通性可変性分析にかけたクラス図](#共通性可変性分析にかけたクラス図)
-  - [組織内を走査するVisitor](#組織内を走査するvisitor)
 - [Visual Studio環境構築](#visual-studio環境構築)
   - [Notifier 2022](#notifier-2022)
   - [Solution Error Notifier](#solution-error-notifier)
@@ -170,7 +165,8 @@ Livetの候補であったが、コーディング量が少ないのでこちら
 ## ユニットテスト
 
 xUnitフレームワークを採用。  
-値オブジェクトと、ユースケースのテストを書く、最低限の運用で十分かと思っている。  
+EntityやDomainSeriveceのテストを書く程度の最低限の運用で十分かと思っている。  
+Usecaseは、起動するまでにオブジェクト構築が複雑であること、Usecaseの振る舞い自体はEntityとDomainService機能の組み合わせになるので、テスト対象としていない。  
 詳細はググる。  
 
 ---
@@ -198,28 +194,6 @@ StyleCop.Analyzersを採用。
 ## 設計
 
 [設計資料はこちら](Documents/Designs/Design.md)
-
----
-
-## 設計の流れの一部紹介
-
-組織構成についての設計を行った際の、オブジェクト指向設計の流れを示す。
-
-### オブジェクト図
-
-![organization_design_object_diagram](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/1c2b9a86-da4c-40a9-90ad-3773daf5e308)
-
-### 単純変換したクラス図
-
-![organization_design_class_diagram1](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/de069b8e-5004-4873-a7d4-2fe869b6f473)
-
-### 共通性可変性分析にかけたクラス図
-
-![organization_design_class_diagram2](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/8cb9acd9-777f-4fa3-a188-2c7df07a66ad)
-
-### 組織内を走査するVisitor
-
-![1697623337085](https://github.com/bosssanovar/LightMvvmSample/assets/19525768/b035ebb7-a1e3-4c46-9516-d21cca368796)
 
 ---
 
