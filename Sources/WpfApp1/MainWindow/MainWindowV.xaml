@@ -63,7 +63,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <ScrollViewer Grid.Column="1" Margin="10" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+            <ScrollViewer Grid.Column="1" Margin="10" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
                 <TextBlock Text="{Binding OrganizationInfo.Value}" TextWrapping="Wrap"/>
             </ScrollViewer>
         </Grid>
