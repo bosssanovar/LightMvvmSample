@@ -55,7 +55,6 @@ namespace Usecase
             var organizations = organization.GetOrganizationInfos().Select(x => x.Organization).ToList();
 
             // TODO K.I : ダミーデータを追加
-            // TODO K.I : 配属が正しく表示されない問題対応
             var people = new People();
             AddPerson(new(new("aaa", "aaaaaa"), new(1000, 1, 2)), 0);
             AddPerson(new(new("bbb", "bbb"), new(1000, 1, 2)), 0, true);
@@ -69,7 +68,14 @@ namespace Usecase
             {
                 people.AddPerson(person);
                 organization.AddNewMember(person);
-                organization.Assign(person, organizations[organizationIndex], isBoss);
+                if (isBoss)
+                {
+                    organization.SetBoss(person, organizations[organizationIndex]);
+                }
+                else
+                {
+                    organization.RelocateEmployee(person, organizations[organizationIndex]);
+                }
             }
         }
 
