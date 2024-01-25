@@ -31,15 +31,15 @@ namespace Usecase
 
         #region Usecase
 
-        private static PersonListViewUsecase _personListViewUsecase;
+        private static IPersonListViewUsecase _personListViewUsecase;
         private static IInitializeUsecase _initializeUsecase;
-        private static AddPersonUsecase _addPersonUsecase;
-        private static RemovePersonUsecase _removePersonUsecase;
-        private static UpdatePersonUsecase _updatePersonUsecase;
-        private static CheckProblemsUsecase _checkProblemsUsecase;
-        private static RelocateUsecase _relocateUsecase;
-        private static GetOrganizationStructureUsecase _getOrganizationStructureUsecase;
-        private static SaveLoadDataUsecase _saveLoadDataUsecase;
+        private static IAddPersonUsecase _addPersonUsecase;
+        private static IRemovePersonUsecase _removePersonUsecase;
+        private static IUpdatePersonUsecase _updatePersonUsecase;
+        private static ICheckProblemsUsecase _checkProblemsUsecase;
+        private static IRelocateUsecase _relocateUsecase;
+        private static IGetOrganizationStructureUsecase _getOrganizationStructureUsecase;
+        private static ISaveLoadDataUsecase _saveLoadDataUsecase;
 
         #endregion
 
@@ -62,7 +62,7 @@ namespace Usecase
         /// <summary>
         /// 個人情報リストを表示するためのユースケースを取得します。
         /// </summary>
-        public static PersonListViewUsecase PersonListViewUsecase =>
+        public static IPersonListViewUsecase PersonListViewUsecase =>
             _personListViewUsecase ??= new PersonListViewUsecase(
                 PeopleRepository,
                 OrganizationRepository);
@@ -84,7 +84,7 @@ namespace Usecase
         /// <summary>
         /// 個人情報を追加するためのユースケースを取得します。
         /// </summary>
-        public static AddPersonUsecase AddPersonUsecase =>
+        public static IAddPersonUsecase AddPersonUsecase =>
             _addPersonUsecase ??= new AddPersonUsecase(
                 PeopleRepository,
                 OrganizationRepository);
@@ -92,42 +92,42 @@ namespace Usecase
         /// <summary>
         /// 個人情報を更新するためのユースケースを取得します。
         /// </summary>
-        public static UpdatePersonUsecase UpdatePersonUsecase =>
+        public static IUpdatePersonUsecase UpdatePersonUsecase =>
             _updatePersonUsecase ??= new UpdatePersonUsecase(
                 PeopleRepository);
 
         /// <summary>
         /// 個人情報を削除するためのユースケースを取得します。
         /// </summary>
-        public static RemovePersonUsecase RemovePersonUsecase =>
+        public static IRemovePersonUsecase RemovePersonUsecase =>
             _removePersonUsecase ??= new RemovePersonUsecase(
                 PeopleRepository);
 
         /// <summary>
         /// 組織人員問題を確認するためのユースケースを取得します。
         /// </summary>
-        public static CheckProblemsUsecase CheckProblemsUsecase =>
+        public static ICheckProblemsUsecase CheckProblemsUsecase =>
             _checkProblemsUsecase ??= new CheckProblemsUsecase(
                 OrganizationRepository);
 
         /// <summary>
         /// 社員異動のためのユースケースを取得します。
         /// </summary>
-        public static RelocateUsecase RelocateUsecase =>
+        public static IRelocateUsecase RelocateUsecase =>
             _relocateUsecase ??= new RelocateUsecase(
                 OrganizationRepository);
 
         /// <summary>
         /// 組織構造情報を取得するためのユースケースを取得します。
         /// </summary>
-        public static GetOrganizationStructureUsecase GetOrganizationStructureUsecase =>
+        public static IGetOrganizationStructureUsecase GetOrganizationStructureUsecase =>
             _getOrganizationStructureUsecase ??= new GetOrganizationStructureUsecase(
                 OrganizationRepository);
 
         /// <summary>
         /// データファイルの保存・読み込みを行うユースケースを取得します。
         /// </summary>
-        public static SaveLoadDataUsecase SaveLoadDataUsecase =>
+        public static ISaveLoadDataUsecase SaveLoadDataUsecase =>
             _saveLoadDataUsecase ??= new SaveLoadDataUsecase(
                 PeopleRepository,
                 OrganizationRepository,

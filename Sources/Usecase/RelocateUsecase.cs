@@ -14,7 +14,7 @@ namespace Usecase
     /// <summary>
     /// 社員異動のユースケースを提供します。
     /// </summary>
-    public class RelocateUsecase
+    public class RelocateUsecase : IRelocateUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -28,9 +28,7 @@ namespace Usecase
 
         #region Properties ------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 組織情報一覧を取得します。
-        /// </summary>
+        /// <inheritdoc/>
         public ReadOnlyCollection<OrganizationInfo> Organizations
         {
             get
@@ -44,14 +42,10 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 社員の所属組織変更が発生したイベント
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<Person> OnPersonUpdate;
 
-        /// <summary>
-        /// 組織人員問題が発生したイベント
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
@@ -73,12 +67,7 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 異動します。
-        /// </summary>
-        /// <param name="person">対象社員</param>
-        /// <param name="newOrganization">異動先</param>
-        /// <param name="isBoss">組織長として異動の場合　true</param>
+        /// <inheritdoc/>
         public void Relocate(Person person, OrganizationBase newOrganization, bool isBoss)
         {
             var organization = _organizationRepository.LoadOrganization();
@@ -96,7 +85,7 @@ namespace Usecase
 
             var checker = new CheckProblems(_organizationRepository);
             var checkResult = checker.Check();
-            if(checkResult.Count > 0)
+            if (checkResult.Count > 0)
             {
                 OnArisedProblems?.Invoke(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
             }
@@ -104,11 +93,7 @@ namespace Usecase
             OnPersonUpdate?.Invoke(person);
         }
 
-        /// <summary>
-        /// 所属組織を取得します。
-        /// </summary>
-        /// <param name="personn">調査対象</param>
-        /// <returns>所属組織</returns>
+        /// <inheritdoc/>
         public OrganizationBase GetAssignedOrganization(Person personn)
         {
             var organization = _organizationRepository.LoadOrganization();

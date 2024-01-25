@@ -11,7 +11,7 @@ namespace Usecase
     /// <summary>
     /// 組織構造を取得するユースケースを提供します。
     /// </summary>
-    public class GetOrganizationStructureUsecase
+    public class GetOrganizationStructureUsecase : IGetOrganizationStructureUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -48,10 +48,7 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 組織構造を取得します。
-        /// </summary>
-        /// <returns>組織情報</returns>
+        /// <inheritdoc/>
         public string GetOrganizationSructureInfo()
         {
             var organization = _organizationRepository.LoadOrganization();

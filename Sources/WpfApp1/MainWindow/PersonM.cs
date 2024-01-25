@@ -22,7 +22,7 @@ namespace WpfApp1.MainWindow
 
         private readonly CompositeDisposable _disposables = new();
 
-        private readonly PersonListViewUsecase _personListViewUsecase;
+        private readonly IPersonListViewUsecase _personListViewUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 

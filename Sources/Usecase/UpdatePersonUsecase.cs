@@ -12,7 +12,7 @@ namespace Usecase
     /// <summary>
     /// 個人情報を更新するユースケースの機能を提供します。
     /// </summary>
-    public class UpdatePersonUsecase
+    public class UpdatePersonUsecase : IUpdatePersonUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -30,9 +30,7 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 個人情報が更新されたことを通知します。
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<Person> OnUpdatePerson;
 
         #endregion --------------------------------------------------------------------------------------------
@@ -54,10 +52,7 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 個人情報を更新します。
-        /// </summary>
-        /// <param name="person">個人情報</param>
+        /// <inheritdoc/>
         public void Update(Person person)
         {
             UpdataPerson(person);

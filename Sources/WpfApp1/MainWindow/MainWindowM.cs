@@ -27,13 +27,13 @@ namespace WpfApp1.MainWindow
 
         private readonly CompositeDisposable _disposables = new();
 
-        private readonly PersonListViewUsecase _personListViewUsecase;
-        private readonly UpdatePersonUsecase _updatePersonUsecase;
-        private readonly AddPersonUsecase _addPersonUsecase;
-        private readonly RemovePersonUsecase _removePersonUsecase;
-        private readonly CheckProblemsUsecase _checkProblemsUsecase;
-        private readonly GetOrganizationStructureUsecase _getOrganizationStructureUsecase;
-        private readonly SaveLoadDataUsecase _saveLoadDataUsecase;
+        private readonly IPersonListViewUsecase _personListViewUsecase;
+        private readonly IUpdatePersonUsecase _updatePersonUsecase;
+        private readonly IAddPersonUsecase _addPersonUsecase;
+        private readonly IRemovePersonUsecase _removePersonUsecase;
+        private readonly ICheckProblemsUsecase _checkProblemsUsecase;
+        private readonly IGetOrganizationStructureUsecase _getOrganizationStructureUsecase;
+        private readonly ISaveLoadDataUsecase _saveLoadDataUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 

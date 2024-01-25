@@ -10,7 +10,7 @@ namespace Usecase
     /// <summary>
     /// データを保存するユースケース
     /// </summary>
-    public class SaveLoadDataUsecase
+    public class SaveLoadDataUsecase : ISaveLoadDataUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -32,19 +32,13 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 社員リストが更新されたことを通知します。
-        /// </summary>
+        /// <inheritdoc/>
         public event Action OnPeopleUpdated;
 
-        /// <summary>
-        /// 組織構成が変更されたことを通知します。
-        /// </summary>
+        /// <inheritdoc/>
         public event Action OnOrganizationUpdated;
 
-        /// <summary>
-        /// 組織人員問題を通知します。
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
@@ -73,11 +67,7 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// データをファイルに保存します。
-        /// </summary>
-        /// <param name="path">保存パス</param>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        /// <inheritdoc/>
         public async Task Save(string path)
         {
             var people = _peopleRepository.LoadPeople();
@@ -95,11 +85,7 @@ namespace Usecase
             await _dataStore.SaveData(path, packet);
         }
 
-        /// <summary>
-        /// データをファイルから読み込みます。
-        /// </summary>
-        /// <param name="path">ファイルパス</param>
-        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        /// <inheritdoc/>
         public async Task Load(string path)
         {
             PeoplePacket peoplePacket;

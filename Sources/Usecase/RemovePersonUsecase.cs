@@ -11,7 +11,7 @@ namespace Usecase
     /// <summary>
     /// 個人情報を削除するユースケースの機能を提供します。
     /// </summary>
-    public class RemovePersonUsecase
+    public class RemovePersonUsecase : IRemovePersonUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -29,9 +29,7 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 個人情報が削除されたことを通知します。
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<Person> OnRemovePerson;
 
         #endregion --------------------------------------------------------------------------------------------
@@ -53,10 +51,7 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 個人情報を削除します。
-        /// </summary>
-        /// <param name="person">個人情報</param>
+        /// <inheritdoc/>
         public void RemovePerson(Person person)
         {
             var people = _peopleRepository.LoadPeople();

@@ -13,7 +13,7 @@ namespace Usecase
     /// <summary>
     /// 組織人員問題状況を取得するユースケース
     /// </summary>
-    public class CheckProblemsUsecase
+    public class CheckProblemsUsecase : ICheckProblemsUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -31,9 +31,7 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 組織人員問題発生時イベント
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
@@ -55,14 +53,12 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 社員を組織にアサインします。
-        /// </summary>
+        /// <inheritdoc/>
         public void Check()
         {
             var checker = new CheckProblems(_organizationRepository);
             var checkResult = checker.Check();
-            if(checkResult.Count > 0)
+            if (checkResult.Count > 0)
             {
                 OnArisedProblems(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
             }

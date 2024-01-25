@@ -84,19 +84,6 @@ namespace WpfApp1.EditWindow
 
         #region Methods - private -----------------------------------------------------------------------------
 
-        private static ObservableCollection<ComboBoxItem<OrganizationBase>> GetPostItems(
-            ICollection<OrganizationInfo> infos)
-        {
-            var ret = new ObservableCollection<ComboBoxItem<OrganizationBase>>();
-
-            foreach (var info in infos)
-            {
-                ret.Add(new ComboBoxItem<OrganizationBase>(info.FullName, info.Organization));
-            }
-
-            return ret;
-        }
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Methods - override ----------------------------------------------------------------------------

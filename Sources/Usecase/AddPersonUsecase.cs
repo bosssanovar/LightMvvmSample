@@ -13,7 +13,7 @@ namespace Usecase
     /// <summary>
     /// 個人情報を追加するユースケースの機能を提供します。
     /// </summary>
-    public class AddPersonUsecase
+    public class AddPersonUsecase : IAddPersonUsecase
     {
         #region Constants -------------------------------------------------------------------------------------
 
@@ -33,19 +33,13 @@ namespace Usecase
 
         #region Events ----------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 個人情報が追加されたことを通知します。
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<Person> OnAddedPerson;
 
-        /// <summary>
-        /// 組織構成が変更されたことを通知します。
-        /// </summary>
+        /// <inheritdoc/>
         public event Action OnChangedOrganization;
 
-        /// <summary>
-        /// 組織人員問題が発生したことを通知します。
-        /// </summary>
+        /// <inheritdoc/>
         public event Action<OnArisedProblemsEventArgs> OnArisedProblems;
 
         #endregion --------------------------------------------------------------------------------------------
@@ -69,10 +63,7 @@ namespace Usecase
 
         #region Methods - public ------------------------------------------------------------------------------
 
-        /// <summary>
-        /// 個人情報を保存します。
-        /// </summary>
-        /// <param name="person">個人情報</param>
+        /// <inheritdoc/>
         public void AddPerson(Person person)
         {
             AddToPeople(person);
@@ -82,7 +73,7 @@ namespace Usecase
 
             CheckProblems checker = new(_organizationRepository);
             var checkResult = checker.Check();
-            if(checkResult.Count > 0 )
+            if (checkResult.Count > 0)
             {
                 OnArisedProblems?.Invoke(new(checkResult, checker.UnAssignedPersons, checker.NoBossOrganizaiotns));
             }

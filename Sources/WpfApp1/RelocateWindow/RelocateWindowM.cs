@@ -25,7 +25,7 @@ namespace WpfApp1.RelocateWindow
 
         private readonly CompositeDisposable _disposables = new();
 
-        private readonly RelocateUsecase _relocateUsecase;
+        private readonly IRelocateUsecase _relocateUsecase;
 
         #endregion --------------------------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ namespace WpfApp1.RelocateWindow
         /// </summary>
         /// <param name="person">異動対象社員</param>
         /// <param name="relocateUsecase">異動ユースケース</param>
-        public RelocateWindowM(Person person, RelocateUsecase relocateUsecase)
+        public RelocateWindowM(Person person, IRelocateUsecase relocateUsecase)
         {
             _relocateUsecase = relocateUsecase;
             Person = person;
