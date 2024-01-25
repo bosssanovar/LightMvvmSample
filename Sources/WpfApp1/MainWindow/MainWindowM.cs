@@ -139,6 +139,24 @@ namespace WpfApp1.MainWindow
         }
 
         /// <summary>
+        /// 社員を削除します。
+        /// </summary>
+        /// <param name="person">社員</param>
+        internal void RemovePerson(Person person)
+        {
+            _removePersonUsecase.RemovePerson(person);
+        }
+
+        /// <summary>
+        /// 社員情報を更新します。
+        /// </summary>
+        /// <param name="args">社員</param>
+        internal void Update(Person args)
+        {
+            _updatePersonUsecase.Update(args);
+        }
+
+        /// <summary>
         /// 社員リストを更新します。
         /// </summary>
         internal void UpdatePersons()

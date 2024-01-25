@@ -22,12 +22,6 @@ namespace WpfApp1.MainWindow
 
         private readonly MainWindowM _model;
 
-        private readonly UpdatePersonUsecase _updatePersonUsecase;
-
-        private readonly RemovePersonUsecase _removePersonUsecase;
-
-        private readonly PersonListViewUsecase _personListViewUsecase;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -174,12 +168,12 @@ namespace WpfApp1.MainWindow
 
         private void RemovePerson(Person person)
         {
-            _removePersonUsecase.RemovePerson(person);
+            _model.RemovePerson(person);
         }
 
         private void EditWindow_OnCompletedEdit(Person args)
         {
-            _updatePersonUsecase.Update(args);
+            _model.Update(args);
         }
 
         private void Edit_OnCompletedAdd(Person person)
