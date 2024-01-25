@@ -45,7 +45,7 @@ namespace WpfApp1
 
         private static void AddInfrastructujres(ServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<IDataStore, DataStore.DataFile>();
+            serviceCollection.AddTransient<IDataStore, DataStore.DataFile>();
         }
 
         private static void AddRepositories(ServiceCollection serviceCollection)
