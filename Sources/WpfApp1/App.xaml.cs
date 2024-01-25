@@ -3,6 +3,7 @@ using System.Windows;
 using DataStore;
 using Entity;
 using Usecase;
+using WpfApp1.DI;
 using WpfApp1.MainWindow;
 
 namespace WpfApp1

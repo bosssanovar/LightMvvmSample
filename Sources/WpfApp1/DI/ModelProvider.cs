@@ -10,7 +10,7 @@ using WpfApp1.EditWindow;
 using WpfApp1.MainWindow;
 using WpfApp1.RelocateWindow;
 
-namespace WpfApp1
+namespace WpfApp1.DI
 {
     /// <summary>
     /// DIコンテナのラッパー
@@ -76,6 +76,7 @@ namespace WpfApp1
             serviceCollection.AddTransient<MainWindowM>();
             serviceCollection.AddTransient<EditWindowM>();
             serviceCollection.AddTransient<RelocateWindowM>();
+            serviceCollection.AddTransient<PersonModelFactory>();
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using Entity.Organization;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Usecase;
+using WpfApp1.DI;
 using WpfApp1.EditWindow;
 using WpfApp1.RelocateWindow;
 

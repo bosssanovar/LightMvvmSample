@@ -11,6 +11,7 @@ using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 using Usecase;
+using WpfApp1.DI;
 
 namespace WpfApp1.MainWindow
 {
@@ -178,7 +179,8 @@ namespace WpfApp1.MainWindow
             Persons.Clear();
             foreach (var (person, organiation) in _personListViewUsecase.GetPersons())
             {
-                Persons.Add(new PersonM(person, organiation, _personListViewUsecase));
+                var factory = ModelProvider.GetRequiredModel<PersonModelFactory>();
+                Persons.Add(factory.Create(person, organiation));
             }
         }
 
