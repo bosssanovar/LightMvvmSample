@@ -15,14 +15,14 @@ namespace WpfApp1
     /// <summary>
     /// DIコンテナのラッパー
     /// </summary>
-    internal class ProductServiceProvider
+    internal class AppServiceProvider
     {
         private static ServiceProvider _provider;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public ProductServiceProvider()
+        public AppServiceProvider()
         {
             var serviceCollection = new ServiceCollection();
             _provider = serviceCollection.BuildServiceProvider();

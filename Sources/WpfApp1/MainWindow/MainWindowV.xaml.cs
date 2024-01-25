@@ -55,7 +55,7 @@ namespace WpfApp1.MainWindow
                     };
                     ret.OnRelocate += (person) =>
                     {
-                        var usecase = ProductServiceProvider.GetRequiredModel<IRelocateUsecase>();
+                        var usecase = AppServiceProvider.GetRequiredModel<IRelocateUsecase>();
                         usecase.OnPersonUpdate += Usecase_OnPersonUpdate;
                         usecase.OnArisedProblems += Usecase_OnArisedProblems;
                         var window = new RelocateWindowV(new RelocateWindowM(person, usecase))

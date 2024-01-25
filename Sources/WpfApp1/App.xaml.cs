@@ -65,9 +65,9 @@ namespace WpfApp1
 
         private static void InitObjects()
         {
-            ProductServiceProvider.BuildServiceCollection();
+            AppServiceProvider.BuildServiceCollection();
 
-            ProductServiceProvider.GetRequiredModel<IInitializeUsecase>().Initialize();
+            AppServiceProvider.GetRequiredModel<IInitializeUsecase>().Initialize();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -88,13 +88,13 @@ namespace WpfApp1
 
             // メイン ウィンドウ表示
             MainWindowM model = new (
-                                    ProductServiceProvider.GetRequiredModel<IPersonListViewUsecase>(),
-                                    ProductServiceProvider.GetRequiredModel<IUpdatePersonUsecase>(),
-                                    ProductServiceProvider.GetRequiredModel<IAddPersonUsecase>(),
-                                    ProductServiceProvider.GetRequiredModel<IRemovePersonUsecase>(),
-                                    ProductServiceProvider.GetRequiredModel<ICheckProblemsUsecase>(),
-                                    ProductServiceProvider.GetRequiredModel<IGetOrganizationStructureUsecase>(),
-                                    ProductServiceProvider.GetRequiredModel<ISaveLoadDataUsecase>()
+                                    AppServiceProvider.GetRequiredModel<IPersonListViewUsecase>(),
+                                    AppServiceProvider.GetRequiredModel<IUpdatePersonUsecase>(),
+                                    AppServiceProvider.GetRequiredModel<IAddPersonUsecase>(),
+                                    AppServiceProvider.GetRequiredModel<IRemovePersonUsecase>(),
+                                    AppServiceProvider.GetRequiredModel<ICheckProblemsUsecase>(),
+                                    AppServiceProvider.GetRequiredModel<IGetOrganizationStructureUsecase>(),
+                                    AppServiceProvider.GetRequiredModel<ISaveLoadDataUsecase>()
                                     );
             MainWindowV window = new(model);
             window.Show();
