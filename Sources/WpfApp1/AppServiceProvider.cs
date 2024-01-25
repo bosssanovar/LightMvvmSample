@@ -13,7 +13,7 @@ using WpfApp1.RelocateWindow;
 namespace WpfApp1
 {
     /// <summary>
-    /// DIコンテナのラッパー
+    /// DIコンテナ（Microsoft.Extensions.DependencyInjection）のラッパー
     /// </summary>
     internal class AppServiceProvider
     {
