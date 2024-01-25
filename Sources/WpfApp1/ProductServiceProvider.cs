@@ -10,19 +10,19 @@ using WpfApp1.EditWindow;
 using WpfApp1.MainWindow;
 using WpfApp1.RelocateWindow;
 
-namespace WpfApp1.DI
+namespace WpfApp1
 {
     /// <summary>
     /// DIコンテナのラッパー
     /// </summary>
-    internal class ModelProvider
+    internal class ProductServiceProvider
     {
         private static ServiceProvider _provider;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public ModelProvider()
+        public ProductServiceProvider()
         {
             var serviceCollection = new ServiceCollection();
             _provider = serviceCollection.BuildServiceProvider();
@@ -38,7 +38,6 @@ namespace WpfApp1.DI
             AddInfrastructujres(serviceCollection);
             AddRepositories(serviceCollection);
             AddUsecases(serviceCollection);
-            AddModels(serviceCollection);
 
             _provider = serviceCollection.BuildServiceProvider();
         }
@@ -71,16 +70,8 @@ namespace WpfApp1.DI
             serviceCollection.AddTransient<ISaveLoadDataUsecase, SaveLoadDataUsecase>();
         }
 
-        private static void AddModels(ServiceCollection serviceCollection)
-        {
-            serviceCollection.AddTransient<MainWindowM>();
-            serviceCollection.AddTransient<EditWindowM>();
-            serviceCollection.AddTransient<RelocateWindowM>();
-            serviceCollection.AddTransient<PersonModelFactory>();
-        }
-
         /// <summary>
-        /// DIにより、依存するインターフェースにインスタンスが設定されたModelクラスインスタンスを取得します。
+        /// DIにより、依存するインターフェースにインスタンスが設定されたクラスインスタンスを取得します。
         /// </summary>
         /// <typeparam name="T">Modelクラス</typeparam>
         /// <returns>Modelインスタンス</returns>

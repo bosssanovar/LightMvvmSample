@@ -7,7 +7,6 @@ using Entity.Organization;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Usecase;
-using WpfApp1.DI;
 using WpfApp1.EditWindow;
 using WpfApp1.RelocateWindow;
 
@@ -56,7 +55,7 @@ namespace WpfApp1.MainWindow
                     };
                     ret.OnRelocate += (person) =>
                     {
-                        var usecase = ModelProvider.GetRequiredModel<IRelocateUsecase>();
+                        var usecase = ProductServiceProvider.GetRequiredModel<IRelocateUsecase>();
                         usecase.OnPersonUpdate += Usecase_OnPersonUpdate;
                         usecase.OnArisedProblems += Usecase_OnArisedProblems;
                         var window = new RelocateWindowV(new RelocateWindowM(person, usecase))

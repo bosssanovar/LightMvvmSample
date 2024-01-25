@@ -3,7 +3,6 @@ using System.Windows;
 using DataStore;
 using Entity;
 using Usecase;
-using WpfApp1.DI;
 using WpfApp1.MainWindow;
 
 namespace WpfApp1
@@ -66,9 +65,9 @@ namespace WpfApp1
 
         private static void InitObjects()
         {
-            ModelProvider.BuildServiceCollection();
+            ProductServiceProvider.BuildServiceCollection();
 
-            ModelProvider.GetRequiredModel<IInitializeUsecase>().Initialize();
+            ProductServiceProvider.GetRequiredModel<IInitializeUsecase>().Initialize();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -88,7 +87,15 @@ namespace WpfApp1
             InitObjects();
 
             // メイン ウィンドウ表示
-            MainWindowM model = ModelProvider.GetRequiredModel<MainWindowM>();
+            MainWindowM model = new (
+                                    ProductServiceProvider.GetRequiredModel<IPersonListViewUsecase>(),
+                                    ProductServiceProvider.GetRequiredModel<IUpdatePersonUsecase>(),
+                                    ProductServiceProvider.GetRequiredModel<IAddPersonUsecase>(),
+                                    ProductServiceProvider.GetRequiredModel<IRemovePersonUsecase>(),
+                                    ProductServiceProvider.GetRequiredModel<ICheckProblemsUsecase>(),
+                                    ProductServiceProvider.GetRequiredModel<IGetOrganizationStructureUsecase>(),
+                                    ProductServiceProvider.GetRequiredModel<ISaveLoadDataUsecase>()
+                                    );
             MainWindowV window = new(model);
             window.Show();
         }
