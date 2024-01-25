@@ -72,8 +72,7 @@ namespace WpfApp1.MainWindow
                     var edit = new EditWindowV(
                         new EditWindowM(
                             new NameVO(string.Empty, string.Empty),
-                            new BirthdayVO(1900, 1, 1)),
-                        _personListViewUsecase
+                            new BirthdayVO(1900, 1, 1))
                         )
                     {
                         Owner = this,

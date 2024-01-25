@@ -22,8 +22,6 @@ namespace WpfApp1.EditWindow
 
         private readonly EditWindowM _model;
 
-        private readonly PersonListViewUsecase _personListViewUsecase;
-
         #endregion --------------------------------------------------------------------------------------------
 
         #region Constants -------------------------------------------------------------------------------------
@@ -56,21 +54,6 @@ namespace WpfApp1.EditWindow
         /// 誕生日　日を取得します。
         /// </summary>
         public ReactivePropertySlim<int> Day { get; }
-
-        /// <summary>
-        /// 選択された組織を取得します。
-        /// </summary>
-        public ReactivePropertySlim<OrganizationBase> SelectedOrganization { get; }
-
-        /// <summary>
-        /// 組織リストを取得します。
-        /// </summary>
-        public ObservableCollection<ComboBoxItem<OrganizationBase>> OrganizationItems { get; }
-
-        /// <summary>
-        /// 組織長であるかを取得します。
-        /// </summary>
-        public ReactivePropertySlim<bool> IsBoss { get; }
 
         #region Ok Command
 

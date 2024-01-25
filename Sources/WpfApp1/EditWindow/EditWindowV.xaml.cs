@@ -40,8 +40,7 @@ namespace WpfApp1.EditWindow
         /// コンストラクタ
         /// </summary>
         /// <param name="model">個人情報</param>
-        /// <param name="personListViewUsecase">社員リスト表示ユースケース</param>
-        public EditWindowV(EditWindowM model, PersonListViewUsecase personListViewUsecase)
+        public EditWindowV(EditWindowM model)
         {
             #region init View Members
 
@@ -50,7 +49,6 @@ namespace WpfApp1.EditWindow
             #region init ViewModel Members
 
             _model = model;
-            _personListViewUsecase = personListViewUsecase;
 
             FamilyName = _model.FamilyName.ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(_disposables);
@@ -66,13 +64,6 @@ namespace WpfApp1.EditWindow
 
             Day = _model.Day.ToReactivePropertySlimAsSynchronized(x => x.Value)
                 .AddTo(_disposables);
-
-            var organizationList = _personListViewUsecase.GetOrganizationInfos();
-
-            SelectedOrganization = new ReactivePropertySlim<Entity.Organization.OrganizationBase>(organizationList[0].Organization)
-                .AddTo(_disposables);
-
-            OrganizationItems = GetPostItems(organizationList);
 
             #endregion
 
