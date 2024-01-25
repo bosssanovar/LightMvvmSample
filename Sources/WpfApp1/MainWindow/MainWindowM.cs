@@ -65,15 +65,29 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public MainWindowM()
+        /// <param name="personListViewUsecase">人員ユースケース</param>
+        /// <param name="updatePersonUsecase">更新ユースケース</param>
+        /// <param name="addPersonUsecase">追加ユースケース</param>
+        /// <param name="removePersonUsecase">削除ユースケース</param>
+        /// <param name="checkProblemsUsecase">確認ユースケース</param>
+        /// <param name="getOrganizationStructureUsecase">組織構成取得ユースケース</param>
+        /// <param name="saveLoadDataUsecase">保存読み込みユースケース</param>
+        public MainWindowM(
+           IPersonListViewUsecase personListViewUsecase,
+           IUpdatePersonUsecase updatePersonUsecase,
+           IAddPersonUsecase addPersonUsecase,
+           IRemovePersonUsecase removePersonUsecase,
+           ICheckProblemsUsecase checkProblemsUsecase,
+           IGetOrganizationStructureUsecase getOrganizationStructureUsecase,
+           ISaveLoadDataUsecase saveLoadDataUsecase)
         {
-            _personListViewUsecase = PersonUsecaseProvider.PersonListViewUsecase;
-            _updatePersonUsecase = PersonUsecaseProvider.UpdatePersonUsecase;
-            _addPersonUsecase = PersonUsecaseProvider.AddPersonUsecase;
-            _removePersonUsecase = PersonUsecaseProvider.RemovePersonUsecase;
-            _checkProblemsUsecase = PersonUsecaseProvider.CheckProblemsUsecase;
-            _getOrganizationStructureUsecase = PersonUsecaseProvider.GetOrganizationStructureUsecase;
-            _saveLoadDataUsecase = PersonUsecaseProvider.SaveLoadDataUsecase;
+            _personListViewUsecase = personListViewUsecase;
+            _addPersonUsecase = addPersonUsecase;
+            _checkProblemsUsecase = checkProblemsUsecase;
+            _getOrganizationStructureUsecase = getOrganizationStructureUsecase;
+            _removePersonUsecase = removePersonUsecase;
+            _saveLoadDataUsecase = saveLoadDataUsecase;
+            _updatePersonUsecase = updatePersonUsecase;
 
             Persons = new ReactiveCollection<PersonM>();
 
@@ -164,7 +178,7 @@ namespace WpfApp1.MainWindow
             Persons.Clear();
             foreach (var (person, organiation) in _personListViewUsecase.GetPersons())
             {
-                Persons.Add(new PersonM(person, organiation));
+                Persons.Add(new PersonM(person, organiation, _personListViewUsecase));
             }
         }
 

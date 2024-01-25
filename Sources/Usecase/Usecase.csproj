@@ -14,7 +14,6 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DummyPersons|AnyCPU'">
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <DefineConstants>$(DefineConstants);DUMMY</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

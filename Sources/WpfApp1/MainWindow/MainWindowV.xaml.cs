@@ -20,7 +20,8 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public MainWindowV()
+        /// <param name="model">モデルインスタンス</param>
+        public MainWindowV(MainWindowM model)
         {
             #region init View Members
 
@@ -28,7 +29,7 @@ namespace WpfApp1.MainWindow
 
             #region init ViewModel Members
 
-            _model = new MainWindowM();
+            _model = model;
 
             PersonsCount = _model.Persons
                 .ObserveProperty(x => x.Count).ToReadOnlyReactivePropertySlim()
@@ -54,7 +55,7 @@ namespace WpfApp1.MainWindow
                     };
                     ret.OnRelocate += (person) =>
                     {
-                        var usecase = PersonUsecaseProvider.RelocateUsecase;
+                        var usecase = ModelProvider.GetRequiredModel<IRelocateUsecase>();
                         usecase.OnPersonUpdate += Usecase_OnPersonUpdate;
                         usecase.OnArisedProblems += Usecase_OnArisedProblems;
                         var window = new RelocateWindowV(new RelocateWindowM(person, usecase))

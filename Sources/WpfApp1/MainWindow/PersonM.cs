@@ -73,24 +73,14 @@ namespace WpfApp1.MainWindow
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="name">氏名</param>
-        /// <param name="birthDay">誕生日</param>
-        /// <param name="assignedOrganization">所属組織</param>
-        public PersonM(NameVO name, BirthdayVO birthDay, OrganizationBase? assignedOrganization)
-            : this(new Person(name, birthDay), assignedOrganization)
-        {
-        }
-
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
         /// <param name="person">個人情報</param>
         /// <param name="assignedOrganization">所属組織</param>
-        public PersonM(Person person, OrganizationBase? assignedOrganization)
+        /// <param name="personListViewUsecase">社員リストユースケース</param>
+        public PersonM(Person person, OrganizationBase? assignedOrganization, IPersonListViewUsecase personListViewUsecase)
         {
             Person = person;
 
-            _personListViewUsecase = PersonUsecaseProvider.PersonListViewUsecase;
+            _personListViewUsecase = personListViewUsecase;
 
             // Birthday
             Birthday = new ReactivePropertySlim<BirthdayVO>(person.Birthday)

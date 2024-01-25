@@ -65,14 +65,9 @@ namespace WpfApp1
 
         private static void InitObjects()
         {
-            InitForDependencyInjection();
+            ModelProvider.BuildServiceCollection();
 
-            PersonUsecaseProvider.InitializeUsecase.Initialize();
-        }
-
-        private static void InitForDependencyInjection()
-        {
-            PersonUsecaseProvider.SetDataStore(new DataFile());
+            ModelProvider.GetRequiredModel<IInitializeUsecase>().Initialize();
         }
 
         #endregion --------------------------------------------------------------------------------------------
@@ -92,7 +87,8 @@ namespace WpfApp1
             InitObjects();
 
             // メイン ウィンドウ表示
-            MainWindowV window = new();
+            MainWindowM model = ModelProvider.GetRequiredModel<MainWindowM>();
+            MainWindowV window = new(model);
             window.Show();
         }
 
